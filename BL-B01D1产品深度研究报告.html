@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BL-B01D1（宜泽康®）产品深度研究报告 · 文献·说明书·结构·竞品·格局·未来</title>
+<style>
+  :root{
+    --primary:#0b5e8f; --primary-2:#1472a8; --accent:#c25e14; --good:#1d7a54;
+    --bg:#f5f7fa; --card:#ffffff; --line:#e2e8f0; --text:#1f2933; --muted:#5b6b7a;
+    --red:#c0392b; --shadow:0 4px 18px rgba(30,60,90,.08);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.7;}
+  /* ===== Sidebar TOC ===== */
+  .toc{position:fixed;top:0;left:0;width:260px;height:100vh;background:#0e2b40;color:#cfe0ec;overflow-y:auto;padding:24px 16px;z-index:10;}
+  .toc .brand{font-size:15px;font-weight:700;color:#fff;line-height:1.4;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.15);margin-bottom:14px;}
+  .toc .brand small{display:block;font-size:11px;color:#8fb3cc;font-weight:400;margin-top:4px;}
+  .toc a{display:block;color:#b9d2e4;text-decoration:none;font-size:12.5px;padding:6px 10px;border-radius:6px;margin:2px 0;}
+  .toc a:hover{background:rgba(255,255,255,.08);color:#fff;}
+  .toc a.l2{padding-left:22px;font-size:12px;color:#93adc2;}
+  /* ===== Main ===== */
+  .main{margin-left:260px;padding:0 44px 80px;}
+  .hero{background:linear-gradient(135deg,#0b4a6f 0%,#1472a8 60%,#1b8abf 100%);color:#fff;border-radius:0 0 20px 20px;padding:46px 48px;margin:0 -44px 36px;position:relative;}
+  .hero .tags span{display:inline-block;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);padding:3px 12px;border-radius:999px;font-size:12px;margin:0 6px 8px 0;}
+  .hero h1{font-size:30px;letter-spacing:1px;margin:14px 0 10px;}
+  .hero .sub{font-size:15px;opacity:.93;max-width:860px;}
+  .hero .meta{margin-top:18px;font-size:12.5px;opacity:.85;display:flex;flex-wrap:wrap;gap:18px;}
+  section{margin:44px 0;scroll-margin-top:20px;}
+  .sec-head{display:flex;align-items:center;gap:14px;margin-bottom:8px;}
+  .sec-num{flex:none;width:42px;height:42px;border-radius:12px;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;}
+  .sec-head h2{font-size:24px;color:#0b4a6f;}
+  .sec-desc{color:var(--muted);font-size:14px;margin:0 0 20px 56px;}
+  h3{font-size:18px;color:#0d3f5e;margin:28px 0 12px;border-left:4px solid var(--primary-2);padding-left:12px;}
+  h4{font-size:15.5px;color:#0d3f5e;margin:18px 0 8px;}
+  p{font-size:14px;margin:8px 0;color:#33414f;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;box-shadow:var(--shadow);margin:14px 0;}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  table{width:100%;border-collapse:collapse;font-size:13px;margin:12px 0;background:#fff;border-radius:10px;overflow:hidden;box-shadow:var(--shadow);}
+  th{background:#0e3a57;color:#fff;padding:10px 12px;text-align:left;font-weight:600;white-space:nowrap;}
+  td{padding:9px 12px;border-bottom:1px solid #eef2f6;vertical-align:top;color:#33414f;}
+  tr:nth-child(even) td{background:#f8fafc;}
+  .hl{color:var(--red);font-weight:700;}
+  .ok{color:var(--good);font-weight:700;}
+  .tag{display:inline-block;padding:2px 10px;border-radius:999px;font-size:11.5px;font-weight:600;}
+  .tag.b{background:#e3f0f9;color:#0b5e8f;}
+  .tag.o{background:#fdeee2;color:#a04e0e;}
+  .tag.g{background:#e5f4ee;color:#16623f;}
+  .tag.r{background:#fbeaea;color:#a03025;}
+  .note{background:#fff8ec;border:1px solid #f0dfc0;border-left:4px solid var(--accent);border-radius:8px;padding:12px 16px;font-size:13px;margin:14px 0;}
+  .warn{background:#fdf1f1;border:1px solid #f0cccc;border-left:4px solid var(--red);border-radius:8px;padding:12px 16px;font-size:13px;margin:14px 0;}
+  .info{background:#eef6fb;border:1px solid #cfe5f2;border-left:4px solid var(--primary-2);border-radius:8px;padding:12px 16px;font-size:13px;margin:14px 0;}
+  .timeline{position:relative;padding-left:26px;margin:16px 0;}
+  .timeline::before{content:"";position:absolute;left:7px;top:8px;bottom:8px;width:3px;background:#cfe2ee;border-radius:2px;}
+  .tl{position:relative;margin-bottom:16px;}
+  .tl::before{content:"";position:absolute;left:-26px;top:5px;width:14px;height:14px;border-radius:50%;background:var(--primary-2);border:3px solid #d8ebf7;}
+  .tl .date{font-weight:700;color:var(--primary-2);font-size:13.5px;}
+  .tl p{font-size:13px;margin:3px 0 0;color:#33414f;}
+  .moa{display:flex;align-items:stretch;gap:10px;flex-wrap:wrap;margin:14px 0;}
+  .moa .step{flex:1;min-width:150px;background:#eef6fb;border:1px solid #cfe5f2;border-radius:10px;padding:12px;font-size:12.5px;text-align:center;color:#0d3f5e;}
+  .moa .step b{display:block;font-size:15px;margin-bottom:4px;color:#0b5e8f;}
+  .moa .arrow{align-self:center;color:var(--primary-2);font-weight:700;font-size:18px;}
+  .pill{display:inline-block;background:#eef6fb;border:1px solid #cfe5f2;border-radius:8px;padding:4px 10px;font-size:12.5px;margin:3px;color:#0b5e8f;}
+  .foot{margin-top:60px;padding-top:20px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);}
+  @media (max-width:900px){
+    .toc{display:none;} .main{margin-left:0;padding:0 18px 60px;} .hero{margin:0 -18px 28px;padding:34px 24px;}
+    .grid2,.grid3{grid-template-columns:1fr;} .sec-desc{margin-left:0;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== TOC ===== -->
+<nav class="toc">
+  <div class="brand">BL-B01D1 · 产品深度报告<small>上市后医学经理参考 v1.0 · 2026-08</small></div>
+  <a href="#s1">01 执行摘要</a>
+  <a href="#s2">02 产品深度解析</a>
+  <a class="l2" href="#s2-1">2.1 基本信息</a>
+  <a class="l2" href="#s2-2">2.2 结构三要素</a>
+  <a class="l2" href="#s2-3">2.3 作用机制</a>
+  <a href="#s3">03 文献与研究全景</a>
+  <a class="l2" href="#s3-1">3.1 发表文献清单</a>
+  <a class="l2" href="#s3-2">3.2 各研究数据详解</a>
+  <a href="#s4">04 说明书要点</a>
+  <a class="l2" href="#s4-1">4.1 适应症与用法</a>
+  <a class="l2" href="#s4-2">4.2 不良反应</a>
+  <a class="l2" href="#s4-3">4.3 药代动力学</a>
+  <a href="#s5">05 特殊人群用药</a>
+  <a href="#s6">06 竞品深度对比</a>
+  <a class="l2" href="#s6-1">6.1 竞品档案</a>
+  <a class="l2" href="#s6-2">6.2 数据对比</a>
+  <a class="l2" href="#s6-3">6.3 差异化定位</a>
+  <a href="#s7">07 治疗格局与排位</a>
+  <a class="l2" href="#s7-1">7.1 TNBC路径</a>
+  <a class="l2" href="#s7-2">7.2 HR+/HER2- 路径</a>
+  <a class="l2" href="#s7-3">7.3 HER2+ 路径</a>
+  <a href="#s8">08 未来方向思考</a>
+  <a class="l2" href="#s8-1">8.1 联合治疗</a>
+  <a class="l2" href="#s8-2">8.2 前线推进</a>
+  <a class="l2" href="#s8-3">8.3 优势人群</a>
+  <a class="l2" href="#s8-4">8.4 生物标志物</a>
+  <a class="l2" href="#s8-5">8.5 耐药机制</a>
+  <a href="#s9">09 数据来源与声明</a>
+</nav>
+
+<div class="main">
+
+<div class="hero">
+  <div class="tags">
+    <span>EGFR×HER3 双抗ADC</span><span>全球首个获批双抗ADC</span><span>实体瘤 · 侧重乳腺癌</span><span>BMS 84亿美元合作</span>
+  </div>
+  <h1>BL-B01D1（宜泽康® / iza-bren）<br>产品深度研究报告</h1>
+  <div class="sub">文献与研究全景 · 获批说明书 · 结构解析 · 特殊人群用药 · 竞品对比 · 治疗格局排位 · 未来方向思考 —— 面向上市后医学经理的完整知识体系</div>
+  <div class="meta"><span>📅 数据检索截止：2026年8月</span><span>📄 说明书版本：核准日期 2026-06-17</span><span>⚠️ 仅供医学专业人士参考</span></div>
+</div>
+
+<!-- ============ 01 执行摘要 ============ -->
+<section id="s1">
+  <div class="sec-head"><div class="sec-num">01</div><h2>执行摘要</h2></div>
+  <div class="sec-desc">三分钟掌握产品全貌</div>
+  <div class="card">
+    <p><b>BL-B01D1（通用名：伦康依隆妥单抗，英文名 izalontamab brengitecan / iza-bren，商品名：宜泽康®）</b>是百利天恒自主研发的<b>全球首个获批上市的双特异性抗体药物偶联物（BsADC）</b>，靶向 <b>EGFR × HER3</b>。分子由人源化抗EGFR（IgG1）-GS连接子-HER3（scFv）双特异性抗体 + 可裂解连接子 + 拓扑异构酶I抑制剂载荷 <b>Ed-04</b> 构成，药物抗体比（DAR）≈8，抗体Fc段兼具ADCC作用。</p>
+    <p><b>注册里程碑（截至2026-08）</b>：鼻咽癌（2026-06-22，附条件批准）、食管鳞癌（2026-07-16）两项适应症已在中国获批上市；<b>三阴性乳腺癌（TNBC）≥2线适应症NDA已获CDE受理（2026-06-11，预计2027年获批）</b>，此为医学经理未来主战场；非小细胞肺癌（EGFR-TKI耐药）获FDA突破性疗法认定，全球多中心III期推进中。</p>
+    <p><b>证据强度</b>：已发表/报告全球首个双抗ADC在乳腺癌（PANKU-Breast 02，2026 ASCO LBA）、食管鳞癌（PANKU-Esophagus01）、鼻咽癌（PANKU-NPC01，发表于《柳叶刀》）领域的III期双终点（PFS+OS）阳性数据；I期研究发表于《柳叶刀·肿瘤学》（2024）；SCLC Ib期发表于《临床肿瘤学杂志》（2026）。</p>
+    <p><b>差异化叙事（一句话）</b>：≥2L TNBC <b>全人群</b>（覆盖HER2 IHC 0 + HER2低表达）III期 PFS/OS 双阳性；以<b>血液学毒性为主、ILD仅1.0-1.4%、低体感AE</b>，疗效与生活质量并重。</p>
+  </div>
+</section>
+
+<!-- ============ 02 产品深度解析 ============ -->
+<section id="s2">
+  <div class="sec-head"><div class="sec-num">02</div><h2>产品深度解析</h2></div>
+  <div class="sec-desc">从分子结构到作用机制，建立"知其所以然"的底层认知</div>
+
+  <h3 id="s2-1">2.1 产品基本信息卡</h3>
+  <div class="card">
+    <table>
+      <tr><th style="width:200px">项目</th><th>内容</th></tr>
+      <tr><td>研发代号</td><td>BL-B01D1（海外代号 BMS-986507）</td></tr>
+      <tr><td>通用名 / 商品名</td><td>注射用伦康依隆妥单抗 / 宜泽康®（iza-bren）</td></tr>
+      <tr><td>药物类别</td><td><span class="tag b">First-in-class</span> EGFR×HER3 双特异性抗体药物偶联物（BsADC）</td></tr>
+      <tr><td>规格</td><td>120 mg/瓶（冻干粉针，静脉输注）</td></tr>
+      <tr><td>批准文号</td><td>国药准字S20260049（生产企业：成都百利多特生物药业有限责任公司）</td></tr>
+      <tr><td>推荐剂量</td><td>2.75 mg/kg（相当于2.5 mg/kg补偿10%），D1、D8给药，每3周（21天）1周期</td></tr>
+      <tr><td>适应症（已获批）</td><td>① 复发/转移性鼻咽癌（≥2线系统化疗+PD-1/PD-L1治疗失败后）；② 食管鳞癌（PD-1/PD-L1联合含铂化疗进展后）</td></tr>
+      <tr><td>在审/管线</td><td>TNBC ≥2L（NDA已受理）；NSCLC（EGFR-TKI耐药，FDA BTD）；ES-SCLC（III期进行中）等</td></tr>
+      <tr><td>全球合作</td><td>2023-12与BMS达成84亿美元合作（首付8亿）；大中华区权益归百利天恒</td></tr>
+    </table>
+  </div>
+
+  <h3 id="s2-2">2.2 分子结构三要素解析</h3>
+  <div class="grid3">
+    <div class="card" style="border-top:4px solid var(--primary-2)">
+      <h4>① 抗体部分：双特异性抗体</h4>
+      <p>重组<b>人源化抗EGFR（IgG1）</b>，其重链羧基端通过 <b>GS 连接子</b> 与 <b>抗HER3 的 scFv</b> 相连，构成 EGFR×HER3 双特异性抗体。IgG1 骨架保留<b>Fc介导的ADCC</b>作用。</p>
+      <p><b>设计逻辑</b>：同时识别肿瘤细胞表面 EGFR 与 HER3，双靶协同提高肿瘤选择性；双价结合促进<b>内吞效率</b>。</p>
+    </div>
+    <div class="card" style="border-top:4px solid var(--accent)">
+      <h4>② 连接子：可裂解 Ac-GGFG</h4>
+      <p>采用含 <b>Ac 接头</b> 的 <b>Ac-GGFG 四肽连接子</b>（自研酸性连接子，亲水性高、血浆稳定性好）。</p>
+      <p><b>设计逻辑</b>：血浆中稳定、循环中减少脱靶释放；进入肿瘤细胞后于<b>溶酶体经酶切</b>释放载荷，实现"定点爆破"。</p>
+    </div>
+    <div class="card" style="border-top:4px solid var(--good)">
+      <h4>③ 载荷：Ed-04（TOP1抑制剂）</h4>
+      <p>新型<b>拓扑异构酶I抑制剂</b>载荷 Ed-04（Brengitecan），<b>DAR≈8</b>（每个抗体约连接8个分子）。</p>
+      <p><b>设计逻辑</b>：TOP1抑制→DNA损伤→细胞死亡；高DAR提升杀伤强度；载荷具有<b>旁观者效应</b>，可杀伤靶点阴性邻近肿瘤细胞。</p>
+    </div>
+  </div>
+
+  <h3 id="s2-3">2.3 作用机制（MOA）五步</h3>
+  <div class="moa">
+    <div class="step"><b>① 结合</b>双特异抗体同时结合EGFR与HER3，阻断增殖/存活信号</div>
+    <div class="arrow">→</div>
+    <div class="step"><b>② 内吞</b>受体介导的胞吞进入肿瘤细胞</div>
+    <div class="arrow">→</div>
+    <div class="step"><b>③ 释放</b>溶酶体酶切连接子，释放Ed-04</div>
+    <div class="arrow">→</div>
+    <div class="step"><b>④ 杀伤</b>TOP1抑制→DNA合成受阻→基因毒性应激→凋亡</div>
+    <div class="arrow">→</div>
+    <div class="step"><b>⑤ 放大</b>旁观者效应杀灭邻近细胞；Fc介导ADCC</div>
+  </div>
+
+  <div class="info"><b>机制差异化三大支点（对医生沟通的核心）</b>：<br>
+  ① <b>双靶协同抗耐药</b>——EGFR受抑制后HER3常成为代偿通路，双靶同时压制降低单靶耐药风险；② <b>更广人群</b>——获益不依赖HER2表达水平，覆盖HER2 IHC 0与低表达；③ <b>更低正常组织毒性</b>——双抗设计降低对正常表皮EGFR的单价结合强度，严重皮疹/腹泻低于EGFR单抗/EGFR ADC，ILD发生率低。</div>
+</section>
+
+<!-- ============ 03 文献与研究全景 ============ -->
+<section id="s3">
+  <div class="sec-head"><div class="sec-num">03</div><h2>已发表文献与研究全景</h2></div>
+  <div class="sec-desc">本产品迄今全部关键研究数据汇总（截至2026-08，医学经理"弹药库"）</div>
+
+  <h3 id="s3-1">3.1 发表文献清单</h3>
+  <div class="card">
+    <table>
+      <tr><th>文献/报告</th><th>研究</th><th>期刊/会议</th><th>时间</th></tr>
+      <tr><td>晚期实体瘤I期（首个人体）</td><td>BL-B01D1-101（NCT05194982）</td><td><b>Lancet Oncology</b>（IF≈54）</td><td>2024-05</td></tr>
+      <tr><td>乳腺癌I期更新（TNBC/HR+/HER2- /HER2+）</td><td>NCT05470348</td><td>SABCS 2024（P5-07-27）</td><td>2024-12</td></tr>
+      <tr><td>食管鳞癌Ib期</td><td>BL-B01D1-101 ESCC队列</td><td><b>Nature Medicine</b>（IF≈58）</td><td>2025-07</td></tr>
+      <tr><td>EGFR突变NSCLC 1L联合奥希替尼（II期）</td><td>BL-B01D1-101/201（NCT05880706）</td><td>WCLC 2025</td><td>2025-09</td></tr>
+      <tr><td>复发广泛期SCLC Ib期</td><td>BL-B01D1-101 SCLC扩展队列</td><td><b>J Clin Oncol</b>（IF≈45，PMID 42497381）</td><td>2026-07-24</td></tr>
+      <tr><td>鼻咽癌III期（确证性，附条件批准依据）</td><td>PANKU-NPC01（BL-B01D1-303）</td><td><b>Lancet</b>（柳叶刀，已接收发表）</td><td>2026（III期数据2025-11读出）</td></tr>
+      <tr><td>食管鳞癌III期（注册获批依据）</td><td>PANKU-Esophagus01（BL-B01D1-305）</td><td>2026 ASCO 口头报告</td><td>2026-06</td></tr>
+      <tr><td>TNBC ≥2L III期（NDA受理依据）</td><td>PANKU-Breast 02（BL-B01D1-307）</td><td>2026 ASCO <b>LBA1003</b></td><td>2026-06</td></tr>
+    </table>
+  </div>
+
+  <h3 id="s3-2">3.2 各研究数据详解</h3>
+
+  <h4>① I期首个人体研究（Lancet Oncology 2024）——多瘤种概念验证</h4>
+  <div class="card">
+    <p><span class="pill">NCT05194982</span><span class="pill">中国多中心</span><span class="pill">剂量爬坡+扩展</span><span class="pill">RP2D：2.5 mg/kg D1D8Q3W</span></p>
+    <table>
+      <tr><th>瘤种</th><th>可评估例数</th><th>ORR</th><th>备注</th></tr>
+      <tr><td>总体（重度经治实体瘤）</td><td>174</td><td class="hl">34%</td><td>195例接受治疗</td></tr>
+      <tr><td>EGFR突变NSCLC</td><td>38</td><td class="hl">63.2%</td><td>ASCO 2023报告（中位随访4.1个月）</td></tr>
+      <tr><td>EGFR野生型NSCLC</td><td>49</td><td>44.9%</td><td>—</td></tr>
+      <tr><td>鼻咽癌</td><td>28</td><td class="hl">53.6%</td><td>—</td></tr>
+      <tr><td>SCLC</td><td>7</td><td>14.3%</td><td>早期数据，后续扩展队列大幅提升</td></tr>
+      <tr><td>头颈鳞癌</td><td>15</td><td>6.7%</td><td>—</td></tr>
+    </table>
+    <p><b>安全性（n=195）</b>：≥3级TRAE 71%，常见为中性粒细胞减少（47%）、贫血（39%）、白细胞减少（39%）、血小板减少（32%）。</p>
+  </div>
+
+  <h4>② 乳腺癌I期更新（SABCS 2024，NCT05470348）——三亚型全覆盖</h4>
+  <div class="card">
+    <p>截止2024-09-30，<b>162例</b>晚期乳腺癌，中位随访11.6个月。</p>
+    <table>
+      <tr><th>亚型</th><th>可评估</th><th>cORR</th><th>mDOR</th><th>mPFS</th><th>1-2线化疗经治者</th></tr>
+      <tr><td><b>TNBC</b></td><td>—</td><td class="hl">34.1%</td><td>11.5个月</td><td>5.8个月</td><td>cORR <b>50.0%</b>，mPFS <b>6.9个月</b></td></tr>
+      <tr><td><b>HR+/HER2-</b></td><td>77例</td><td class="hl">37.7%</td><td>7.4个月</td><td>7.0个月</td><td>cORR <b>45.7%</b>，mPFS <b>8.3个月</b>（对比SG后线mPFS约5.5个月）</td></tr>
+      <tr><td><b>HER2+</b></td><td>40例</td><td class="hl">47.5%</td><td>7.4个月</td><td>7.0个月</td><td>—</td></tr>
+    </table>
+    <p><b>安全性</b>：≥3级TRAE以血液学毒性为主（中性粒细胞减少52.5%、白细胞减少42.6%、贫血41.4%、血小板减少26.5%）；1例药物相关死亡（发热性中性粒细胞减少）；<b>未观察到ILD</b>。</p>
+    <div class="info">基于此结果，2024年启动两项III期：TNBC（BL-B01D1-307，PFS/OS双终点）与HR+/HER2-晚期乳腺癌（PFS主终点）。</div>
+  </div>
+
+  <h4>③ 食管鳞癌Ib期（Nature Medicine 2025）</h4>
+  <div class="card">
+    <p>晚期经治ESCC，2.5 mg/kg D1D8Q3W；显示抗肿瘤活性与可管理安全性，为III期提供依据。</p>
+  </div>
+
+  <h4>④ 复发广泛期SCLC Ib期（JCO 2026，PMID 42497381）——II/III线突破</h4>
+  <div class="card">
+    <p><span class="pill">BL-B01D1-101 SCLC队列</span><span class="pill">52例</span><span class="pill">2.5mg/kg D1D8Q3W</span><span class="pill">数据截止2024-12-05</span></p>
+    <table>
+      <tr><th>指标</th><th>全队列（n=52）</th><th>二线亚组（n=22）</th></tr>
+      <tr><td>ORR</td><td class="hl">48.1%</td><td class="hl">72.7%</td></tr>
+      <tr><td>DCR</td><td>80.8%</td><td>90.9%</td></tr>
+      <tr><td>mPFS</td><td>4.1个月</td><td>6.2个月</td></tr>
+      <tr><td>mOS</td><td>12.2个月</td><td>15.0个月</td></tr>
+      <tr><td>mDoR</td><td>4.9个月</td><td>—</td></tr>
+    </table>
+    <p><b>关键发现</b>：伊立替康经治者ORR 31.6%；探索性生物标志物分析：<b>HER3阳性者ORR 68.8% vs HER3阴性者14.3%</b>（EGFR表达与疗效不相关）；<b>未观察到ILD</b>；≥3级TRAE 75%（以血液学为主），剂量降低46%、停药13%，2例（3.8%）5级TRAE（呼吸衰竭、胃肠道感染）。III期对照托泊替康（NCT06500026）进行中。</p>
+  </div>
+
+  <h4>⑤ 鼻咽癌III期 PANKU-NPC01（BL-B01D1-303）——已获批，附条件批准依据</h4>
+  <div class="card">
+    <p><span class="pill">全球首个NPC后线确证性III期</span><span class="pill">张力教授牵头</span><span class="pill">全国55家中心</span><span class="pill">386例（1:1）</span></p>
+    <p>人群：经PD-1/PD-L1单抗治疗且经至少两线化疗（至少一线含铂）失败的复发/转移性NPC；中位年龄49岁，83.2%男性，中位治疗线数2线（2-11），94.3%转移（肝51.1%/骨50.8%/肺44.5%）。</p>
+    <table>
+      <tr><th>终点（BICR）</th><th>iza-bren</th><th>化疗</th><th>差异</th></tr>
+      <tr><td>cORR（前234例）</td><td class="hl">54.6%</td><td>27.0%</td><td>OR 2.33，P&lt;0.0001</td></tr>
+      <tr><td>mDoR</td><td>8.51个月</td><td>4.76个月</td><td>—</td></tr>
+      <tr><td>mPFS（386例）</td><td class="hl">8.38个月</td><td>4.34个月</td><td>HR 0.44（风险降56%）</td></tr>
+      <tr><td>6个月PFS率</td><td>60.9%</td><td>29.1%</td><td>—</td></tr>
+      <tr><td>mOS</td><td colspan="3">尚未成熟（HR 0.83，NR vs NR）</td></tr>
+    </table>
+    <p><b>安全性</b>：以血液学毒性为主，因TRAE停药仅2.6%。已被 <b>CSCO鼻咽癌诊疗指南2026</b> 与 <b>NCCN鼻咽癌指南中国版2026</b> 列为后线最高级别推荐。</p>
+    <div class="warn"><b>附条件批准提示</b>：本品基于III期期中分析获得附条件批准，暂未获得OS最终终点数据，尚待上市后确证（对医学经理：对外沟通需注意"附条件批准"属性，不得表述为完全批准）。</div>
+  </div>
+
+  <h4>⑥ 食管鳞癌III期 PANKU-Esophagus01（BL-B01D1-305）——已获批</h4>
+  <div class="card">
+    <p><span class="pill">493例</span><span class="pill">2026 ASCO口头报告</span><span class="pill">全球首个ESCC领域获批ADC</span></p>
+    <table>
+      <tr><th>终点</th><th>iza-bren</th><th>化疗</th><th>差异</th></tr>
+      <tr><td>mPFS</td><td class="hl">4.17个月</td><td>1.97个月</td><td>HR 0.50（风险降50%）</td></tr>
+      <tr><td>mOS</td><td class="hl">9.79个月</td><td>7.20个月</td><td>HR 0.64（风险降36%）</td></tr>
+      <tr><td>ORR</td><td class="hl">35.3%</td><td>13.1%</td><td>近3倍</td></tr>
+      <tr><td>DCR</td><td>74.3%</td><td>45.5%</td><td>—</td></tr>
+    </table>
+    <p><b>安全性</b>：因TRAE停药率2.0%（化疗组3.3%）；ILD 1.6%。获批适应症：既往经PD-1/PD-L1单抗联合含铂化疗治疗失败的复发/转移性食管鳞癌。</p>
+  </div>
+
+  <h4>⑦ TNBC ≥2L III期 PANKU-Breast 02（BL-B01D1-307）——NDA在审，核心战场</h4>
+  <div class="card" style="border-top:4px solid var(--red)">
+    <p><span class="pill">2026 ASCO LBA1003</span><span class="pill">中国81家中心</span><span class="pill">412例（207 vs 205）</span><span class="pill">PFS+OS双主要终点</span></p>
+    <p>人群：既往1-2线化疗且紫杉烷类经治的不可切除局部晚期或转移性TNBC；分层：化疗线数、PD-(L)1经治、HER2状态；约53%为HER2 IHC 0、47%为HER2低表达；&gt;95%为IV期；近50%肺转移、&gt;30%骨/肝转移。</p>
+    <table>
+      <tr><th>终点</th><th>iza-bren</th><th>化疗</th><th>差异</th></tr>
+      <tr><td>mPFS（BICR）</td><td class="hl">8.5个月</td><td>3.1个月</td><td>HR 0.29，风险降71%，P&lt;0.0001</td></tr>
+      <tr><td>mOS</td><td class="hl">15.9个月</td><td>12.5个月</td><td>HR 0.60，风险降40%，P=0.0019</td></tr>
+      <tr><td>cORR</td><td class="hl">51.7%</td><td>20.5%</td><td>CR 3.9% vs 0.5%</td></tr>
+      <tr><td>靶病灶退缩</td><td>77.3%（中位44.6%）</td><td>48.8%（32.0%）</td><td>—</td></tr>
+    </table>
+    <table>
+      <tr><th>关键亚组 mPFS</th><th>HR</th><th>意义</th></tr>
+      <tr><td>HER2低表达：9.7个月</td><td>0.32</td><td>横向对比数值优于T-DXd（8.5个月，非头对头）</td></tr>
+      <tr><td>HER2 IHC 0：8.3个月</td><td>0.28</td><td class="ok">填补IHC 0人群2L无III期证据空白</td></tr>
+      <tr><td>肝转移：9.9个月</td><td>0.25</td><td>难治人群一致获益</td></tr>
+      <tr><td>未用PD-(L)1：9.7个月</td><td>0.29</td><td>—</td></tr>
+      <tr><td>初诊非TNBC：11.3个月</td><td>0.22</td><td>—</td></tr>
+    </table>
+    <p><b>安全性</b>：≥3级以血液学毒性为主（中性粒细胞减少/贫血/血小板减少），大多数仅发作一次、无需强制G-CSF；<b>ILD仅1.4%（1-2级，无≥3级、无ILD死亡）</b>；TRAE停药率1.9%；中位治疗周期8 vs 4；≥25%患者TEAE中<b>无TROP2 ADC常见的腹泻与口腔炎</b>。</p>
+    <div class="note"><b>临床意义</b>：全球首个在乳腺癌取得III期PFS+OS双阳性的双抗ADC；治疗时机较既往III期（ASCENT/OptiTROP-Breast01均为≥3线）<b>前移至≥2线</b>；全人群获益不依赖HER2表达水平。TNBC NDA于2026-06-11获CDE受理，预计2027年获批。</div>
+  </div>
+
+  <h4>⑧ 1L EGFR突变NSCLC：联合奥希替尼（WCLC 2025，II期）</h4>
+  <div class="card">
+    <p>BL-B01D1 + 奥希替尼（NCT05880706）：全人群 ORR 84.4%（确认ORR 80.5%），12个月PFS率86.5%、OS率95.9%；<b>2.5 mg/kg组 ORR 100%（确认95%），12个月PFS率92.1%</b>。EGFR-TKI耐药后NSCLC获FDA突破性疗法认定，全球III期推进中。</p>
+  </div>
+
+  <h4>⑨ 其他在研布局</h4>
+  <div class="card">
+    <ul style="margin-left:18px;font-size:13.5px;color:#33414f">
+      <li><b>1L晚期乳腺癌</b>（不适合PD-(L)1或内分泌）：全球III期 IZABRIGHT-Breast01（BMS主导，NCT06926868，560例，主要终点BICR PFS），预计2028年读出主要结果。</li>
+      <li><b>SCLC III期</b> vs 托泊替康：NCT06500026。</li>
+      <li><b>尿路上皮癌</b>（全球研究）、<b>卵巢癌、胆管癌</b>等：中国15项关键II/III期注册研究推进中。</li>
+      <li><b>联合治疗新布局</b>：BL-B01D1 + PD-1/VEGF双抗（±化疗）用于NSCLC临床试验于2026-07-01获CDE默示许可（"双抗ADC+双抗IO"组合）。</li>
+    </ul>
+  </div>
+</section>
+<!-- ============ 04 说明书要点 ============ -->
+<section id="s4">
+  <div class="sec-head"><div class="sec-num">04</div><h2>获批说明书要点（核准日期 2026-06-17）</h2></div>
+  <div class="sec-desc">医学沟通与材料审核的"最高基准"——一切对外表述不得超越说明书</div>
+
+  <h3 id="s4-1">4.1 适应症、用法用量与禁忌</h3>
+  <div class="grid2">
+    <div class="card">
+      <h4>适应症</h4>
+      <p><b>本品适用于治疗既往经至少二线系统化疗和PD-1/PD-L1抑制剂治疗失败的复发/转移性鼻咽癌的成人患者。</b>（获批适应症口径：经PD-1/PD-L1单抗治疗且经至少两线化疗（至少一线含铂）治疗失败的复发/转移性鼻咽癌。）</p>
+      <p style="color:var(--muted);font-size:12.5px">注：食管鳞癌适应症（2026-07-16获批）的说明书更新请以最新版为准；TNBC等适应症尚在审评，未获批前不得主动推广。</p>
+    </div>
+    <div class="card">
+      <h4>用法用量</h4>
+      <p>推荐剂量 <b>2.75 mg/kg</b>（相当于2.5 mg/kg补偿10%），<b>静脉输注</b>，第1天、第8天给药，每3周（21天）1个周期，直至疾病进展或出现不可耐受毒性。</p>
+      <p>给药仅限院内静脉缓慢滴注；用药前常规预处理（过敏预防），输注全程监护。</p>
+    </div>
+  </div>
+  <div class="card">
+    <h4>禁忌与重要提醒</h4>
+    <table>
+      <tr><th style="width:200px">项目</th><th>内容</th></tr>
+      <tr><td>禁忌</td><td>对活性成份（伦康依隆妥单抗）或辅料过敏者禁用</td></tr>
+      <tr><td>儿童</td><td>尚未确立18岁以下儿童及青少年中的安全性和有效性</td></tr>
+      <tr><td>妊娠/避孕</td><td>Ed-04为TOP1抑制剂，可杀伤快速分裂细胞，具潜在生殖毒性风险；用药期间及末次治疗后6个月内需严格避孕</td></tr>
+      <tr><td>生殖毒性</td><td>未进行本品及Ed-04的生殖毒性研究；遗传毒性：Ed-04 Ames试验阴性，染色体畸变与体内微核试验阳性</td></tr>
+      <tr><td>停药</td><td>持续至疾病进展、不可耐受毒性或医生评估终止</td></tr>
+    </table>
+  </div>
+
+  <h3 id="s4-2">4.2 不良反应全景（n=1014，2.75 mg/kg D1D8Q3W单药）</h3>
+  <div class="grid2">
+    <div class="card">
+      <h4>最常见不良反应（≥20%）</h4>
+      <table>
+        <tr><th>不良反应</th><th>发生率</th></tr>
+        <tr><td>贫血</td><td class="hl">88.1%</td></tr>
+        <tr><td>白细胞计数降低</td><td class="hl">74.7%</td></tr>
+        <tr><td>血小板计数降低</td><td class="hl">69.7%</td></tr>
+        <tr><td>中性粒细胞计数降低</td><td class="hl">67.4%</td></tr>
+        <tr><td>恶心</td><td>46.9%</td></tr>
+        <tr><td>虚弱</td><td>44.4%</td></tr>
+        <tr><td>食欲减退 / 脱发</td><td>30.1% / 28.1%</td></tr>
+        <tr><td>低白蛋白血症 / 呕吐</td><td>27.3% / 26.6%</td></tr>
+        <tr><td>ALT/AST升高</td><td>25.8% / 23.9%</td></tr>
+        <tr><td>低钾血症 / 口腔黏膜炎</td><td>24.3% / 23.2%</td></tr>
+        <tr><td>腹泻 / 低钠血症</td><td>21.9% / 20.8%</td></tr>
+        <tr><td>便秘 / 体重降低</td><td>20.8% / 20.1%</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h4>≥3级常见不良反应（≥2%）</h4>
+      <table>
+        <tr><th>不良反应</th><th>发生率</th></tr>
+        <tr><td>贫血</td><td class="hl">42.2%</td></tr>
+        <tr><td>中性粒细胞计数降低</td><td class="hl">39.3%</td></tr>
+        <tr><td>白细胞计数降低</td><td class="hl">36.1%</td></tr>
+        <tr><td>血小板计数降低</td><td class="hl">34.4%</td></tr>
+        <tr><td>淋巴细胞计数降低</td><td>9.4%</td></tr>
+        <tr><td>虚弱</td><td>5.3%</td></tr>
+        <tr><td>发热性中性粒细胞减少症</td><td>4.6%</td></tr>
+        <tr><td>骨髓抑制</td><td>4.2%</td></tr>
+        <tr><td>低钾血症 / 口腔黏膜炎</td><td>3.9% / 3.1%</td></tr>
+        <tr><td>感染性肺炎 / 腹泻</td><td>2.5% / 2.1%</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="card">
+    <h4>特别关注不良反应（说明书重点）</h4>
+    <table>
+      <tr><th>事件</th><th>发生率</th><th>关键信息</th></tr>
+      <tr><td>中性粒细胞降低</td><td>67.4%（≥3级39.3%）</td><td>中位发生15.0天、持续6.0天；20.0%中断给药、0.1%永久停药；无死亡</td></tr>
+      <tr><td>发热性中性粒细胞减少</td><td>4.6%（均≥3级）</td><td><b>0.5%发生5级（死亡）事件</b>；需积极预防与管理</td></tr>
+      <tr><td>血小板降低</td><td>69.7%（≥3级34.4%）</td><td>中位发生15.0天、持续9.0天；17.9%降低剂量；0.1% 5级</td></tr>
+      <tr><td>脓毒症/感染性休克</td><td>2.4%</td><td>0.7% 5级（死亡）；骨髓抑制背景下的感染防控是关键</td></tr>
+      <tr><td><b>ILD（间质性肺病）</b></td><td class="ok">1.0%（1级0.2%/2级0.7%/3级0.1%）</td><td><b>无4级、5级事件</b>；0.3%永久停药；III期TNBC中1.4%且无≥3级</td></tr>
+      <tr><td>输液相关反应/超敏反应</td><td>0.4% / 0.2%</td><td>均无≥3级；规范预处理可管理</td></tr>
+      <tr><td>严重不良反应</td><td colspan="2">35.6%：血小板降低17.7%、白细胞降低10.7%、中性粒细胞降低10.1%、贫血9.1%等</td></tr>
+      <tr><td>剂量调整影响</td><td colspan="2">中断给药53.5%、剂量降低39.2%、永久停药3.8%</td></tr>
+    </table>
+    <div class="note"><b>安全性叙事要点</b>：主要毒性为血液学（可监测、可管理、经验成熟）；<b>ILD发生率低（1.0-1.4%，无≥3级）</b>，是相对HER2 ADC（ILD约12%）与TROP2 ADC（腹泻/口腔炎高发）的差异化优势。</div>
+  </div>
+
+  <h3 id="s4-3">4.3 药代动力学（PK）要点</h3>
+  <div class="card">
+    <table>
+      <tr><th>参数</th><th>数据</th><th>意义</th></tr>
+      <tr><td>达峰</td><td>ADC输注结束达峰；Ed-04约2-4小时达峰</td><td>—</td></tr>
+      <tr><td>半衰期</td><td>ADC t1/2 ≈ 20.2小时；Ed-04 t1/2 ≈ 33.8小时</td><td>D1D8给药方案依据</td></tr>
+      <tr><td>清除率/分布容积</td><td>CL=0.104 L/h；V1=3.02 L</td><td>—</td></tr>
+      <tr><td>代谢</td><td>Ed-04经CYP1A2、CYP2C9、CYP3A4代谢；Ed-04是CYP1A2/2C9/3A4底物</td><td>合并用药时注意相互作用评估</td></tr>
+      <tr><td>蓄积</td><td>稳态（第2周期起）ADC与Ed-04均无明显蓄积</td><td>—</td></tr>
+      <tr><td>QTc</td><td>6.0 mg/kg（推荐剂量2.18倍）对QTcF无明显影响</td><td>—</td></tr>
+      <tr><td>免疫原性</td><td>III期ADA阳性0.7%（1/152）；I/II期4.2%（44/1042）</td><td>ADA阳性者血药浓度与阴性者接近</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ============ 05 特殊人群用药 ============ -->
+<section id="s5">
+  <div class="sec-head"><div class="sec-num">05</div><h2>特殊人群用药</h2></div>
+  <div class="sec-desc">基于说明书PK数据 + 临床管理建议（供医学信息应答与安全性沟通参考）</div>
+  <div class="card">
+    <table>
+      <tr><th>人群</th><th>说明书数据</th><th>临床管理建议</th></tr>
+      <tr><td>年龄</td><td>有限PK数据显示年龄（27-72岁）影响不大</td><td>老年患者关注体能、合并症与骨髓储备，无需常规剂量调整（以说明书及临床判断为准）</td></tr>
+      <tr><td>性别/体重</td><td>性别、体重（39-100 kg）影响不大</td><td>剂量按体重计算（2.75 mg/kg）</td></tr>
+      <tr><td>轻度肝功能不全<br>（胆红素1.0-1.5×ULN或AST&gt;ULN）</td><td>平均血药浓度与肝功能正常者相似</td><td>无需调整剂量；注意监测肝功能（转氨酶升高发生率较高）</td></tr>
+      <tr><td>中度肝功能不全<br>（胆红素&gt;1.5-3.0×ULN）</td><td>数据有限</td><td>谨慎使用，加强监测，权衡获益风险</td></tr>
+      <tr><td>重度肝功能不全<br>（胆红素&gt;3.0×ULN）</td><td>无PK数据</td><td class="hl">不推荐/慎用，需极谨慎评估</td></tr>
+      <tr><td>轻度肾功能不全（CLcr 60-90）</td><td>与肾功能正常者相似</td><td>无需调整剂量</td></tr>
+      <tr><td>中度肾功能不全（CLcr 30-60）</td><td>与肾功能正常者相似</td><td>无需调整剂量；监测蛋白尿/血肌酐</td></tr>
+      <tr><td>重度肾功能不全（CLcr ≤30）</td><td>无PK数据</td><td class="hl">不推荐/慎用，需极谨慎评估</td></tr>
+      <tr><td>儿童（&lt;18岁）</td><td colspan="2">尚未确立安全性和有效性，不适用</td></tr>
+      <tr><td>妊娠/哺乳</td><td colspan="2">Ed-04具潜在生殖毒性；用药期间及末次治疗后6个月避孕；哺乳期不推荐</td></tr>
+      <tr><td>间质性肺病/自身免疫病史</td><td colspan="2">说明书提示需告知医生谨慎评估（虽本品ILD发生率低，仍需监测）</td></tr>
+    </table>
+    <div class="warn"><b>医学信息应答原则</b>：特殊人群用药问题一律以说明书为准；说明书未覆盖的情况（如重度肝/肾功能不全、超说明书人群）应答时提示"数据有限、需临床医生权衡"并建议转临床判断，不得给出个体化给药建议。</div>
+  </div>
+</section>
+
+<!-- ============ 06 竞品深度对比 ============ -->
+<section id="s6">
+  <div class="sec-head"><div class="sec-num">06</div><h2>竞品深度对比（乳腺癌战场全景）</h2></div>
+  <div class="sec-desc">覆盖 HER2 ADC / TROP2 ADC / 双抗ADC 三大家族共 12 款在研或在售药物，从结构、数据、安全性到在研状态逐层对比</div>
+
+  <h3 id="s6-1">6.1 竞品全景地图（三大家族 + 我们）</h3>
+  <div class="card">
+    <table>
+      <tr><th>家族</th><th>成员（已上市/关键在研）</th><th>代表研究</th><th>BL-B01D1 关系</th></tr>
+      <tr><td><b>HER2 ADC</b></td><td>T-DXd、T-DM1、RC48、SYD985、ARX788、A166、MRG002、SHR-A1811、T-Bren(BL-M07D1)</td><td>DESTINY-Breast03/04、EMILIA、TULIP等</td><td>人群交集在"HER2低表达"；BL-B01D1不依赖HER2表达，覆盖IHC 0</td></tr>
+      <tr><td><b>TROP2 ADC</b></td><td>SG（戈沙妥珠单抗）、SKB264（芦康沙妥珠单抗）、Dato-DXd</td><td>ASCENT、OptiTROP-Breast01、TROPION-Breast01/02</td><td>机制不同（单靶 vs 双靶）；BL-B01D1 2L即双终点阳性，覆盖全人群</td></tr>
+      <tr><td><b>双抗ADC（BsADC）</b></td><td><b>BL-B01D1（已上市）</b>、JSKN016（TROP2×HER3）、其他EGFR×HER3跟随者（多在早期）</td><td>PANKU-Breast 02、PANKU-Esophagus01、PANKU-NPC01</td><td class="ok">全球首个获批双抗ADC，时间与数据双领先</td></tr>
+    </table>
+  </div>
+
+  <h3 id="s6-2">6.2 结构与机制对比总表</h3>
+  <div class="card">
+    <table>
+      <tr><th>药物</th><th>抗体</th><th>连接子</th><th>载荷（类型）</th><th>DAR</th><th>旁观者效应</th></tr>
+      <tr><td><b>BL-B01D1</b>（宜泽康®）</td><td>EGFR×HER3双特异（IgG1）</td><td>可裂解 Ac-GGFG</td><td>Ed-04（TOP1i）</td><td>≈8</td><td>有</td></tr>
+      <tr><td>T-DXd</td><td>曲妥珠单抗（IgG1）</td><td>可裂解四肽</td><td>DXd（TOP1i）</td><td>≈8</td><td>有</td></tr>
+      <tr><td>T-DM1</td><td>曲妥珠单抗</td><td><b>不可裂解</b>（SMCC）</td><td>DM1（微管抑制剂）</td><td>3.4-3.5</td><td>无</td></tr>
+      <tr><td>RC48（维迪西妥单抗）</td><td>人源化抗HER2（全人源）</td><td>可裂解 Mc-VC-PAB</td><td>MMAE（微管抑制剂）</td><td>≈4</td><td>有</td></tr>
+      <tr><td>SYD985</td><td>曲妥珠单抗</td><td>可裂解 vc-seco-DUBA</td><td>Duocarmycin（DNA烷化剂）</td><td>2.4-2.8</td><td>有</td></tr>
+      <tr><td>ARX788</td><td>曲妥珠单抗（定点偶联）</td><td>不可裂解</td><td>Amberstatin269（微管抑制剂）</td><td>1.9（均质）</td><td>无</td></tr>
+      <tr><td>A166</td><td>曲妥珠单抗（K-Lock偶联）</td><td>可裂解 VC</td><td>DUO-5（微管抑制剂）</td><td>24（高载药）</td><td>有</td></tr>
+      <tr><td>MRG002</td><td>曲妥珠单抗</td><td>可裂解</td><td>MMAE（微管抑制剂）</td><td>≈3.8</td><td>有</td></tr>
+      <tr><td>SHR-A1811（瑞康曲妥珠单抗）</td><td>曲妥珠单抗</td><td>可裂解</td><td>SHR169265（TOP1i）</td><td>6</td><td>有</td></tr>
+      <tr><td>T-Bren（BL-M07D1，百利天恒）</td><td>抗HER2</td><td>—</td><td>TOP1i类</td><td>—</td><td>有</td></tr>
+      <tr><td>SG（戈沙妥珠单抗）</td><td>抗TROP2（hRS7）</td><td>可裂解（pH敏感CL2A）</td><td>SN-38（TOP1i，伊立替康活性代谢物）</td><td>≈7.6</td><td>有</td></tr>
+      <tr><td>SKB264（芦康沙妥珠单抗）</td><td>抗TROP2</td><td>可裂解</td><td>KL610023（TOP1i）</td><td>≈7.4</td><td>有</td></tr>
+      <tr><td>Dato-DXd</td><td>抗TROP2</td><td>可裂解四肽（肿瘤选择性）</td><td>DXd（TOP1i）</td><td>≈4</td><td>有（可控）</td></tr>
+    </table>
+    <div class="note"><b>结构层面解读</b>：BL-B01D1 的差异化在于<b>"双靶抗体 + 高DAR(8) + 旁观者效应"</b>的组合——双靶解决单靶耐药与异质性，高DAR+旁观者保障杀伤强度与广度；与T-DXd同为DAR 8，但靶点策略不同（双靶 vs 单靶）且ILD风险显著更低。</div>
+  </div>
+
+  <h3 id="s6-3">6.3 乳腺癌疗效数据对比（按亚型）</h3>
+  <div class="card">
+    <h4>晚期TNBC（经治后线）——BL-B01D1主战场</h4>
+    <table>
+      <tr><th>研究（药物）</th><th>治疗线</th><th>人群筛选</th><th>mPFS</th><th>mOS</th><th>ORR/cORR</th></tr>
+      <tr><td><b>PANKU-Breast 02（BL-B01D1）</b></td><td>≥2L</td><td>不筛HER2表达（IHC 0+低表达全人群）</td><td class="hl">8.5 vs 3.1个月（HR 0.29）</td><td class="hl">15.9 vs 12.5个月（HR 0.60）</td><td class="hl">51.7% vs 20.5%</td></tr>
+      <tr><td>ASCENT（SG）</td><td>≥2L（注册证据3L）</td><td>不筛HER2</td><td>5.6 vs 1.7个月（HR 0.41）</td><td>12.1 vs 6.7个月（HR 0.48）</td><td>31% vs 5%</td></tr>
+      <tr><td>OptiTROP-Breast01（SKB264）</td><td>≥2L（注册证据3L）</td><td>不筛HER2</td><td>6.7 vs 2.5个月（HR 0.32）</td><td>未成熟 vs 9.4个月</td><td>45.4%</td></tr>
+      <tr><td>DESTINY-Breast04（T-DXd，HR-亚组）</td><td>≥1-2L</td><td><b>仅HER2低表达</b>（探索性亚组）</td><td>6.3 vs 2.9个月（HR 0.29）</td><td>17.1 vs 8.3（HR 0.58，未显著）</td><td>cORR 50%</td></tr>
+      <tr><td><b>PANKU-Breast 02 · HER2 IHC 0亚组</b></td><td>≥2L</td><td>HER2 IHC 0（约50% TNBC）</td><td class="hl">8.3 vs 2.6个月（HR 0.28）</td><td>—</td><td>—</td></tr>
+      <tr><td><b>PANKU-Breast 02 · HER2低表达亚组</b></td><td>≥2L</td><td>HER2低表达</td><td class="hl">9.7个月（HR 0.32）</td><td>—</td><td>—</td></tr>
+    </table>
+    <div class="note"><b>解读提醒</b>：跨研究对比为非头对头比较，仅作参考；BL-B01D1的差异在于<b>≥2L全人群</b>（不筛选HER2表达）、PFS与OS双终点阳性、治疗时机更前；HER2低表达亚组mPFS 9.7个月在数值上高于T-DXd相关数据。</div>
+
+    <h4>HR+/HER2- 晚期乳腺癌（后线）</h4>
+    <table>
+      <tr><th>研究（药物）</th><th>治疗线</th><th>mPFS</th><th>cORR</th><th>说明</th></tr>
+      <tr><td>BL-B01D1 I期（NCT05470348）</td><td>中位前线3线，83%化疗经治</td><td class="hl">7.0个月（1-2线经治8.3个月）</td><td>37.7%（1-2线经治45.7%）</td><td>III期（PFS主终点）进行中</td></tr>
+      <tr><td>DESTINY-Breast04（T-DXd，HR+亚组）</td><td>≥1-2L（内分泌经治）</td><td>10.1 vs 5.4个月（HR 0.51）</td><td>52.3%</td><td>仅HER2低表达</td></tr>
+      <tr><td>TROPION-Breast01（Dato-DXd）</td><td>≥1-2L（内分泌经治）</td><td>6.9 vs 4.9个月（HR 0.63）</td><td>约36%</td><td>HER2阴性（含低表达）</td></tr>
+      <tr><td>SG（后线）</td><td>≥3L</td><td>约5.5个月</td><td>—</td><td>TROP2 ADC参照</td></tr>
+    </table>
+
+    <h4>HER2+ 晚期乳腺癌（后线）</h4>
+    <table>
+      <tr><th>研究（药物）</th><th>治疗线</th><th>mPFS</th><th>ORR</th><th>说明</th></tr>
+      <tr><td>BL-B01D1 I期（NCT05470348）</td><td>后线</td><td>7.0个月</td><td>47.5%</td><td>探索性，待确证</td></tr>
+      <tr><td>DESTINY-Breast03（T-DXd）</td><td>2L</td><td class="hl">28.8个月（vs T-DM1 6.8，HR 0.33）</td><td>78.5%（CR 21.1%）</td><td>HER2+ 2L新标准</td></tr>
+      <tr><td>EMILIA（T-DM1）</td><td>2L</td><td>9.6 vs 6.4个月（HR 0.65）</td><td>43.6%</td><td>既往2L标准</td></tr>
+      <tr><td>RC48 I/Ib期</td><td>后线（≥2-3L）</td><td>5.7个月</td><td>42.9%</td><td>国内HER2 ADC</td></tr>
+      <tr><td>TULIP（SYD985）</td><td>中位4L</td><td>7.0 vs 4.9个月（HR 0.64）</td><td>27.8%（不显著）</td><td>FDA认为证据不足</td></tr>
+    </table>
+  </div>
+
+  <h3 id="s6-4">6.4 安全性特征对比总表</h3>
+  <div class="card">
+    <table>
+      <tr><th>药物</th><th>核心毒性特征</th><th>ILD风险</th><th>其他关注点</th></tr>
+      <tr><td><b>BL-B01D1</b>（宜泽康®）</td><td><b>以血液学为主</b>（贫血88%/中性粒↓67%/血小板↓70%）；≥25%患者TEAE中<b>无腹泻、口腔炎</b></td><td class="ok">1.0-1.4%，无≥3级</td><td>发热性中性粒细胞减少4.6%（0.5%死亡，需规范管理）；脓毒症2.4%</td></tr>
+      <tr><td>T-DXd</td><td>血液学、胃肠道、间质性肺病</td><td class="hl">约12-15%（含≥3级及致死病例，需影像监测）</td><td>恶心、疲劳；需ILD监测教育</td></tr>
+      <tr><td>T-DM1</td><td>血小板减少、肝酶升高、周围神经病变</td><td>低（较T-DXd显著低）</td><td>血小板↓是剂量调整主因</td></tr>
+      <tr><td>RC48</td><td>周围神经病变、疲劳、血液学</td><td>低</td><td>MMAE类典型神经毒性</td></tr>
+      <tr><td>SG</td><td>中性粒细胞减少（FN风险）、<b>腹泻、口腔炎</b>（UGT1A1相关）</td><td>低</td><td>SN-38类胃肠道毒性；UGT1A1*28基因型管理</td></tr>
+      <tr><td>SKB264</td><td>血液学、皮疹、口腔炎</td><td>低</td><td>—</td></tr>
+      <tr><td>Dato-DXd</td><td>口腔炎/黏膜炎（较SG轻）、血液学</td><td>低</td><td>DXd类但ILD较T-DXd低（剂量低）</td></tr>
+    </table>
+  </div>
+
+  <h3 id="s6-5">6.5 获批与在研状态表（截至2026-08）</h3>
+  <div class="card">
+    <table>
+      <tr><th>药物</th><th>中国获批（乳腺癌相关）</th><th>关键在研（乳腺癌方向）</th><th>医保/准入提示</th></tr>
+      <tr><td><b>BL-B01D1</b></td><td>NPC、ESCC已获批；<b>TNBC ≥2L NDA在审</b></td><td>TNBC 1L全球III期（IZABRIGHT-Breast01）、HR+/HER2- III期</td><td>鼻咽癌医保谈判材料已申报</td></tr>
+      <tr><td>T-DXd</td><td>HER2+ mBC（≥1线抗HER2失败）、HER2低表达mBC</td><td>DB-09（1L）、DB-05（辅助）、DB-11（新辅助）</td><td>HER2+已入医保</td></tr>
+      <tr><td>T-DM1</td><td>HER2+ mBC（2L+）及新辅助后残留</td><td>—</td><td>已入医保</td></tr>
+      <tr><td>RC48</td><td>胃癌（HER2过表达，≥2种化疗后）；HER2+ mBC适应症（以国内最新批准为准）</td><td>RC48-C012（HER2低表达III期）</td><td>胃癌已入医保</td></tr>
+      <tr><td>SG</td><td>≥2种系统治疗的mTNBC</td><td>ASCENT-03（1L）、HR+方向</td><td>部分纳入双通道/商保</td></tr>
+      <tr><td>SKB264</td><td>2024-11获批≥2种系统治疗mTNBC</td><td>1L联合免疫ph3（NCT06841354，MSD）</td><td>—</td></tr>
+      <tr><td>Dato-DXd</td><td>HR+/HER2-后线（以国内最新批准为准）</td><td>TROPION-Breast02（1L TNBC）、BEGONIA（1L+免疫）</td><td>—</td></tr>
+      <tr><td>SHR-A1811</td><td>HER2+ mBC后线获批（国内）</td><td>多瘤种推进</td><td>恒瑞体系，价格策略灵活</td></tr>
+      <tr><td>JSKN016（双抗ADC）</td><td>未获批</td><td>TNBC等早期（ASCO ORR 64.5%，样本小）</td><td>跟踪其安全性（血液学+GI）</td></tr>
+    </table>
+  </div>
+
+  <h3 id="s6-6">6.6 差异化定位总结（对临床的沟通语言）</h3>
+  <div class="grid2">
+    <div class="card">
+      <h4>相对各家族的差异点</h4>
+      <p><b>vs HER2 ADC（T-DXd/T-DM1等）</b>：① 获益<b>不依赖HER2表达</b>，覆盖HER2 IHC 0（约占TNBC 50%，无HER2 ADC III期证据）；② 2L即全人群III期双终点阳性；③ ILD显著更低（1.0-1.4% vs ~12-15%）。</p>
+      <p><b>vs TROP2 ADC（SG/SKB264/Dato-DXd）</b>：① 双靶机制抗耐药、覆盖更广；② 2L证据（vs 其3L注册证据）；③ 无腹泻/口腔炎等"体感"毒性，长期耐受性与依从性更优；④ PFS 8.5个月为同线别数据最优。</p>
+      <p><b>vs 其他双抗ADC（JSKN016等）</b>：全球首个获批+III期双终点验证，时间与数据双重领先。</p>
+    </div>
+    <div class="card">
+      <h4>一句话定位（话术模板）</h4>
+      <p style="font-size:13.5px;background:#eef6fb;border-radius:8px;padding:12px">"BL-B01D1是全球首个获批的EGFR×HER3双抗ADC，在晚期三阴性乳腺癌≥2线治疗中，以III期研究实现PFS（8.5个月，HR 0.29）与OS（15.9个月，HR 0.60）双主要终点阳性，<b>无论HER2表达水平（IHC 0或低表达）均可获益</b>；安全性以可管理的血液学毒性为主，ILD发生率仅约1%，无TROP2 ADC常见的腹泻与口腔炎，兼顾疗效与生活质量。"</p>
+      <p style="font-size:12.5px;color:var(--muted)">⚠️ 使用前提：TNBC适应症获批后方可用于主动推广；获批前仅限研究数据客观陈述。</p>
+    </div>
+  </div>
+</section>
+<!-- ============ 07 治疗格局与排位 ============ -->
+<section id="s7">
+  <div class="sec-head"><div class="sec-num">07</div><h2>治疗格局与排位：现有ADC / 化疗 / 免疫 / 内分泌</h2></div>
+  <div class="sec-desc">晚期乳腺癌各亚型"各线排位"，及BL-B01D1所处位置</div>
+
+  <h3 id="s7-1">7.1 晚期三阴性乳腺癌（mTNBC）治疗路径</h3>
+  <div class="card">
+    <div style="background:#eef6fb;border:1px solid #cfe5f2;border-radius:10px;padding:16px;font-size:13.5px;color:#0d3f5e">
+      <b>一线（1L）</b>：PD-L1阳性（CPS≥10，约占40%）→ 免疫联合化疗（KEYNOTE-355帕博利珠单抗/IMpassion130阿替利珠单抗/TORCHLIGHT特瑞普利单抗）；PD-L1阴性/不适合免疫 → 化疗（紫杉类/铂类/吉西他滨等）；胚系BRCA突变 → PARP抑制剂可选；<b>ADC前移探索中</b>（Dato-DXd TROPION-Breast02：1L mPFS 10.8 vs 5.6个月，HR 0.57；SG ASCENT-03；SKB264+K联合）。
+      <br><br>
+      <b>二线（2L）</b>：<b>BL-B01D1（PANKU-Breast 02，≥2L全人群III期双阳性，NDA在审）</b>；TROP2 ADC（SG/SKB264，注册证据多为≥3L但临床常2L使用）；化疗。
+      <br><br>
+      <b>三线及以上（≥3L）</b>：SG（ASCENT）、SKB264（OptiTROP-Breast01）为传统III期证据位；T-DXd仅限HER2低表达；化疗/临床试验。
+    </div>
+    <div class="info"><b>BL-B01D1在TNBC格局中的定位</b>：以"≥2L全人群BIC"为锚点，向上衔接1L（IZABRIGHT-Breast01全球III期推进）、向下覆盖3L（2L与3L获益一致）；与TROP2 ADC形成机制互补而非单纯替代。</div>
+  </div>
+
+  <h3 id="s7-2">7.2 晚期HR+/HER2- 乳腺癌治疗路径</h3>
+  <div class="card">
+    <div style="background:#eef6fb;border:1px solid #cfe5f2;border-radius:10px;padding:16px;font-size:13.5px;color:#0d3f5e">
+      <b>一线（1L）</b>：<b>内分泌治疗 ± CDK4/6抑制剂</b>（占比60-70%的乳腺癌主流路径；中国年新发约25万例）。
+      <br><br>
+      <b>二线（2L）</b>：内分泌耐药后 → 换内分泌组合（SERD如氟维司群/艾拉司群、AKT抑制剂、PI3K抑制剂等）；CDK4/6i跨线。
+      <br><br>
+      <b>三线及以上（≥3L）</b>：<b>ADC成为主力</b>——T-DXd（HER2低表达，DESTINY-Breast04）、Dato-DXd（TROPION-Breast01）、SG；化疗。
+      <br><br>
+      <b>BL-B01D1相关性</b>：I期HR+/HER2-队列 cORR 37.7%、mPFS 7.0个月（1-2线经治者8.3个月）；公司已启动HR+/HER2-晚期III期（PFS主终点）；全球1L研究纳入"不适合内分泌治疗的ER低表达"人群，向前线延伸。</div>
+  </div>
+
+  <h3 id="s7-3">7.3 晚期HER2+ 乳腺癌治疗路径</h3>
+  <div class="card">
+    <div style="background:#eef6fb;border:1px solid #cfe5f2;border-radius:10px;padding:16px;font-size:13.5px;color:#0d3f5e">
+      <b>一线（1L）</b>：曲妥珠单抗+帕妥珠单抗+化疗（THP）；T-DXd用于部分人群前移探索。
+      <br><br>
+      <b>二线（2L）</b>：<b>T-DXd</b>（DESTINY-Breast03，mPFS约28.8个月）或T-DM1（EMILIA）；图卡替尼联合方案。
+      <br><br>
+      <b>三线及以上（≥3L）</b>：T-DM1、T-DXd（未用者）、双抗（泽尼达妥单抗等）、ADC轮换。
+      <br><br>
+      <b>BL-B01D1相关性</b>：I期HER2+队列 cORR 47.5%、mPFS 7.0个月，提示双抗ADC在HER2+人群的潜力（待进一步确证研究）。</div>
+  </div>
+  <div class="warn"><b>合规提示</b>：以上"排位"为学术综述性梳理，其中BL-B01D1在乳腺癌的表述（除已获批NPC/ESCC外）均为<b>研究性/在审状态</b>，对外学术沟通必须区分"获批信息"与"研究进展"，严禁以获批身份宣传未获批适应症。</div>
+</section>
+
+<!-- ============ 08 未来方向思考 ============ -->
+<section id="s8">
+  <div class="sec-head"><div class="sec-num">08</div><h2>未来方向思考：联合治疗 / 前线 / 优势人群 / 生物标志物 / 耐药</h2></div>
+  <div class="sec-desc">基于现有证据与肿瘤治疗趋势的推演（供医学策略规划参考，非公司官方立场）</div>
+
+  <h3 id="s8-1">8.1 联合治疗（Combination Strategy）</h3>
+  <div class="grid2">
+    <div class="card">
+      <h4>已在推进的联合</h4>
+      <ul style="margin-left:18px;font-size:13.5px">
+        <li><b>+ 奥希替尼（1L EGFR突变NSCLC）</b>：WCLC 2025数据亮眼（ORR 100%@2.5mg/kg），机制上"ADC化疗样杀伤 + TKI深度抑制"互补；</li>
+        <li><b>+ PD-1/VEGF双抗（±化疗）</b>：NSCLC临床已获CDE默示许可，"双抗ADC+双抗IO"组合——化疗样免疫原性死亡+免疫微环境重塑，是免疫联合的进阶形态；</li>
+        <li><b>+ 免疫检查点抑制剂</b>：TNBC等瘤种免疫联合探索方向（PANKU-Breast 02中约23%患者曾用PD-(L)1且仍获益，提示双抗ADC与免疫序贯/联合空间）。</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>可展望的联合方向</h4>
+      <ul style="margin-left:18px;font-size:13.5px">
+        <li><b>+ CDK4/6抑制剂（HR+/HER2-）</b>：ADC与细胞周期抑制协同，HR+前线联合潜力；</li>
+        <li><b>+ PARP抑制剂（胚系BRCA突变TNBC）</b>：双DNA损伤通路叠加，需平衡骨髓毒性；</li>
+        <li><b>+ 抗血管生成</b>（贝伐珠单抗类）：改善ADC递送与微环境；</li>
+        <li><b>+ 其他ADC/双抗</b>：序贯ADC策略（TROP2→双抗ADC→HER2 ADC）的证据生成是医学部可推动的方向。</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 id="s8-2">8.2 前线治疗推进（Line of Therapy）</h3>
+  <div class="card">
+    <table>
+      <tr><th>瘤种</th><th>当前定位</th><th>前线推进路径</th></tr>
+      <tr><td>TNBC</td><td>≥2L（NDA在审）</td><td><b>2L → 1L</b>（IZABRIGHT-Breast01全球III期，不适合免疫/不适合内分泌人群）→ 新辅助/辅助（早期TNBC，需联合策略）</td></tr>
+      <tr><td>HR+/HER2-</td><td>后线研究阶段</td><td>III期（PFS主终点）→ 内分泌耐药前线；ER低表达人群（约10%）是差异化入口</td></tr>
+      <tr><td>NSCLC</td><td>EGFR-TKI耐药（FDA BTD）</td><td>耐药后线 → <b>1L联合奥希替尼</b>（WCLC 2025）→ 驱动基因阳性联合方案扩展</td></tr>
+      <tr><td>SCLC</td><td>复发后线（II/III期）</td><td>2L优势明确（ORR 72.7%）→ III期vs托泊替康 → 维持/一线联合探索</td></tr>
+      <tr><td>NPC/ESCC</td><td>后线已获批</td><td>后线 → 前线（1L联合免疫/化疗）是标准演化路径，需关注公司注册策略</td></tr>
+    </table>
+  </div>
+
+  <h3 id="s8-3">8.3 优势人群（Who Benefits Most）</h3>
+  <div class="card">
+    <p>基于现有数据，以下人群是BL-B01D1的潜在优势/差异化人群（<b>待确证研究验证</b>）：</p>
+    <table>
+      <tr><th>人群特征</th><th>依据</th></tr>
+      <tr><td><b>HER2 IHC 0</b>（约50% TNBC）</td><td>PANKU-Breast 02中mPFS 8.3个月（HR 0.28），填补该人群2L无III期证据空白——这是最大的差异化阵地</td></tr>
+      <tr><td><b>HER2低表达</b></td><td>mPFS 9.7个月（HR 0.32），横向数值优于T-DXd（非头对头）</td></tr>
+      <tr><td><b>肝转移</b>等内脏转移</td><td>肝转移亚组mPFS 9.9个月（HR 0.25）</td></tr>
+      <tr><td><b>既往未用免疫</b></td><td>mPFS 9.7个月（HR 0.29）；免疫经治者仍获益（约23%入组）</td></tr>
+      <tr><td><b>初诊非TNBC</b>（后转化为TNBC表型）</td><td>mPFS 11.3个月（HR 0.22）</td></tr>
+      <tr><td><b>SCLC 2L / HER3阳性</b></td><td>JCO Ib期：2L ORR 72.7%；HER3阳性ORR 68.8% vs 阴性14.3%</td></tr>
+      <tr><td><b>ER低表达HR+/HER2-</b></td><td>内分泌获益有限人群，全球1L研究纳入</td></tr>
+    </table>
+  </div>
+
+  <h3 id="s8-4">8.4 生物标志物（Biomarkers）思考</h3>
+  <div class="card">
+    <ul style="margin-left:18px;font-size:13.5px">
+      <li><b>HER3表达</b>：SCLC队列显示HER3阳性与更高缓解相关（68.8% vs 14.3%）——HER3是否可作为预测性标志物值得前瞻验证（需注意IHC cut-off标准化问题）；</li>
+      <li><b>EGFR表达</b>：SCLC中未显示与疗效相关，提示双靶ADC的疗效可能更多依赖"递送效率与旁观者效应"而非单一靶点表达；</li>
+      <li><b>双靶共表达/异源二聚化水平</b>：EGFR-HER3异源二聚化与TNBC不良预后相关，可作为机制性探索方向；</li>
+      <li><b>PD-L1 / TILs（免疫微环境）</b>：为联合免疫提供人群分层依据；</li>
+      <li><b>ctDNA/分子分型（BRCA、PIK3CA、p53等）</b>：耐药与疗效的伴随探索；</li>
+      <li><b>载荷敏感性标志物</b>：TOP1表达、DNA修复状态（同源重组缺陷HRD）可能影响Ed-04敏感性。</li>
+    </ul>
+    <div class="note"><b>对医学工作的启示</b>：在IIR/RWS设计中主动纳入转化生物标志物采集（外周血/肿瘤组织），为公司"生物标志物驱动的精准人群"策略积累证据。</div>
+  </div>
+
+  <h3 id="s8-5">8.5 耐药机制与应对思考</h3>
+  <div class="grid2">
+    <div class="card">
+      <h4>潜在耐药机制</h4>
+      <ul style="margin-left:18px;font-size:13.5px">
+        <li><b>靶点层面</b>：EGFR/HER3表达下调或丢失、受体突变（如EGFR胞外域变异体）、二聚化伴侣改变；</li>
+        <li><b>载荷层面</b>：TOP1表达下调/突变、ABC转运体（外排泵）上调、溶酶体加工与释放效率改变；</li>
+        <li><b>下游通路激活</b>：EGFR/HER3下游（PI3K/AKT/mTOR、RAS/MAPK）旁路激活，如KRAS/PIK3CA突变；</li>
+        <li><b>肿瘤异质性/微环境</b>：肿瘤克隆演化、免疫抑制微环境、基质屏障影响递送；</li>
+        <li><b>序贯ADC交叉耐药</b>：既往TOP1i类载荷ADC（T-DXd/SG等）暴露可能带来共享载荷耐药——这是需要前瞻评估的重要问题。</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>应对策略思考</h4>
+      <ul style="margin-left:18px;font-size:13.5px">
+        <li><b>联合用药</b>克服旁路激活：+TKI、+免疫、+抗血管、+CDK4/6i、+PARPi；</li>
+        <li><b>序贯策略优化</b>：不同载荷/不同靶点ADC的序贯次序研究（医学部可推动真实世界证据）；</li>
+        <li><b>生物标志物监测</b>：ctDNA动态监测耐药克隆出现，指导换线时机；</li>
+        <li><b>再活检/机制研究</b>：进展后活检分析耐药机制，支撑新一代双抗ADC/载荷迭代（公司GNC/多抗平台衔接）；</li>
+        <li><b>安全性管理保障依从</b>：血液学毒性的规范化管理（监测频率、G-CSF、剂量调整）减少因毒性中断导致的疗效折损。</li>
+      </ul>
+    </div>
+  </div>
+  <div class="info"><b>对医学经理的行动建议</b>：将上述思考转化为医学策略输入——① 在证据生成计划中加入"序贯ADC真实世界研究""生物标志物采集"条目；② 与KOL就耐药机制与联合策略进行系统医学洞察收集；③ 追踪竞品（T-DXd/SG/SKB264/Dato-DXd）数据读出与耐药报道，动态更新差异化证据。</div>
+</section>
+
+<!-- ============ 09 数据来源 ============ -->
+<section id="s9">
+  <div class="sec-head"><div class="sec-num">09</div><h2>数据来源与声明</h2></div>
+  <div class="card">
+    <h4>主要数据来源</h4>
+    <ul style="margin-left:18px;font-size:13px;color:#33414f">
+      <li>药品说明书（注射用伦康依隆妥单抗，核准日期2026-06-17，丁香园药品库全文）</li>
+      <li>PANKU-Breast 02：Wu J, et al. 2026 ASCO LBA1003</li>
+      <li>PANKU-NPC01（BL-B01D1-303）III期：发表于《柳叶刀》（Lancet）；国家医保局申报资料</li>
+      <li>PANKU-Esophagus01（BL-B01D1-305）III期：2026 ASCO口头报告；NMPA批准信息</li>
+      <li>SCLC Ib期：Zhao Y, et al. J Clin Oncol 2026（PMID 42497381）</li>
+      <li>I期研究：Lancet Oncology 2024；乳腺癌I期：SABCS 2024（P5-07-27）</li>
+      <li>1L EGFR突变NSCLC联合奥希替尼：WCLC 2025</li>
+      <li>竞品参照：DESTINY-Breast04（NEJM 2022）、ASCENT（NEJM 2021）、OptiTROP-Breast01（Nat Med 2025）、TROPION-Breast01/02、KEYNOTE-355/IMpassion130/TORCHLIGHT</li>
+      <li>CSCO乳腺癌诊疗指南2026、CSCO/NCCN鼻咽癌指南2026、2025年乳腺癌精准治疗进展（中国癌症杂志）</li>
+      <li>百利天恒公告与公开新闻（BMS合作、NDA受理、获批信息等）</li>
+    </ul>
+    <h4>重要声明</h4>
+    <div class="warn">
+      <p>① 本报告数据检索截止2026年8月，供医学专业人士学习参考；<b>一切产品信息以国家药监局批准的最新版说明书及公司官方材料为准</b>；</p>
+      <p>② 跨研究/跨药物对比均为<b>非头对头比较</b>，仅用于机制与趋势理解，不得用于对患者的直接比较性建议；</p>
+      <p>③ 未获批适应症（含TNBC、NSCLC、SCLC、HR+/HER2-乳腺癌等）相关信息为研究进展性质，<b>不得用于主动推广</b>；</p>
+      <p>④ 第8章"未来方向思考"为基于公开证据的分析推演，不代表公司官方研发/医学策略立场。</p>
+    </div>
+  </div>
+
+  <div class="foot">
+    《BL-B01D1（宜泽康®）产品深度研究报告》v1.0 · 2026-08-12 · 面向上市后医学经理（实体瘤/乳腺癌产品线）<br>
+    配套文档：《BL-B01D1上市后医学经理工作百科全书.md》（完整业务手册）· 《BL-B01D1工作百科全书-学习地图.html》（可视化导航）<br>
+    编制：WorkBuddy · 医学事务知识支持
+  </div>
+</section>
+
+</div>
+</body>
+</html>
+
+
