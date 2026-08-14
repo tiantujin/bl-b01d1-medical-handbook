@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>晚期三阴性乳腺癌（mTNBC）随机对照研究设计与统计方法对比报告</title>
+<style>
+  :root{--p:#0b5e8f;--p2:#1472a8;--ac:#c25e14;--ok:#1d7a54;--bg:#f5f7fa;--card:#fff;--line:#e2e8f0;--text:#1f2933;--mut:#5b6b7a;--red:#c0392b;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.72;}
+  .wrap{max-width:1200px;margin:0 auto;padding:26px 18px 70px;}
+  .hero{background:linear-gradient(135deg,#0b4a6f,#1472a8 60%,#1b8abf);color:#fff;border-radius:16px;padding:36px 40px;box-shadow:0 10px 30px rgba(20,90,140,.22);}
+  .hero .tag{display:inline-block;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.4);padding:3px 12px;border-radius:999px;font-size:12px;margin-bottom:12px;}
+  .hero h1{font-size:25px;letter-spacing:.5px;}
+  .hero .sub{margin-top:10px;font-size:14px;opacity:.95;}
+  .hero .meta{margin-top:14px;font-size:12.5px;opacity:.9;}
+  .warn{background:#fdf1f1;border:1px solid #f0cccc;border-left:5px solid var(--red);border-radius:10px;padding:15px 19px;font-size:13px;margin:18px 0;}
+  .info{background:#eef6fb;border:1px solid #cfe5f2;border-left:5px solid var(--p2);border-radius:10px;padding:15px 19px;font-size:13px;margin:18px 0;}
+  h2{font-size:21px;color:#0b4a6f;margin:34px 0 8px;border-left:5px solid var(--p2);padding-left:12px;}
+  h3{font-size:16px;color:#0d3f5e;margin:22px 0 10px;}
+  p{font-size:13.5px;margin:7px 0;color:#33414f;}
+  .tbl-wrap{overflow-x:auto;margin:12px 0;}
+  table{border-collapse:collapse;font-size:12px;width:100%;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 3px 12px rgba(30,60,90,.07);}
+  th{background:#0e3a57;color:#fff;padding:8px 9px;text-align:left;white-space:nowrap;vertical-align:middle;}
+  td{padding:7px 9px;border-bottom:1px solid #eef2f6;vertical-align:top;color:#33414f;}
+  tr:nth-child(even) td{background:#f8fafc;}
+  .hl{color:var(--red);font-weight:700;}
+  .ok{color:var(--ok);font-weight:700;}
+  .cat{background:#e3f0f9;color:#0b5e8f;font-weight:700;}
+  .cat td{background:#eef6fb!important;color:#0b5e8f;font-weight:700;font-size:12.5px;}
+  .tag2{display:inline-block;padding:1px 8px;border-radius:999px;font-size:10.5px;font-weight:600;}
+  .tag2.g{background:#e5f4ee;color:#16623f;}.tag2.b{background:#e3f0f9;color:#0b5e8f;}.tag2.o{background:#fdeee2;color:#a04e0e;}.tag2.r{background:#fbeaea;color:#a03025;}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:20px;box-shadow:0 4px 16px rgba(30,60,90,.07);margin:14px 0;}
+  .foot{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--mut);}
+  @media (max-width:820px){.grid2{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="hero">
+  <span class="tag">研究方案写作参考 · Statistical Design Review</span>
+  <h1>晚期三阴性乳腺癌（mTNBC）随机对照研究<br>设计与统计方法对比报告</h1>
+  <div class="sub">覆盖一线免疫 / 一线ADC与靶向 / 二线及以上ADC / 化疗与PARP参照 / 在研研究 —— 含样本量、α、把握度、分层、期中分析与检验策略</div>
+  <div class="meta">版本：v1.0 · 2026-08-14 · 编制：上市后医学事务（BL-B01D1 产品线）</div>
+</div>
+
+<div class="warn">
+  <b>⚠️ 数据使用声明（重要）</b><br>
+  ① 本报告统计参数（α、β/把握度、期中分析界值等）来自各研究<b>公开文献、大会报告、注册信息</b>；多项研究的 α 分配与把握度细节<b>未在公开渠道披露</b>，此类单元格一律标注"<b>未披露（以原始方案为准）</b>"，<b>请勿臆造数值</b>；<br>
+  ② 撰写研究方案时，α/β 由<b>统计师依据研究设计正式计算</b>，本报告仅供横向理解与参数范围参考；<br>
+  ③ 结果数据以各研究最终发表/大会报告为准，跨研究比较为非头对头。
+</div>
+
+<h2>一、mTNBC RCT 版图总览</h2>
+<div class="card">
+  <table>
+    <tr><th>类别</th><th>研究</th><th>主要终点</th><th>结果状态</th></tr>
+    <tr><td rowspan="5"><b>一线 免疫±化疗</b></td><td>KEYNOTE-355（帕博利珠+化疗）</td><td>PFS+OS（CPS≥10→≥1→ITT 分层）</td><td class="ok">阳性（CPS≥10）</td></tr>
+    <tr><td>IMpassion130（阿替利珠+白蛋白紫杉醇）</td><td>PFS+OS（ITT 与 PD-L1+ 双人群）</td><td class="ok">PFS 阳性 / OS PD-L1+ 获益</td></tr>
+    <tr><td>IMpassion131（阿替利珠+紫杉醇）</td><td>PFS+OS</td><td class="hl">阴性</td></tr>
+    <tr><td>TORCHLIGHT（特瑞普利+白蛋白紫杉醇，中国）</td><td>PFS（PD-L1+ 与 ITT）</td><td class="ok">PFS 阳性（PD-L1+）</td></tr>
+    <tr><td>KEYNOTE-119（帕博利珠单药，≥2L）</td><td>OS</td><td class="hl">阴性</td></tr>
+    <tr><td rowspan="4"><b>一线 ADC/靶向</b></td><td>ASCENT-03（SG vs 化疗，不适合免疫）</td><td>PFS（BICR）</td><td class="ok">阳性（FDA已批1L）</td></tr>
+    <tr><td>ASCENT-04/KEYNOTE-D19（SG+帕博利珠）</td><td>PFS（BICR）</td><td class="ok">阳性（PD-L1+）</td></tr>
+    <tr><td>TROPION-Breast02（Dato-DXd vs 化疗，不适合免疫）</td><td>PFS+OS（双主要，BICR）</td><td class="ok">阳性（PFS/OS 均改善）</td></tr>
+    <tr><td>CAPItello-290（卡帕塞替尼+紫杉醇）</td><td>OS（ITT 与 AKT 通路改变）</td><td class="hl">OS 未达显著性</td></tr>
+    <tr><td rowspan="3"><b>二线及以上 ADC</b></td><td>ASCENT（SG vs 化疗，≥2L）</td><td>PFS（BICR）</td><td class="ok">阳性</td></tr>
+    <tr><td>OptiTROP-Breast01（SKB264 vs 化疗，≥2L）</td><td>PFS（BICR）</td><td class="ok">阳性</td></tr>
+    <tr><td>PANKU-Breast 02（BL-B01D1 vs 化疗，≥2L）</td><td>PFS+OS（双主要，BICR）</td><td class="ok">双终点阳性</td></tr>
+    <tr><td><b>HER2低表达亚群</b></td><td>DESTINY-Breast04（T-DXd vs 化疗，含 HR- 队列）</td><td>HR+ 队列 PFS / 全人群 PFS</td><td class="ok">阳性（HR- 亚组获益）</td></tr>
+    <tr><td rowspan="2"><b>化疗/特殊人群参照</b></td><td>EMBRACE（艾日布林 vs TPC，≥2L）</td><td>OS</td><td class="ok">阳性</td></tr>
+    <tr><td>EMBRACA（他拉唑帕利 vs 化疗，gBRCA）</td><td>PFS（BICR）</td><td class="ok">阳性</td></tr>
+    <tr><td><b>在研（重点跟踪）</b></td><td>IZABRIGHT-Breast01（BL-B01D1 vs 化疗，1L 不适合免疫/ER低表达）</td><td>PFS（BICR）</td><td>进行中（预计2028读出）</td></tr>
+  </table>
+</div>
+
+<h2>二、研究设计与统计方法总表（A表）</h2>
+<div class="tbl-wrap">
+<table>
+  <tr>
+    <th>研究<br>（注册号）</th><th>阶段/盲态</th><th>人群与PD-L1/标志物定义</th><th>治疗线</th><th>试验组 vs 对照</th><th>随机比/样本量(计划-实际)</th><th>主要终点(评估)</th><th>次要/关键次要终点</th><th>分层因素</th><th>α 分配与检验策略</th><th>把握度(1-β)</th><th>期中分析</th>
+  </tr>
+  <tr class="cat"><td colspan="12">一线免疫 ± 化疗</td></tr>
+  <tr>
+    <td><b>KEYNOTE-355</b><br>（NCT02819518）</td><td>III期 / 双盲</td><td>未治晚期 mTNBC；22C3 PD-L1 CPS（≥10 约39%）</td><td>1L</td><td>帕博利珠+化疗 vs 安慰剂+化疗<br>（白蛋白紫杉醇/紫杉醇/吉西他滨+卡铂）</td><td>2:1<br>计划~857 / 实际 847<br>（566 vs 281）</td><td><b>PFS（BICR）+ OS</b>（双主要）</td><td>ORR、DoR、QoL</td><td>CPS（≥10 vs 1-9）、紫杉烷类型、既往新辅助/辅助治疗</td><td>单侧 α=0.05 总体；<b>层级检验：CPS≥10 → CPS≥1 → ITT</b>（PFS 与 OS 各自层级）</td><td>未披露（以方案为准）</td><td>预设期中分析（PFS 于事件数达标时；OS 多次期中）</td>
+  </tr>
+  <tr>
+    <td><b>IMpassion130</b><br>（NCT02425891）</td><td>III期 / 双盲</td><td>未治晚期 mTNBC；SP142 PD-L1 IC≥1%（约41%）</td><td>1L</td><td>阿替利珠+白蛋白紫杉醇 vs 安慰剂+白蛋白紫杉醇</td><td>1:1<br>902（451 vs 451）</td><td><b>PFS+OS</b>（4 个共同主要终点：ITT 与 PD-L1+ 的 PFS 并行分析；OS 分层检验 ITT→PD-L1+）</td><td>ORR、DoR、QoL</td><td>既往紫杉烷、肝转移、PD-L1 状态</td><td>PFS 两人群并行分析；OS 层级：先 ITT 后 PD-L1+（α 分段分配，未披露细节）</td><td>未披露</td><td>预设期中分析（PFS 1 次中期；OS 多次期中，最终 OS 于 2020 报告）</td>
+  </tr>
+  <tr>
+    <td><b>IMpassion131</b><br>（NCT03125902）</td><td>III期 / 双盲</td><td>未治晚期 mTNBC；SP142 PD-L1</td><td>1L</td><td>阿替利珠+紫杉醇（溶剂型） vs 安慰剂+紫杉醇</td><td>2:1<br>651（430 vs 221）</td><td><b>PFS（研究者评估，ITT 与 PD-L1+）</b>；OS 为另一主要终点</td><td>OS、ORR 等</td><td>紫杉烷经治、肝转移、PD-L1 状态</td><td>PFS/OS 分层检验（ITT→PD-L1+）</td><td>未披露</td><td>预设期中分析（<b>阴性结果</b>：PFS HR 0.82）</td>
+  </tr>
+  <tr>
+    <td><b>TORCHLIGHT</b><br>（NCT04085276）</td><td>III期 / 双盲</td><td>晚期/复发 mTNBC；JS311 PD-L1 CPS≥1（56.4%）</td><td>1L（含部分后线定义，以方案为准）</td><td>特瑞普利单抗+白蛋白紫杉醇 vs 安慰剂+白蛋白紫杉醇</td><td>2:1<br>531（353 vs 178）</td><td><b>PFS（BICR）</b>：PD-L1+ 与 ITT 双人群</td><td>OS、ORR、DoR</td><td>PD-L1 状态、既往新辅助/辅助化疗、肝转移（以方案为准）</td><td>PFS 在 PD-L1+ 与 ITT 人群；期中按预设计划（<b>75% PFS 事件</b>）</td><td>未披露</td><td>期中分析（75% PFS 事件）：PD-L1+ PFS 8.4 vs 5.6（HR 0.65, P=0.0102）<b>跨预设界值</b>；ITT 未跨界</td>
+  </tr>
+  <tr>
+    <td><b>KEYNOTE-119</b><br>（NCT02555657）</td><td>III期 / 开放</td><td>≥2L mTNBC；22C3 TPS 分层</td><td>≥2L</td><td>帕博利珠单抗 vs 化疗（TPC）</td><td>2:1<br>622</td><td><b>OS</b>（层级：TPS≥10→≥1→ITT）</td><td>PFS、ORR、DoR</td><td>TPS、既往线数、地区</td><td>单侧 α=0.05；层级检验 TPS≥10→≥1→ITT</td><td>未披露</td><td>预设期中（最终 OS 阴性：ITT HR 0.86）</td>
+  </tr>
+  <tr class="cat"><td colspan="12">一线 ADC 与靶向</td></tr>
+  <tr>
+    <td><b>ASCENT-03</b><br>（NCT05382299）</td><td>III期 / 开放</td><td>未治晚期 mTNBC，<b>不适合 PD-(L)1</b>（CPS&lt;10 或免疫早期用过/不耐受）</td><td>1L</td><td>SG 单药 vs 化疗<br>（紫杉醇/白蛋白紫杉醇/吉西他滨+卡铂）</td><td>1:1<br>558</td><td><b>PFS（BICR）</b></td><td>OS（关键）、ORR、DoR、QoL</td><td>疾病状态（局部复发 vs 转移）、地理区域</td><td>优效性设计；α 分配未披露（以方案为准）；<b>交叉设计</b>：对照进展后可交叉 SG</td><td>未披露</td><td>预设期中（PFS 达统计学显著，2025 ESMO LBA + NEJM 同期发表）</td>
+  </tr>
+  <tr>
+    <td><b>ASCENT-04 / KEYNOTE-D19</b><br>（NCT05633654）</td><td>III期 / 开放</td><td>未治晚期 mTNBC，<b>PD-L1 CPS≥10</b></td><td>1L</td><td>SG+帕博利珠 vs 化疗+帕博利珠</td><td>1:1<br>443</td><td><b>PFS（BICR）</b></td><td>OS、ORR、DoR、TTR、PRO、安全性</td><td>ASCENT-03 基础上 + <b>既往抗 PD-(L)1 辅助/新辅助治疗</b></td><td>优效性设计；α 未披露；交叉设计同 ASCENT-03</td><td>未披露</td><td>预设期中（PFS 11.2 vs 7.8，HR 0.65，P=0.0009，2025 ASCO 报告）</td>
+  </tr>
+  <tr>
+    <td><b>TROPION-Breast02</b><br>（NCT05374512）</td><td>III期 / 开放</td><td>未治晚期 mTNBC，<b>不适合 PD-(L)1</b></td><td>1L</td><td>Dato-DXd vs ICC<br>（紫杉醇/白蛋白紫杉醇/卡铂/卡培他滨/艾立布林）</td><td>1:1<br>计划600 / 实际644</td><td><b>PFS（BICR）+ OS（双主要）</b></td><td>ORR、DoR、PRO</td><td>PD-L1 状态、既往（新）辅助治疗、地区（以方案为准）</td><td>双主要终点 PFS+OS，α 分配未披露</td><td>未披露</td><td>预设期中（PFS 10.8 vs 5.6，HR 0.57；OS 23.7 vs 18.7，HR 0.79）</td>
+  </tr>
+  <tr>
+    <td><b>CAPItello-290</b><br>（NCT03997123）</td><td>III期 / 双盲</td><td>未治晚期 mTNBC；PIK3CA/AKT1/PTEN 改变（约30.7%）</td><td>1L</td><td>卡帕塞替尼+紫杉醇 vs 安慰剂+紫杉醇</td><td>1:1<br>812</td><td><b>OS</b>（ITT 与 AKT 通路改变人群，共同主要）</td><td>PFS（研究者）、ORR、DoR</td><td>AKT 通路状态、既往新辅助/辅助治疗（以方案为准）</td><td>共同主要终点 OS（ITT 与标志物人群），α 分配未披露</td><td>未披露</td><td>预设期中（最终 OS <b>未达统计学显著</b>，Ann Oncol 2025；PFS 有获益趋势）</td>
+  </tr>
+  <tr class="cat"><td colspan="12">二线及以上 ADC</td></tr>
+  <tr>
+    <td><b>ASCENT</b><br>（NCT02574455）</td><td>III期 / 开放</td><td>≥2L mTNBC（中位既往4线）</td><td>≥2L</td><td>SG vs TPC<br>（艾日布林/长春瑞滨/卡培他滨/吉西他滨）</td><td>1:1<br>529（267 vs 262）</td><td><b>PFS（BICR）</b>（无脑转移人群为主分析）</td><td>OS（关键）、ORR、DoR、安全性</td><td>既往线数（2-3 vs ≥4）、地区、基线脑转移</td><td>优效性；α=0.05（单侧，以原文为准）；PFS 显著后分层检验 OS</td><td>未披露</td><td>预设期中分析（NEJM 2021 报告最终 PFS / 期中 OS）</td>
+  </tr>
+  <tr>
+    <td><b>OptiTROP-Breast01</b><br>（NCT05347134）</td><td>III期 / 开放</td><td>≥2L mTNBC（≥2 种化疗，紫杉类经治；中位既往3线）</td><td>≥2L</td><td>SKB264 vs TPC</td><td>1:1<br>263</td><td><b>PFS（BICR）</b></td><td>OS（关键）、ORR、DoR</td><td>既往治疗线数、PD-(L)1 经治等（以方案为准）</td><td>优效性；α 分配未披露；PFS 显著后 OS 分层检验</td><td>未披露</td><td>预设期中（OS 跨预设疗效界值：HR 0.53, P=0.0005）</td>
+  </tr>
+  <tr>
+    <td><b>PANKU-Breast 02</b><br>（BL-B01D1-307）</td><td>III期 / 开放</td><td>≥2L mTNBC（1-2线化疗+紫杉烷经治；约53% HER2 IHC 0）</td><td>≥2L</td><td>BL-B01D1 vs 化疗<br>（艾立布林/长春瑞滨/吉西他滨/卡培他滨）</td><td>1:1<br>计划406 / 实际412<br>（207 vs 205）</td><td><b>PFS（BICR）+ OS（双主要）</b></td><td>ORR、DoR、DCR、安全</td><td>化疗线数（1 vs 2）、PD-(L)1 经治、HER2 状态（IHC 0 vs 1+/2+ ISH-）</td><td>双主要终点 PFS+OS；α 分配未公开（以方案为准）</td><td>未披露</td><td>预设期中分析达双主要终点（2026-02 宣布；ASCO 2026 详细数据：PFS HR 0.29 / OS HR 0.60）</td>
+  </tr>
+  <tr>
+    <td><b>DESTINY-Breast04</b><br>（NCT03734029）</td><td>III期 / 开放</td><td>HER2 低表达 mBC（HR+ 494 + HR- 63）；含 mTNBC 亚群（HR-）</td><td>≥1-2L</td><td>T-DXd vs TPC</td><td>2:1<br>557（371 vs 186）</td><td><b>HR+ 队列 PFS（BICR）</b>；全人群 PFS 为双主要之一</td><td>全人群 PFS、HR+ 与全人群 OS（关键）</td><td>HER2 状态（IHC1+ vs 2+/ISH-）、HR 状态、CDK4/6i 经治、地区</td><td>双主要（HR+ PFS 与全人群 PFS），α 分层分配；OS 关键次要层级检验</td><td>未披露</td><td>预设期中（HR- 亚组 mPFS 6.3 vs 2.9，HR 0.29）</td>
+  </tr>
+  <tr class="cat"><td colspan="12">化疗 / 特殊人群参照</td></tr>
+  <tr>
+    <td><b>EMBRACE</b><br>（NCT00388726）</td><td>III期 / 开放</td><td>≥2L mBC（含 TNBC 亚组）</td><td>≥2L</td><td>艾日布林 vs TPC</td><td>2:1<br>762</td><td><b>OS</b></td><td>PFS、ORR</td><td>地区、既往线数、HER2 状态</td><td>优效性；α=0.05 双侧（以原文为准）</td><td>未披露</td><td>最终分析（OS 13.1 vs 10.6，HR 0.81）</td>
+  </tr>
+  <tr>
+    <td><b>EMBRACA</b><br>（NCT01945775）</td><td>III期 / 开放</td><td>gBRCA mBC（约70% TNBC）</td><td>≥2L（≤2 线化疗）</td><td>他拉唑帕利 vs 化疗</td><td>2:1<br>431</td><td><b>PFS（BICR）</b></td><td>OS、ORR、DoR</td><td>既往铂类、既往线数、TNBC 状态</td><td>优效性；α 分配未披露</td><td>未披露</td><td>预设期中（PFS 8.6 vs 5.6，HR 0.54）</td>
+  </tr>
+  <tr class="cat"><td colspan="12">在研（重点跟踪）</td></tr>
+  <tr>
+    <td><b>IZABRIGHT-Breast01</b><br>（NCT06926868，BMS 全球）</td><td>III期 / 开放</td><td>1L 晚期 BC：<b>不适合 PD-(L)1 的 TNBC</b>（约占80%）+ <b>ER 低表达</b>（约10%）不适合内分泌</td><td>1L</td><td>BL-B01D1 vs TPC<br>（紫杉醇/白蛋白紫杉醇/卡铂+吉西他滨/卡培他滨）</td><td>1:1<br>计划560</td><td><b>PFS（BICR）</b></td><td>OS、ORR、DoR、AE/SAE 等</td><td>未披露（以方案为准）</td><td>优效性设计；α/期中按方案（预计首例随机后第31个月 PFS 主分析）</td><td>未披露</td><td>预计 2028-03 完成主要结果（进行中）</td>
+  </tr>
+</table>
+</div>
+<h2>三、关键结果对比表（B表）</h2>
+<div class="tbl-wrap">
+<table>
+  <tr><th>研究</th><th>mPFS（月，试验 vs 对照）</th><th>PFS HR（95%CI）</th><th>mOS（月）</th><th>OS HR（95%CI）</th><th>ORR（试验 vs 对照）</th><th>关键安全性/备注</th></tr>
+  <tr><td>KEYNOTE-355（CPS≥10）</td><td class="hl">9.7 vs 5.6</td><td>0.65（0.49-0.86）</td><td class="hl">23.0 vs 16.1</td><td>0.73（0.55-0.95）</td><td>53% vs 41%</td><td>免疫相关 AE；PD-L1 高表达获益随 CPS 增加</td></tr>
+  <tr><td>IMpassion130（PD-L1+）</td><td>7.5 vs 5.0</td><td>0.62（0.49-0.78）</td><td class="hl">25.4 vs 17.9*</td><td>0.67（0.53-0.86）</td><td>—</td><td>*最终 OS 分析 PD-L1+；ITT OS 未显著（层级未推进）</td></tr>
+  <tr><td>IMpassion131</td><td class="hl">阴性（HR 0.82）</td><td>—</td><td>阴性</td><td>—</td><td>—</td><td>紫杉醇（溶剂型）联合失败；方案后撤（2021 FDA 撤回加速批准）</td></tr>
+  <tr><td>TORCHLIGHT（PD-L1+）</td><td>8.4 vs 5.6</td><td>0.65（0.47-0.91）</td><td class="hl">32.8 vs 19.5</td><td>0.62（0.41-0.91）</td><td>—</td><td>中国研究；期中分析达预设界值；ITT 未跨界</td></tr>
+  <tr><td>KEYNOTE-119</td><td>—</td><td>—</td><td class="hl">阴性（ITT HR 0.86）</td><td>—</td><td>—</td><td>免疫单药 vs 化疗未改善 OS</td></tr>
+  <tr><td>ASCENT-03（1L）</td><td class="hl">9.7 vs 6.9</td><td>0.62（0.50-0.77）</td><td>未成熟（获益趋势）</td><td>—</td><td>48% vs 46%</td><td>DoR 12.2 vs 7.2；AE 相关死亡 7 vs 1（关注）</td></tr>
+  <tr><td>ASCENT-04（1L PD-L1+）</td><td class="hl">11.2 vs 7.8</td><td>0.65（0.51-0.84）</td><td>未成熟</td><td>—</td><td>60% vs 53%（CR 13% vs 8%）</td><td>DoR 16.5 vs 9.2；停药率 12% vs 31%</td></tr>
+  <tr><td>TROPION-Breast02（1L）</td><td class="hl">10.8 vs 5.6</td><td>0.57</td><td class="hl">23.7 vs 18.7</td><td>0.79</td><td>—</td><td>不适合免疫人群；口腔炎需关注</td></tr>
+  <tr><td>CAPItello-290</td><td>PFS 有获益趋势</td><td>—</td><td class="hl">未达显著（ITT 与 AKT 人群）</td><td>—</td><td>—</td><td>AKT 通路改变约30.7%；PFS 名义获益</td></tr>
+  <tr><td>ASCENT（≥2L）</td><td class="hl">5.6 vs 1.7</td><td>0.41（0.32-0.52）</td><td class="hl">12.1 vs 6.7</td><td>0.48（0.38-0.59）</td><td>31% vs 5%</td><td>中性粒↓、腹泻；≥2L 经典注册证据</td></tr>
+  <tr><td>OptiTROP-Breast01（≥2L）</td><td class="hl">6.7 vs 2.5</td><td>0.32（0.22-0.44）</td><td>未成熟（跨预设界值，HR 0.53）</td><td>0.53（0.36-0.78）</td><td>45.4%</td><td>口腔炎 44%（≥3级 9%）需管理；TROP2 表达水平不影响获益</td></tr>
+  <tr><td><b>PANKU-Breast 02（≥2L）</b></td><td class="hl">8.5 vs 3.1</td><td class="hl">0.29（P&lt;0.0001）</td><td class="hl">15.9 vs 12.5</td><td class="hl">0.60（P=0.0019）</td><td class="hl">51.7% vs 20.5%</td><td>HER2 IHC 0 亚组 mPFS 8.3（HR 0.28）；ILD 1.4% 无≥3级；停药 1.9%</td></tr>
+  <tr><td>DESTINY-Breast04（HR- 亚组）</td><td>6.3 vs 2.9</td><td>0.29（探索性）</td><td>17.1 vs 8.3</td><td>0.58（未显著）</td><td>50%</td><td>仅 HER2 低表达；ILD 约12% 需监测；亚组样本小（58例）</td></tr>
+  <tr><td>EMBRACE（≥2L）</td><td>—</td><td>—</td><td class="hl">13.1 vs 10.6</td><td>0.81（0.66-0.99）</td><td>—</td><td>化疗时代参照</td></tr>
+  <tr><td>EMBRACA（gBRCA）</td><td class="hl">8.6 vs 5.6</td><td>0.54（0.41-0.71）</td><td>19.3 vs 19.5（未显著）</td><td>0.85（0.67-1.07）</td><td>62.6% vs 27.2%</td><td>gBRCA 特殊人群（约70% TNBC）</td></tr>
+  <tr><td>IZABRIGHT-Breast01（在研）</td><td colspan="5">结果待读出（预计 2028-03 主要结果）；设计见 A 表</td><td>全球 III期，BMS 主导</td></tr>
+</table>
+</div>
+
+<h2>四、统计设计要点解读（写方案可复用）</h2>
+<div class="grid2">
+  <div class="card">
+    <h3>4.1 主要终点的"单终点 vs 双终点"策略</h3>
+    <p>· <b>单终点（PFS 为主）</b>：ASCENT、OptiTROP-Breast01、ASCENT-03/04、IZABRIGHT-Breast01——注册速度快，但 OS 只能作关键次要（分层检验）；<br>
+    · <b>双主要终点（PFS+OS）</b>：PANKU-Breast 02、TROPION-Breast02、KEYNOTE-355（PFS+OS）——证据强度高，但样本量与 α 分配更复杂、需处理两终点相关性；<br>
+    · <b>共同主要终点（多人群）</b>：IMpassion130（ITT+PD-L1+ 的 PFS/OS）、CAPItello-290（ITT+AKT 人群 OS）——生物标志物驱动的结构，α 需在人群间分配。</p>
+    <p><b>启示</b>：ADC 后线研究多选"PFS 为主 + OS 分层检验"（周期短、事件少）；若预期疗效足够强且监管需要生存证据，选 PFS+OS 双主要（如 PANKU-Breast 02）——但需统计师评估两终点相关性导致的 I 类错误膨胀。</p>
+  </div>
+  <div class="card">
+    <h3>4.2 α 分配与层级（Hierarchical）检验</h3>
+    <p>· KEYNOTE-355/119：<b>按 PD-L1 分层人群顺序检验</b>（CPS≥10→≥1→ITT），前一层级显著才推进下一层级，α 全程控制；<br>
+    · IMpassion130：PFS 两人群并行（各分配 α）+ OS 层级（ITT→PD-L1+）；<br>
+    · 双终点研究：PFS 与 OS 各按预设顺序检验（如先 PFS 后 OS），或按事件驱动分配 α（如 O'Brien-Fleming 消耗）。<br>
+    <b>启示</b>：方案里必须写明"检验层级与 α 分配表"——这是统计师与医学经理共同的核心章节，也是审评关注点。</p>
+  </div>
+  <div class="card">
+    <h3>4.3 期中分析与 α 消耗</h3>
+    <p>· TORCHLIGHT：<b>75% PFS 事件</b>时期中分析，PD-L1+ 跨预设界值（P=0.0102），ITT 未跨界——体现"期中边界 + 继续随访"的典型设计；<br>
+    · PANKU-Breast 02：期中分析达 PFS+OS 双终点后提前宣布阳性；<br>
+    · ASCENT/OptiTROP：OS 期中跨界值即报告。<br>
+    <b>启示</b>：方案需写明期中分析次数、信息时间（事件数百分比）、α 消耗函数（Pocock/O'Brien-Fleming）、提前终止规则（有效性/无效性/样本量重估）。</p>
+  </div>
+  <div class="card">
+    <h3>4.4 分层因素、BICR 与交叉设计</h3>
+    <p>· <b>分层因素</b>：多选"预后相关 + 富集相关"因子（线数、PD-L1、HER2 状态、肝转移、既往免疫）——PANKU-Breast 02 用化疗线数/PD-(L)1 经治/HER2 状态三层；<br>
+    · <b>BICR vs 研究者评估</b>：注册研究主终点多用 BICR（ASCENT、OptiTROP、ASCENT-03、PANKU-Breast 02、IZABRIGHT）；开放标签研究尤其必要；<br>
+    · <b>交叉设计</b>：ASCENT-03/04 允许对照进展后交叉 ADC——伦理友好，但 OS 分析会被交叉"稀释"（需注明 OS 可能低估，PFS 不受影响）。</p>
+  </div>
+</div>
+
+<h2>五、对 BL-B01D1 的启示（医学经理视角）</h2>
+<div class="card">
+  <table>
+    <tr><th>维度</th><th>对比结论</th><th>医学/策略含义</th></tr>
+    <tr><td>≥2L 证据强度</td><td>PANKU-Breast 02 是 ≥2L mTNBC 中<b>唯一 PFS+OS 双主要终点均阳性的 ADC 研究</b>（ASCENT/OptiTROP 为 PFS 主终点+OS 分层）</td><td>对外沟通强调"双终点阳性"的差异化证据强度</td></tr>
+    <tr><td>人群覆盖</td><td>不筛 HER2 表达（约53% IHC 0），对比 DB-04 仅 HER2 低表达</td><td>"全人群获益"是核心叙事；IHC 0 亚组证据独特</td></tr>
+    <tr><td>治疗时机前移</td><td>≥2L（vs ASCENT/OptiTROP 注册证据 ≥3L）；1L 布局 IZABRIGHT-Breast01</td><td>"好药前移"策略；1L 读出（2028）将是下一里程碑</td></tr>
+    <tr><td>疗效数值</td><td>mPFS 8.5 个月为 ≥2L 同类研究最高（vs ASCENT 5.6、OptiTROP 6.7）</td><td>非头对头比较，谨慎表述但可作参考</td></tr>
+    <tr><td>安全性差异化</td><td>ILD 1.4%（vs DB-04 约12%）；无腹泻/口腔炎（vs SG/SKB264）</td><td>"疗效与生活质量并重"的患者体验叙事</td></tr>
+  </table>
+  <div class="info"><b>给写方案的建议</b>：① 若未来设计 BL-B01D1 上市后/联合研究，可参考"PFS 主终点 + OS 关键次要 + BICR + 事件驱动期中"的高效结构；② 分层因素建议沿用注册研究（线数/PD-(L)1 经治/HER2 状态），保证与注册数据可比；③ 生物标志物（如 HER3 表达）若引入，参考 CAPItello-290 的"标志物人群共同主要终点"模式做前瞻 α 分配；④ 所有 α/β/期中细节须由统计师正式计算并在方案中表格化。</div>
+</div>
+
+<div class="foot">
+  <b>主要数据来源</b>：KEYNOTE-355（NEJM 2020）、IMpassion130（NEJM 2018 / Lancet Oncol 2020 最终OS）、IMpassion131（Lancet Oncol 2021）、TORCHLIGHT（Nat Med 2023 / TBCR 2024）、KEYNOTE-119（JAMA Oncol 2021）、ASCENT（NEJM 2021）、ASCENT-03（NEJM/ESMO 2025）、ASCENT-04（ASCO 2025）、TROPION-Breast02（ESMO 2024）、CAPItello-290（ESMO 2024 LBA19 / Ann Oncol 2025）、OptiTROP-Breast01（Nat Med 2025）、PANKU-Breast 02（2026 ASCO LBA1003）、DESTINY-Breast04（NEJM 2022）、EMBRACE（Lancet 2011）、EMBRACA（NEJM 2018）、IZABRIGHT-Breast01（NCT06926868 / 公司披露）。<br>
+  <b>声明</b>：本报告为学习与方案写作参考；α/β 等未公开披露参数标注"以原始方案为准"，不得直接引用为正式计算值；跨研究对比均为非头对头；数据检索截止 2026-08。仅供医学专业人士参考，以各研究官方发表与公司批准资料为准。
+</div>
+</div>
+</body>
+</html>
+
