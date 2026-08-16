@@ -103,7 +103,10 @@
   <a href="#s26">26 研究方案审核要点与常见坑</a>
   <a href="#s27">27 单臂研究与 RWE 设计细则（深度版）</a>
   <a href="#s28">28 全球多中心试验（MRCT）与国内 RCT 差异及知识体系</a>
-  <a href="#s29">29 数据来源与声明</a>
+  <a href="#s29">29 ADC 连接子与载荷作用机制详解</a>
+  <a href="#s30">30 乳腺癌治疗框架与 ADC 分布总览</a>
+  <a href="#s31">31 HER2-low 乳腺癌：研究进展、药物选择与分型特殊性</a>
+  <a href="#s32">32 数据来源与声明</a>
   <div style="margin-top:16px;border-top:1px solid rgba(255,255,255,.15);padding-top:12px">
     <div style="font-size:11px;color:#8fb3cc;margin-bottom:6px">📦 配套资料下载</div>
     <a href="BL-B01D1上市后医学经理工作百科全书.md" target="_blank">📘 工作百科全书.md</a>
@@ -1277,7 +1280,7 @@
     </table>
   </div>
   <div class="foot">
-    《上市后医学经理 · 职场工具手册》v1.1 · 2026-08-14 · 配套文件：BL-B01D1产品深度研究报告.html / BL-B01D1上市后医学经理工作百科全书.md / 职场工具模板.xlsx<br>
+    《上市后医学经理 · 职场工具手册》v1.2 · 2026-08-16 · 配套文件：BL-B01D1产品深度研究报告.html / BL-B01D1上市后医学经理工作百科全书.md / 职场工具模板.xlsx<br>
     本手册为岗位能力参考，具体以公司制度与合规政策为准。
   </div>
 </section><section id="s24">
@@ -2251,7 +2254,310 @@
   </div>
 </section>
 <section id="s29">
-  <div class="sec-head"><div class="sec-num">29</div><h2>数据来源与声明</h2></div>
+  <div class="sec-head"><div class="sec-num">29</div><h2>ADC 连接子与载荷作用机制详解</h2></div>
+  <div class="sec-desc">读懂 ADC 的"弹药（载荷）"与"引信（连接子）"——不同 ADC 疗效/毒性/耐药差异的底层密码，也是你对医生讲清"为什么这个药在那个亚型有效"的机制底座</div>
+
+  <h3>29.1 ADC 结构与作用机制总览</h3>
+  <div class="card">
+    <p><b>ADC = 抗体（导航）+ 连接子（引信）+ 载荷（弹药）</b>。经典作用五步：</p>
+    <table>
+      <tr><th>步骤</th><th>机制</th><th>决定因素</th></tr>
+      <tr><td>① 靶点结合</td><td>抗体与肿瘤表面抗原特异性结合（HER2/TROP2/EGFR×HER3 等）</td><td>靶点表达水平与密度、亲和力</td></tr>
+      <tr><td>② 受体介导内吞</td><td>ADC-抗原复合物内化进入溶酶体途径</td><td>抗原内吞速率、受体再循环</td></tr>
+      <tr><td>③ 连接子裂解/释放</td><td>溶酶体酸性环境/蛋白酶/还原环境切断连接子，释放载荷</td><td><b>连接子类型（可裂解 vs 不可裂解）</b></td></tr>
+      <tr><td>④ 载荷入靶</td><td>载荷进入细胞质/细胞核，作用于微管或 DNA 等</td><td><b>载荷类别与膜通透性</b></td></tr>
+      <tr><td>⑤ 旁观者效应/凋亡</td><td>脂溶性载荷扩散至邻近抗原阴性细胞，放大杀伤；最终细胞死亡</td><td>载荷通透性 + 连接子裂解性</td></tr>
+    </table>
+    <div class="note"><b>核心公式（对外沟通语言）</b>：疗效 = 靶点表达 × 内吞效率 × 载荷毒性强度 × 旁观者效应；毒性 = 载荷脱靶释放 + 旁观者误伤 + 非特异性内吞。连接子与载荷的组合决定了二者的平衡。</div>
+  </div>
+
+  <h3>29.2 载荷（Payload）分类与作用机制</h3>
+  <div class="card">
+    <table>
+      <tr><th>载荷家族</th><th>代表药物</th><th>作用机制</th><th>关键特性</th></tr>
+      <tr><td><b>微管抑制剂</b>：MMAE / MMAF</td><td>维布妥昔单抗、维迪西妥单抗（RC48）、MRG002 等</td><td>结合微管蛋白，抑制聚合，G2/M 期阻滞→凋亡</td><td>MMAE 膜通透（有旁观者）、MMAF 带负电不透膜（无旁观者）；周围神经病变风险</td></tr>
+      <tr><td><b>微管抑制剂</b>：DM1 / DM4（美登素类）</td><td>T-DM1、SYD985 等</td><td>微管去稳定，机制同上</td><td>DM4 比 DM1 膜通透性更好；非癌基因驱动低表达肿瘤中获益有限（T-DM1 在 HER2-low 无效）</td></tr>
+      <tr><td><b>TOP1 抑制剂</b>：DXd</td><td>T-DXd、Dato-DXd</td><td>抑制拓扑异构酶 I，致 DNA 双链断裂→凋亡（与微管抑制剂不交叉耐药）</td><td><b>强膜通透 + 旁观者效应强</b>；半衰期短利于控制毒性；与化疗微管药无交叉耐药</td></tr>
+      <tr><td><b>TOP1 抑制剂</b>：SN-38（伊立替康活性代谢物）</td><td>戈沙妥珠单抗（SG）</td><td>同上</td><td>膜通透、旁观者；DNA 损伤相关血液学/黏膜毒性</td></tr>
+      <tr><td><b>TOP1 抑制剂</b>：Ed-04（依喜替康类似物）</td><td>BL-B01D1（伦康依隆妥单抗）</td><td>同上（TOP1 抑制）</td><td>BL-B01D1 独有载荷；旁观者效应支持覆盖 HER2 IHC 0 等低表达人群</td></tr>
+      <tr><td><b>TOP1 抑制剂</b>：KL610023</td><td>SKB264（芦康沙妥珠单抗）</td><td>同上</td><td>国产首创；旁观者效应</td></tr>
+      <tr><td><b>DNA 损伤剂</b>：PBD / 卡奇霉素 / 多卡米星</td><td>部分在研 ADC</td><td>DNA 交联/切割，超强细胞毒</td><td>毒性极强，多为低 DAR 设计，旁观者效应有限</td></tr>
+      <tr><td><b>RNA 聚合酶 II 抑制剂</b>：α-鹅膏蕈碱</td><td>在研</td><td>抑制转录</td><td>新机制，探索中</td></tr>
+    </table>
+    <p><b>两类主流载荷的根本差异</b>：<b>微管抑制剂</b>主要杀伤增殖期细胞（对低增殖/静息肿瘤有限）；<b>TOP1 抑制剂（DXd/SN-38/Ed-04 类）</b>通过 DNA 损伤杀伤，对低表达、异质性肿瘤更有效，且与紫杉类/卡培他滨等化疗及微管 ADC 无交叉耐药——这是当代乳腺癌 ADC（T-DXd、BL-B01D1、SKB264）疗效突破的机制基础之一。</p>
+  </div>
+
+  <h3>29.3 连接子（Linker）分类与作用机制</h3>
+  <div class="card">
+    <table>
+      <tr><th>类型</th><th>代表</th><th>裂解机制</th><th>血浆稳定性/释放特点</th><th>旁观者效应</th></tr>
+      <tr><td><b>可裂解·酶解</b>（缬氨酸-瓜氨酸 VC 二肽）</td><td>SG（CL2A 含 VC）、维迪西妥单抗</td><td>溶酶体组织蛋白酶 B 水解</td><td>血浆较稳定，靶内释放</td><td>有（取决于载荷）</td></tr>
+      <tr><td><b>可裂解·酶解</b>（四肽 GGFG）</td><td><b>T-DXd、Dato-DXd</b></td><td>溶酶体蛋白酶水解 + <b>亲水性设计提高稳定性</b></td><td>极高血浆稳定性，低脱靶；DXd 半衰期短</td><td><b>强</b>（DXd 膜通透）</td></tr>
+      <tr><td><b>可裂解·pH 敏感</b>（腙键）</td><td>SG 的 CL2A 亦含 pH 敏感位点（与 SN-38 连接）</td><td>酸性内体/溶酶体 pH 水解</td><td>血浆中缓慢释放（有脱靶）</td><td>有</td></tr>
+      <tr><td><b>可裂解·二硫键还原</b></td><td>DM4 类（部分）</td><td>胞内高谷胱甘肽还原</td><td>血浆中相对稳定</td><td>取决于载荷</td></tr>
+      <tr><td><b>不可裂解</b>（SMCC 硫醚）</td><td><b>T-DM1</b></td><td>不裂解——抗体被溶酶体完全降解后释放赖氨酸-DM1</td><td>血浆极稳定、脱靶低</td><td><b>无</b>（DM1-赖氨酸代谢物带电荷不透膜）</td></tr>
+    </table>
+    <p><b>旁观者效应（bystander effect）的三个前提</b>：①连接子<b>可裂解</b>；②载荷<b>膜通透（亲脂/中性）</b>；③载荷能在邻近细胞间扩散。T-DM1 三项均不满足（不可裂解 + DM1 代谢物带电）→ 对 HER2 低表达/异质性肿瘤无效；T-DXd 三项全满足（四肽裂解 + DXd 通透）→ HER2-low/ultralow 获益。这是"为什么 T-DXd 行、T-DM1 不行"的机制答案。</p>
+  </div>
+
+  <h3>29.4 DAR 与药学特性</h3>
+  <div class="card">
+    <table>
+      <tr><th>药物</th><th>DAR</th><th>偶联方式</th><th>药学意义</th></tr>
+      <tr><td>T-DM1</td><td>≈3.5</td><td>赖氨酸随机偶联</td><td>低 DAR 降低毒性，但杀伤有限</td></tr>
+      <tr><td>维迪西妥单抗 RC48</td><td>≈4</td><td>半胱氨酸</td><td>中 DAR</td></tr>
+      <tr><td>Dato-DXd</td><td>≈4</td><td>半胱氨酸（四肽连接子）</td><td>中 DAR + 强效 DXd 平衡安全性</td></tr>
+      <tr><td>SKB264</td><td>≈7.4</td><td>半胱氨酸</td><td>高 DAR</td></tr>
+      <tr><td>SG</td><td>≈7.6</td><td>半胱氨酸</td><td>高 DAR，SN-38 中等毒性</td></tr>
+      <tr><td><b>T-DXd / BL-B01D1</b></td><td><b>≈8</b></td><td>半胱氨酸/工程化位点</td><td><b>高 DAR + 强效载荷 → 单位抗体携带杀伤量最大</b>；需亲水设计防聚集</td></tr>
+    </table>
+    <div class="note"><b>DAR 的"性价比"逻辑</b>：DAR 高 → 每个抗体杀伤力强，但疏水性载荷增多易致聚集、血浆清除加快、毒性上升；现代平台用<b>亲水性连接子/载荷（如 GGFG-DXd）</b>在保持 DAR≈8 的同时控制 PK——T-DXd 与 BL-B01D1 均走此路线。</div>
+  </div>
+
+  <h3>29.5 主要乳腺癌 ADC 结构-机制对照表</h3>
+  <div class="card">
+    <table>
+      <tr><th>药物</th><th>靶点</th><th>连接子</th><th>载荷</th><th>DAR</th><th>旁观者效应</th><th>毒性特征提示</th></tr>
+      <tr><td>T-DM1</td><td>HER2</td><td>SMCC（不可裂解）</td><td>DM1（微管）</td><td>3.5</td><td>无</td><td>血小板减少、肝毒性</td></tr>
+      <tr><td>T-DXd</td><td>HER2</td><td>四肽 GGFG（可裂解）</td><td>DXd（TOP1i）</td><td>8</td><td><b>强</b></td><td><b>ILD、恶心、血液学</b></td></tr>
+      <tr><td>SG</td><td>TROP2</td><td>CL2A（pH+酶解）</td><td>SN-38（TOP1i）</td><td>7.6</td><td>有</td><td>中性粒减少、<b>腹泻/黏膜炎</b></td></tr>
+      <tr><td>SKB264</td><td>TROP2</td><td>双功能可裂解</td><td>KL610023（TOP1i）</td><td>7.4</td><td>有</td><td>血液学、口腔黏膜炎（无 ILD 信号）</td></tr>
+      <tr><td>Dato-DXd</td><td>TROP2</td><td>四肽 GGFG（可裂解）</td><td>DXd（TOP1i）</td><td>4</td><td>有（弱于 T-DXd）</td><td>口腔炎、眼表疾病（干眼）、ILD（低于 T-DXd）</td></tr>
+      <tr><td>RC48 维迪西妥单抗</td><td>HER2</td><td>VC 二肽（可裂解）</td><td>MMAE（微管）</td><td>4</td><td>有</td><td>周围神经病变、血液学</td></tr>
+      <tr><td>SYD985</td><td>HER2</td><td>VC（可裂解）</td><td>Duocarmycin（DNA）</td><td>2.8</td><td>有</td><td>眼毒性、疲劳</td></tr>
+      <tr><td>ARX788</td><td>HER2</td><td>不可裂解（定点）</td><td>AMF（微管）</td><td>2</td><td>无</td><td>眼毒性</td></tr>
+      <tr><td>SHR-A1811</td><td>HER2</td><td>可裂解</td><td>DXd 类似物</td><td>6</td><td>有</td><td>与 T-DXd 类似谱</td></tr>
+      <tr><td>T-Bren（BL-M07D1）</td><td>HER2</td><td>可裂解</td><td>Ed-04（TOP1i）</td><td>高</td><td>有</td><td>血液学为主</td></tr>
+      <tr><td><b>BL-B01D1</b></td><td><b>EGFR×HER3 双抗</b></td><td>Ac-GGFG（可裂解）</td><td>Ed-04（TOP1i）</td><td>≈8</td><td>有</td><td><b>血液学为主，ILD 仅 1.0–1.4% 无≥3 级</b></td></tr>
+    </table>
+  </div>
+
+  <h3>29.6 机制差异的临床意义（医学经理视角）</h3>
+  <div class="card">
+    <ul>
+      <li><b>为什么 T-DXd 对 HER2-low 有效而 T-DM1 无效</b>：低表达肿瘤 HER2 密度低 → 需要"高 DAR（8）+ 强旁观者效应"才能覆盖；T-DM1（DAR 3.5 + 不可裂解 + 无旁观者）在低表达人群中无效（DB-04 前即已知）。</li>
+      <li><b>为什么 TROP2 ADC 覆盖全人群</b>：TROP2 在多数乳腺癌（含 TNBC、HR+/HER2-）普遍高表达，不依赖 HER2 状态 → SG/SKB264/Dato-DXd 对 HER2 任意状态均适用。</li>
+      <li><b>为什么 BL-B01D1 覆盖 HER2 IHC 0</b>：机制不依赖 HER2——通过 EGFR×HER3 双靶点内吞 + Ed-04 旁观者效应杀伤，HER2 IHC 0 人群（约占 TNBC 一半）同样有效，填补 T-DXd 无法覆盖的 HER2-null 空白。</li>
+      <li><b>载荷交叉耐药</b>：微管类 ADC（RC48/T-DM1）与 TOP1 类 ADC（T-DXd/BL-B01D1/SKB264）机制不同 → 序贯治疗可考虑"靶点切换 + 载荷切换"双逻辑（如 T-DXd 后 BL-B01D1）。</li>
+      <li><b>毒性机制的差异</b>：MMAE → 周围神经病变；MMAF/duocarmycin → 眼毒性；SN-38 → 腹泻；DXd 类 → ILD（T-DXd 最需监测，BL-B01D1 目前 ILD 极低）；TOP1 类普遍血液学毒性。</li>
+      <li><b>耐药机制</b>：抗原表达下调/丢失（HER2-null 转化）、载荷外排泵（MDR1）、溶酶体途径异常、内吞受损、肿瘤异质性——是 ADC 序贯与联合设计的科学依据。</li>
+    </ul>
+  </div>
+
+  <h3>29.7 常见坑/误区清单</h3>
+  <div class="card">
+    <table>
+      <tr><th>#</th><th>误区</th><th>正解</th></tr>
+      <tr><td>1</td><td>"ADC 都一样，都是化疗+抗体"</td><td>连接子/载荷/DAR 组合决定疗效、毒性、耐药谱，差异巨大</td></tr>
+      <tr><td>2</td><td>"旁观者效应一定好"</td><td>也带来脱靶毒性（正常组织低表达靶点被误伤）</td></tr>
+      <tr><td>3</td><td>"DAR 越高越好"</td><td>高 DAR 需亲水设计平衡 PK 与毒性</td></tr>
+      <tr><td>4</td><td>"HER2 阳性才用 HER2 ADC"</td><td>T-DXd 已扩展至 HER2-low/ultralow；BL-B01D1 覆盖 IHC 0</td></tr>
+      <tr><td>5</td><td>"同靶点 ADC 可互相替代"</td><td>连接子/载荷不同 → 疗效与毒性不同（如 RC48 vs T-DXd）</td></tr>
+      <tr><td>6</td><td>"ADC 与化疗不交叉耐药即可随便序贯"</td><td>载荷外排/抗原丢失等共同机制可致交叉耐药，需证据支持</td></tr>
+    </table>
+  </div>
+</section>
+<section id="s30">
+  <div class="sec-head"><div class="sec-num">30</div><h2>乳腺癌治疗框架与 ADC 分布总览</h2></div>
+  <div class="sec-desc">晚期乳腺癌"分型—分线"全景治疗框架，重点标注 ADC 在每一条战线上的位置——这是你对外沟通和对内培训时最常用的"一张图"</div>
+
+  <h3>30.1 分子分型与 ADC 靶点地图</h3>
+  <div class="card">
+    <table>
+      <tr><th>分子分型</th><th>占比</th><th>可用 ADC 靶点</th><th>ADC 代表</th></tr>
+      <tr><td>HR+/HER2-（含 HER2-low）</td><td>约 65–70%</td><td>HER2（低表达）、TROP2、EGFR×HER3</td><td>T-DXd、Dato-DXd、SG、SKB264、BL-B01D1</td></tr>
+      <tr><td>HER2+</td><td>约 15–20%</td><td>HER2</td><td>T-DXd、T-DM1、RC48、SHR-A1811</td></tr>
+      <tr><td>TNBC（含 HER2-low/IHC 0）</td><td>约 10–15%</td><td>TROP2、EGFR×HER3、HER2（低表达）</td><td>SG、SKB264、Dato-DXd、BL-B01D1、T-DXd（HER2-low）</td></tr>
+    </table>
+    <div class="note"><b>ADC 在乳腺癌的"分布逻辑"</b>：HER2 ADC 覆盖 HER2+ 及 HER2-low/ultralow 梯度；TROP2 ADC 覆盖"不管 HER2 状态"的全人群；双抗 ADC（BL-B01D1）以 EGFR×HER3 覆盖 HER2 IHC 0 与 TROP2 之外的人群。三条靶点轴 = 乳腺癌 ADC 三大阵营。</div>
+  </div>
+
+  <h3>30.2 晚期 TNBC 治疗框架（含 ADC 排位）</h3>
+  <div class="card">
+    <table>
+      <tr><th>线别</th><th>标准/推荐方案</th><th>关键证据</th></tr>
+      <tr><td><b>一线</b></td><td>化疗 ± PD-1 抑制剂（帕博利珠单抗+化疗，CPS≥10 优先）</td><td>KEYNOTE-355</td></tr>
+      <tr><td>一线 ADC 探索</td><td>SG（ASCENT-03 阳性）、Dato-DXd（<b>TROPION-Breast02：一线 PFS+OS 双获益，首个</b>）、SKB264（OptiTROP-Breast05：ORR 70.7%、mPFS 13.4 个月）、BL-B01D1（IZABRIGHT-Breast01 全球 III 期）</td><td>2025 ESMO/ASCO</td></tr>
+      <tr><td><b>二线及后线</b></td><td><b>ADC 为主导</b>：SG（ASCENT）、SKB264（OptiTROP-Breast01，中国已获批+已入医保）、BL-B01D1（PANKU-Breast 02，NDA 在审）；gBRCA 突变者 PARP 抑制剂；T-DXd（仅 HER2-low 亚组，DB-04 HR-队列）</td><td>ASCENT / OptiTROP-Breast01 / PANKU-Breast 02</td></tr>
+      <tr><td>后线化疗</td><td>艾日布林、卡培他滨、吉西他滨等</td><td>—</td></tr>
+    </table>
+    <div class="note"><b>TNBC ADC 格局（2026）</b>：二线已 ADC 化——SKB264（医保可及）与 SG 领跑，BL-B01D1 以"≥2L 全人群 + IHC 0 亚组"差异化；一线正被 TROPION-Breast02/ASCENT-03 改写，ADC 前移是明确趋势。</div>
+  </div>
+
+  <h3>30.3 晚期 HR+/HER2- 治疗框架</h3>
+  <div class="card">
+    <table>
+      <tr><th>线别</th><th>标准/推荐方案</th><th>关键证据/状态</th></tr>
+      <tr><td><b>一线</b></td><td>CDK4/6 抑制剂 + 内分泌治疗（AI 或氟维司群）</td><td>PALOMA/MONARCH/MONALEESA；中国新增库莫西利（CULMINATE-1，2025 获批）</td></tr>
+      <tr><td><b>二线</b>（CDK4/6i 经治）</td><td><b>HER2-low/ultralow → T-DXd</b>（DB-06：内分泌经治未化疗者 mPFS 13.2 vs 8.1）；内分泌+PI3K/AKT/mTOR 靶向（alpelisib/capivasertib/依维莫司）；ESR1 突变 → elacestrant</td><td>DB-06（中国 2025-12-25 获批）；NCCN/ESMO 推荐 T-DXd 前移</td></tr>
+      <tr><td><b>三线及后线</b>（化疗经治/后线）</td><td><b>ADC 主导</b>：T-DXd（DB-04，HER2-low）、Dato-DXd（TROPION-Breast01，中国已商业上市）、SG（TROPiCS-02）、SKB264（OptiTROP-Breast02 阳性，NDA 已提交）、BL-B01D1（I 期 cORR 37.7%、mPFS 7.0 个月）</td><td>DB-04 / TROPION-Breast01 / TROPiCS-02 / OptiTROP-Breast02</td></tr>
+      <tr><td>后线化疗</td><td>卡培他滨、紫杉类再挑战、艾日布林等</td><td>—</td></tr>
+    </table>
+    <div class="note"><b>HR+/HER2- ADC 格局（2026）</b>：T-DXd 凭 DB-04/06 在 HER2-low/ultralow 人群中"独树一帜"且前移至内分泌经治阶段；TROP2 阵营（Dato-DXd/SG/SKB264/BL-B01D1）在化疗经治后线填补空白。是否测 HER2 表达、何时切 ADC，成为临床决策关键点。</div>
+  </div>
+
+  <h3>30.4 晚期 HER2+ 治疗框架</h3>
+  <div class="card">
+    <table>
+      <tr><th>线别</th><th>标准/推荐方案</th><th>关键证据</th></tr>
+      <tr><td><b>一线</b></td><td>曲妥珠单抗+帕妥珠单抗+紫杉类（THP）</td><td>CLEOPATRA（mPFS 18.7 个月）</td></tr>
+      <tr><td>一线 ADC 探索</td><td><b>T-DXd+帕妥珠单抗（DB-09：mPFS 40.7 个月，2025 FDA 获批一线）</b>——改写格局中</td><td>DB-09</td></tr>
+      <tr><td><b>二线</b></td><td><b>T-DXd</b>（DB-03：BICR mPFS 28.8 vs 6.8，HR 0.33）；T-DM1（EMILIA）</td><td>DB-03 / EMILIA</td></tr>
+      <tr><td><b>三线及后线</b></td><td>图卡替尼+曲妥珠+卡培他滨（HER2CLIMB，脑转移获益）；T-DM1（如未用）；其他 HER2 ADC（RC48、SHR-A1811 等）</td><td>HER2CLIMB</td></tr>
+      <tr><td>辅助/新辅助</td><td>新辅助 HP+化疗；术后残存病灶 → T-DM1 辅助（KATHERINE）</td><td>KATHERINE</td></tr>
+    </table>
+    <div class="note"><b>HER2+ ADC 格局（2026）</b>：T-DXd 已从二线（DB-03）迈向一线（DB-09 获 FDA 批准），正在全面替代 T-DM1 的经典位次；T-DM1 仍保留辅助/后线价值。DB-09 的 40.7 个月 mPFS 是 HER2+ 晚期一线历史新高。</div>
+  </div>
+
+  <h3>30.5 ADC 分布总表（亚型 × 线别 × 药物）</h3>
+  <div class="card">
+    <table>
+      <tr><th>亚型</th><th>一线</th><th>二线</th><th>三线及后线</th></tr>
+      <tr><td><b>HER2+</b></td><td>THP；（T-DXd+P 探索中）</td><td><b>T-DXd</b> / T-DM1</td><td>图卡替尼方案；RC48 等 HER2 ADC</td></tr>
+      <tr><td><b>HR+/HER2-</b>（含 HER2-low）</td><td>CDK4/6i+ET</td><td><b>T-DXd（HER2-low/ultralow，DB-06）</b>；内分泌靶向</td><td><b>T-DXd / Dato-DXd / SG / SKB264 / BL-B01D1</b></td></tr>
+      <tr><td><b>TNBC</b></td><td>化疗±免疫；（SG/Dato-DXd/SKB264/BL-B01D1 探索中）</td><td><b>SG / SKB264 / BL-B01D1</b>；PARP（gBRCA）；T-DXd（HER2-low）</td><td>同二线；化疗</td></tr>
+    </table>
+  </div>
+
+  <h3>30.6 ADC 使用顺序与序贯策略思考（医学经理视角）</h3>
+  <div class="card">
+    <ul>
+      <li><b>同亚型内序贯</b>：HER2-low 后线：T-DXd →（进展后）TROP2 ADC 或双抗 ADC（BL-B01D1）——"靶点切换+载荷切换"双逻辑（HER2→TROP2/EGFR×HER3；DXd→DXd/KL610023/Ed-04 需注意同类载荷部分交叉）。</li>
+      <li><b>跨亚型逻辑</b>：T-DXd 在 HER2-low（DB-04/06）与 HER2+（DB-03）均有效 → "先测 HER2 状态再选 ADC"成为共识；IHC 0 人群选 TROP2/双抗 ADC。</li>
+      <li><b>毒性管理是序贯前提</b>：ILD（T-DXd）、腹泻（SG）、血液学（SKB264/BL-B01D1）——发生过的严重毒性影响下一 ADC 选择。</li>
+      <li><b>证据缺口</b>：各 ADC 之间无头对头比较，真实世界序贯队列（如 BL-B01D1 上市后 RWS）可填补——这就是你的课题方向（呼应第 30 章图谱）。</li>
+    </ul>
+  </div>
+
+  <h3>30.7 中国获批与医保状态速查（2026-08）</h3>
+  <div class="card">
+    <table>
+      <tr><th>药物</th><th>中国获批状态（乳腺癌）</th><th>医保</th></tr>
+      <tr><td>T-DXd（德曲妥珠单抗）</td><td>已批 7 个适应症（HER2+ mBC、HER2-low mBC、HR+ HER2-low/ultralow（2025-12）、早期乳腺癌（2026-03，全球首个）等）</td><td>部分适应症已入医保</td></tr>
+      <tr><td>SG（戈沙妥珠单抗）</td><td>mTNBC ≥2L 获批；HR+/HER2- 适应症推进中</td><td>已入医保（部分）</td></tr>
+      <tr><td>SKB264（芦康沙妥珠单抗）</td><td>mTNBC ≥2L 获批（2024-11，首个国产 TROP2 ADC）；HR+/HER2- NDA 已提交（OptiTROP-Breast02）</td><td><b>TNBC 适应症 2026 已入医保（TNBC 领域首个入保 TROP2 ADC）</b></td></tr>
+      <tr><td>Dato-DXd（达托德斯塔单抗）</td><td>HR+/HER2- 已商业上市（2026）；TNBC 一线 NDA 预期（TROPION-Breast02）</td><td>推进中</td></tr>
+      <tr><td>T-DM1</td><td>HER2+ 获批（含辅助）</td><td>已入医保</td></tr>
+      <tr><td><b>BL-B01D1（宜泽康®）</b></td><td>鼻咽癌（2026-06）、食管鳞癌（2026-07）获批；<b>TNBC ≥2L NDA 受理在审（预期 2027）</b></td><td>待获批后推进</td></tr>
+    </table>
+    <div class="note">数据以国家药监局最新批准及医保目录为准，对外沟通前务必核对说明书与公司口径。</div>
+  </div>
+
+  <h3>30.8 未来格局（2026 视角）</h3>
+  <div class="card">
+    <ul>
+      <li><b>ADC 全面前移</b>：1L TNBC（TROPION-Breast02/ASCENT-03）、1L HER2+（DB-09）、1L HR+（T-DXd DB-06 之后进一步前移）、新辅助/辅助（T-DXd、SKB264 全球 III 期布局）。</li>
+      <li><b>联合治疗</b>：ADC+免疫（ASCENT-04/SKB264+帕博利珠单抗）、ADC+抗血管、双抗 ADC+化疗。</li>
+      <li><b>精准分层</b>：HER2 表达连续谱（low/ultralow）重塑治疗决策；生物标志物（TROP2 表达、HER3、ctDNA/MRD）指导获益人群。</li>
+      <li><b>可及性</b>：医保扩容（SKB264 已入保）提升 ADC 渗透率，竞争转向"疗效+安全+经济性"综合比拼。</li>
+    </ul>
+  </div>
+</section>
+<section id="s31">
+  <div class="sec-head"><div class="sec-num">31</div><h2>HER2-low 乳腺癌：研究进展、药物选择与分型特殊性</h2></div>
+  <div class="sec-desc">从"HER2 阴性"中切出来的新亚型——为什么它特殊、T-DXd 凭什么改写它、还有哪些药物可选、BL-B01D1 的机会在哪里</div>
+
+  <h3>31.1 定义与分类演变</h3>
+  <div class="card">
+    <table>
+      <tr><th>分类</th><th>定义</th><th>来源/节点</th></tr>
+      <tr><td>HER2 阳性</td><td>IHC 3+，或 IHC 2+/ISH 阳性</td><td>ASCO/CAP 2018（现行）</td></tr>
+      <tr><td><b>HER2-low（低表达）</b></td><td><b>IHC 1+，或 IHC 2+/ISH 阴性</b></td><td>2018 ASCO/CAP 首次明确可独立分类；DB-04 确立为治疗亚型</td></tr>
+      <tr><td><b>HER2-ultralow（超低表达）</b></td><td><b>IHC 0 但存在细胞膜染色（IHC 0 伴膜染色，即 &gt;0 且 &lt;1+）</b></td><td>2023 ASCO/CAP 更新；DB-06 首次纳入并证明获益</td></tr>
+      <tr><td>HER2-null（零表达）</td><td>IHC 0 且无细胞膜染色</td><td>2023 起与 ultralow 区分</td></tr>
+    </table>
+    <div class="note"><b>一句话</b>：传统"HER2 阴性"实际上是一个"口袋"，里面装着 HER2-low 和 HER2-ultralow 两个可靶向亚群——DB-04/06 把它们"切"了出来，推动了从<b>二分法（阳性/阴性）</b>到<b>连续谱（阳性/低表达/超低表达/零表达）</b>的范式转变。</div>
+  </div>
+
+  <h3>31.2 为什么 HER2-low 特殊（五大特殊性）</h3>
+  <div class="card">
+    <table>
+      <tr><th>特殊性</th><th>内容</th></tr>
+      <tr><td><b>① 人群巨大</b></td><td>约占全部乳腺癌 50–55%；HER2-low 中约 87% 为 HR+；TNBC 中约 49.4% 为 HER2-low（NCDB 16.1 万例分析）——不是"小众亚型"，而是最大的"待开发人群"</td></tr>
+      <tr><td><b>② 生物学非驱动</b></td><td>HER2-low 多为<b>非癌基因驱动</b>：无扩增、表达密度低且异质——传统抗 HER2（曲妥珠单抗/T-DM1）在此无效（DB-04 前已明确），需要"高 DAR+强旁观者效应"的 ADC 才能起效</td></tr>
+      <tr><td><b>③ 时空异质性</b></td><td>HEROIC 全国多中心研究：原发灶与转移灶 HER2 状态不一致率在四分类下高达 <b>21.8%（Kappa 0.16）</b>；转移灶转 HER2-null 者 T-DXd 疗效差（ORR 13.0% vs 53–56%）——<b>转移灶活检比原发灶更具预测价值</b></td></tr>
+      <tr><td><b>④ 动态演变</b></td><td>真实世界 2.7 万例纵向队列：<b>31% 患者 HER2 表达随时间动态改变</b>（46% 低表达→零表达，33% 零表达→低表达）——一次检测可能过期，连续活检可创造 ADC 治疗机会</td></tr>
+      <tr><td><b>⑤ 检测难题</b></td><td>约 30% 的 HER2-low/ultralow 样本存在<b>病理医生间判读差异</b>（0 vs 1+ 边界模糊）→ 推动 AI 辅助判读、数字病理与判读培训（2025 ASCO 大师班研究）</td></tr>
+    </table>
+  </div>
+
+  <h3>31.3 关键研究进展</h3>
+  <div class="card">
+    <h4>31.3.1 DESTINY-Breast04（DB-04）——确立治疗亚型的里程碑</h4>
+    <p>HR+ 或 HR-、HER2-low mBC，1–2 线化疗经治：T-DXd vs 医生选择化疗（n=557）。</p>
+    <table>
+      <tr><th>终点</th><th>T-DXd</th><th>化疗</th><th>HR</th></tr>
+      <tr><td>mPFS（全人群，BICR）</td><td class="hl">10.1 个月</td><td>5.4 个月</td><td class="hl">0.50（p&lt;0.001）</td></tr>
+      <tr><td>mOS（全人群）</td><td class="hl">23.4 个月</td><td>16.8 个月</td><td class="hl">0.64（p=0.001）</td></tr>
+      <tr><td>cORR</td><td>52.3%</td><td>16.3%</td><td>—</td></tr>
+    </table>
+    <p class="note">首次证明 HER2-low 可从抗 HER2 靶向治疗中显著获益 → 写入指南、确立"HER2-low 为独立治疗亚型"。</p>
+    <h4>31.3.2 DESTINY-Breast06（DB-06）——扩展到超低表达与前移</h4>
+    <p>HR+/HER2-low 或 HER2-ultralow、<b>内分泌经治（≥1 线）未化疗</b> mBC：T-DXd vs 化疗（n=866）。</p>
+    <table>
+      <tr><th>人群</th><th>mPFS T-DXd vs 化疗</th><th>HR</th><th>ORR</th></tr>
+      <tr><td>HER2-low（n=713）</td><td class="hl">13.2 vs 8.1 个月</td><td class="hl">0.62（p&lt;0.0001）</td><td>56.5% vs 32.2%</td></tr>
+      <tr><td>HER2-ultralow（n=153）</td><td>13.2 vs 8.3 个月</td><td>0.78（0.50–1.21）</td><td>61.8% vs 26.3%</td></tr>
+    </table>
+    <p class="note">ultralow 人群 mPFS 数值改善但未达统计显著（样本小）；中国 2025-12-25 获批 HR+ HER2-low/ultralow（内分泌经治）适应症；NCCN 2025 v5 推荐 IHC 0 伴膜染色者二线用 T-DXd；ESMO 在线指南（I,A）推荐。</p>
+    <h4>31.3.3 异质性/动态表达与 TNBC 新辅助</h4>
+    <ul>
+      <li><b>HEROIC 研究</b>：转移灶 HER2 状态对 T-DXd 疗效预测优于原发灶（详见 31.2③）——<b>复发时建议转移灶活检</b>。</li>
+      <li><b>动态表达 RWD</b>：31% 动态转化（详见 31.2④）——初始 HER2-zero 者连续活检可能"转阳"获得 ADC 机会。</li>
+      <li><b>TNBC 新辅助</b>（NCDB 回顾）：HER2 2+/ISH- 者新辅助化疗 pCR 低于 HER2 0（39.9% vs 44.2%）——HER2-low 可能是早期 TNBC 的不良预后标志，为 T-DXd 新辅助探索提供依据。</li>
+    </ul>
+  </div>
+
+  <h3>31.4 HER2-low 药物选择对比（后线语境）</h3>
+  <div class="card">
+    <table>
+      <tr><th>药物</th><th>机制/靶点</th><th>HER2-low 关键数据</th><th>获批/状态（中国）</th><th>特点</th></tr>
+      <tr><td><b>T-DXd</b></td><td>HER2 ADC，DXd，DAR 8</td><td>DB-04（化疗经治 mPFS 10.1/OS 23.4）；DB-06（内分泌经治 13.2）</td><td><b>HR+ HER2-low/ultralow 2025-12 获批</b></td><td>唯一获批 HER2 定向的 low/ultralow ADC；ILD 需监测</td></tr>
+      <tr><td>SG</td><td>TROP2 ADC，SN-38</td><td>TROPiCS-02（HR+/HER2-，mOS 14.4）；ASCENT（TNBC）</td><td>mTNBC ≥2L 获批</td><td>与 HER2 表达无关；腹泻/中性粒减少</td></tr>
+      <tr><td>SKB264</td><td>TROP2 ADC，KL610023</td><td>OptiTROP-Breast01（TNBC 6.7 个月）；OptiTROP-Breast02（HR+/HER2- 阳性，NDA）</td><td>mTNBC ≥2L 获批+医保；HR+/HER2- NDA 在审</td><td>国产 TROP2 ADC；血液学/口腔黏膜炎</td></tr>
+      <tr><td>Dato-DXd</td><td>TROP2 ADC，DXd，DAR 4</td><td>TROPION-Breast01（HR+/HER2- mPFS 6.9）；TROPION-Breast02（TNBC 1L 双获益）</td><td>HR+/HER2- 已商业上市</td><td>口腔炎/眼表症状；ILD 低于 T-DXd</td></tr>
+      <tr><td><b>BL-B01D1</b></td><td><b>EGFR×HER3 双抗 ADC</b>，Ed-04</td><td>I 期 HR+/HER2- cORR 37.7%；PANKU-Breast 02 TNBC（含 IHC 0）</td><td>TNBC NDA 受理在审</td><td><b>机制不依赖 HER2，覆盖 IHC 0/ultralow 全谱</b>；ILD 极低</td></tr>
+      <tr><td>RC48 等 HER2 ADC</td><td>HER2，MMAE</td><td>HER2-low 探索性数据有限</td><td>HER2+ 领域</td><td>MMAE 载荷，旁观者弱于 DXd</td></tr>
+    </table>
+    <div class="note"><b>选药逻辑（一句话版）</b>：HER2-low/ultralow 且内分泌经治 → T-DXd（唯一 HER2 定向、证据最全）；化疗经治后线/不耐受 ILD 风险 → TROP2 ADC（SG/SKB264/Dato-DXd）；HER2 IHC 0/ultralow 或 T-DXd 进展后 → 双抗 ADC（BL-B01D1，机制独立于 HER2）。</div>
+  </div>
+
+  <h3>31.5 检测与临床实践建议</h3>
+  <div class="card">
+    <ul>
+      <li><b>判读规范</b>：按 ASCO/CAP 2023（区分 ultralow 与 null）；IHC 判读强调低倍镜扫描+高倍确认；报告建议注明"膜染色有无"以支持 ultralow 分类。</li>
+      <li><b>活检时机</b>：<b>首次复发/转移时建议转移灶活检</b>（HEROIC 证据）；HER2 表达动态变化的患者可考虑连续活检。</li>
+      <li><b>新技术</b>：AI 辅助 IHC 判读（降低约 30% 判读差异）、数字病理、HER2 mRNA 检测探索。</li>
+      <li><b>指南地位</b>：NCCN 2025 v5、ESMO 在线指南 2025 v1.2、CSCO BC——均将 HER2-low/ultralow 作为独立治疗决策单元；中国已把 HER2 低表达检测写入规范。</li>
+      <li><b>对医学经理的启示</b>：HER2 检测教育（判读培训、标准宣教）是上市后医学教育的刚需方向——可做"HER2 低表达检测规范"学术教育项目（呼应图谱章节 G 方向）。</li>
+    </ul>
+  </div>
+
+  <h3>31.6 BL-B01D1 在 HER2-low/ultralow 的机会</h3>
+  <div class="card">
+    <table>
+      <tr><th>维度</th><th>BL-B01D1 定位</th></tr>
+      <tr><td>机制</td><td>EGFR×HER3 双抗 ADC，<b>不依赖 HER2 表达</b>——HER2 IHC 0（含 null）人群天然覆盖，与 T-DXd 互补而非重叠</td></tr>
+      <tr><td>数据</td><td>PANKU-Breast 02：HER2 IHC 0 亚组 mPFS 8.3 vs 2.6 个月（HR 0.28）；TNBC ≥2L 全人群 cORR 51.7%</td></tr>
+      <tr><td>安全</td><td>血液学为主，ILD 1.0–1.4% 无≥3 级——对 T-DXd 后线/不耐受 ILD 者是可行选择</td></tr>
+      <tr><td>沟通要点</td><td>"HER2 表达的最后一个未被 ADC 覆盖的人群（IHC 0），有了双抗 ADC 方案"——差异化叙事核心</td></tr>
+    </table>
+  </div>
+
+  <h3>31.7 常见误区与要点（FAQ 式）</h3>
+  <div class="card">
+    <table>
+      <tr><th>#</th><th>问题</th><th>要点</th></tr>
+      <tr><td>1</td><td>HER2-low 是"低危"吗？</td><td>不是预后分型而是治疗分型；TNBC 中 HER2-low 新辅助 pCR 反而更低</td></tr>
+      <tr><td>2</td><td>HER2-low 用曲妥珠单抗有效吗？</td><td>传统抗 HER2（裸抗/T-DM1）无效——需高 DAR+旁观者的 ADC</td></tr>
+      <tr><td>3</td><td>IHC 0 患者能获益吗？</td><td>ultralow（膜染色）可（DB-06）；BL-B01D1 以 EGFR×HER3 覆盖含 null 的全谱</td></tr>
+      <tr><td>4</td><td>要不要重复活检？</td><td>推荐（转移灶优先；31% 动态变化）</td></tr>
+      <tr><td>5</td><td>HER2-low 检测判读争议大吗？</td><td>大（约 30% 差异）→ AI/培训/标准化是趋势</td></tr>
+    </table>
+  </div>
+</section>
+<section id="s32">
+  <div class="sec-head"><div class="sec-num">32</div><h2>数据来源与声明</h2></div>
   <div class="card">
     <h4>主要数据来源</h4>
     <ul style="margin-left:18px;font-size:13px;color:#33414f">
@@ -2276,13 +2582,13 @@
   </div>
 
   <div class="foot">
-    《BL-B01D1（宜泽康®）产品深度研究报告》v1.1 · 2026-08-14 · 面向上市后医学经理（实体瘤/乳腺癌产品线）<br>
+    《BL-B01D1（宜泽康®）产品深度研究报告》v1.2 · 2026-08-16 · 面向上市后医学经理（实体瘤/乳腺癌产品线）<br>
     配套文档：《BL-B01D1上市后医学经理工作百科全书.md》（完整业务手册）· 《BL-B01D1工作百科全书-学习地图.html》（可视化导航）<br>
     编制：WorkBuddy · 医学事务知识支持
   </div>
 </section>
   <div class="foot">
-    《BL-B01D1 医学经理知识手册与职场工具（合并版）》v1.1 · 2026-08-14 · 面向上市后医学经理（实体瘤/乳腺癌产品线）<br>
+    《BL-B01D1 医学经理知识手册与职场工具（合并版）》v1.2 · 2026-08-16 · 面向上市后医学经理（实体瘤/乳腺癌产品线）<br>
     由《BL-B01D1产品深度研究报告》与《上市后医学经理职场工具手册》合并，新增：核心信息屋 / FAQ Top20 / 医学洞察方法论 / 年度工作节奏日历 / 文献检索策略 / 风险预案。<br>
     配套文件：《BL-B01D1上市后医学经理工作百科全书.md》·《职场工具模板.xlsx》（13个可复用模板）·《BL-B01D1工作百科全书-学习地图.html》<br>
     编制：WorkBuddy · 医学事务知识支持｜所有产品数据以国家药监局批准说明书及公司官方材料为准
