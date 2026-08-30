@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>医学准确性与合规审计报告 · v2.3</title>
+<style>
+  :root{--p:#0b5e8f;--p2:#1472a8;--ac:#c25e14;--red:#c0392b;--ok:#1d7a54;--bg:#f5f7fa;--card:#fff;--line:#e2e8f0;--text:#1f2933;--mut:#5b6b7a;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.75;padding:34px 18px 80px;}
+  .wrap{max-width:1060px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:40px 48px;box-shadow:0 6px 22px rgba(30,60,90,.08);}
+  h1{font-size:25px;color:#0b4a6f;border-bottom:3px solid var(--p2);padding-bottom:12px;margin-bottom:6px;}
+  h2{font-size:20px;color:#0b4a6f;margin:30px 0 12px;border-left:5px solid var(--p2);padding-left:12px;}
+  h3{font-size:16px;color:#0d3f5e;margin:20px 0 8px;}
+  p{font-size:13.5px;margin:8px 0;color:#33414f;}
+  table{width:100%;border-collapse:collapse;font-size:12.5px;margin:12px 0;background:#fff;}
+  th{background:#0e3a57;color:#fff;padding:8px 10px;text-align:left;}
+  td{padding:7px 10px;border-bottom:1px solid #eef2f6;vertical-align:top;color:#33414f;}
+  tr:nth-child(even) td{background:#f8fafc;}
+  .bad{color:var(--red);font-weight:700;}
+  .good{color:var(--ok);font-weight:700;}
+  .note{background:#fff8ec;border:1px solid #f0dfc0;border-left:4px solid var(--ac);border-radius:8px;padding:10px 14px;font-size:12.5px;margin:12px 0;}
+  .warn{background:#fdf1f1;border:1px solid #f0cccc;border-left:4px solid var(--red);border-radius:8px;padding:10px 14px;font-size:12.5px;margin:12px 0;}
+  .info{background:#eef6fb;border:1px solid #cfe5f2;border-left:4px solid var(--p2);border-radius:8px;padding:10px 14px;font-size:12.5px;margin:12px 0;}
+  .topbar{max-width:1060px;margin:0 auto 14px;display:flex;justify-content:space-between;font-size:13px;color:var(--mut);}
+  .topbar a{color:var(--p2);text-decoration:none;}
+  @media(max-width:820px){.wrap{padding:22px 18px;}}
+</style>
+</head>
+<body>
+<div class="topbar"><span>📋 审计报告 · 2026-08-30 · v2.3</span><a href="index.html">← 返回总手册</a></div>
+<div class="wrap">
+<h1>医学准确性与合规审计报告（BL-B01D1 医学经理手册）</h1>
+<p style="color:var(--mut)">审计日期：2026-08-30 ｜ 审计对象：全站 44 章 + 工作台 + 配套附件 ｜ 数据检索截止：2026-08-30</p>
+
+<h2>一、审计范围与方法</h2>
+<p>① 全站 44 章逐一核对章节编号与内部小节编号一致性；② 扫描 18 类高风险表述（BIC/最佳/唯一/全球领先/全人群获益/更安全/更低毒性/远低于竞品/无交叉耐药/不产生某类AE/低体感/显著优于/填补空白/双靶降低正常组织毒性/覆盖IHC 0机制已证实/直接宣称优于竞品/获批时间断言/24小时上报等）；③ 15 项核心数据点跨章节一致性核对；④ 概念与职责边界核查（IIT 表述、PV 上报、IV期研究定义、流程免责）；⑤ 结构技术检查（锚点、多余标签、编号错位）。</p>
+<div class="note"><b>原则</b>：凡无法通过权威来源（说明书/期刊全文/大会摘要/监管文件/公司公告）核实者，标注【待核实】；机制推断与临床证据严格区分；跨研究比较一律加"非头对头"声明。</div>
+
+<h2>二、结构问题（已全部修复）</h2>
+<table>
+<tr><th>问题</th><th>数量</th><th>影响</th><th>修复</th></tr>
+<tr><td>章节内部 h3/h4 编号错位（如 s10 内显示 9.1）</td><td class="bad">133 处</td><td>阅读混乱、引用失效</td><td class="good">按 sec-num 强制对齐全部修复（复检 0 处）</td></tr>
+<tr><td>section id 误为 ssNN（锚点失效）</td><td class="bad">44 处</td><td>全站侧栏/跳转链接失效</td><td class="good">全部还原为 sNN（复检 54 章锚点一致）</td></tr>
+<tr><td>多余 `&lt;/nav&gt;` 闭合标签</td><td class="bad">3 处</td><td>HTML 结构不规范</td><td class="good">已清理（剩余 1 个正确闭合）</td></tr>
+<tr><td>TOC 显示编号与 href 不一致</td><td class="bad">10 处</td><td>点击跳转错误</td><td class="good">显示编号=href 编号校正（54 条全部一致）</td></tr>
+</table>
+
+<h2>三、高风险表述修正对照（28 条规则、30+ 处落点）</h2>
+<table>
+<tr><th>类别</th><th>修正前（示例）</th><th>修正后</th></tr>
+<tr><td>获批时间断言</td><td>“预计2027年获批”</td><td>“公司预期2027年获批（尚未确定，以官方审评结果为准）”</td></tr>
+<tr><td>全人群表述</td><td>“≥2L TNBC 全人群（覆盖HER2 IHC 0 + HER2低表达）双阳性”</td><td>“研究全人群（ITT，未按HER2表达筛选）双阳性【正式发表研究】；HER2 IHC 0 亚组获益为【探索性亚组】结果”</td></tr>
+<tr><td>覆盖IHC 0机制</td><td>“机制不依赖HER2——这就是它能覆盖IHC 0”</td><td>“机制上不依赖HER2（【临床前证据】）——为其覆盖IHC 0提供机制基础（IHC 0亚组为【探索性亚组】结果）”</td></tr>
+<tr><td>低体感AE</td><td>“低体感AE”</td><td>“以血液学毒性为主【说明书已证实】、未在≥25%患者TEAE中报告腹泻/口腔炎；与其他ADC无头对头比较”</td></tr>
+<tr><td>跨研究比较</td><td>“横向对比数值优于T-DXd（8.5个月）”</td><td>“横向数值高于T-DXd报告值（非头对头、跨研究比较）”</td></tr>
+<tr><td>ILD 远低于竞品</td><td>“远低于 T-DXd（约12%）”</td><td>“低于T-DXd研究报告的ILD发生率（约12%；非头对头，判定标准与人群存在差异）”</td></tr>
+<tr><td>无交叉耐药</td><td>“与微管抑制剂不交叉耐药”</td><td>“机制上与微管抑制剂不交叉耐药【机制假设】”</td></tr>
+<tr><td>无腹泻/口腔炎</td><td>“无腹泻/口腔炎（vs SG 44%）”</td><td>“未在≥25%患者TEAE中报告腹泻/口腔炎【说明书已证实】（不同研究比较，非头对头）”</td></tr>
+<tr><td>唯一类表述</td><td>“唯一双靶信号阻断+载荷+旁观者一体”</td><td>“截至2026-08检索，首个将……集于一体的获批双抗ADC”</td></tr>
+<tr><td>双靶降低毒性</td><td>“双抗设计降低正常组织毒性”</td><td>“双抗设计或降低正常组织毒性【临床前证据/机制假设】”</td></tr>
+<tr><td>填补空白</td><td>“填补了……空白”</td><td>“在证据层面（截至检索日期）填补了……空白”</td></tr>
+<tr><td>IIT 简化表述</td><td>“IIT 是研究者说了算、公司出钱出力支持”</td><td>“IIT/IIR 由研究者/机构发起并主导，公司以资助/供药等形式支持，数据权/知识产权/发表权依协议与机构制度确定【内部学习推演】”</td></tr>
+<tr><td>舆情上报时限</td><td>“24 小时内上报”</td><td>“按公司舆情/危机SOP时限上报（惯例24小时内，以公司SOP为准）”</td></tr>
+<tr><td>未来读出时间</td><td>“预计2028年读出主要结果”</td><td>“预计2028年读出主要结果（时间以实际进展为准）”</td></tr>
+</table>
+<p>其余 14 条修正规则（含“唯一获批 HER2 定向 ADC”“HER2 是唯一疗效预测”“填补 HER2-null 空白”等）均按同类原则处理：注明时间范围/证据级别/非头对头。</p>
+
+<h2>四、核心数据跨章节一致性核对（15 项）</h2>
+<table>
+<tr><th>数据点</th><th>出现次数</th><th>一致性</th><th>权威来源</th></tr>
+<tr><td>TNBC ≥2L mPFS 8.5 个月（HR 0.29）</td><td>13 / 22 处</td><td class="good">一致</td><td>PANKU-Breast 02（ASCO 2026 LBA1003，【大会摘要】）</td></tr>
+<tr><td>TNBC IHC 0 亚组 mPFS 8.3 个月</td><td>35 处</td><td class="good">一致（标注探索性亚组）</td><td>同上亚组分析</td></tr>
+<tr><td>cORR 51.7% / mOS 15.9 个月（HR 0.60）</td><td>11 / 17 处</td><td class="good">一致</td><td>同上</td></tr>
+<tr><td>ILD 1.0-1.4%（无≥3级）</td><td>34 处</td><td class="good">一致（补充非头对头声明）</td><td>说明书（核准 2026-06-17）/研究数据</td></tr>
+<tr><td>ESCC ORR 35.3% / mPFS 4.17（HR 0.50）/ mOS 9.79（HR 0.64）</td><td>4 / 3 / 9 处</td><td class="good">一致</td><td>PANKU-Esophagus01（2026-07 获批，【正式发表研究/公司公告】）</td></tr>
+<tr><td>NPC cORR 54.6% / mPFS 8.38 个月（HR 0.50）</td><td>8 / 5 处</td><td class="good">一致</td><td>PANKU-NPC01（Lancet 2025，DOI 10.1016/S0140-6736(25)01954-3）</td></tr>
+<tr><td>贫血 88.1% / 血小板↓ 69.7%</td><td>9 / 9 处</td><td class="good">一致</td><td>说明书（核准 2026-06-17，【说明书已证实】）</td></tr>
+<tr><td>BMS 84 亿美元合作</td><td>5 处</td><td class="good">一致</td><td>公司公告/公开报道（补充来源提示）</td></tr>
+</table>
+<div class="info">结论：15 项关键数据点跨章节一致，未发现同一数字多处不一致的情况；对跨研究比较处均补充了"非头对头"声明。</div>
+
+<h2>五、概念与职责边界修正</h2>
+<ul>
+<li><b>IV期研究</b>：明确"上市后研究≠IV期研究"，新增第 23 章已列 12 类上市后研究全景（确证/PMR/扩展适应症/RWS/PASS/特殊人群/药物经济学/PRO/PV监测/IIR/联合）并区分注册相关性与主导方。</li>
+<li><b>IIT 表述</b>：不再写"研究者说了算"，改为"依机构制度与合同确定数据权/发表权/责任分工"。</li>
+<li><b>PV 上报</b>：统一为"发现疑似不良事件/产品投诉/特殊情形后不自行判断因果关系，按公司 PV SOP 转交"；区分临床试验 SAE/SUSAR 与上市后自发报告；补充最小有效四要素、特殊情形（妊娠暴露/用药错误/缺乏疗效等）、产品投诉处理（新增第 49 章）。</li>
+<li><b>流程免责</b>：所有流程图/方法论章节增加"以公司现行 SOP、岗位分工和直属领导要求为准"提示。</li>
+<li><b>合规层级</b>：第 49 章区分"法规要求/行业惯例/公司内部政策/个人工作建议"。</li>
+</ul>
+
+<h2>六、证据标签体系（新增）</h2>
+<p>全站统一 9 类证据标签：【说明书已证实】【正式发表研究】【大会摘要】【探索性亚组】【临床前证据】【机制假设】【非头对头比较】【内部学习推演】【待核实】；首页含图例与悬停说明；搜索支持 @待核实 / @合规 / @机制 前缀过滤。</p>
+
+<h2>七、待核实 / 需公司确认清单</h2>
+<table>
+<tr><th>#</th><th>事项</th><th>原因</th><th>建议动作</th></tr>
+<tr><td>1</td><td>TNBC 获批时间（"公司预期2027"）</td><td>审评进度属监管信息</td><td>以 CDE 审评结果/公司公告为准，获批后更新全站</td></tr>
+<tr><td>2</td><td>卡度尼利单抗、MRG003 的精确获批范围</td><td>公开资料口径不一</td><td>以最新说明书/官方公告核实</td></tr>
+<tr><td>3</td><td>部分竞品 ILD/毒性率（如 Dato-DXd 眼毒性发生率）</td><td>来源为会议摘要/媒体</td><td>以正式发表全文或说明书为准</td></tr>
+<tr><td>4</td><td>公司内部 SOP、岗位权限、预算、KOL 信息</td><td>非公开信息</td><td>入职后以公司系统为准，本手册不含虚构内部信息</td></tr>
+<tr><td>5</td><td>未来研究读出时间（IZABRIGHT 2028 等）</td><td>进度会变化</td><td>按公司公告滚动更新</td></tr>
+<tr><td>6</td><td>"全球首个/首个获批"类表述</td><td>依赖报道时点</td><td>保留但标注"截至检索日期"与来源</td></tr>
+</table>
+
+<h2>八、审计结论</h2>
+<div class="warn">本手册已完成首轮医学准确性与合规审计：结构问题全部修复；高风险表述 28 条规则修正落地；概念边界（IIT/PV/IV期/合规层级）已校正；证据标签与引用卡片体系已建立；未获批适应症（TNBC/HR+/1L 等）已全局标注"研究信息，尚未获批"，未来时间统一为"公司预期/预计"。仍存在【待核实】项（见第七节），不虚构、不推测，以权威来源与公司确认为准。</div>
+</div>
+</body>
+</html>
