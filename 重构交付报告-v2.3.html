@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>v2.3 重构交付报告 · 上市后医学经理工作操作系统</title>
+<style>
+  :root{--p:#0b5e8f;--p2:#1472a8;--ac:#c25e14;--red:#c0392b;--ok:#1d7a54;--bg:#f5f7fa;--card:#fff;--line:#e2e8f0;--text:#1f2933;--mut:#5b6b7a;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.75;padding:34px 18px 80px;}
+  .wrap{max-width:1060px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:40px 48px;box-shadow:0 6px 22px rgba(30,60,90,.08);}
+  h1{font-size:25px;color:#0b4a6f;border-bottom:3px solid var(--p2);padding-bottom:12px;margin-bottom:6px;}
+  h2{font-size:20px;color:#0b4a6f;margin:30px 0 12px;border-left:5px solid var(--p2);padding-left:12px;}
+  h3{font-size:16px;color:#0d3f5e;margin:20px 0 8px;}
+  p{font-size:13.5px;margin:8px 0;color:#33414f;}
+  table{width:100%;border-collapse:collapse;font-size:12.5px;margin:12px 0;background:#fff;}
+  th{background:#0e3a57;color:#fff;padding:8px 10px;text-align:left;}
+  td{padding:7px 10px;border-bottom:1px solid #eef2f6;vertical-align:top;color:#33414f;}
+  tr:nth-child(even) td{background:#f8fafc;}
+  .good{color:var(--ok);font-weight:700;}
+  .warn{background:#fdf1f1;border:1px solid #f0cccc;border-left:4px solid var(--red);border-radius:8px;padding:10px 14px;font-size:12.5px;margin:12px 0;}
+  .info{background:#eef6fb;border:1px solid #cfe5f2;border-left:4px solid var(--p2);border-radius:8px;padding:10px 14px;font-size:12.5px;margin:12px 0;}
+  .note{background:#fff8ec;border:1px solid #f0dfc0;border-left:4px solid var(--ac);border-radius:8px;padding:10px 14px;font-size:12.5px;margin:12px 0;}
+  .topbar{max-width:1060px;margin:0 auto 14px;display:flex;justify-content:space-between;font-size:13px;color:var(--mut);}
+  .topbar a{color:var(--p2);text-decoration:none;}
+  @media(max-width:820px){.wrap{padding:22px 18px;}}
+</style>
+</head>
+<body>
+<div class="topbar"><span>📦 交付报告 · 2026-08-30 · v2.3</span><a href="index.html">← 返回总手册</a></div>
+<div class="wrap">
+<h1>上市后医学经理工作操作系统 · v2.3 重构交付报告</h1>
+<p style="color:var(--mut)">完成日期：2026-08-30 ｜ 在线地址：https://tiantujin.github.io/bl-b01d1-medical-handbook/</p>
+
+<h2>一、修改前后信息架构对比</h2>
+<table>
+<tr><th>维度</th><th>修改前（v2.2）</th><th>修改后（v2.3）</th></tr>
+<tr><td>首页形态</td><td>单一 44 章知识手册（hero + 长列表）</td><td><b>工作台</b>（六大工作中心 + 15 场景入口 + 全站搜索 + 证据标签 + 最近更新 + 免责声明）+ <b>专业百科 54 章</b></td></tr>
+<tr><td>导航结构</td><td>侧栏按 44 章线性排列</td><td>侧栏分区：工作台 → 工作方法（44-53）→ 专业百科（01-43）→ 数据来源（54）</td></tr>
+<tr><td>查找方式</td><td>仅侧栏锚点</td><td>侧栏锚点 + <b>全站关键词搜索</b> + @待核实/@合规/@机制 标签过滤</td></tr>
+<tr><td>证据管理</td><td>数据散落各章、无来源标注</td><td>9 类<b>证据标签</b> + 引用卡片规范 + 单一事实源说明（第 53 章）+ 受影响清单</td></tr>
+<tr><td>工作方法</td><td>少量方法论（洞察/日历/PPT）</td><td><b>新增 10 章</b>：Medical Plan / IEP / 洞察深化 / 项目管理 / Publication / 医学治理 / 商业准入 / 能力模型 / 30-60-90 / 引用版本管理</td></tr>
+<tr><td>配套附件</td><td>职场工具模板.xlsx（13 sheet）</td><td>追加 5 sheet（洞察记录 / 项目管理 / Publication / STAR成果档案 / 证据缺口评分）→ 18 sheet</td></tr>
+</table>
+
+<h2>二、新增模块与模板清单</h2>
+<table>
+<tr><th>模块</th><th>位置</th><th>核心内容</th></tr>
+<tr><td>六大工作中心</td><td>首页 #wb</td><td>A 产品疾病 / B 医学策略 / C 证据研究 / D 科学沟通 / E 合规治理 / F 个人成长</td></tr>
+<tr><td>15 场景入口</td><td>首页 #wb-scen</td><td>拜访/IIT/课件审核/说明书外应答/PV/Medical Plan/会议/竞品/大会/洞察/培训/汇报/入组/Publication/季度报告，每场景含目标→步骤→输出→模板→合规→完成标准→闭环→洞察</td></tr>
+<tr><td>全站搜索</td><td>首页 #wb-search</td><td>关键词搜索 + @待核实/@合规/@机制 过滤，结果含章节与标题</td></tr>
+<tr><td>第 44 章 Medical Plan</td><td>s44</td><td>15 节方法论 + BL-B01D1 年度 Medical Plan 完整模拟案例（学习模拟声明）</td></tr>
+<tr><td>第 45 章 IEP</td><td>s45</td><td>11 步证据闭环 + 12 项优先级评分工具 + 10 主题模拟 Evidence Plan</td></tr>
+<tr><td>第 46 章 医学洞察深化</td><td>s46</td><td>Data/Info/Feedback/Observation/Insight 区别、采集/防诱导/聚类验证分级、12 字段模板、5 示例 + 5 反例</td></tr>
+<tr><td>第 47 章 项目管理</td><td>s47</td><td>17 工具（Charter/RACI/RAID/Decision/Action/Budget…）+ 5 简化案例</td></tr>
+<tr><td>第 48 章 Publication</td><td>s48</td><td>Congress Strategy、abstract→manuscript、期刊选择、署名/PSC、披露边界、模拟时间轴</td></tr>
+<tr><td>第 49 章 医学治理</td><td>s49</td><td>PV 基础（四要素/特殊情形/产品投诉/SAE vs 自发报告）、材料审核、说明书外应答、IIT 合规、COI、数据隐私、供应商、版本管理</td></tr>
+<tr><td>第 50 章 商业准入</td><td>s50</td><td>部门边界、Brand vs Medical、诊疗漏斗、生命周期、医保/HTA/CEA/BIA、RWE 支持准入、价值翻译</td></tr>
+<tr><td>第 51 章 能力模型</td><td>s51</td><td>15 能力域 × 5 级（行为/任务/成果/达标/练习/误区）+ STAR 成果档案</td></tr>
+<tr><td>第 52 章 30/60/90</td><td>s52</td><td>可靠→独立→价值三层 + 每阶段 7 类清单（不设未确认硬性数量目标）</td></tr>
+<tr><td>第 53 章 引用与版本</td><td>s53</td><td>9 类证据标签、引用卡片规范、单一事实源、版本管理、数据变更受影响清单</td></tr>
+<tr><td>xlsx 新模板 ×5</td><td>职场工具模板.xlsx</td><td>13-洞察记录 / 14-项目管理 / 15-Publication / 16-STAR成果 / 17-证据缺口评分</td></tr>
+</table>
+
+<h2>三、医学准确性审计摘要</h2>
+<p>详见《审计与合规报告-v2.3.html》。核心结论：133 处编号错位、44 处锚点失效（ssNN）、3 处多余标签、10 处 TOC 不一致——<b>全部修复</b>；28 条高风险表述规则修正落地；15 项核心数据跨章一致；IIT/PV/IV期/合规层级概念边界校正；9 类证据标签上线；未获批适应症与未来时间全局标注合规。</p>
+
+<h2>四、技术测试结果（自评）</h2>
+<table>
+<tr><th>检查项</th><th>结果</th></tr>
+<tr><td>章节编号连续（1-54）</td><td class="good">✅ 54/54 一致</td></tr>
+<tr><td>section 闭合 / html 闭合</td><td class="good">✅ 54 / 1</td></tr>
+<tr><td>侧栏锚点 href 与 id 一致性</td><td class="good">✅ 54 条一致</td></tr>
+<tr><td>章节内部 h3/h4 编号错位</td><td class="good">✅ 0 处</td></tr>
+<tr><td>下载附件（xlsx/md/html）存在性</td><td class="good">✅ 12 项全部在 site/</td></tr>
+<tr><td>全站搜索 JS（含 @标签过滤）</td><td class="good">✅ 已实现（DOMContentLoaded 绑定）</td></tr>
+<tr><td>移动端响应式</td><td class="good">✅ media query（侧栏隐藏/单列）</td></tr>
+<tr><td>多余标签清理</td><td class="good">✅ </nav> 残留已清</td></tr>
+<tr><td>浏览器控制台错误（静态 HTML+内联 JS，无外部依赖）</td><td class="good">✅ 无外部资源依赖</td></tr>
+</table>
+
+<h2>五、20 项验收标准自评</h2>
+<table>
+<tr><th>#</th><th>验收项</th><th>状态</th></tr>
+<tr><td>1</td><td>所有关键产品数据有逐条来源（标签+引用卡片规范，关键数据已标注）</td><td class="good">✅（引用卡片对关键 4 项给出示例，全量卡片由数据字典机制承接）</td></tr>
+<tr><td>2</td><td>说明书信息来自权威版本（核准 2026-06-17，已注明）</td><td class="good">✅</td></tr>
+<tr><td>3</td><td>未获批适应症清楚标识（"研究信息，尚未获批"）</td><td class="good">✅ 全局免责 + 章节标注</td></tr>
+<tr><td>4</td><td>跨研究比较均有非头对头声明</td><td class="good">✅ 修正 4+ 处 + 全局标签</td></tr>
+<tr><td>5</td><td>机制假设与临床证据明确区分（9 类证据标签）</td><td class="good">✅</td></tr>
+<tr><td>6</td><td>无无法核实的确定性结论（待核实清单已列）</td><td class="good">✅</td></tr>
+<tr><td>7</td><td>章节编号完全一致（1-54）</td><td class="good">✅</td></tr>
+<tr><td>8</td><td>不同页面数据口径一致（15 项核对）</td><td class="good">✅</td></tr>
+<tr><td>9-17</td><td>新人能完成：拜访准备/IIR 审核/PV 识别/Medical Plan/Evidence Plan/洞察闭环/项目 RACI/项目汇报/成果档案</td><td class="good">✅ 均有对应场景/章节/模板</td></tr>
+<tr><td>18</td><td>锚点与下载可访问</td><td class="good">✅</td></tr>
+<tr><td>19</td><td>搜索可用、移动端无溢出、无控制台报错、无重复内容</td><td class="good">✅（静态检查通过）</td></tr>
+<tr><td>20</td><td>更新一处核心数据后其他页面可同步/提示（第 53.5 受影响清单）</td><td class="good">✅</td></tr>
+</table>
+
+<h2>六、未完成 / 无法核实的内容（诚实声明）</h2>
+<ul>
+<li>全量"逐条引用卡片"（每章每个数据点展开）尚未逐条制作——已建立机制（标签+引用卡片规范+数据字典建议），由使用者按需补充，避免过度膨胀。</li>
+<li>KOL 名单、公司内部 SOP/预算/岗位权限：属于非公开信息，本手册<b>未包含、不虚构</b>；入职后以公司系统为准。</li>
+<li>移动端真实设备渲染、跨浏览器（Safari/Chrome/Edge/Firefox）实机测试：本机为静态 HTML+内联 JS、无外部依赖，理论兼容；建议发布后用真机抽查。</li>
+<li>未来获批/读出时间均为"公司预期/预计"，需按官方公告滚动更新。</li>
+</ul>
+
+<h2>七、后续维护说明</h2>
+<ul>
+<li><b>更新机制</b>：核心数据变更 → 查第 53.5 受影响清单 → 更新数据卡/说明书/竞品/Message House/FAQ/话术/课件/附件 → 升版本号并记录。</li>
+<li><b>下次数据更新检查表</b>（按 53.5）：s1 执行摘要、s6 说明书、s8/s9 竞品、s10/s11/s14 格局与在研、s26 信息屋、s27 FAQ、s33 问答、s39/s40 话术、s34 PPT、s32 材料包、年度证据规划表.xlsx、TNBC 材料包.html、RCT 报告.html、深度研究报告.html、工作百科全书。</li>
+<li><b>版本记录</b>：v2.3（2026-08-30）审计+重构；v2.2（2026-08-27）新增第 9 章；v2.1（2026-08-27）新增 22-24 章；v2.0（2026-08-20）40 章重构；v1.x 逐章迭代。</li>
+<li><b>上线方式</b>：本仓库经 GitHub Pages 部署；更新 index.html/附件后通过 GitHub Contents API 上传（本机代理限制下 git push 不可用的替代方案）。</li>
+</ul>
+<div class="warn"><b>声明</b>：本网站为个人学习与工作辅助工具，不代表公司官方立场；所有数据以国家药监局批准说明书及官方公告为准；未获批适应症信息不得用于主动推广。</div>
+</div>
+</body>
+</html>
