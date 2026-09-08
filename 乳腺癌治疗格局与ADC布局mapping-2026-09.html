@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>乳腺癌治疗格局 Mapping · ADC 布局 · HER3 现状 · 不良反应（2026-09）</title>
+<style>
+  :root{--p:#0b5e8f;--p2:#1472a8;--ok:#1d7a54;--w:#b9770e;--hl:#c0392b;--bg:#f5f7fa;--card:#fff;--line:#e2e8f0;--text:#1f2933;--mut:#5b6b7a}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.7;padding:30px 16px 80px}
+  .wrap{max-width:1200px;margin:0 auto}
+  .topbar{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;align-items:center;font-size:12.5px;color:var(--mut);margin-bottom:12px}
+  .topbar a{color:var(--p2);text-decoration:none}
+  h1{font-size:24px;color:#0b4a6f;background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 26px;line-height:1.5}
+  h1 small{display:block;font-size:13px;color:var(--mut);font-weight:400;margin-top:6px}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+  .meta span{background:#eef3f8;border:1px solid var(--line);border-radius:20px;padding:4px 12px;font-size:12px;color:#33414f}
+  .warn{background:#fdf3e7;border:1px solid #f0d9b8;border-radius:10px;padding:12px 16px;font-size:13px;margin:14px 0;color:#6b4d14}
+  .okb{background:#e9f6ef;border:1px solid #bcdcc9;border-radius:10px;padding:12px 16px;font-size:13px;margin:14px 0;color:#14532d}
+  .nav{position:sticky;top:0;background:#0e3a57;color:#fff;border-radius:0 0 12px 12px;padding:8px 12px;margin-bottom:16px;z-index:9;display:flex;flex-wrap:wrap;gap:4px}
+  .nav a{color:#cfe5f2;font-size:12.5px;text-decoration:none;padding:4px 10px;border-radius:6px}
+  .nav a:hover{background:#1b4f75;color:#fff}
+  h2{font-size:20px;color:#0b4a6f;margin:34px 0 4px;padding-left:12px;border-left:6px solid var(--p2)}
+  h2 .tag{font-size:12px;color:var(--mut);font-weight:400;margin-left:8px}
+  h3{font-size:16px;color:#0d3f5e;margin:22px 0 8px}
+  h4{font-size:14px;color:#0d3f5e;margin:14px 0 6px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:12px 0;overflow-x:auto}
+  table{width:100%;border-collapse:collapse;font-size:12.8px;margin:8px 0;min-width:760px}
+  th{background:#0e3a57;color:#fff;padding:8px 9px;text-align:left;font-weight:600;white-space:nowrap}
+  td{padding:8px 9px;border-bottom:1px solid #eef2f6;vertical-align:top}
+  tr:nth-child(even) td{background:#f8fafc}
+  .stg{background:#eaf3fb;font-weight:700;color:#0d3f5e;white-space:nowrap}
+  .subtype{background:#0b4a6f;color:#fff}
+  .L1{color:#1d7a54;font-weight:600}
+  .L2{color:#0b5e8f;font-weight:600}
+  .L3{color:#8a6d1a;font-weight:600}
+  .adc{background:#e8f4f8;border-radius:5px;padding:0 5px;color:#0b5e8f;font-weight:600;white-space:nowrap}
+  .new{background:#fdeeee;border-radius:5px;padding:0 5px;color:#b03a2e;font-weight:600}
+  .lg{display:inline-block;font-size:11px;border-radius:5px;padding:0 6px;margin-right:4px;white-space:nowrap}
+  .e-lab{background:#e7f1ec;color:#1d6b46}.e-pub{background:#e4eff9;color:#1b5f94}.e-abst{background:#fdf3d7;color:#8a6d1a}
+  .e-sub{background:#f3e7f7;color:#6b2d8f}.e-pre{background:#eef1f5;color:#4b5563}.e-hyp{background:#f2ecec;color:#7c3c3c}
+  .e-nh{background:#fdeeee;color:#b03a2e}.e-int{background:#e8e6f5;color:#4c4796}.e-pen{background:#f9e7e7;color:#a93226}
+  .legend span{margin-bottom:4px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:900px){.grid2{grid-template-columns:1fr}}
+  ul,ol{margin:6px 0 6px 22px;font-size:13px}li{margin:3px 0}
+  p{font-size:13px;margin:6px 0;color:#33414f}
+  .src{font-size:11.5px;color:var(--mut);margin-top:4px}
+  .foot{font-size:11.5px;color:var(--mut);margin-top:30px;border-top:1px solid var(--line);padding-top:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="topbar"><span>🧑‍⚕️ 上市后医学经理 · 个人学习资料（不作为公司对外材料）</span><a href="https://tiantujin.github.io/bl-b01d1-medical-handbook/" target="_blank">← 返回主手册</a></div>
+
+<h1>乳腺癌各亚型治疗格局 Mapping<br><small>指南推荐（CSCO 2026 / NCCN 2025V4 起） × 近年有结果的新方案 × ADC 布局 —— 附 HER3 乳腺癌临研现状 与 各 ADC 不良反应汇总</small></h1>
+<div class="meta">
+  <span>📅 数据检索截止：2026-09-08</span>
+  <span>📕 指南：2026 版 CSCO BC（2026-04 发布）；NCCN V4.2025 及后续更新</span>
+  <span>⚠️ 仅供个人学习，不代表公司立场</span>
+  <span>🧪 所有跨药物/跨研究比较均为【非头对头比较】</span>
+</div>
+
+<div class="nav">
+  <a href="#m1">① 分型×阶段治疗 mapping</a>
+  <a href="#m2">② ADC 布局 mapping</a>
+  <a href="#m3">③ HER3 临研现状</a>
+  <a href="#m4">④ ADC 不良反应</a>
+  <a href="#src">数据来源</a>
+</div>
+
+<div class="warn"><b>⚠️ 阅读边界（个人学习工具）</b>：① 本页整合公开指南与会议数据，<b>不构成临床处方建议</b>；② 指南条目以正式发布文本为准（本页对 2026 版 CSCO 变动做了要点转述，个别条目可能有版本时差）；③ 未获批适应症/在研数据一律标注【研究信息】；④ 本页数据不做自动同步（为静态学习页），主手册 v2.4 数据源见 /data/*.json。<span class="e-pen lg">【待核实】</span>表示需按正式文本复核。</div>
+
+<!-- ============ M1 ============ -->
+<h2 id="m1">Mapping ① 乳腺癌各亚型 × 分期治疗格局（指南 vs 有结果新方案 vs ADC 落位）<span class="tag">阅读法：每行=一个临床决策节点；【指南】为主流推荐，<span class="new" style="background:transparent;padding:0">红字方案</span>=2025-2026 新读出/新获批，带色圆点=推荐等级</span></h2>
+
+<div class="card">
+<h3 style="margin-top:4px">0. 读图说明与证据图例</h3>
+<div class="legend">
+  <span class="lg L1" style="background:#e7f1ec">Ⅰ级 / 优先推荐</span>
+  <span class="lg L2" style="background:#e4eff9">Ⅱ级 / 其他推荐（CSCO 语境）</span>
+  <span class="lg L3" style="background:#fdf3d7">Ⅲ级 / 可选或降级调整</span>
+  <span class="lg adc" style="background:#e8f4f8">ADC 方案落位</span>
+  <span class="lg new" style="background:#fdeeee">2025-2026 新结果/新获批（研究信息或正式获批依标签）</span>
+</div>
+<div style="margin-top:6px;font-size:12.3px">
+  <span class="e-lab lg">【说明书已证实】</span><span class="e-pub lg">【正式发表研究】</span><span class="e-abst lg">【大会摘要】</span><span class="e-sub lg">【探索性亚组】</span><span class="e-pre lg">【临床前证据】</span><span class="e-hyp lg">【机制假设】</span><span class="e-nh lg">【非头对头比较】</span><span class="e-int lg">【内部学习推演】</span><span class="e-pen lg">【待核实】</span>
+</div>
+<div style="font-size:12.3px;color:var(--mut);margin-top:6px">CSCO 2026 推荐等级以《2026 版 CSCO 乳腺癌诊疗指南》（2026-04-10 全国乳腺癌大会发布）要点转述为准；NCCN 以 V4.2025 及之后更新为准。<b>指南之间与各亚型表格中的"级"含义不同，仅在同一指南内部可比</b>。</div>
+</div>
+
+<!-- ====== A 组 HER2+ ====== -->
+<h3>1A. HER2 阳性乳腺癌（约 15-20%；IHC 3+ 或 2+/ISH+）</h3>
+<div class="card">
+<table>
+<tr><th style="min-width:92px">阶段/决策节点</th><th>指南推荐（CSCO 2026 / NCCN）</th><th>近年有结果的新方案（2025-2026）</th><th>ADC 在该节点角色</th></tr>
+<tr><td class="stg">新辅助<br>（术前）</td>
+<td>
+• 首选：紫杉类+曲妥珠+帕妥珠（THP）±卡铂，双靶+化疗（NCCN 优选 THP/TCbHP 等级）；<br>
+• CSCO 2026 调整：短程 THP×4 推荐等级下调（Ⅱ→Ⅲ），保留含蒽环或不含蒽环的双靶方案 I/Ⅱ 级主体地位；<span class="L3">新增"T-DXd 序贯 THP"（Ⅲ 级，探索方向，注释含 DESTINY-Breast11、NeoCARHP 研究）</span>【待核实：以正式文本为准】
+</td>
+<td><span class="new">DESTINY-Breast11（T-DXd 用于新辅助/围手术期方案）与 NeoCARHP 已进入 CSCO 注释（在研，读出待公布）</span><span class="e-abst lg">【大会摘要/注册信息】</span></td>
+<td><span class="adc">T-DXd 正从"晚期/后线"向"早期新辅助"前移（研究阶段，尚未批准新辅助适应症）</span></td></tr>
+<tr><td class="stg">辅助<br>（术后初诊）</td>
+<td>• LN+ 或高危：AC(THP)→T(HP) 或 TCbHP（双靶 1 年）；<br>• CSCO 2026：AC-TH / TCbH 调整为 Ⅲ 级选项，HP 后序贯奈拉替尼推荐等级下调（Ⅱ→Ⅲ）；I/Ⅱ 级推荐向新一代方案/风险分层集中【待核实】</td>
+<td><span class="new">DB-05 / DB-11 相关早期适应症 2026-05 FDA 获批（辅助/围手术期证据前移）</span><span class="e-lab lg">【正式获批·以说明书为准】</span></td>
+<td><span class="adc">T-DXd 辅助：新辅助后 non-pCR 患者新增 Ⅱ 级推荐（见下行）</span></td></tr>
+<tr><td class="stg">新辅助后<br>non-pCR 辅助</td>
+<td>• <span class="L1">T-DM1（I 级核心，EMILIA/KATHERINE）</span>；<br>• <span class="L2">新增 T-DXd（Ⅱ 级，DESTINY-Breast05 注释）</span>；<br>• 不再推荐序贯奈拉替尼（原 Ⅲ 级移除）</td>
+<td><span class="new">DESTINY-Breast05（T-DXd vs T-DM1 用于 HER2+ 早期高危 non-pCR/围手术期）结果读出，支持 T-DXd 辅助定位</span><span class="e-abst lg">【大会摘要】</span></td>
+<td><span class="adc">T-DM1→T-DXd 换代窗口（该节点 ADC 为标准治疗主体）</span></td></tr>
+<tr><td class="stg">晚期 1L</td>
+<td>• 曲妥珠敏感：THP+化疗（标准）或 TH+吡咯替尼（中国）；<br>• <span class="L2">CSCO 2026 新增：T-DXd+帕妥珠单抗（Ⅱ 级，基于 DB-09）</span></td>
+<td><span class="new">DB-09：T-DXd+帕妥珠 vs THP，mPFS 报告约 40.7 个月（改写 1L 格局）；FDA 已批 1L（2026）</span><span class="e-pub lg">【正式发表研究/官方批准】</span></td>
+<td><span class="adc">T-DXd 进入 1L 一线（联合帕妥珠）；T-DM1 后移（Ⅱ→Ⅲ）</span></td></tr>
+<tr><td class="stg">晚期 2L</td>
+<td>• <span class="L1">T-DXd（DB-03 确立 2L 标准）</span>；T-DM1 由 Ⅱ 降 Ⅲ；<br>• 图卡替尼+曲妥珠+卡培他滨（HER2CLIMB，含脑转移）</td>
+<td>—（格局稳定）</td>
+<td><span class="adc">T-DXd 为 2L 首选 ADC；T-DM1 退居后线/序贯</span></td></tr>
+<tr><td class="stg">晚期 ≥3L / ADC 经治</td>
+<td>• 新型 ADC：<span class="L3">瑞康曲妥珠单抗（T-Bren/BL-M07D1）、博度曲妥珠单抗（A166）等国产 HER2 ADC 引入（CSCO 2026）</span>；依维莫司/奈拉替尼+卡培他滨等；<br>• gBRCA1/2 突变者可考虑 PARPi（乳腺癌适应证以获批为准）</td>
+<td><span class="new">T-Bren（BL-M07D1，HER2 ADC）III 期读出推进；SHR-A1811 系列后线数据</span><span class="e-abst lg">【大会摘要】</span></td>
+<td><span class="adc">HER2 ADC 后线拥挤：T-DM1/T-DXd/T-Bren/SHR-A1811/A166；序贯（不同载荷/连接子）与脑转移数据是选择关键</span></td></tr>
+</table>
+<p class="src">来源要点：CSCO 2026 更新解读（2026-04 全国乳腺癌大会）；DB-09 mPFS 40.7 个月见指南解读与官方公告（同源数字亦见于本手册第 10 章）。DB-05/11 FDA 2026-05 批准早期相关适应症【以最新说明书为准】。</p>
+</div>
+
+<!-- ====== B 组 HR+/HER2- ====== -->
+<h3>1B. HR 阳性 / HER2 阴性乳腺癌（约 60-70%，含 HER2-low/ultralow/IHC 0）</h3>
+<div class="card">
+<table>
+<tr><th style="min-width:92px">阶段/决策节点</th><th>指南推荐（CSCO 2026 / NCCN）</th><th>近年有结果的新方案（2025-2026）</th><th>ADC 在该节点角色</th></tr>
+<tr><td class="stg">新辅助<br>（高风险/部分）</td>
+<td>• 化疗（AT/TAC 顺序 CSCO 2026 调整；按基因风险与临床分期）；<br>• 新辅助内分泌：仅适用于不适合化疗的 ER 高表达患者（临床研究/部分推荐）</td><td>ADC 未进入该节点（在研：新辅助+免疫等平台试验含 ADC 臂）</td><td><span class="adc">暂不适用；平台试验（如 I-SPY2 类）探索中</span></td></tr>
+<tr><td class="stg">辅助</td>
+<td>• 内分泌 5-10 年（绝经前 OFS±TAM/AI；绝经后 AI）；<br>• 高危（LN+/高风险临床病理或基因）：内分泌+CDK4/6i（阿贝西利 monarchE / 瑞波西利 NATALEE）±化疗；<br>• 21/70 基因检测指导化疗（CSCO 限定中高危 LN+ 或 1-3 LN、优先中国人群平台）</td>
+<td><span class="new">NATALEE/monarchE 长期随访持续获益；ER 低表达（1-10%）个体化决策强调</span></td>
+<td><span class="adc">该阶段 ADC 无适应症（在研仅探索）</span></td></tr>
+<tr><td class="stg">晚期 1L</td>
+<td>• 内分泌（AI/氟维司群）+ CDK4/6i（I 级标准）；内脏危象/内分泌原发耐药→化疗</td>
+<td><span class="new">INAVO120（inavolisib+帕博西利+氟维司群，PIK3CA 突变）FDA 已批、中国可及性提升→CSCO 新增 PIK3CA 检测章节</span><span class="e-lab lg">【正式获批】</span></td>
+<td><span class="adc">1L 主战场仍为内分泌+CDK4/6i；ADC 不前置（除临床试验）</span></td></tr>
+<tr><td class="stg">晚期：内分泌进展后、<br>化疗前（"ADC 窗口"）</td>
+<td>• CDK4/6i+ET 进展后分层：继发内分泌耐药可续内分泌联合（换 CDK4/6i/PAM/SERD，依 ESR1/PIK3CA/AKT 检测）；<br>• 化疗开始前 ADC 已成为新选择：<br><span class="L1">HER2-low/ultralow → T-DXd</span>（DB-06，ET 经治未化疗人群）；<br><span class="L2">HER2 IHC 0 → TROP2 ADC 或化疗（Dato-DXd/SG/SKB264 在该线别中国获批，见下）</span></td>
+<td><span class="new">DB-06（T-DXd vs 化疗）：HER2-low mPFS 13.2 vs 8.1（HR 0.62）；ultralow 13.2 vs 8.3（HR 0.78）——中国 2025-12-25 获批 HER2 超低表达</span><span class="e-pub lg">【正式发表/获批】</span><br>
+<span class="new">TROPION-Breast06（Dato-DXd，ET 经治+未化疗的 HR+/HER2 IHC 0）III 期进行中——化疗前 TROP2 ADC 的证据缺口待补</span><span class="e-abst lg">【注册信息】</span><br>
+<span class="new">ASCENT-07（SG vs 化疗，化疗前人群）：整体 PFS 未达统计学显著；HER2 IHC 0 亚组显示获益</span><span class="e-sub lg">【探索性亚组】</span></td>
+<td><span class="adc">核心 ADC 节点：按 HER2 表达分流（low/ultralow→T-DXd；IHC 0→TROP2 ADC）。中国获批线别：SG 2025-03（内分泌经治+≥2 种系统治疗）；Dato-DXd 2025-08、SKB264 2026-02（内分泌经治+≥1 线化疗）</span></td></tr>
+<tr><td class="stg">晚期 ≥2 线<br>（化疗经治）</td>
+<td>• <span class="L1">TROP2 ADC（SG/Dato-DXd/SKB264，均优于化疗的 III 期证据）</span>或 T-DXd（HER2-low）；后续化疗；gBRCA 突变可 PARPi</td>
+<td><span class="new">TB01（Dato-DXd）中国亚组 mPFS 8.1 vs 4.2（HR 0.54）；EVER-132-002（SG 中国）；OptiTROP-Breast02（SKB264 中国，NDA 阶段数据）——三药中国证据链建立</span><span class="e-pub lg">【正式发表】</span></td>
+<td><span class="adc">TROP2 ADC 三雄同场；差异在结构/毒性谱/脑转移数据/医保与可及</span></td></tr>
+<tr><td class="stg">脑转移（HR+）</td><td>局部治疗±全身（ADC 非强制推荐，依研究证据）</td>
+<td><span class="new">TB01 脑转移亚组：Dato-DXd mPFS 5.6 vs 4.4（HR 0.73）——HR+/HER2- 脑转移潜在价值</span><span class="e-sub lg">【探索性亚组】</span></td>
+<td><span class="adc">Dato-DXd 有脑转移循证线索（探索性）；SG/SKB264 核心 III 期未纳入脑转移</span></td></tr>
+</table>
+<p class="src">注：HER2-low/ultralow 定义见下方 1D 特注；三款 TROP2 ADC 的中国获批时间与适应症边界（内分泌经治+化疗线数要求）依据 CDE/公告，具体以说明书为准。</p>
+</div>
+
+<!-- ====== C 组 TNBC ====== -->
+<h3>1C. 三阴性乳腺癌（约 10-15%）</h3>
+<div class="card">
+<table>
+<tr><th style="min-width:92px">阶段/决策节点</th><th>指南推荐（CSCO 2026 / NCCN）</th><th>近年有结果的新方案（2025-2026）</th><th>ADC 在该节点角色</th></tr>
+<tr><td class="stg">新辅助</td>
+<td>• <span class="L1">紫杉+卡铂+PD-1 抑制剂（帕博利珠单抗，KEYNOTE-522 模式；CSCO 2026 由 Ⅱ 升 I 级）</span>（PD-L1/CPS 适用人群）；非免疫联合者含蒽环方案（AT/TAC 顺序 2026 调整）；<br>• 新辅助后按 pCR 分层（见下行）</td>
+<td><span class="new">KEYNOTE-522 EFS 长期随访持续获益；中国特瑞普利单抗等国产 PD-1 新辅助数据（Torchlight 系列延伸）</span></td>
+<td><span class="adc">新辅助主体仍为化疗+免疫；ADC 处于研究阶段（SKB264 新辅助、HER3-DXd+帕博利珠 HERTHENA-Breast03 等平台试验）</span></td></tr>
+<tr><td class="stg">新辅助后辅助</td>
+<td>• non-pCR（曾用免疫新辅助）：<span class="L2">PD-1 抑制剂续用 + 卡培他滨，或 + 奥拉帕利（gBRCA1/2 突变）</span>；<br>• 未用免疫的 gBRCA1/2 突变高危：<span class="L1">奥拉帕利（OlympiA，CSCO 2026 由 Ⅱ 升 I 级）</span>；non-pCR 卡培他滨</td>
+<td><span class="new">OlympiA 长期数据成熟；CITRINE/RJBC1501 等进入 2026 注释</span></td>
+<td><span class="adc">该节点无标准 ADC（卡培他滨/奥拉帕利为主）</span></td></tr>
+<tr><td class="stg">辅助<br>（初诊 LN+）</td>
+<td>• <span class="L1">ddAC-TP（剂量密集 AC→紫杉+铂类；CSCO 2026 由 Ⅲ 升 I 级，取代 AC-T 主导）</span>；gBRCA1/2 突变奥拉帕利强化（I 级）</td>
+<td><span class="new">ddAC-TP 提升与铂类/剂量密集方案地位（CSCO 2026 解读）</span><span class="e-int lg">【内部学习推演·按指南要点转述】</span></td>
+<td><span class="adc">辅助阶段 ADC 无获批标准（在研：T-DXd/SKB264 辅助研究早期）</span></td></tr>
+<tr><td class="stg">晚期 1L</td>
+<td>• PD-L1+（CPS≥10 或中国获批伴随诊断）：<span class="L1">帕博利珠+化疗</span>（KEYNOTE-355）/ 特瑞普利单抗+化疗（中国）；<br>• 免疫不适用/PD-L1-：化疗（紫杉类/蒽环/铂/卡培他滨；CSCO 2026 单药紫杉类推荐等级下调 I→Ⅱ）；<br>• gBRCA1/2：PARPi（奥拉帕利/帕米帕利±抗血管）</td>
+<td><span class="new">ASCENT-03（SG+帕博利珠，CPS≥10 一线）2026-06 FDA 获批；OptiTROP-Breast03（SKB264 一线，2026-05 IDMC 确认 PFS 达主要终点）；TROPION-Breast02（Dato-DXd vs 化疗，免疫不适用人群 PFS+OS 双获益）2026-05 FDA 获批 1L——TROP2 ADC 一线化（PD-L1- / 免疫不适用人群）</span><span class="e-abst lg">【大会摘要/官方批准】</span><br>
+<span class="new">PANKU-Breast 04（BL-B01D1+PD-1 vs 白蛋白紫杉醇+PD-1，PD-L1+ 1L，CTR20262666）登记启动（研究信息）</span></td>
+<td><span class="adc">1L ADC 正从"无"走向"分人群"：Dato-DXd（免疫不适用）、SG+帕博利珠（CPS≥10）、SKB264（研究阳性）——ADC 与免疫的排兵布阵是本节点 2026 最大变量</span></td></tr>
+<tr><td class="stg">晚期 ≥2 线</td>
+<td>• <span class="L1">SG（≥2 种系统治疗经治，中国获批）</span>与 <span class="L1">SKB264（≥2 线，中国获批、2026 入医保）</span>——CSCO 2026 紫杉类失败后由 Ⅱ 升 I 级；<br>• T-DXd（HER2-low/ultralow 亚组）；化疗续贯；<br>• <span class="new">BL-B01D1（双抗 ADC）：TNBC NDA 受理在审（2026-06-11），公司预期 2027 获批（未确定）</span><span class="e-pen lg">【待核实：以审评结果为准】</span></td>
+<td><span class="new">PANKU-Breast 02（BL-B01D1 vs 化疗，≥2L 全人群 ITT，n=412）：mPFS 8.5 vs 3.1（HR 0.29）、mOS 15.9 vs 12.5（HR 0.60）、cORR 51.7% vs 20.5%（ASCO 2026 LBA）；HER2 IHC 0 亚组 mPFS 8.3 vs 2.6（HR 0.28）</span><span class="e-abst lg">【大会摘要】</span><span class="e-sub lg">【探索性亚组】</span></td>
+<td><span class="adc">后线 ADC 最拥挤：SG / SKB264 / T-DXd（HER2-low）/ BL-B01D1（在审）——覆盖全谱（不依赖 HER2）vs TROP2 vs HER2-low 的分层竞争</span></td></tr>
+<tr><td class="stg">脑转移</td><td>局部治疗+全身（全身选择参考 ADC 血脑数据）</td>
+<td><span class="new">Dato-DXd 在 TNBC 脑转移有探索数据；T-DXd 在 HER2 通路脑转移证据成熟（HER2+ 为主）</span><span class="e-sub lg">【探索性亚组】</span></td>
+<td><span class="adc">ADC 脑转移证据排序：HER2 轴最成熟 → TROP2 轴次之 → HER3/双抗探索中</span></td></tr>
+</table>
+</div>
+
+<!-- ====== D 组 HER2-low 特注 ====== -->
+<h3>1D. HER2 低表达 / 超低表达 / IHC 0 特注（横跨 HR+/HR-，贯穿性新分类）<span class="tag">非传统"第四亚型"，而是治疗分层维度</span></h3>
+<div class="card">
+<table>
+<tr><th style="min-width:92px">维度</th><th>内容</th></tr>
+<tr><td class="stg">定义与检出</td>
+<td>HER2-low = IHC 1+ 或 2+/ISH-（约占 50-55%）；HER2-ultralow = IHC 0 但伴 ≤10% 浸润癌细胞不完整微弱膜染色（ASCO/CAP 2023；CSCO 2026 明确定义）；HER2 IHC 0 无膜染色（HER2-null）。<b>检测变异与时空异质性显著</b>（原发/转移不一致率约 21.8%（HEROIC 探索性数据）、动态改变约 31%）——复发转移建议再活检【探索性证据】</td></tr>
+<tr><td class="stg">为何单列</td>
+<td>• T-DXd 打开了 HER2-low/ultralow 的靶向治疗窗（此前按 HER2- 仅内分泌/化疗）；<br>• 人群巨大且既往无 III 期循证（≥2L 全人群）——不同药物以不同机制争夺：HER2 定向（T-DXd）、TROP2 定向（SG/Dato-DXd/SKB264）、双靶 EGFR×HER3（BL-B01D1）、HER3 定向（HER3-DXd）【机制假设部分，需临床验证】</td></tr>
+<tr><td class="stg">晚期布局（按表达）</td>
+<td>• HER2-low/ultralow：内分泌经治进展后 <span class="adc">T-DXd</span>（DB-04/DB-06；中国 2025-12-25 批 ultralow）；<br>• HER2 IHC 0：<span class="adc">TROP2 ADC（Dato-DXd 中国 2025-08 / SKB264 2026-02 / SG 2025-03）</span>或化疗；TROPION-Breast06 / ASCENT-07 IHC 0 亚组均提示 TROP2 ADC 获益方向【探索性亚组】；<br>• <span class="adc">BL-B01D1（在审）</span>机制不依赖 HER2 表达（【临床前证据】），IHC 0 亚组 mPFS 8.3 个月（HR 0.28，【探索性亚组】）</td></tr>
+<tr><td class="stg">早期/研究热点</td>
+<td>• DB-06 获批后"化疗前 ADC"路径铺开；TROPION-Breast06（IHC 0、未化疗）读出将决定 IHC 0 是否进一步前移；<br>• 早期（新辅助/辅助）HER2-low 特异性研究多数在研；HER2 动态检测与超低表达判读教育是医学教育空白点（个人判断【内部学习推演】）</td></tr>
+</table>
+<p class="src">HEROIC 不一致率、动态改变等为观察性/探索性数据，非预设终点；以正式全文为准。</p>
+</div>
+
+<!-- ============ M2 ============ -->
+<h2 id="m2">Mapping ② ADC 在乳腺癌治疗格局中的布局总览<span class="tag">靶点轴 × 获批/研究状态 × 主战场</span></h2>
+<div class="card">
+<table>
+<tr><th style="min-width:150px">ADC</th><th>靶点 / 载荷 / 连接子</th><th>中国获批乳腺癌状态（2026-09）</th><th>关键研究（主战场）</th><th>布局定位（个人学习判断）</th></tr>
+<tr><td class="stg">T-DM1<br>（恩美曲妥珠）</td><td>HER2 / DM1（微管）不可裂解 SMCC</td><td class="L1">HER2+ 早期新辅助后 non-pCR、HER2+ 晚期（已获批）</td><td>KATHERINE（辅助）、EMILIA（2L）</td><td>辅助 non-pCR 金标准；晚期被 T-DXd 后移</td></tr>
+<tr><td class="stg">T-DXd<br>（德曲妥珠）</td><td>HER2 / DXd（TOP1i）可裂解 GGFG，DAR≈8</td><td class="L1">中国多适应症（HER2+ 晚期/后线+1L 进展、HER2-low/ultralow 晚期、早期部分围手术期全球首个获批）【以最新说明书为准】</td><td>DB-09（1L）、DB-03（2L）、DB-04/06（low/ultralow）、DB-05/11（早期）</td><td>HER2 轴"全域之王"：覆盖 HER2+ 全线与 HER2-low 谱系；ILD 需重点管理</td></tr>
+<tr><td class="stg">RC48 等国产<br>HER2 ADC</td><td>HER2 / MMAE 等</td><td class="L2">主要获批胃癌/尿路上皮等；乳腺癌以研究与后线可及为准【待核实】</td><td>乳腺癌探索性数据有限</td><td>HER2+ 后线序贯选项之一（依当地获批/可及）</td></tr>
+<tr><td class="stg">SHR-A1811 / T-Bren<br>（瑞康曲妥珠）等</td><td>HER2 / TOP1i 类或 DXd 类</td><td class="L3">III 期读出/获批推进（CSCO 2026 晚期失败后引入新一代 ADC）【以公告为准】</td><td>后线/围手术期研究</td><td>HER2 后线"补位+换代"竞争带</td></tr>
+<tr><td class="stg">SG<br>（戈沙妥珠）</td><td>TROP2 / SN-38（TOP1i）pH 敏感 CL2A，DAR≈7.6</td><td class="L1">mTNBC ≥2 线（2022）、HR+/HER2- 内分泌经治+≥2 系统治疗（2025-03）</td><td>ASCENT（TNBC ≥2L）、EVER-132-002（中国）、ASCENT-03（1L+免疫，FDA 2026-06）</td><td>TROP2 老将；血液学+腹泻谱；2026 走向 1L 免疫联合（CPS≥10）</td></tr>
+<tr><td class="stg">Dato-DXd<br>（德达博妥）</td><td>TROP2 / DXd，稳定 GGFG，DAR≈4</td><td class="L1">HR+/HER2- 内分泌经治+≥1 线化疗（2025-08）；FDA 另批 1L TNBC（2026-05，免疫不适用）</td><td>TROPION-Breast01（HR+）、02（1L TNBC）、06（IHC 0 未化疗，进行中）</td><td>"更前线 TROP2"：脑转移线索+低血液学毒性；口腔炎/眼毒性预防管理</td></tr>
+<tr><td class="stg">SKB264<br>（芦康沙妥珠）</td><td>TROP2 / KL610023（TOP1i）改良 CL2A，DAR≈7.4</td><td class="L1">mTNBC ≥2 线（2024-11、2026 入医保）、HR+/HER2- 内分泌经治+≥1 线化疗（2026-02）</td><td>OptiTROP-Breast01（TNBC ≥2L）、02（HR+）、03（1L，阳性）</td><td>中国"可及性最强"TROP2（医保）；血液学+口腔炎为主</td></tr>
+<tr><td class="stg">BL-B01D1<br>（宜泽康）</td><td>EGFR×HER3 双抗 / Ed-04（TOP1i）可裂解，DAR≈8</td><td class="L1">鼻咽癌/食管鳞癌获批；<b>TNBC NDA 受理在审（2026-06）</b>，公司预期 2027 获批（未确定）【待核实】；HR+/1L 研究进行中</td><td>PANKU-Breast 02（TNBC ≥2L，双阳性）、03（HR+）、04（PD-L1+ 1L）、IZABRIGHT-Breast01（全球 1L）</td><td>机制上不依赖 HER2/TROP2 表达（【临床前证据】），覆盖 HER2 IHC 0 全谱；血液学为主、ILD 低（1.0-1.4%，无 ≥3 级【说明书已证实】）</td></tr>
+<tr><td class="stg">HER3-DXd<br>（Patritumab Dxd）</td><td>HER3 / DXd</td><td class="L3">未获批（III 期进行中）</td><td>HERTHENA-Breast04（HR+/HER2- vs TPC）、2026 ESMO BC 422RO（ADC 初治获益）</td><td>HR+/HER2- 潜在竞争者（直接威胁 BL-B01D1/PANKU-Breast 03 人群）；TOP1-ADC 经治活性有限——序贯定位待厘清</td></tr>
+<tr><td class="stg">JSKN016</td><td>TROP2×HER3 双抗 / 载荷（DAR4 定点）</td><td class="L3">在研</td><td>TNBC 早期队列 ORR 报告 64.5%（小样本【大会摘要】）</td><td>双抗 ADC 赛道追赶者；TROP2 相关毒性需观察</td></tr>
+</table>
+<p class="src">获批状态与线别以 NMPA/CDE 与说明书为准；FDA 与中国状态分列（如 Dato-DXd 中国仅 HR+ 适应症）。【待核实】项需按官方最新口径复核。</p>
+</div>
+
+<div class="okb"><b>ADC 布局一句话总结（个人学习判断【内部学习推演】）</b>：2026 年乳腺癌 ADC 呈"<b>靶点轴三分 + 时间轴前移</b>"：HER2 轴（T-DXd 全域扩张至 1L/早期）｜TROP2 轴（SG/Dato-DXd/SKB264 从后线走向一线/化疗前）｜双靶/新轴（BL-B01D1 EGFR×HER3 覆盖 IHC 0 全谱、HER3-DXd 单靶 HR+、JSKN016）——排兵布阵的决策变量从"有没有 ADC 用"转向"先/后线序贯、按 HER2 表达分流、按毒性谱选人"。</div>
+
+<!-- ============ M3 ============ -->
+<h2 id="m3">HER3 在乳腺癌的临床研究现状<span class="tag">靶点：为什么做、谁在做、数据到哪、卡点在哪</span></h2>
+<div class="card">
+<h3 style="margin-top:2px">3.1 靶点逻辑（为什么 HER3 值得做）</h3>
+<ul>
+<li><b>表达广泛</b>：HER3 在乳腺癌约 50-70%（HR+ 约 52%、TNBC 约 29%），与 HR/HER2 状态部分独立（各研究口径不同）【正式发表研究/探索性数据】。</li>
+<li><b>伪激酶但信号强</b>：HER3 无自身激酶活性，靠配体 NRG1 驱动与 HER2/EGFR 异源二聚化，是 PI3K-AKT 通路最强输入节点——"抑制配体-二聚体"比单纯激酶抑制更难成药（单抗疗效有限的历史）【机制】。</li>
+<li><b>耐药枢纽</b>：内分泌治疗（氟维司群/他莫昔芬上调）、抗 HER2（三聚体代偿）、EGFR-TKI 耐药中均见 HER3 再激活；T-DXd 进展后 HER2 表达可下调/丢失——HER3 作为"绕开 HER2 变化"的靶点有机制合理性【机制假设，部分临床转化证据】。</li>
+</ul>
+<h3>3.2 在研管线与关键数据（乳腺癌）</h3>
+<table>
+<tr><th>研究/药物</th><th>人群/阶段</th><th>设计/臂</th><th>关键数据（截至 2026-09-08）</th><th>状态</th></tr>
+<tr><td class="stg">HER3-DXd（patritumab deruxtecan，U3-1402，第一三共→默沙东）</td>
+<td>HERTHENA-Breast04（NCT07060807）：HR+/HER2- 不可切除局部晚期/转移，CDK4/6i+ET 经治</td>
+<td><b>III 期</b>：HER3-DXd 单药 vs 医生选择（TPC：紫杉/白紫/卡培他滨/脂质体阿霉素/含 T-DXd）；需转移灶中心确认 HER3 可评估</td>
+<td>n=1000，292 中心/10 国，2025-07-21 启动；PFS 主要终点；读出/获批窗口预计 2026-2029（以进展为准）</td>
+<td class="new">招募中【注册信息】</td></tr>
+<tr><td class="stg">HER3-DXd（II 期三部分，NCT04699630）</td>
+<td>转移性乳腺癌按 ADC 暴露分层</td>
+<td>Part A：ADC 初治 HR+/HER2- 或 TNBC；Part B：TOP1-ADC 经治；Part Z：T-DXd 经治 HER2+。5.6 mg/kg q3w</td>
+<td><b>2026 ESMO BC 422RO</b>：Part A HR+/HER2- ORR 39%、mPFS 7.0 月、PFS-6 50%；TNBC ORR 25%、mPFS 3.0 月；Part B/Z（TOP1-ADC 经治）单药活性有限【大会摘要】</td>
+<td class="new">读出【大会摘要】</td></tr>
+<tr><td class="stg">HER3-DXd 新辅助</td>
+<td>HERTHENA-Breast03（NCT06797635）：高危早期 TNBC / HR-low HER2-</td>
+<td><b>II 期</b>：HER3-DXd+帕博利珠（±化疗序贯）vs 帕博利珠+化疗后手术</td>
+<td>pCR 为主要终点（读出待公布）</td>
+<td class="new">招募中【注册信息】</td></tr>
+<tr><td class="stg">HER3-DXd 扩展布局</td>
+<td>HER2+ mBC 联合（NCT06686394）；T-DXd 进展后（NCT06298084）；I-SPY2 新辅助平台臂；NRG1 融合（NCT06383884）；儿科 LIGHTBEAM-U01；HER3 PET/CT 影像（NCT06222489）</td><td>探索/平台</td><td>—（以披露为准）</td><td>招募/设计阶段【注册信息】</td></tr>
+<tr><td class="stg">BL-B01D1（EGFR×HER3 双抗 ADC，中国权益自持）</td>
+<td>TNBC ≥2L（NDA 受理在审）；HR+/HER2-（PANKU-Breast 03 进行中）；PD-L1+ 1L（PANKU-Breast 04）；全球 1L（IZABRIGHT-Breast01，BMS）</td>
+<td>III 期系列</td>
+<td>PANKU-Breast 02：mPFS 8.5（HR 0.29）/mOS 15.9（HR 0.60）/cORR 51.7%（ASCO 2026 LBA）</td>
+<td class="new">TNBC 在审；其余进行中【待核实：获批以审评结果为准】</td></tr>
+<tr><td class="stg">JSKN016（TROP2×HER3 双抗 ADC）</td>
+<td>TNBC/泛瘤种</td><td>早期</td><td>TNBC 早期队列 ORR 报告 64.5%（小样本）【大会摘要】</td><td>在研</td></tr>
+<tr><td class="stg">zenocutuzumab（HER2×HER3 双抗，无载荷）/ seribantumab（pan-HER3 单抗）</td>
+<td>NRG1 融合为主，乳腺癌非主战场</td><td>—</td><td>乳腺癌证据有限（与 BL-B01D1 不同机制定位：无载荷）</td><td>在研</td></tr>
+</table>
+<h3>3.3 关键解读与医学经理视角</h3>
+<ul>
+<li><b>最值得跟踪的读出</b>：HERTHENA-Breast04（HR+/HER2- 注册 III 期）——直接对标人群与 <span class="adc">PANKU-Breast 03（BL-B01D1 HR+/HER2-）</span>及 TROP2 ADC 的 HR+ 战场重叠，是 2027-2029 最重要的外部读出一。</li>
+<li><b>序贯信号（对 ADC 排布的意义）</b>：422RO 显示 TOP1-ADC（如 T-DXd/SG/BL-B01D1 同属 TOP1i 载荷谱）经治后 HER3-DXd 单药活性有限【大会摘要】——"同载荷不同靶"的序贯价值存疑，反衬<b>不同载荷轴序贯</b>（如 TOP1i 后微管类）或<b>靶点与载荷双切换</b>策略的重要性【内部学习推演】。</li>
+<li><b>检测卡点</b>：HER3 IHC 无标准化伴随诊断（HERTHENA-Breast04 以中心实验室 HER3 可评估结果入组，阈值未统一）；HER3 PET/CT（NCT06222489）等影像替代标志物在探索——"HER3 表达能否筛人"仍是全赛道问题【探索性】。</li>
+<li><b>安全性特征</b>：HER3-DXd 属 DXd 系 → ILD 需监测（422RO 经裁定 ILD 4%，含死亡病例【大会摘要】）；血液学+消化道谱同 DXd 平台。</li>
+</ul>
+</div>
+
+<!-- ============ M4 ============ -->
+<h2 id="m4">各 ADC 不良反应汇总与差异化安全管理<span class="tag">结构-毒性逻辑：载荷决定谱系，靶点决定脱靶方向，连接子决定稳定性</span></h2>
+<div class="card">
+<h3 style="margin-top:2px">4.1 总表（发生率均为各药关键研究报告口径，跨药比较一律【非头对头比较】）</h3>
+<table>
+<tr><th style="min-width:120px">药物</th><th>载荷/连接子</th><th>主要毒性谱（发生率按各自研究）</th><th>标志性/需预警毒性</th><th>管理要点（摘要）</th></tr>
+<tr><td class="stg">T-DXd</td><td>DXd（TOP1i）/可裂解四肽，DAR≈8</td>
+<td>中性粒↓、贫血、恶心/呕吐、乏力、血小板↓；≥3 级 TRAE 约 46-52%（各研究）</td>
+<td><b>ILD/肺炎</b>（DXd 系特征）：各研究约 5-15%，多 1-2 级、致死约 1-2%（DB-04 12.1%/DB-06 11.3% 口径）——监测咳嗽/发热/影像，G2 永久停药+激素（详见第 13 章）</td>
+<td>基线肺功能评估+定期 CT；ILD 教育卡；止吐预防；G-CSF/输血按阈值</td></tr>
+<tr><td class="stg">SG</td><td>SN-38（TOP1i）/CL2A pH 敏感，DAR≈7.6</td>
+<td>中性粒↓（ASCENT ≥3 级约 51%）、贫血、<b>腹泻</b>（≥3 级约 10%）、恶心</td>
+<td>FN 与 UGT1A1*28 多态性（严重中性粒/腹泻风险）；中国未报告药物相关 ILD 且无典型眼/口腔炎【按说明书与中国共识口径】</td>
+<td>UGT1A1 检测（GG/GA/AA 分层）；G-CSF；洛哌丁胺预防性用药+患者教育</td></tr>
+<tr><td class="stg">SKB264</td><td>KL610023（TOP1i）/改良 CL2A，DAR≈7.4</td>
+<td>血液学（中性粒/贫血/血小板）、<b>口腔炎</b>（较突出、影响进食）、恶心、皮疹；OptiTROP-Breast02 ≥3 级 TRAE 62.0%</td>
+<td>口腔黏膜炎 + 干眼/角膜病变（眼毒性需关注）</td>
+<td>漱口/口腔护理预防口腔炎；人工泪液；血液学支持；定期眼科（症状时）</td></tr>
+<tr><td class="stg">Dato-DXd</td><td>DXd（TOP1i）/GGFG 稳定，DAR≈4</td>
+<td>口腔黏膜炎（多 1-2 级，中位缓解约 36.5 天）、干眼（1-2 级，中位约 67 天）、恶心/乏力；血液学较轻（游离 DXd <1 ng/ml）；≥3 级 TRAE 20.8%（TB01）vs 化疗 44.7%</td>
+<td>口腔炎 + 干眼（DXd 低 DAR+稳定连接子→全身毒性低但黏膜/眼表暴露仍可见）；ILD 需警惕（DXd 系）</td>
+<td>预防性漱口/人工泪液；眼科基线+随访；ILD 教育</td></tr>
+<tr><td class="stg">T-DM1</td><td>DM1（微管）/SMCC 不可裂解，DAR≈3.5</td>
+<td><b>血小板↓</b>（特征性，≥3 级 13-20%）、肝酶↑、疲劳、外周神经病变（轻）、出血风险；ILD 低</td>
+<td>血小板减少与出血（不可裂解连接子+胞内代谢特征）</td>
+<td>血小板监测（周期点）；肝功监测；避免抗凝并发症</td></tr>
+<tr><td class="stg">HER3-DXd</td><td>DXd（TOP1i）</td>
+<td>恶心 52%、乏力 41%、腹泻 35%、呕吐 31%、中性粒↓ 27%、贫血 26%、低钾 26%（422RO；≥3 级 48-57%）</td>
+<td>血小板↓（DXd 系中较受关注）+ <b>ILD</b>（422RO 经裁定 4%，含死亡病例）——启动与剂量调整需基线肺评估</td>
+<td>同 DXd 系管理（ILD 监测+血小板）【大会摘要口径】</td></tr>
+<tr><td class="stg">BL-B01D1<br>（宜泽康）</td><td>Ed-04（TOP1i）/可裂解，DAR≈8</td>
+<td>贫血 88.1%（≥3 级较常见）、血小板↓ 69.7%、中性粒↓、白细胞↓、恶心/食欲↓；输液反应需按规程；<b>≥25% 患者 TEAE 未报告腹泻/口腔炎</b>（说明书 n=1014）</td>
+<td><b>血液学毒性（贫血+血小板）为最主要管理点</b>；ILD 1.0-1.4%、无 ≥3 级（说明书/研究口径，非头对头低于 DXd 系报告值）</td>
+<td>血液学监测与支持（EPO/rhTPO/TPO-RA/G-CSF 依阈值）；输血指征；输液反应预处理；教育卡（第 13 章/材料包）</td></tr>
+<tr><td class="stg">MRG003 等 EGFR ADC</td><td>MMAE（微管）/VC 可裂解等</td>
+<td>皮疹/皮肤反应（EGFR 通路）、<b>外周神经病变</b>（MMAE 特征）、乏力、血液学</td>
+<td>皮肤毒性 + 神经病变（MMAE 系），无 DXd 系 ILD 高风险</td>
+<td>皮肤保湿/防晒/类固醇（按需）；神经病变分级剂量调整【以说明书为准】</td></tr>
+</table>
+<p class="src">发生率均转述自各研究/说明书公开口径；BL-B01D1 行【说明书已证实】（核准 2026-06-17，n=1014）；SG "未报告药物相关 ILD/无眼口腔炎"为中国临床实践与说明书口径；Dato-DXd 口腔炎/干眼缓解时长为 TB01 数据。跨药比较见页首【非头对头】声明。</p>
+
+<h3>4.2 结构-毒性对应关系（为什么谱系不同）</h3>
+<table>
+<tr><th>维度</th><th>解释</th><th>实例（乳腺癌 ADC）</th></tr>
+<tr><td>载荷家族</td><td>TOP1i（DXd/SN-38/KL610023/Ed-04）→ 血液学+消化道+ILD 谱为主；微管毒物（MMAE/DM1/DM4）→ 神经病变/血小板/眼表；<b>旁观者效应强→覆盖异质性也放大黏膜/肺暴露</b>【机制】</td><td>T-DXd/SG/Dato-DXd/SKB264/BL-B01D1/HER3-DXd（TOP1i 谱）；T-DM1/RC48/MRG003（微管谱）</td></tr>
+<tr><td>连接子稳定性</td><td>稳定（GGFG/不可裂解）→ 血浆游离载荷低→血液学/胃肠道脱靶少；pH 敏感（CL2A）→ 细胞外提前释放→全身毒性高</td><td>Dato-DXd 游离 DXd<1 ng/ml vs SG 游离 SN-38>10 ng/ml（TROP2 系内对比，机制数据）</td></tr>
+<tr><td>DAR 与靶点正常组织表达</td><td>DAR 越高、靶点在正常组织表达越广→靶点相关毒性越明显（TROP2 皮肤/角膜/唾液腺→口腔炎/眼；EGFR 皮肤→皮疹）</td><td>SKB264 口腔炎 vs BL-B01D1 低皮疹（双抗对 EGFR 单价结合设计【临床前证据】）</td></tr>
+<tr><td>ILD 风险梯度（观察性，非头对头）</td><td>DXd 系（T-DXd/Dato-DXd/HER3-DXd）报告 ILD 需重点管理；SN-38/Ed-04/BL-B01D1 报告率低或主要为 1-2 级；微管类低</td><td>见各药行</td></tr>
+</table>
+<div class="okb"><b>医学经理在 AE 管理中的角色</b>：不是替代临床处理，而是①确保医生掌握各药监测/分级/激素与生长因子方案（教育）；②证据层面支持"安全性管理路径"研究（减少因 AE 停药）；③PV 红线（疑似 ADR 不自行判断因果、按公司 SOP 转交）；④跨部门把"可管理毒性"翻译成规范使用，而非"更安全"营销话术【内部学习推演】。</div>
+</div>
+
+<!-- ============ 来源 ============ -->
+<h2 id="src">数据来源与声明</h2>
+<div class="card" style="font-size:12.5px">
+<p><b>主要来源（检索日期 2026-09-08；优先级：监管文件/说明书 &gt; PubMed 正式发表 &gt; 官方大会摘要 &gt; 专业媒体转述作线索）</b></p>
+<ol>
+<li><b>指南</b>：2026 版 CSCO 乳腺癌诊疗指南（2026-04-10 全国乳腺癌大会发布，要点转述自大会官方解读/专业媒体）；NCCN Breast Cancer V4.2025 及后续更新（经中文对照综述交叉核对）。<span class="e-pen lg">【待核实】</span>指南条目建议按正式文本复核。</li>
+<li><b>BL-B01D1/宜泽康</b>：国家药监局核准说明书（核准 2026-06-17，n=1014 安全性）；PANKU-NPC01（Lancet 2025，DOI 10.1016/S0140-6736(25)01954-3）；PANKU-Esophagus01（2026-07 获批）；PANKU-Breast 02（ASCO 2026 LBA1003）；PANKU-Breast 04（CTR20262666）；公司公告。</li>
+<li><b>HER2+/HR+/TNBC 格局</b>：DB-03/04/05/06/09/11 相关官方发布与大会摘要；KATHERINE/EMILIA；KEYNOTE-522/355；OlympiA；NATALEE/monarchE；INAVO120；ASCENT-03/07；TROPION-Breast01/02/06；OptiTROP-Breast01/02/03；EVER-132-002。</li>
+<li><b>HER3</b>：HERTHENA-Breast03/04 注册信息（NCT06797635/NCT07060807，ClinicalTrials.gov 2026-08 更新）；2026 ESMO BC 422RO（良医汇/官方会议报道）；HER3 生物学综述与既往发表数据（见主手册第 34 章及 /data/references.json）。</li>
+<li><b>ADC 结构与毒性</b>：乳腺癌 ADC 不良反应管理相关国内指南/共识（2025 版口径）、三款 TROP2 ADC 结构对比解读（第一三共赞助学术栏目，作为机制线索，非证据源）、载荷-毒性机制综述（如 MDPI 2026 NSCLC-ADC 综述作机制参照）。</li>
+</ol>
+<p><b>使用边界</b>：本页为个人学习资料，不作为公司对外材料；不构成临床处方建议；跨药比较均【非头对头比较】；未获批/在研项标注研究信息；"公司预期 2027 获批（TNBC）"为待核实项，以 CDE 审评结果为准。主手册 v2.4 的单一事实源在 /data/*.json，本页为静态学习页，不自动同步，请按需更新。</p>
+</div>
+
+<div class="foot">
+乳腺癌治疗格局 Mapping v1.0 · 数据检索截止 2026-09-08 · 上市后医学经理个人学习资料（不作为公司对外材料）<br>
+配套：主手册 https://tiantujin.github.io/bl-b01d1-medical-handbook/（v2.4，54 章 + 工作台 + /data/*.json）｜职场工具模板.xlsx｜年度证据规划表.xlsx
+</div>
+</div>
+</body>
+</html>
