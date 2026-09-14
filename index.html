@@ -125,6 +125,22 @@
   <a href="#s52">52 30/60/90 天计划（重构版）</a>
   <a href="#s53">53 引用、证据标签与版本管理</a>
   <a href="#s54">54 数据来源与声明（总）</a>
+  <div class="sect">研究设计与统计实操（55-57 新增）</div>
+  <a href="#s55">55 样本量设计：从基础到实操（可复算手册）</a>
+  <a class="l2" href="#s55-1">55.1 基础参数与三个直觉</a>
+  <a class="l2" href="#s55-2">55.2 五类终点公式</a>
+  <a class="l2" href="#s55-3">55.3 Simon 两阶段设计</a>
+  <a class="l2" href="#s55-5">55.5 实操 8 步与三个算例</a>
+  <a class="l2" href="#s55-6">55.6 可运行代码</a>
+  <a class="l2" href="#s55-8">55.8 样本量论证段落模板</a>
+  <a href="#s56">56 单臂 IIT 的常见设计形式与适合场景</a>
+  <a class="l2" href="#s56-2">56.2 八种形式速查矩阵</a>
+  <a class="l2" href="#s56-10">56.10 选型决策五问</a>
+  <a class="l2" href="#s56-12">56.12 三个方案骨架</a>
+  <a href="#s57">57 多队列研究设计注意事项</a>
+  <a class="l2" href="#s57-3">57.3 统计注意事项与 α 分配</a>
+  <a class="l2" href="#s57-7">57.7 常见错误清单</a>
+  <a class="l2" href="#s57-8">57.8 三队列设计示例</a>
   <div class="sect">专业百科 · 44 章</div>
   <a href="#s1">1 执行摘要</a>
   <a href="#s2">2 产品深度解析</a>
@@ -318,7 +334,7 @@
     </div>
   </div>
 
-  <div class="upd" id="wb-upd"><b>🔄 最近更新（2026-08-30 · v2.3）</b>：① 全站医学准确性与合规审计（修正 28+ 处高风险表述、133 处章节编号错位、清理冗余标签）；② 首页重构为「六大工作中心 + 15 场景入口」；③ 新增第 45-54 章（Medical Plan / Evidence Plan / 洞察深化 / 项目管理 / Publication / 医学治理 / 商业准入 / 能力模型 / 30-60-90）；④ 新增全站搜索与证据标签体系；⑤ 数据检索截止更新为 2026-08-30。</div>
+  <div class="upd" id="wb-upd"><b>🔄 最近更新（2026-09-14 · v2.5）</b>：① 新增第 55 章<b>《样本量设计：从基础到实操》</b>——五类终点公式、Simon 两阶段 10 组实算表、膨胀与敏感性分析、8 步实操流程、3 个完整算例、可直接运行的 Python/R 代码、中英文论证段落模板；② 新增第 56 章<b>《单臂 IIT 的常见设计形式与适合场景》</b>——8 种设计形式速查矩阵、Gehan/贝叶斯实算表、选型决策五问、12 个坑、3 个方案骨架；③ 新增第 57 章<b>《多队列研究设计注意事项》</b>——四种原型、10 个决策点、多重性 α 分配实测代价、共享对照收益测算、治理与报告规范；④ 修正第 16.4.2 与 17.1.3 章的旧「示意值」，替换为精确二项实算值并加交叉引用。<br><span style="font-size:11.5px">上一版（2026-08-30 · v2.3/v2.4）：全站医学准确性与合规审计、首页六中心 + 15 场景、45-54 章、证据标签体系、统一数据源 /data/*.json。</span></div>
 
   <!-- 免责声明 -->
   <div class="disc" id="wb-disc"><b>⚠️ 免责声明（重要）</b>：① 本网站为<b>个人学习与工作辅助工具</b>，不代表公司官方立场、不构成对任何产品的推广或医学建议；② 产品数据以国家药监局批准说明书及官方公告为准，数据检索截止 2026-08-30；③ 未获批适应症（如 TNBC/HR+/1L 等）一律为「研究信息，尚未获得该适应症批准」，不得用于主动推广；④ 未来获批/读出时间仅为本网站整理的「公司预期/预计」，以官方审评结果为准；⑤ 跨研究比较均非头对头，不得据此作出优效性或安全性优越结论；⑥ 机制推断与临床证据已通过【证据标签】区分；⑦ 涉及公司流程、SOP、KOL、预算的内容均为行业通用框架或学习推演，以公司制度为准；⑧ 本网站不提供患者个体化诊疗建议。</div>
@@ -1752,10 +1768,10 @@
     <p>用于概念验证/单臂 II 期：H0: p≤p0 vs H1: p≥p1。给定 p0、p1、α、β，可查 Simon 最优/两阶段设计表得到 n1（第一阶段入组数）与总 n。示意（<b>正式值须用软件计算</b>）：</p>
     <table>
       <tr><th>p0（历史/无效线）</th><th>p1（目标）</th><th>α（单侧）</th><th>β</th><th>示例：第一阶段 n1 / 总 n</th><th>BL-B01D1 语境示例</th></tr>
-      <tr><td>20%</td><td>40%</td><td>0.05</td><td>0.20</td><td>约 n1=17（若缓解≤3 例则早期停止）；总 n≈46（若≤13 例缓解则拒绝）</td><td>如"后线 TNBC 历史 ORR 约20%，目标 ORR 40%"</td></tr>
-      <tr><td>30%</td><td>50%</td><td>0.05</td><td>0.20</td><td>约 n1=18；总 n≈39</td><td>如"二线 ADC 场景（对照 SG 约31%）"</td></tr>
+      <tr><td>20%</td><td>40%</td><td>0.05</td><td>0.20</td><td><b>n1=13（若缓解≤3 例则早期停止）；总 n=43（若累计缓解≤12 例则判定无效）</b></td><td>如"后线 TNBC 历史 ORR 约20%，目标 ORR 40%"</td></tr>
+      <tr><td>30%</td><td>50%</td><td>0.05</td><td>0.20</td><td><b>n1=15；总 n=46（阈值 r=18）</b></td><td>如"二线 ADC 场景（对照 SG 约31%）"</td></tr>
     </table>
-    <p style="font-size:12.5px;color:var(--mut)">注：上表为 Simon 最优设计查表示意值（近似），实际方案必须用 PASS/EAST/R 等软件按精确 α/β 计算并写明可放弃概率（probability of early termination）。</p>
+    <p style="font-size:12.5px;color:var(--muted)">注：上表数值已按精确二项分布实算（power 80%）：20%→40% 设计实际 α=0.0496、power=0.8002、期望样本量 EN=20.6、H0 下提前停止概率 0.75；30%→50% 设计 EN=23.6。完整查值表、最优/极小极大对照与代码见<b>第 55.3.3 与 55.6.1 节</b>；实际方案仍须用 PASS/nQuery/EAST/R 等软件复核并写明可放弃概率（probability of early termination）。</p>
     <h4>16.4.3 RCT 的效应量假设与事件驱动设计</h4>
     <table>
       <tr><th>要素</th><th>说明</th><th>实例</th></tr>
@@ -1958,7 +1974,7 @@
       <tr><td>PET（可早期终止概率）</td><td>H0 下第一阶段就终止的概率——体现"尽早止损"的效率</td></tr>
       <tr><td>把握度与 α</td><td>整体 α≈0.05（单侧）、β=0.10-0.20；两阶段 α/β 通过查表或软件分配</td></tr>
       <tr><td>区间估计</td><td>缓解率用 <b>Clopper-Pearson 精确 CI</b>（小样本不适用正态近似）；可加 Simon 设计调整的 CI</td></tr>
-      <tr><td>示例（示意值，须软件计算）</td><td>p0=20%、p1=40%、α=0.05、β=0.20 → 最优设计约 n1=17、r1=3；总 n≈46、r≈13</td></tr>
+      <tr><td>示例（精确二项实算）</td><td>p0=20%、p1=40%、α=0.05、β=0.20 → 最优设计 <b>n1=13、r1=3；总 n=43、r=12</b>（EN=20.6，PET@H0=0.75，实际 α=0.0496、power=0.8002）；极小极大设计 n=33、r=10。完整 10 组参数查值表见<b>第 55.3.3 节</b></td></tr>
     </table>
     <p><b>医学经理要点</b>：IIR 单臂研究若以 ORR 为主终点，方案里必须给 p0 的<b>医学依据</b>（历史对照/注册研究对照臂 ORR，如 ≥2L TNBC 化疗约 20-30%）与 p1 的<b>临床意义论证</b>（如"期望 ORR ≥40%"）；n1/r1/n/r 由统计师计算并写明。</p>
 
@@ -2048,13 +2064,13 @@
     <p><b>精确法（推荐）</b>：基于二项分布，检验 H0: p ≤ p0 vs H1: p ≥ p1，单侧 α（监管导向 0.025，内部探索可 0.05），把握度 1−β = 80%–90%。用 nQuery/PASS/R（binom.test 反解）计算。</p>
     <p><b>正态近似公式</b>（供理解，不用手算）：</p>
     <p style="font-family:Menlo,Consolas,monospace;font-size:13px">n = [ z<sub>1−α</sub>·√(p0(1−p0)) + z<sub>1−β</sub>·√(p1(1−p1)) ]² / (p1 − p0)²</p>
-    <p><b>示例</b>：p0=0.20、p1=0.40、单侧 α=0.05、β=0.20 → 精确法 n≈44–46 例（示意值，须软件复核）。</p>
+    <p><b>示例（精确二项实算）</b>：p0=0.20、p1=0.40、单侧 α=0.05、β=0.20 → 单阶段精确法 <b>n=35，临界值 r=12</b>（实际 α=0.0344、power=0.8048）；正态近似式给出约 44 例，<b>两者差 9 例，说明近似式在小样本 ORR 场景不可直接用</b>。两阶段设计对比与 10 组参数查值见<b>第 55.3.3 节</b>，可运行代码见<b>第 55.6.1 节</b>。</p>
     <h4 style="margin-top:14px">② Simon 最优两阶段设计（IIR 概念验证最常用）</h4>
     <table>
-      <tr><th>要素</th><th>含义</th><th>示例（p0=0.20, p1=0.40, α=0.05, β=0.20，示意值）</th></tr>
-      <tr><td>n1 / r1</td><td>第一阶段入组数 / 早期停止阈值</td><td>n1=17，r1=3：17 例中缓解≤3 例 → 早期停止（判定无效）</td></tr>
-      <tr><td>n / r</td><td>总入组数 / 最终拒绝阈值</td><td>n=46，r=15：总缓解≤15 例 → 拒绝 H0</td></tr>
-      <tr><td>PET</td><td>早期停止概率（p0 下）</td><td>约 0.55–0.65（节省样本的关键）</td></tr>
+      <tr><th>要素</th><th>含义</th><th>示例（p0=0.20, p1=0.40, α=0.05, β=0.20；Simon 最优实算值）</th></tr>
+      <tr><td>n1 / r1</td><td>第一阶段入组数 / 早期停止阈值</td><td><b>n1=13，r1=3</b>：13 例中确认缓解≤3 例 → 早期停止（判定该药活性不足）</td></tr>
+      <tr><td>n / r</td><td>总入组数 / 最终判定阈值</td><td><b>n=43，r=12</b>：累计确认缓解≤12 例 → 判定未达有效性界值（不拒绝 H0 的"无效"方向即研究结论为阴性）</td></tr>
+      <tr><td>PET</td><td>早期停止概率（p0 下）</td><td><b>约 0.75</b>（真实无效时 3/4 的情况下仅 13 例即可停止，是省样本的关键）</td></tr>
       <tr><td>EN</td><td>期望样本量</td><td>最优设计最小化 EN；Minimax 设计最小化 n</td></tr>
     </table>
     <p><b>最优（Optimal）vs 最小化（Minimax）</b>：Optimal 在满足 α/β 约束下最小化期望样本量（更省）；Minimax 最小化总样本量（更稳）。肿瘤 II 期多选 Optimal。</p>
@@ -5295,11 +5311,1043 @@
     </ul>
   </div>
 </section>
+
+<section id="s55">
+  <div class="sec-head"><div class="sec-num">55</div><h2>样本量设计：从基础到实操（可复算手册）</h2></div>
+  <div class="sec-desc">基础（参数、直觉、杠杆）→ 进阶（五类终点公式：率 / 生存 / 连续 / 非劣效 / 其他）→ 两阶段与适应性 → 膨胀因素 → 实操 8 步与 3 个完整算例 → 可运行代码 → 敏感性分析与论证段落模板。本章所有数值均由本页附带的脚本实算得到，可逐项复核。</div>
+
+  <div class="info" style="margin-left:56px"><b>📌 本章与第 16、17 章的分工（避免重复，请配套使用）</b><br>
+  <b>第 16 章</b>给的是"外部参照系"：mTNBC 已发表 RCT 的设计与统计参数总表、α 层级分配实例、P0/P1 概念、亚组与竞争风险等——用来<b>判断行业惯例</b>。<br>
+  <b>第 17 章</b>给的是"设计框架"：单臂/RWE 的适用场景、终点与评估细则、监管路径、坑清单。<br>
+  <b>本章（55）</b>给的是"计算与论证工具"：公式怎么用、参数怎么定、数字怎么算、算完怎么膨胀、怎么回答"为什么是这个样本量"。<br>
+  <b>第 56 章</b>解决"选哪种设计形式"（单臂 IIT 8 种形式 × 场景）；<b>第 57 章</b>解决"多个队列一起做时的多重性与分配"。</div>
+
+  <h3 id="s55-1">55.1 基础层：先建立三个直觉，再碰公式</h3>
+  <div class="card">
+    <h4>55.1.1 一句话总纲</h4>
+    <p>样本量 = <b>"你想在多大概率下、把多小的差别判成真"</b> 的代价。它不由公式决定，由<b>假设</b>决定；公式只是把假设翻译成例数。<b>医学经理的活儿是把假设的证据做扎实，统计师的活儿是把数字算准——两者都不能越界。</b></p>
+    <table>
+      <tr><th>参数</th><th>含义（直觉版）</th><th>谁提供</th><th>常见取值</th><th>变严一点的代价</th></tr>
+      <tr><td><b>α</b>（I 类错误）</td><td>"药其实没用，却判成有用"的概率——假阳性</td><td>统计师 + 监管惯例</td><td>单侧 0.025（注册）、0.05（II 期/IIT）</td><td>α 从 0.05 收紧到 0.025：单臂 n 约 +20%（见 55.1.3）</td></tr>
+      <tr><td><b>β / power</b></td><td>"药其实有用，却判成没用"的概率——假阴性。<b>power = 1−β</b></td><td>统计师 + 申办方风险偏好</td><td>80%（探索）、90%（注册/关键 II 期）</td><td>power 80%→90%：单臂 n 约 +34%，RCT 约 +24%</td></tr>
+      <tr><td><b>P0 / 对照值</b></td><td>"不惊艳的底线"：历史对照水平、无效线</td><td><b>医学经理</b>（须引文献）</td><td>后线 TNBC 化疗 ORR 约 20%、mPFS 3–5 个月</td><td>P0 抬高 → δ 变小 → n 暴涨</td></tr>
+      <tr><td><b>P1 / 目标值</b></td><td>"值得继续做药"的临床意义线</td><td><b>医学经理 + 临床团队</b></td><td>ORR ≥ 40%（δ=20 个百分点）</td><td>目标下调 5 个百分点 → n 可涨 2–3.5 倍</td></tr>
+      <tr><td><b>δ（效应量）</b></td><td>P1−P0，或 1−HR、Δ/σ（标准化效应量）</td><td>由上两项推出</td><td>ORR δ=15–20 个百分点；HR 0.60–0.75</td><td><b>样本量 ∝ 1/δ²</b>——δ 减半，n 变 4 倍</td></tr>
+      <tr><td><b>脱落率</b></td><td>入组后不能用于主要分析的比例（失访、撤回、死亡非终点）</td><td>医学经理（历史经验）</td><td>晚期 5–15%；辅助/长期随访 10–25%</td><td>按 55.4 膨胀公式上调 N</td></tr>
+    </table>
+    <div class="note"><b>为什么"样本量 ∝ 1/δ²"是本章最重要的一句话</b>：δ 是你唯一可以"用医学论证去改变"的参数。α、β 是监管惯例与统计学约定，脱落是运营现实，只有 P0/P1 是可以靠文献检索、真实世界数据、专家共识把它做扎实的——所以<b>方案里最长的段落永远是"为什么 P0 取 20%、P1 取 40%"</b>，而不是公式推导。</div>
+
+    <h4>55.1.2 常用分位数表（照抄可用）</h4>
+    <p>绝大多数样本量公式都是这个形状：<span style="font-family:Menlo,Consolas,monospace">n ∝ (z<sub>1−α</sub> + z<sub>1−β</sub>)² / δ²</span>。所以把 (z+z)² 记住，你就能在开会时立刻判断"如果 δ 减半，样本量会变成 4 倍"。</p>
+    <table>
+      <tr><th>α 设定</th><th>power</th><th>z<sub>1−α/2</sub>（或单侧 z<sub>1−α</sub>）</th><th>z<sub>1−β</sub></th><th>(z+z)²</th><th>4(z+z)²（生存终点用）</th></tr>
+      <tr><td rowspan="3">单侧 0.05（= 双侧 0.10）</td><td>80%</td><td>1.6449</td><td>0.8416</td><td>6.183</td><td>24.73</td></tr>
+      <tr><td>85%</td><td>1.6449</td><td>1.0364</td><td>7.189</td><td>28.76</td></tr>
+      <tr><td>90%</td><td>1.6449</td><td>1.2816</td><td>8.564</td><td>34.26</td></tr>
+      <tr><td rowspan="3">单侧 0.025（= 双侧 0.05，<b>注册最常用</b>）</td><td>80%</td><td>1.9600</td><td>0.8416</td><td>7.849</td><td>31.40</td></tr>
+      <tr><td>85%</td><td>1.9600</td><td>1.0364</td><td>8.978</td><td>35.91</td></tr>
+      <tr><td>90%</td><td>1.9600</td><td>1.2816</td><td><b>10.507</b></td><td><b>42.03</b></td></tr>
+      <tr><td rowspan="3">单侧 0.10（= 双侧 0.20，早期探索）</td><td>80%</td><td>1.2816</td><td>0.8416</td><td>4.508</td><td>18.03</td></tr>
+      <tr><td>85%</td><td>1.2816</td><td>1.0364</td><td>5.373</td><td>21.49</td></tr>
+      <tr><td>90%</td><td>1.2816</td><td>1.2816</td><td>6.569</td><td>26.28</td></tr>
+    </table>
+    <div class="warn"><b>两张表别用混</b>：<b>单臂研究用单侧 z</b>（只有一个方向，H1：p ≥ p1）；<b>两组比较用双侧 z</b>（不知道哪边好）。若申办方按"单侧 0.05"设计而审评按"双侧 0.05"审，样本量会凭空少 20% 以上，这是审评问询高频问题。</div>
+
+    <h4>55.1.3 三个杠杆的实测量级（单臂 p0=20% → p1=40%，精确二项法）</h4>
+    <table>
+      <tr><th>设定</th><th>所需 n</th><th>临界值 r</th><th>实际 α</th><th>实际 power</th><th>解读</th></tr>
+      <tr><td>单侧 0.10 / power 80%</td><td>24</td><td>8</td><td>0.0892</td><td>0.8081</td><td>早期信号筛选，最省钱</td></tr>
+      <tr><td>单侧 0.05 / power 80%</td><td>35</td><td>12</td><td>0.0344</td><td>0.8048</td><td>IIT 常规选择</td></tr>
+      <tr><td>单侧 0.05 / power 90%</td><td>47</td><td>15</td><td>0.0366</td><td>0.9012</td><td>准备做注册的 II 期</td></tr>
+      <tr><td>单侧 0.025 / power 80%</td><td>41</td><td>14</td><td>0.0242</td><td>0.8219</td><td>需向监管递交时</td></tr>
+      <tr><td>单侧 0.025 / power 90%</td><td>56</td><td>18</td><td>0.0219</td><td>0.9108</td><td>关键单臂（附条件批准支撑）</td></tr>
+    </table>
+    <div class="info"><b>三个可背下来的杠杆</b>：① α 从 0.05 收到 0.025 → n +19%（35→41）；② power 从 80% 提到 90% → n +34%（35→47）；③ <b>δ 从 20 个百分点降到 10 个百分点 → n 涨 3.4 倍（47→160）</b>。所以"能不能把目标定得现实一点"是方案会上最值钱的一句话。</div>
+
+    <h4>55.1.4 δ 从哪来——取证清单（医学经理真正要交的作业）</h4>
+    <table>
+      <tr><th>P0（对照/无效线）的来源</th><th>可信度</th><th>写进方案的方式</th></tr>
+      <tr><td>同适应症、同线次、同人群的注册研究对照臂（如 PANKU-Breast 02 化疗组 mPFS 3.1 个月）</td><td class="ok">最高</td><td>写明研究名、样本量、人群、数据截止，注明"该研究人群与本方案的可比性"</td></tr>
+      <tr><td>RCT 的试验臂（用竞争对手的最好数据当底线）</td><td class="ok">高</td><td>用于"必须超过现有最好治疗"的论证，通常会显著抬高样本量</td></tr>
+      <tr><td>单臂 II 期历史 ORR、荟萃分析、真实世界队列</td><td>中</td><td>必须写检索策略与偏倚评估；建议同时给出 P0 的敏感性区间（见 55.7）</td></tr>
+      <tr><td>指南推荐的标准治疗疗效区间</td><td>中</td><td>引用指南版本与推荐等级，注明"指南未给出精确率值"时的取值理由</td></tr>
+      <tr><td>专家共识 / 内部经验</td><td class="hl">低</td><td>只能作为敏感性分析的上/下界，不能单独作为主要假设依据</td></tr>
+    </table>
+    <table>
+      <tr><th>P1（目标值）的设定原则</th><th>说明</th></tr>
+      <tr><td>临床意义优先于统计显著</td><td>先回答"达到这个水平，是否会改变临床决策/是否值得继续投入三期"，再反推数字。ORR 提高 ≥15–20 个百分点、PFS HR ≤0.70–0.75 是肿瘤领域常见的"值得做"门槛</td></tr>
+      <tr><td>不要用"上一项研究的点估计"当 P1</td><td>If 早期研究 ORR 是 51.7%，直接拿 51.7% 当 P1 会导致样本量过小且不现实；应取保守值（如 40%），并把乐观值放进敏感性分析</td></tr>
+      <tr><td>P1 与 P0 的差距必须能撑起样本量</td><td>如果算出来 n=800 而你是 IIT，说明 P1 定得不现实或这个假设不该用单臂来回答——回到第 56 章重选设计形式</td></tr>
+      <tr><td>P1 必须早于揭盲锁定</td><td>所有 P0/P1/α/β/分析方法写入方案与 SAP 并锁定版本，任何调整需走方案修正与伦理备案</td></tr>
+    </table>
+  </div>
+
+  <h3 id="s55-2">55.2 进阶层：按终点类型选公式（五类终点，照类型抄公式）</h3>
+  <div class="card">
+    <h4>55.2.1 第一类：二分类终点（ORR、pCR、缓解率、12 个月生存率）</h4>
+    <p><b>先分清两种提问方式——这是单臂研究最常见的样本量错误来源：</b></p>
+    <table>
+      <tr><th>提问方式</th><th>统计目标</th><th>公式</th><th>何时用</th></tr>
+      <tr><td><b>① 检验型</b></td><td>H0: p ≤ p0 vs H1: p ≥ p1，控制 α 与 β</td><td>单臂：<span style="font-family:Menlo,Consolas,monospace">n = [z<sub>1−α</sub>√(p0q0) + z<sub>1−β</sub>√(p1q1)]² / (p1−p0)²</span>（近似式，精确值用精确二项反解）</td><td><b>要下"优于历史对照"的结论</b>时——绝大多数单臂 II 期</td></tr>
+      <tr><td><b>② 精度型</b></td><td>把 ORR 的 95% CI 半宽控制在 ±w</td><td><span style="font-family:Menlo,Consolas,monospace">n = z²<sub>1−α/2</sub> · p(1−p) / w²</span></td><td>只想"把疗效估计得足够准"，不做假设检验（如探索性队列、安全性描述）</td></tr>
+    </table>
+    <table>
+      <tr><th>预期 ORR</th><th>半宽 ±10%</th><th>半宽 ±15%</th><th>半宽 ±20%</th><th>对比：检验型（p0=20%,p1=40%,单侧 0.05,power 90%）</th></tr>
+      <tr><td>30%</td><td>81</td><td>36</td><td>21</td><td rowspan="3" class="hl">47 例（且必须满足 α 与 power 双重约束）</td></tr>
+      <tr><td>40%</td><td>93</td><td>41</td><td>24</td></tr>
+      <tr><td>50%</td><td>97</td><td>43</td><td>25</td></tr>
+    </table>
+    <div class="warn"><b>最常见的一处硬伤</b>：方案写的样本量来自"精度型"（如 n=24，半宽 ±20%），结论小节却写"达到 40% 即说明优于历史 20%"——这是检验型语言。审评看到会直接判定<b>样本量不足以支持该结论</b>。两句话必须同源。<br>
+    <b>另一处硬伤</b>：精度型用了双侧 1.96，检验型却按单侧 0.05 收效；同一个方案里两种口径混用。</div>
+
+    <p><b>RCT 两组比较（ORR 为主要终点）：</b></p>
+    <p style="font-family:Menlo,Consolas,monospace;font-size:12.5px">n/组 = [z<sub>1−α/2</sub>√(2p̄q̄) + z<sub>1−β</sub>√(p1q1 + p2q2)]² / (p1−p2)²　，p̄=(p1+p2)/2</p>
+    <p>实测（双侧 α=0.05，1:1 随机）：</p>
+    <table>
+      <tr><th>对照 p2</th><th>试验 p1</th><th>δ</th><th>power 80%</th><th>power 90%（n/组 / 总 N）</th><th>说明</th></tr>
+      <tr><td>30%</td><td>50%</td><td>20%</td><td>93 / 组</td><td><b>124 / 248</b></td><td>典型的 ADC vs 化疗 II 期</td></tr>
+      <tr><td>25%</td><td>45%</td><td>20%</td><td>89 / 组</td><td>118 / 236</td><td>—</td></tr>
+      <tr><td>20%</td><td>40%</td><td>20%</td><td>82 / 组</td><td>109 / 218</td><td>对照率低则所需样本略少</td></tr>
+      <tr><td>35%</td><td>52%</td><td>17%</td><td>133 / 组</td><td><b>177 / 354</b></td><td>δ 缩小 3 个百分点，样本量 +43%</td></tr>
+      <tr><td>15%</td><td>35%</td><td>20%</td><td>73 / 组</td><td>97 / 194</td><td>—</td></tr>
+    </table>
+    <p style="font-size:12.5px;color:var(--muted)">2:1 随机（试验 2 : 对照 1）时的实测结果：对照 30% vs 试验 50%，power 90% → 试验组<b>93</b> 例 / 对照约 47 例。注意 2:1 分配在总样本量上略高于 1:1（约 +5%），但能减少患者暴露于对照，伦理与招募上常更优。</p>
+
+    <h4>55.2.2 第二类：时间-事件终点（PFS / OS / DFS / DOR）</h4>
+    <p>生存终点的样本量<b>不是先算例数，而是先算"需要多少个事件"</b>（Schoenfeld 公式）：</p>
+    <p style="font-family:Menlo,Consolas,monospace;font-size:13px">d = 4 (z<sub>1−α/2</sub> + z<sub>1−β</sub>)² / (ln HR)²　　然后　N = d / P(事件)</p>
+    <table>
+      <tr><th>预期 HR</th><th>事件数 d（power 80%）</th><th>事件数 d（power 90%）</th><th>N（事件率 70%）</th><th>N（事件率 80%）</th><th>说明</th></tr>
+      <tr><td>0.80</td><td>631</td><td>845</td><td>1208</td><td>1057</td><td>OS 生存获益有限时，样本量极大</td></tr>
+      <tr><td>0.75</td><td>380</td><td><b>508</b></td><td>726</td><td>635</td><td>OS 常用假设</td></tr>
+      <tr><td>0.70</td><td>247</td><td>331</td><td>473</td><td>414</td><td>PFS 常用假设</td></tr>
+      <tr><td>0.65</td><td>170</td><td>227</td><td>325</td><td>284</td><td>—</td></tr>
+      <tr><td>0.60</td><td>121</td><td>162</td><td>232</td><td>203</td><td>强效 ADC 的 PFS 假设</td></tr>
+      <tr><td>0.50</td><td>66</td><td>88</td><td>126</td><td>110</td><td>—</td></tr>
+    </table>
+    <div class="warn"><b>HR 的杠杆比 ORR 更狠</b>：power 90%、事件率 70% 时，HR 0.80 → 0.75 → 0.70 → 0.65 对应 N = 1208 → 726 → 473 → 325。相对的倍数是 2.55× / 1.53× / 1.00× / 0.69×（以 HR=0.70 为基准）。<b>把 HR 从 0.75 改成 0.70，就能省掉 250 例</b>——这就是为什么方案会上统计师会反复追问"这个 HR 有没有依据"，而这也是最容易被质疑为"数字美颜"的地方。</div>
+
+    <p><b>P(事件) 怎么算</b>（不能拍脑袋，尤其当随访不成熟时）：假设对照生存呈指数分布（风险率 λ = ln2 / 中位生存）、匀速入组（入组期 A 个月）、全研究期 T 个月，则平均事件概率为：</p>
+    <p style="font-family:Menlo,Consolas,monospace;font-size:12.5px">P(事件) = 1 − [ e<sup>−λ(T−A)</sup> − e<sup>−λT</sup> ] / (λA)</p>
+    <table>
+      <tr><th>研究场景</th><th>对照中位（月）</th><th>入组期 A</th><th>总研究期 T</th><th>平均事件率</th><th>N（HR 0.75，508 事件）</th></tr>
+      <tr><td>晚期后线 PFS（中位 3 个月）</td><td>3</td><td>24</td><td>36</td><td>0.989</td><td>514</td></tr>
+      <tr><td>晚期后线 PFS（中位 5 个月）</td><td>5</td><td>24</td><td>36</td><td>0.945</td><td>538</td></tr>
+      <tr><td>晚期 OS（中位 16 个月）</td><td>16</td><td>30</td><td>60</td><td>0.847</td><td>600</td></tr>
+      <tr><td>维持治疗 PFS（中位 12 个月）</td><td>12</td><td>24</td><td>48</td><td>0.865</td><td>588</td></tr>
+      <tr><td>辅助 DFS（中位 36 个月）</td><td>36</td><td>36</td><td>72</td><td>0.639</td><td><b>795</b></td></tr>
+      <tr><td>辅助 DFS（同上，但延长随访）</td><td>36</td><td>36</td><td>96</td><td>0.773</td><td>658</td></tr>
+    </table>
+    <div class="info"><b>从这张表要读出三件事</b>：① 事件成熟慢（辅助治疗）时，<b>拖延随访比多招患者更有效</b>——因为 N = d / P(事件)，延长研究期直接提高事件率，可省下上百例患者；② 后线晚期研究事件率接近 1，N ≈ d，此时样本量几乎全由 HR 决定；③ 反过来，"事件数达标但例数不足"是常见执行风险：入组慢了就只能延后分析时点（α 消耗与数据成熟度都要重新评估）。</div>
+    <div class="warn"><b>三个必须记住的表述差异</b>：<br>
+    ① "需要 331 个 PFS 事件"≠"需要 331 例患者"（前者是分析所需的分子，后者要除以事件率）；<br>
+    ② "入组 N=473 例"≠"分析时能得到 331 个事件"（要检查入组速度 × 随访时间是否真能积累到）；<br>
+    ③ 递交材料里若把"例数"和"事件数"写混，是最容易被统计审评一眼看到的低级错误。</div>
+
+    <h4>55.2.3 第三类：连续变量终点（QoL 评分、LVEF 变化、疼痛评分变化）</h4>
+    <p style="font-family:Menlo,Consolas,monospace;font-size:12.5px">n/组 = 2σ² (z<sub>1−α/2</sub> + z<sub>1−β</sub>)² / Δ²　（等效于：n/组 = 2(z+z)² / 标准化效应量²）</p>
+    <table>
+      <tr><th>σ（标准差）</th><th>Δ（组间差值）</th><th>标准化效应量 Δ/σ</th><th>n/组</th><th>总 N</th></tr>
+      <tr><td>1.0</td><td>0.3</td><td>0.30σ</td><td>234</td><td>468</td></tr>
+      <tr><td>1.0</td><td>0.5</td><td>0.50σ</td><td>85</td><td>170</td></tr>
+      <tr><td>1.0</td><td>0.8</td><td>0.80σ</td><td>33</td><td>66</td></tr>
+      <tr><td>5.0</td><td>0.5</td><td>0.10σ</td><td>2102</td><td>4204</td></tr>
+      <tr><td>10.0</td><td>0.5</td><td>0.05σ</td><td>8406</td><td>16812</td></tr>
+    </table>
+    <div class="warn"><b>QoL 类终点为什么样本量常常不可行</b>：量表标准差大（σ 常为 10–25 分），而有临床意义的差值 Δ 只有 3–8 分 → 标准化效应量 0.2–0.3，n/组 动辄数百至上千，往往超过主疗效终点所需样本量。<b>实务做法</b>：把 QoL 定位为次要/探索性终点（只描述、只给 CI、不做检验），或使用经过验证的 <b>TWiST / Q-TWiST、至生活质量恶化时间（TTD）</b> 等替代指标并明确其局限，而不要在方案里承诺"QoL 组间差异有统计学意义"。</div>
+
+    <h4>55.2.4 第四类：非劣效 / 等效设计</h4>
+    <p>检验 H0: p<sub>试验</sub> − p<sub>对照</sub> ≤ −margin（非劣效界值 M1）时，效应量用"真值差 + margin"代替：</p>
+    <p style="font-family:Menlo,Consolas,monospace;font-size:12.5px">n/组 = [z<sub>1−α</sub>√(2p̄q̄) + z<sub>1−β</sub>√(p1q1 + p2q2)]² / (真值差 + margin)²</p>
+    <table>
+      <tr><th>非劣效界值 margin</th><th>n/组（真值相同，均为 38%；单侧 0.05；power 90%）</th><th>解读</th></tr>
+      <tr><td>5%</td><td>1615</td><td>界值收得越窄，样本量越不可承受</td></tr>
+      <tr><td>10%</td><td>404</td><td>较常见的界值量级</td></tr>
+      <tr><td>15%</td><td>180</td><td>—</td></tr>
+      <tr><td>20%</td><td>101</td><td>界值过宽会被质疑"为了做出非劣效而设"</td></tr>
+    </table>
+    <div class="warn"><b>非劣效设计的三条不可退让原则</b>：① <b>界值必须由历史数据在方案设计阶段推导并锁定</b>，不能看到结果后调整（监管对 margin 的审视严格程度不亚于主要终点）；② 必须同时报告置信区间法与保守的 ITT/PP 双分析（并明确哪个是主分析）；③ <b>非劣效 ≠ 有效</b>——若试验药实际劣于对照，宽界值设计仍会"通过"，对外沟通绝不可将其表述为优效或等同。</div>
+
+    <h4>55.2.5 第五类：其他常被问到但少见的场景</h4>
+    <table>
+      <tr><th>场景</th><th>关键点</th></tr>
+      <tr><td>率/事件密度（每患者月事件数、AE 发生率）</td><td>用 Poisson 或负二项回归的对数链路；注意过度离散（over-dispersion）会低估方差 → 需加离散参数</td></tr>
+      <tr><td>重复测量（同一患者多次评分，如 ADC 每周期 EORTC QLQ-C30）</td><td>不能按"测量次数"膨胀样本量；应使用混合效应模型/MMRM，利用组内相关性获得效率增益（通常可省 10–25%）</td></tr>
+      <tr><td>协变量调整（基线特征、既往治疗线数）</td><td>在分析中纳入强预后因子（ANCOVA / 分层 Cox）可提高效率，相当于减少 5–20% 样本量；但必须在方案中预先声明</td></tr>
+      <tr><td>整群/中心内相关（同一中心患者相似）</td><td>需乘设计效应 (1 + (m−1)ρ)。多中心研究若中心数少、每中心例数多，该效应不可忽略</td></tr>
+      <tr><td>期中分析</td><td>每次期中都会消耗 α → 为保持总体 α，最终分析的样本量需相应增加（O'Brien-Fleming 消耗约 1–3%；Pocock 型消耗更多）。见第 16.5.3 与本章 55.4.4</td></tr>
+    </table>
+  </div>
+
+
+  <h3 id="s55-3">55.3 两阶段与"可提前止损"设计：Simon 的完整用法</h3>
+  <div class="card">
+    <h4>55.3.1 为什么单臂研究几乎一定要做两阶段</h4>
+    <p>单阶段设计（n 例一次性入组、分析一次）只有一个优点：简单。但当药物实际无效时，它会把全部患者都入完才告诉你"没用"。两阶段设计在中间设一道门槛，把无效药物的暴露人数砍掉一半以上。</p>
+    <table>
+      <tr><th>设计</th><th>n1 / r1</th><th>总 n / r</th><th>EN（期望样本量）</th><th>相比单阶段的节省</th></tr>
+      <tr><td>单阶段精确二项（p0=20%,p1=40%,单侧 0.05,power 90%）</td><td>—</td><td>47 / 15</td><td>47.0</td><td>基准</td></tr>
+      <tr><td><b>Simon 最优（Optimal）</b></td><td>19 / 4</td><td>54 / 15</td><td><b>30.4</b></td><td>期望上省 <b>35%</b> 的患者</td></tr>
+      <tr><td>Simon 极小极大（Minimax）</td><td>15 / 2</td><td>45 / 13</td><td>33.1</td><td>最大入组数比最优设计少 9 例</td></tr>
+    </table>
+    <div class="info"><b>读懂这张表</b>：Simon 最优设计的<b>最大入组数（54）反而大于单阶段（47）</b>，但<b>期望入组数（30.4）显著更小</b>——因为约 67% 的概率在 p0 下车队在 19 例时就停了。<b>"期望样本量"才是伦理与资源意义上真正重要的数字</b>，这一点必须向伦理委员会讲清楚，否则会误以为两阶段"更贵"。</div>
+
+    <h4>55.3.2 Simon 最优 vs 极小极大：怎么选</h4>
+    <table>
+      <tr><th></th><th>Optimal（最优）</th><th>Minimax（极小极大）</th></tr>
+      <tr><td>优化目标</td><td>最小化<b>期望</b>样本量 EN</td><td>最小化<b>最大</b>样本量 n</td></tr>
+      <tr><td>适用情境</td><td>药物有效性不确定、想尽早止损；患者资源有限</td><td>入组能力强、更在意"最坏情况下不要招太多人"；或经费有硬上限</td></tr>
+      <tr><td>典型差异（p0=20%→p1=40%，power 90%）</td><td>19/4 → 54/15，EN=30.4</td><td>15/2 → 45/13，EN=33.1</td></tr>
+      <tr><td>肿瘤 II 期惯例</td><td class="ok">首选</td><td>备选（经费硬约束时用）</td></tr>
+      <tr><td>向伦理/资助方陈述重点</td><td>无效概率高时能提前停止，减少无效暴露</td><td>最大入组量可控，不会超预算</td></tr>
+    </table>
+
+    <h4>55.3.3 十组常用参数的实算结果（可直接查用，但正式方案须用软件复核）</h4>
+    <p>下表全部由精确二项计算得到，实际 α 与 power 均为真值（非近似）。唯一改动：若您的 p0/p1 不在表内，用 55.6 的代码自行生成。</p>
+    <table>
+      <tr><th>p0</th><th>p1</th><th>α（单侧）</th><th>power</th><th>最优：n1 / r1</th><th>最优：总 n / r</th><th>PET@H0</th><th>PET@H1</th><th>EN</th><th>极小极大：总 n / r</th></tr>
+      <tr><td>5%</td><td>25%</td><td>0.05</td><td>90%</td><td>9 / 0</td><td><b>38 / 4</b></td><td>0.63</td><td>0.08</td><td>19.7</td><td>36 / 4</td></tr>
+      <tr><td>5%</td><td>20%</td><td>0.05</td><td>90%</td><td>12 / 0</td><td>52 / 5</td><td>0.54</td><td>0.07</td><td>30.4</td><td>49 / 5</td></tr>
+      <tr><td>10%</td><td>30%</td><td>0.05</td><td>90%</td><td>13 / 1</td><td>41 / 7</td><td>0.62</td><td>0.06</td><td>23.6</td><td>34 / 6</td></tr>
+      <tr><td>15%</td><td>30%</td><td>0.05</td><td>90%</td><td>30 / 5</td><td>82 / 17</td><td>0.71</td><td>0.08</td><td>45.1</td><td>64 / 14</td></tr>
+      <tr><td>15%</td><td>35%</td><td>0.05</td><td>90%</td><td>18 / 3</td><td>50 / 11</td><td>0.72</td><td>0.08</td><td>27.0</td><td>38 / 9</td></tr>
+      <tr><td>20%</td><td>35%</td><td>0.05</td><td>90%</td><td>37 / 8</td><td>83 / 22</td><td>0.69</td><td>0.06</td><td>51.4</td><td>77 / 21</td></tr>
+      <tr><td>20%</td><td>40%</td><td>0.05</td><td>80%</td><td>13 / 3</td><td>43 / 12</td><td>0.75</td><td>0.17</td><td>20.6</td><td>33 / 10</td></tr>
+      <tr><td>20%</td><td>40%</td><td>0.05</td><td>90%</td><td>19 / 4</td><td><b>54 / 15</b></td><td>0.67</td><td>0.07</td><td>30.4</td><td>45 / 13</td></tr>
+      <tr><td>25%</td><td>45%</td><td>0.05</td><td>90%</td><td>22 / 6</td><td>57 / 19</td><td>0.70</td><td>0.07</td><td>32.5</td><td>49 / 17</td></tr>
+      <tr><td>30%</td><td>50%</td><td>0.05</td><td>90%</td><td>24 / 8</td><td>63 / 24</td><td>0.73</td><td>0.08</td><td>34.7</td><td>53 / 21</td></tr>
+    </table>
+    <p style="font-size:12.5px;color:var(--muted)">PET = 提前终止概率（probability of early termination）。<b>PET@H0 越高越省钱，PET@H1 越低越安全</b>（好药不该被误停）。上表所有设计均满足约束 P(拒绝|p0) ≤ α 且 P(拒绝|p1) ≥ power，括号外的"实际 α"均已核算（例如第 8 行实际 α=0.0482、power=0.9045）。</p>
+
+    <h4>55.3.4 决定决策阈值之前，务必看这张"真实疗效落在中间"的敏感性表</h4>
+    <p>以 p0=20%、p1=40%、单侧 0.05、power 90%（最优设计 19/4 → 54/15）为例，若真实 ORR 落在两端之间：</p>
+    <table>
+      <tr><th>真实 ORR</th><th>第一阶段后停止的概率</th><th>整个研究判定"有效"的概率</th><th>实际处境</th></tr>
+      <tr><td>10%</td><td>0.965</td><td>0.000</td><td class="ok">几乎必然被淘汰（节省最多）</td></tr>
+      <tr><td>15%</td><td>0.856</td><td>0.004</td><td class="ok">几乎必然淘汰</td></tr>
+      <tr><td>20%（= p0）</td><td>0.673</td><td>0.048</td><td class="ok">符合 α 设计</td></tr>
+      <tr><td>25%</td><td>0.465</td><td>0.216</td><td>大概率不能宣告有效</td></tr>
+      <tr><td>30%</td><td>0.282</td><td>0.497</td><td class="hl">最有争议的区间：一半机会——样本量不足以保证结论</td></tr>
+      <tr><td>35%</td><td>0.150</td><td>0.755</td><td>大概率可宣告有效</td></tr>
+      <tr><td>40%（= p1）</td><td>0.070</td><td>0.904</td><td class="ok">符合 power 设计</td></tr>
+      <tr><td>45%</td><td>0.028</td><td>0.968</td><td class="ok">—</td></tr>
+      <tr><td>50%</td><td>0.010</td><td>0.990</td><td class="ok">—</td></tr>
+    </table>
+    <div class="warn"><b>这张表的用途</b>：当 KOL 或临床团队说"我觉得真实 ORR 大概 30%"时，你要能当场回答：<b>"如果真实是 30%，这项研究只有约 50% 的机会得出阳性结论——所以我们不能指望它证明疗效，只能把它定位为信号探索。"</b>这是医学经理在方案会上最有分量的一句话之一，也是避免"研究做完了却没法下结论"的关键。</div>
+
+    <h4>55.3.5 其他进阶形式（快速索引，详见第 56 章）</h4>
+    <table>
+      <tr><th>形式</th><th>核心机制</th><th>一句话适用场景</th></tr>
+      <tr><td>Gehan 两阶段</td><td>第一段极小样本排除（如 0/9 缓解即停）</td><td>极早期信号探测、药物被广泛质疑时</td></tr>
+      <tr><td>贝叶斯 Beta-Binomial</td><td>先验 + 后验概率决策（Pr(p &gt; p0 | data) &gt; 0.95）</td><td>可用历史数据构造先验，希望连续监测与灵活调整</td></tr>
+      <tr><td>三阶段 / 多阶段</td><td>多个停止点，进一步降低 EN</td><td>入组慢、希望逐段评估的长周期研究</td></tr>
+      <tr><td>无缝 II/III 期</td><td>II 期数据直接并入 III 期分析，节省时间</td><td>证据链完整、监管前置沟通充分时</td></tr>
+      <tr><td>主方案多队列</td><td>多个队列共享框架与对照</td><td>多个生物标志物亚组并行探索 → 第 57 章</td></tr>
+    </table>
+  </div>
+
+  <h3 id="s55-4">55.4 膨胀与折扣：从"理论 n"到"方案里的 N"</h3>
+  <div class="card">
+    <p>统计软件算出的是"完成主要分析所需的人数"。方案里必须写"入组人数"。两者之间的差额来自五类折损，<b>漏掉任何一类都可能导致最终分析达不到设计的 α/power</b>。</p>
+    <h4>55.4.1 脱落/失访：除以 (1−脱落率)</h4>
+    <table>
+      <tr><th>计算 n</th><th>5% 脱落</th><th>10%</th><th>15%</th><th>20%</th><th>25%</th></tr>
+      <tr><td>40</td><td>43</td><td>45</td><td>48</td><td>50</td><td>54</td></tr>
+      <tr><td>60</td><td>64</td><td>67</td><td>71</td><td>75</td><td>80</td></tr>
+      <tr><td>80</td><td>85</td><td>89</td><td>95</td><td>100</td><td>107</td></tr>
+      <tr><td>120</td><td>127</td><td>134</td><td>142</td><td>150</td><td>160</td></tr>
+    </table>
+    <p style="font-size:12.5px"><b>脱落率的取值依据</b>：同瘤种同线次既往研究的失访率（读已发表研究的 CONSORT/受试者流程图）、本中心历史执行数据、随访方式（电话/门诊/远程）与随访间隔。ADC 类研究必须额外考虑<b>因毒性停药</b>（如 ILD、口腔炎导致退出）与<b>因进展后转院失访</b>。晚期后线一般按 5–15%；辅助治疗因随访期长，需按 10–25% 估计。</p>
+
+    <h4>55.4.2 非依从/治疗切换：按 (1−d)² 稀释</h4>
+    <p>若一部分患者未按方案接受治疗（未完成计划周期、自行减量、对照组跨线使用试验药），即便按 ITT 分析，观察到的效应量也会被"稀释"，此时所需样本量约需乘以 <span style="font-family:Menlo,Consolas,monospace">1/(1−d)²</span>：</p>
+    <table>
+      <tr><th>非依从/稀释比例 d</th><th>样本量放大系数 1/(1−d)²</th><th>以计算 n=60 为例</th></tr>
+      <tr><td>10%</td><td>1.235</td><td>75</td></tr>
+      <tr><td>15%</td><td>1.384</td><td>84</td></tr>
+      <tr><td>20%</td><td>1.562</td><td>94</td></tr>
+      <tr><td>25%</td><td>1.778</td><td>107</td></tr>
+      <tr><td>30%</td><td>2.041</td><td>123</td></tr>
+    </table>
+    <div class="warn"><b>注意两类的区别（别混用）</b>：<b>脱落</b>（数据完全缺失）→ <b>(1−d)</b>；<b>非依从/稀释</b>（数据在但效应被冲淡，尤其对照组后续接受同类药）→ <b>(1−d)²</b>。ADC 场景下"对照组进展后接受同类 ADC"极常见，若方案预判该比例较高，应提前把样本量放大系数写进假设，而不是等分析时才发现 HR 比假设差。</div>
+
+    <h4>55.4.3 其他四类折损</h4>
+    <table>
+      <tr><th>因素</th><th>对样本量的影响</th><th>实务处理</th></tr>
+      <tr><td>分层随机化</td><td>分层过多（如 ≥5 个因素、每层每臂例数很少）会降低效率，等效于损失 5–15% 样本量</td><td>分层因素控制在 2–3 个强预后因素；必要时用动态随机化（最小化法）</td></tr>
+      <tr><td>中心效应 / 中心数少</td><td>中心内相关使有效样本量下降；极少中心的研究尤甚</td><td>预设中心为随机效应或分层因素；多中心、每中心例数不超过总量的 25%</td></tr>
+      <tr><td>期中分析消耗 α</td><td>每次期中耗 α，最终分析界值需相应收紧 → 样本量需增加 1–5%</td><td>在方案中写明 α 消耗函数（如 O'Brien-Fleming）与信息分数</td></tr>
+      <tr><td>可评估人群 vs ITT</td><td>若主要分析用可评估人群（PP），需在方案中明确"入组人群"与"可评估人群"的换算关系</td><td>明确主分析集，PP 作敏感性分析；注册研究主分析须为 ITT（或全分析集）</td></tr>
+    </table>
+
+    <h4>55.4.4 从"理论 n"到"写进方案的 N"——一张换算单</h4>
+    <div class="moa">
+      <div class="step"><b>① 计算 n</b>软件/公式给出：如 47 例<br><span style="font-size:11.5px">（单臂 p0=20%,p1=40%,单侧0.05,power90%）</span></div>
+      <div class="arrow">→</div>
+      <div class="step"><b>② 除以 (1−脱落)</b>脱落 12% → 47/0.88 ≈ 54 例</div>
+      <div class="arrow">→</div>
+      <div class="step"><b>③ 乘稀释系数</b>假设 10% 未完成治疗 → ×1.235 ≈ 67 例</div>
+      <div class="arrow">→</div>
+      <div class="step"><b>④ 向上取整 + 留余量</b>取 68–70 例，写入方案"计划入组 68 例"</div>
+    </div>
+    <div class="info"><b>写法示例（可直接改写）</b>：<i>"根据精确二项检验（p0=20%，p1=40%，单侧 α=0.05，power=90%），需完成主要分析 47 例。考虑约 12% 的失访/撤回、约 10% 未完成计划治疗导致的效应稀释，并向上取整，计划入组 68 例。中途分析后按实际脱落率在数据监查时复核是否需补充入组。"</i><br>
+    <b>注意</b>：膨胀系数必须在方案里写清理由与来源，不能简单"乘个 1.5 保险"——无依据的放大反而会被质疑为掩盖样本量不足。</div>
+  </div>
+
+  <h3 id="s55-5">55.5 实操：8 步流程与三个完整算例</h3>
+  <div class="card">
+    <h4>55.5.1 8 步流程（含责任分工）</h4>
+    <table>
+      <tr><th>步骤</th><th>做什么</th><th>输出物</th><th>主责</th></tr>
+      <tr><td>1. 定义问题</td><td>这项研究要回答什么问句？是"优于历史"还是"估计精度"？是一个队列还是多个？</td><td>研究目标一句话 + 主要终点</td><td>医学经理（Medical）</td></tr>
+      <tr><td>2. 定 P0</td><td>系统检索同人群历史数据，评估可比性，给出区间</td><td>P0 依据表（研究名/人群/例数/数据截止）</td><td><b>Medical</b>（统计师复核合理性）</td></tr>
+      <tr><td>3. 定 P1</td><td>从临床意义出发（不是从可行性倒推），并做"最少有意义"判定</td><td>P1 依据 + 临床意义论证段落</td><td>Medical + Clinical</td></tr>
+      <tr><td>4. 定 α / β</td><td>按研究性质选（探索 0.05/80%；注册支撑 0.025/90%），并说明理由</td><td>α/β 声明</td><td>Biostat</td></tr>
+      <tr><td>5. 算 n</td><td>按终点类型选公式/软件；两阶段设计同时给出停止规则</td><td>样本量计算书（含软件与版本号）</td><td><b>Biostat</b>（Medical 复核假设）</td></tr>
+      <tr><td>6. 膨胀</td><td>脱落/稀释/期中/分层，逐项写理由</td><td>从 n 到 N 的换算单</td><td>Medical + Biostat</td></tr>
+      <tr><td>7. 做敏感性分析</td><td>P0/P1/脱落率各取上下界，看结论是否稳健</td><td>敏感性分析表（本章 55.7）</td><td>Biostat</td></tr>
+      <tr><td>8. 写入方案与 SAP</td><td>论证段落 + 停止规则 + 偏离处理 + 版本锁定</td><td>方案章节 / SAP 章节</td><td>Medical（主笔）+ Biostat</td></tr>
+    </table>
+
+    <h4>55.5.2 算例一：单臂 IIT，HER2 IHC 0 后线 TNBC（Simon 两阶段）</h4>
+    <div class="card" style="background:#f8fafc">
+      <p><b>场景</b>：拟开展一项 BL-B01D1 在 HER2 IHC 0 的 mTNBC（≥2 线）中的单臂概念验证研究（IIT）。历史同人群化疗 ORR 约 20%（P0），希望检出 40% 的真实 ORR（P1）。单侧 α=0.05，power 90%。</p>
+      <table>
+        <tr><th>步骤</th><th>计算</th><th>结果</th></tr>
+        <tr><td>查表（55.3.3 第 8 行）</td><td>p0=20%、p1=40%、单侧 0.05、power 90%</td><td>最优设计：第一阶段 19 例；总 54 例</td></tr>
+        <tr><td>停止规则</td><td>第一阶段 19 例中确认缓解 ≤4 例 → 停止研究（判定无效）</td><td>PET@H0=0.67（无效时有 67% 概率早期停止）</td></tr>
+        <tr><td>最终判定</td><td>若继续入组至 54 例，累计确认缓解 ≤15 例 → 拒绝 H0</td><td>否则可报告"达到了预设的有效性界值"</td></tr>
+        <tr><td>实际统计性能</td><td>实际 α=0.0482；实际 power=0.9045</td><td>满足设计约束</td></tr>
+        <tr><td>膨胀</td><td>脱落 10%、未完成治疗 5% → 54/0.9 ≈ 60，再取余量</td><td>计划入组 <b>64 例</b>（含第一阶段 19 例）</td></tr>
+        <tr><td>入组节奏</td><td>若 3 家中心、合计 4 例/月 → 54 例需约 14 个月；第一阶段 19 例约 5 个月出第一个决策点</td><td>可行性成立；若月入组 &lt;2 例则研究周期 &gt;27 个月，须重新评估</td></tr>
+      </table>
+      <p><b>必须同时写入方案的注意事项</b>：① 主要终点为 BICR 评估的确认 ORR（RECIST 1.1）；② IHC 0 的判定须由中心实验室按统一平台与阈值确认（避免各地病理判读漂移）；③ 结论定位为"概念验证"，不得表述为支持适应症扩展；④ 研究结论的局限段须写明中间区间的不确定性（见 55.3.4：若真实 ORR 为 30%，仅约 50% 概率阳性）。</p>
+    </div>
+
+    <h4>55.5.3 算例二：随机 II 期，ORR 为主要终点（对照 30% vs 试验 50%）</h4>
+    <table>
+      <tr><th>项目</th><th>内容</th></tr>
+      <tr><td>假设</td><td>对照 ORR 30%（来自同类 ADC 后线数据）；试验 ORR 50%；δ=20 个百分点；双侧 α=0.05；power 90%；1:1 随机</td></tr>
+      <tr><td>样本量（查 55.2.1 表）</td><td><b>124 例/组，总 248 例</b></td></tr>
+      <tr><td>敏感性</td><td>δ=15 个百分点（45% vs 30%）→ 217 例/组（总 434）；δ=25 个百分点（55% vs 30%）→ 81 例/组（总 162）</td></tr>
+      <tr><td>若改为 2:1 随机</td><td>试验组 93 例 / 对照约 47 例；总样本略增但对照暴露减少</td></tr>
+      <tr><td>膨胀</td><td>脱落 10% → 276 例；若中期分析消耗 α → 再 +2%</td></tr>
+      <tr><td>写方案的提醒</td><td>随机 II 期的 ORR 双组比较"是否可作确证证据"需要谨慎表述；若 ORR 为主要终点且样本量仅 248，建议主要定位为"为 III 期提供效应量估计与人群选择依据"</td></tr>
+    </table>
+
+    <h4>55.5.4 算例三：事件驱动的 PFS 研究（含入组期/随访期反推）</h4>
+    <div class="card" style="background:#f8fafc">
+      <p><b>场景</b>：随机对照研究，主要终点 PFS，预期 HR=0.70，双侧 α=0.05，power 90%，对照中位 PFS 假设 4 个月（后线）。</p>
+      <table>
+        <tr><th>步骤</th><th>计算</th><th>结果</th></tr>
+        <tr><td>1. 事件数</td><td>d = 4(1.9600+1.2816)²/(ln 0.70)²</td><td><b>331 个 PFS 事件</b></td></tr>
+        <tr><td>2. 事件率</td><td>λ=ln2/4=0.1733；入组期 A=24 个月；总研究期 T=36 个月；P=1−[e<sup>−0.1733×12</sup>−e<sup>−0.1733×36</sup>]/(0.1733×24)</td><td>P ≈ 0.97</td></tr>
+        <tr><td>3. 样本量</td><td>N = 331 / 0.97</td><td>≈ <b>342 例</b>（两组合计）</td></tr>
+        <tr><td>4. 入组速度检验</td><td>342 例 / 24 个月</td><td><b>需 14.3 例/月</b>。若实际只有 6 例/月 → 入组期将拉长至 57 个月，或只能延迟分析时点（并重估事件数成熟度）</td></tr>
+        <tr><td>5. 时间线的第三条路</td><td>若把总研究期延到 48 个月：P≈0.985，N≈336（几乎无改善）</td><td class="hl">结论：<b>后线研究的事件率已接近饱和，靠延长随访省不了样本量——真正的杠杆是 HR 假设与入组速度</b>。而辅助治疗场景（55.2.2 表）延长随访反而能显著省患者</td></tr>
+      </table>
+      <div class="warn"><b>方案会议上的必问三句</b>：① 这个 HR 假设从哪来？② 需要多少事件、这些事件什么时候能攒够？③ 入组速度是多少例/月、由几个中心提供、有没有中心承诺函？——这三句话若答不上来，样本量数字再漂亮也不成立。</div>
+    </div>
+  </div>
+
+  <h3 id="s55-6">55.6 可运行代码（直接复制可用）</h3>
+  <div class="card">
+    <p>以下脚本只依赖 Python 标准库 + numpy，用于<b>快速自算与交叉验证</b>。正式递交的样本量仍须用 PASS / nQuery / EAST 等经过验证的软件，并在方案中写明软件名称与版本号。</p>
+    <h4>55.6.1 Python：单臂（单阶段精确 + Simon 最优/极小极大 + 敏感性）</h4>
+<pre style="background:#0e2b40;color:#d7e8f4;border-radius:10px;padding:14px 16px;font-size:12px;overflow:auto;line-height:1.6;font-family:Menlo,Consolas,monospace">import numpy as np, math
+from math import lgamma
+from statistics import NormalDist
+ND = NormalDist()
+
+def pmf(n, p):
+    k = np.arange(n + 1)
+    lc = np.array([lgamma(n+1)-lgamma(i+1)-lgamma(n-i+1) for i in k])
+    return np.exp(lc + k*math.log(p) + (n-k)*math.log(1-p))
+
+def sf(d):                      # SF[k] = P(X &gt;= k)
+    return np.concatenate([np.cumsum(d[::-1])[::-1], [0.0]])
+
+def single_stage(p0, p1, alpha, power, nmax=900):
+    "单阶段精确二项：返回最小 n 与临界 r"
+    for n in range(5, nmax + 1):
+        s0, s1 = sf(pmf(n, p0)), sf(pmf(n, p1))
+        for r in range(1, n + 1):
+            if s0[r] &lt;= alpha:
+                if s1[r] &gt;= power:
+                    return n, r, float(s1[r]), float(s0[r])
+                break
+    return None
+
+def simon(p0, p1, alpha, power, n1max=45, n2max=110):
+    "Simon 两阶段：同时给出最优(最小EN)与极小极大(最小n)"
+    bo = bm = None
+    for n1 in range(5, n1max + 1):
+        d0, d1 = pmf(n1, p0), pmf(n1, p1)
+        for r1 in range(0, n1):
+            pet0 = float(np.sum(d0[:r1+1]))
+            a0, a1 = d0.copy(), d1.copy()
+            a0[:r1+1] = 0; a1[:r1+1] = 0          # 只有 X1 &gt; r1 才进入第二阶段
+            for n2 in range(0, n2max + 1):
+                n = n1 + n2
+                S0 = np.concatenate([np.cumsum(pmf(n2, p0)[::-1])[::-1], [0., 0.]])
+                S1 = np.concatenate([np.cumsum(pmf(n2, p1)[::-1])[::-1], [0., 0.]])
+                A, P = np.convolve(a0, S0), np.convolve(a1, S1)   # A[r+1]=P(拒绝|p0)
+                if A[n+1] &gt; alpha: continue
+                lo, hi = r1 + 1, n                                # 二分找最小 r 满足 alpha
+                while lo &lt; hi:
+                    mid = (lo + hi) // 2
+                    if A[mid+1] &lt;= alpha: hi = mid
+                    else: lo = mid + 1
+                r = lo
+                if P[r+1] &lt; power: continue
+                c = dict(n1=n1, r1=r1, n=n, r=r, pet0=pet0,
+                         EN=n1 + (1-pet0)*n2, alpha=float(A[r+1]), power=float(P[r+1]))
+                if bo is None or c['EN'] &lt; bo['EN']: bo = c
+                if bm is None or (c['n'], c['EN']) &lt; (bm['n'], bm['EN']): bm = c
+    return bo, bm
+
+if __name__ == "__main__":
+    print("单阶段:", single_stage(0.20, 0.40, 0.05, 0.90))     # (47, 15, 0.901, 0.037)
+    o, m = simon(0.20, 0.40, 0.05, 0.90)
+    print("最优:", o)                                          # n1=19 r1=4  n=54 r=15  EN=30.4
+    print("极小极大:", m)                                       # n=45 r=13
+</pre>
+
+    <h4>55.6.2 Python：生存终点（事件数 → 样本量 → 入组速度）</h4>
+<pre style="background:#0e2b40;color:#d7e8f4;border-radius:10px;padding:14px 16px;font-size:12px;overflow:auto;line-height:1.6;font-family:Menlo,Consolas,monospace">import math
+from statistics import NormalDist
+z = NormalDist().inv_cdf
+
+def events(hr, alpha_two=0.05, power=0.90):
+    "Schoenfeld：所需事件数"
+    return math.ceil(4 * (z(1 - alpha_two/2) + z(power))**2 / math.log(hr)**2)
+
+def p_event(median_ctrl, enroll_months, total_months):
+    "指数生存 + 匀速入组：平均事件概率"
+    lam = math.log(2) / median_ctrl
+    A, T = enroll_months, total_months
+    return 1 - (math.exp(-lam*(T-A)) - math.exp(-lam*T)) / (lam*A)
+
+hr, A, T, med = 0.70, 24, 36, 4.0
+d = events(hr)                     # 331
+p = p_event(med, A, T)             # ~0.97
+N = math.ceil(d / p)               # 342
+print(f"事件数 d={d}  事件率={p:.3f}  样本量 N={N}  月入组速度={N/A:.1f} 例/月")
+</pre>
+
+    <h4>55.6.3 R 等价写法（团队用 R 时）</h4>
+<pre style="background:#0e2b40;color:#d7e8f4;border-radius:10px;padding:14px 16px;font-size:12px;overflow:auto;line-height:1.6;font-family:Menlo,Consolas,monospace"># 单臂检验型样本量（正态近似）
+n_arm &lt;- function(p0, p1, alpha=0.05, power=0.90) {
+  z1 &lt;- qnorm(1 - alpha); z2 &lt;- qnorm(power)
+  ceiling((z1*sqrt(p0*(1-p0)) + z2*sqrt(p1*(1-p1)))^2 / (p1-p0)^2)
+}
+n_arm(0.20, 0.40)                       # 约 44（近似）；精确法用 55.6.1
+
+# 生存终点所需事件数
+d &lt;- function(hr, alpha=0.05, power=0.90)
+  ceiling(4 * (qnorm(1-alpha/2) + qnorm(power))^2 / log(hr)^2)
+d(0.70)                                  # 331
+
+# 两组比例终点（1:1）
+n_rct &lt;- function(p1, p2, alpha=0.05, power=0.90) {
+  pbar &lt;- (p1+p2)/2
+  ceiling((qnorm(1-alpha/2)*sqrt(2*pbar*(1-pbar)) +
+           qnorm(power)*sqrt(p1*(1-p1)+p2*(1-p2)))^2 / (p1-p2)^2)
+}
+n_rct(0.50, 0.30)                        # 124 例/组
+</pre>
+
+    <h4>55.6.4 商业软件与自算的分工</h4>
+    <table>
+      <tr><th>场景</th><th>自算脚本够用？</th><th>必须用验证软件</th></tr>
+      <tr><td>开会时秒答"δ 改小 5 个百分点会怎样"</td><td class="ok">够用</td><td>—</td></tr>
+      <tr><td>写 IIT 方案、伦理申请</td><td class="ok">够用（但建议双算交叉验证）</td><td>—</td></tr>
+      <tr><td>无进展/分层/区组/多终点/期中</td><td class="hl">不够</td><td>PASS / nQuery / EAST / ADDPLAN</td></tr>
+      <tr><td>递交监管、附条件批准支撑研究</td><td class="hl">不够</td><td>必须，且需报告软件版本号与随机种子</td></tr>
+    </table>
+  </div>
+
+  <h3 id="s55-7">55.7 敏感性分析：把"如果假设错了"提前回答掉</h3>
+  <div class="card">
+    <p>敏感性分析是<b>方案评审中最能提升可信度的一段</b>：主动告诉审阅者"假设变化后会发生什么"，比只给一个数字更专业。标准做法是对 P0、P1（或 HR）、脱落率各取上下界，重算样本量或重算把握度。</p>
+    <h4>55.7.1 模板一：固定 P0，变化 P1（单臂 p0=20%，单侧 0.05，power 90%）</h4>
+    <table>
+      <tr><th>假设 P1</th><th>δ</th><th>所需 n</th><th>临界值 r</th><th>相对基准（δ=20%）</th></tr>
+      <tr><td>30%</td><td>10%</td><td>160</td><td>41</td><td class="hl">3.40×</td></tr>
+      <tr><td>35%</td><td>15%</td><td>77</td><td>22</td><td>1.64×</td></tr>
+      <tr><td><b>40%（基准）</b></td><td><b>20%</b></td><td><b>47</b></td><td><b>15</b></td><td>1.00×</td></tr>
+      <tr><td>45%</td><td>25%</td><td>29</td><td>10</td><td>0.62×</td></tr>
+      <tr><td>50%</td><td>30%</td><td>21</td><td>8</td><td>0.45×</td></tr>
+    </table>
+    <h4>55.7.2 模板二：固定假设，变化把握度（同一设计重新算 power）</h4>
+    <p>做法：保持 n=47、r=15 不变，代入不同的真实 ORR，计算实际把握度（即 55.3.4 那张表）。报告写法：<i>"在 n=47 的方案下，若真实 ORR 为 40%、35%、30%，对应把握度分别为 90%、76%、50%。"</i></p>
+    <h4>55.7.3 模板三：三向敏感性汇总表（推荐放进方案附录）</h4>
+    <table>
+      <tr><th>变化维度</th><th>取值</th><th>样本量影响</th><th>对结论的影响</th></tr>
+      <tr><td>真实 ORR（P1）</td><td>30% / 35% / <b>40%</b> / 45%</td><td>160 / 77 / <b>47</b> / 29</td><td>若真实为 30%，把握度仅 50% → 只能定位为探索性</td></tr>
+      <tr><td>α 口径</td><td>单侧 0.10 / 0.05 / 0.025</td><td>24 / <b>47</b> / 56</td><td>递交监管必须用 0.025 口径</td></tr>
+      <tr><td>脱落率</td><td>5% / <b>12%</b> / 20%</td><td>50 / <b>54</b> / 59</td><td>脱落率对小数样本量影响有限，但对生存研究的分析时点影响大</td></tr>
+    </table>
+    <div class="info"><b>敏感性分析的正确用途不是"找一个能过会的数字"</b>，而是回答三个问题：① 结论对哪个假设最敏感？② 最坏情况下研究还有没有价值？③ 需不需要在方案里预设调整机制（如数据监查时复核）。若敏感性分析显示"只有一个乐观假设才能支撑样本量"，方案应当重新设计而不是照写。</div>
+  </div>
+
+  <h3 id="s55-8">55.8 样本量论证段落模板（中英文，可直接改写）</h3>
+  <div class="card">
+    <h4>55.8.1 单臂研究（中文模板）</h4>
+<pre style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:14px 16px;font-size:13px;overflow:auto;line-height:1.75;font-family:Menlo,Consolas,monospace;color:#33414f">【样本量依据】
+本研究的无效假设为确认客观缓解率（ORR）≤20%（H0），备择假设为 ORR ≥40%（H1）。
+P0 的依据为：（1）XX 研究（n=XXX，人群为 XXX）报告的化疗 ORR 为 XX%；
+（2）YY 真实世界队列（n=XXX）报告 ORR 为 XX%。本方案的入组人群与上述数据在
+既往治疗线数、HER2 表达状态等方面具有可比性（详见附件 X）。
+P1 的依据为：ORR 提高至 40% 以上被认为具有临床意义，理由为 XXX（阈值来源：指南推荐/
+专家共识/同类药物在相同人群中的疗效水平）。
+
+采用 Simon 最优两阶段设计（单侧 α=0.05，把握度 90%）。第一阶段入组 19 例，若确认缓解
+≤4 例则终止研究；若继续，则累计入组 54 例，若确认缓解 ≤15 例则拒绝 H0。该设计的实际
+I 类错误率为 0.048，把握度为 0.905，在 H0 成立时提前终止的概率（PET）为 0.67，期望
+样本量为 30.4 例。考虑约 12% 的失访/撤回与约 10% 的未完成计划治疗，计划入组 64 例。
+
+主要终点由盲态独立中心评估（BICR）按 RECIST 1.1 判定。本研究为概念验证性研究，
+其结论不构成适应症扩展或对照研究结论的替代证据。
+（敏感性分析：若真实 ORR 为 35% 或 30%，本设计的把握度分别为 76% 与 50%，详见附录）</pre>
+
+    <h4>55.8.2 随机对照研究（中文模板）</h4>
+<pre style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:14px 16px;font-size:13px;overflow:auto;line-height:1.75;font-family:Menlo,Consolas,monospace;color:#33414f">【样本量依据】
+主要终点为 IRC 评估的无进展生存期（PFS）。基于 XX 研究，对照组中位 PFS 假设为 X.X 个月，
+预期 HR 为 0.XX（试验组中位 PFS 假设为 X.X 个月）。依据 Schoenfeld 公式，在双侧 α=0.05、
+把握度 90% 下，需累计发生 XXX 个 PFS 事件。按对照中位 PFS X.X 个月、入组期 XX 个月、
+总研究期 XX 个月估算，平均事件概率约为 0.XX，对应约 XXX 例（1:1 随机，每组约 XXX 例）。
+考虑 10% 的失访，计划入组 XXX 例。
+
+计划在累计达到约 XX% 的信息分数时进行一次期中分析（采用 O'Brien-Fleming 消耗函数，
+总体一侧 α=0.025），并在方案中预设无效性停止边界。
+（样本量计算软件：XXX（版本 XXX）；假设来源见附件 X）</pre>
+
+    <h4>55.8.3 英文要点（用于国际合作或投稿）</h4>
+<pre style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:14px 16px;font-size:13px;overflow:auto;line-height:1.75;font-family:Menlo,Consolas,monospace;color:#33414f">Sample size justification:
+A Simon's two-stage optimal design was used, with a null hypothesis of ORR &lt;= 20% and an
+alternative of ORR &gt;= 40%, one-sided alpha of 0.05 and 90% power. Under this design, 19
+patients are enrolled in stage 1; if &lt;= 4 confirmed responses are observed the study stops.
+Otherwise, enrolment continues to 54 patients; H0 is rejected if &gt; 15 confirmed responses
+are observed. The design yields an actual type I error of 0.048 and power of 0.905, with a
+probability of early termination of 0.67 under H0 and an expected sample size of 30.4.
+Allowing ~12% attrition and ~10% treatment non-completion, 64 patients will be enrolled.
+Response will be assessed by blinded independent central review (BICR) per RECIST v1.1.
+</pre>
+  </div>
+
+  <h3 id="s55-9">55.9 常见错误清单（14 条，按被质疑频率排序）</h3>
+  <div class="card">
+    <table>
+      <tr><th>#</th><th>错误</th><th>后果</th><th>正确做法</th></tr>
+      <tr><td>1</td><td>样本量来自"精度型"，结论用"检验型"语言</td><td class="hl">样本量不足以支持疗效结论</td><td>两句话同源（55.2.1）</td></tr>
+      <tr><td>2</td><td>把"事件数"当"样本量"写进方案</td><td>入组量严重不足</td><td>d → N = d / P(事件)（55.2.2）</td></tr>
+      <tr><td>3</td><td>P0/P1 没有文献依据，只有"专家认为"</td><td>整个样本量不可信</td><td>P0 依据表 + 敏感性区间（55.1.4）</td></tr>
+      <tr><td>4</td><td>单侧/双侧 α 混乱（一个方案里两种口径）</td><td>样本量偏差 20% 以上</td><td>全方案统一口径并写明（55.1.2）</td></tr>
+      <tr><td>5</td><td>用早期研究的点估计当 P1</td><td>样本量偏小，阳性率虚高</td><td>P1 取保守值，乐观值进敏感性分析</td></tr>
+      <tr><td>6</td><td>不做脱落/稀释膨胀</td><td>分析时把握度不足</td><td>按 (1−d) 与 (1−d)² 分别膨胀（55.4）</td></tr>
+      <tr><td>7</td><td>两阶段设计只写第一阶段数字，漏写最终阈值</td><td>无法判定结论</td><td>n1/r1、n/r、PET 全部写明（55.3）</td></tr>
+      <tr><td>8</td><td>把 Simon 最优设计的"最大 n"当样本量报给伦理，被质疑"更贵"</td><td>伦理沟通受阻</td><td>同时报 EN 与 PET（55.3.1）</td></tr>
+      <tr><td>9</td><td>只算一个数字，无敏感性分析</td><td>假设一变全盘皆输</td><td>三向敏感性表（55.7）</td></tr>
+      <tr><td>10</td><td>生存研究不检验入组速度与随访期的可行性</td><td>事件攒不够，分析无限延后</td><td>反推例/月并与中心承诺核对（55.5.4）</td></tr>
+      <tr><td>11</td><td>QoL/连续终点承诺统计学差异</td><td>样本量需求与实际严重脱节</td><td>降级为描述性终点（55.2.3）</td></tr>
+      <tr><td>12</td><td>期中分析未做 α 消耗调整</td><td>总体 I 类错误超标</td><td>预设消耗函数与信息分数（55.4.3）</td></tr>
+      <tr><td>13</td><td>样本量确定后未锁定假设与分析方法</td><td>分析时"临场调整"，结论不可信</td><td>方案与 SAP 版本锁定，变更走正式流程</td></tr>
+      <tr><td>14</td><td>医学经理自行拍板 α/β/样本量</td><td>统计学缺陷，责任越界</td><td>Medical 定假设、Biostat 定计算（55.5.1）</td></tr>
+    </table>
+  </div>
+
+  <h3 id="s55-10">55.10 沟通清单：与统计师、伦理、监管各说什么</h3>
+  <div class="card">
+    <div class="grid3">
+      <div>
+        <h4>对统计师</h4>
+        <ul style="margin-left:16px;font-size:13px">
+          <li>主要终点与人群定义（含可评估人群规则）</li>
+          <li>P0/P1（或 HR）及其文献出处</li>
+          <li>α/β 与单双侧口径；是否用于监管递交</li>
+          <li>是否需中期分析与消耗函数</li>
+          <li>预期脱落率与稀释比例的依据</li>
+          <li>分层因素与随机化方法</li>
+        </ul>
+      </div>
+      <div>
+        <h4>对伦理委员会</h4>
+        <ul style="margin-left:16px;font-size:13px">
+          <li>为什么这个样本量是"最小必要"（EN / PET 是最有力的论据）</li>
+          <li>无需设对照的伦理依据（若为单臂）</li>
+          <li>停止规则与无效性边界：什么时候会终止研究</li>
+          <li>风险控制（尤其 ADC 的 ILD、血液毒性监测计划）</li>
+          <li>无效时能提前停止，减少受试者暴露</li>
+        </ul>
+      </div>
+      <div>
+        <h4>对监管（沟通交流/方案咨询）</h4>
+        <ul style="margin-left:16px;font-size:13px">
+          <li>主要终点的确证程度（替代终点 vs 临床终点）</li>
+          <li>样本量与把握度是否支持拟主张的结论</li>
+          <li>是否需要随机对照（单臂能否支撑注册主张）</li>
+          <li>α 是否需按单侧 0.025 收紧</li>
+          <li>是否需 BICR、是否需要独立数据监查委员会</li>
+        </ul>
+      </div>
+    </div>
+    <div class="warn" style="margin-top:14px"><b>红线提醒</b>：本章所有数值为方法学演算示例，用于理解逻辑与快速自算。<b>任何正式研究的样本量必须由统计师使用经验证的软件计算，并经申办方/研究者正式批准后写入方案与 SAP。</b>数值一旦写入方案即成为承诺，事后调整需走方案修正与伦理备案流程。</div>
+  </div>
+</section>
+
+<section id="s56">
+  <div class="sec-head"><div class="sec-num">56</div><h2>单臂 IIT 的常见设计形式与适合场景</h2></div>
+  <div class="sec-desc">八种设计形式的选择逻辑：单阶段精确二项 / Simon 最优与极小极大 / Gehan / 贝叶斯 Beta-Binomial / 剂量扩展队列 / 多队列篮式 / 单臂+外部对照 / 无缝两阶段；每种形式给出样本量来源、停止规则、适用与不适用场景、以及 IIT 特有约束下的取舍</div>
+
+  <div class="info" style="margin-left:56px"><b>📌 本章与第 17 章、第 55 章的分工</b><br>
+  <b>第 17.1 章</b>回答"单臂研究本身合不合规、终点怎么评、监管怎么看"；<b>第 55 章</b>回答"样本量怎么算"；<b>本章</b>回答<b>"同一个科学问题，用哪种设计形式去问，代价与可信度各是多少"</b>。<br>
+  本章全部为一个核心判断服务：<b>IIT 的真实约束不是统计学，而是伦理最小化、经费、中心能力、药品可及性与结论效力</b>——设计形式必须在这五个约束下选，而不是照着注册研究的模板缩小一号。</div>
+
+  <h3 id="s56-1">56.1 先认清：IIT 单臂与注册单臂不是"大小号"关系</h3>
+  <div class="card">
+    <table>
+      <tr><th>维度</th><th>注册单臂（申办方发起）</th><th>IIT 单臂（研究者发起）</th><th>对设计形式的影响</th></tr>
+      <tr><td>目的</td><td>支持注册/适应症扩展，结论要经得起审评</td><td>回答一个具体的科学问题、支持后续研究或发表</td><td>IIT 可用更宽松的 α（0.05/0.10）与更小的样本量，但结论表述必须相应保守</td></tr>
+      <tr><td>样本量级</td><td>数十至数百例，常配 BICR、独立统计</td><td>十至数十例，多为研究者评估</td><td class="hl">IIT 的样本量必须"少而准"——宁可设计得能给出明确结论，也不要设计成"永远下不了结论"</td></tr>
+      <tr><td>伦理约束</td><td>有对照时伦理关注随机与盲态</td><td>单臂研究伦理关注"最小必要例数"与"何时停止"</td><td>两阶段/自适应设计在 IIT 中价值更高（省患者就是省伦理成本）</td></tr>
+      <tr><td>经费与成本</td><td>由公司承担，人均成本可高</td><td>多为科室/基金/资助，每例成本敏感</td><td>倾向 Simon 最优（省期望样本量）、少做昂贵检测（如全身影像频次）</td></tr>
+      <tr><td>中心能力</td><td>多中心、入组能力充足</td><td>常为 1–3 家中心，入组速度是最大瓶颈</td><td class="hl">设计时要先算"月入组例数 × 研究期"，而不是先算样本量</td></tr>
+      <tr><td>结论效力</td><td>可支撑附条件批准 / 适应症扩展</td><td><b>一般不足以支持注册主张</b>，用于假设生成与后续研究依据</td><td>结论段必须写"概念验证/假设生成"；不得用于超说明书推广</td></tr>
+    </table>
+    <div class="warn"><b>合规边界（务必先与公司确认）</b>：涉及公司产品的 IIT，药品供应、方案参与程度、数据与发表安排均须走公司正式流程（医学、注册、法务、合规），并遵守公司现行政策。<b>研究者方案的设计讨论不等于公司批准</b>；本章内容为方法学通用框架，个人学习用，不构成对公司政策或对任何具体研究方案的替代。</div>
+  </div>
+
+  <h3 id="s56-2">56.2 八种设计形式速查矩阵（先看这张，再决定读哪一节）</h3>
+  <div class="card">
+    <table>
+      <tr><th>#</th><th>设计形式</th><th>样本量来源</th><th>停止规则</th><th>最适合的场景</th><th>不太适合</th></tr>
+      <tr><td>①</td><td><b>单阶段精确二项</b>（A'Hern / Fleming）</td><td>精确二项检验：最小 n + 临界 r（第 55.2.1、55.3.1）</td><td>研究结束一次判定（可设 1 个中期点）</td><td>外部标准明确、入组快、研究期短；希望方案极简</td><td>药物有效性高度不确定（无效时会让所有患者入完）</td></tr>
+      <tr><td>②</td><td><b>Simon 最优（Optimal）</b></td><td>p0/p1/α/β 查表或软件（第 55.3.3）</td><td>阶段 1 达标才继续</td><td class="ok">绝大多数 IIT 概念验证研究的默认选择</td><td>需要极小最大入组量的场合</td></tr>
+      <tr><td>③</td><td><b>Simon 极小极大（Minimax）</b></td><td>同上</td><td>同上</td><td>经费/药品有硬上限，最在意"最多招多少人"</td><td>更看重期望样本量与尽早止损</td></tr>
+      <tr><td>④</td><td><b>Gehan 两阶段</b></td><td>仅控制"误停概率"，样本量极小的排除性设计</td><td>第一阶段 0 缓解即停</td><td>极早期信号探测；药物被广泛质疑、需先证明"至少有一点活性"</td><td>需要给出疗效估计或与历史对照比较（Gehan 不给假设检验结论）</td></tr>
+      <tr><td>⑤</td><td><b>贝叶斯 Beta-Binomial</b></td><td>先验 + 后验概率阈值（如 Pr(p&gt;P0)&gt;0.95）</td><td>可连续监测、按后验概率决策</td><td>有可信历史数据可构造先验；希望边入组边评估；样本量小</td><td>需要向监管递交（频率学派设计更易被接受）</td></tr>
+      <tr><td>⑥</td><td><b>剂量扩展队列</b>（3+3 / BOIN → 扩展）</td><td>剂量递增部分 + 扩展部分各自设计（扩展队列常用 Simon 或精度型）</td><td>DLT 规则 + 扩展队列有效性规则</td><td>药物尚在早期，同时回答"剂量/安全性/初步疗效"；I 期 IIT 常见</td><td>疗效假设已明确、目标是确证性信号</td></tr>
+      <tr><td>⑦</td><td><b>多队列单臂（篮式）</b></td><td>每队列独立样本量 + 全局多重性控制（第 57 章）</td><td>队列级启停规则</td><td>同一药在不同亚型/标志物人群并行探索（如按 HER2 状态分队列）</td><td>队列数 >4 而总量不足；中心资源分散</td></tr>
+      <tr><td>⑧</td><td><b>单臂 + 外部/历史对照（ECL）</b></td><td>单臂样本量 + 对照外部数据（倾向性评分/加权）</td><td>按单臂设计</td><td>目标人群罕见、伦理上很难设对照；历史数据质量高</td><td>历史数据人群可比性差、时代效应明显（新药上市改变后线治疗）</td></tr>
+    </table>
+    <div class="note"><b>选型第一原则</b>：先问"我这项研究最终要得出什么句子"。<br>
+    · 要得出"<b>优于历史对照</b>" → 可选 ①②③⑦⑧（需要假设检验）；<br>
+    · 要得出"<b>有初步活性、值得继续</b>" → ④⑤⑥ 足够；<br>
+    · 要得出"<b>ORR 的估计值及其精度</b>" → 精度型算法 + ①（不做假设检验）。<br>
+    <b>句子定不下来，设计形式就定不下来</b>——这是方案会开不下去时最该回去确认的一件事。</div>
+  </div>
+
+  <h3 id="s56-3">56.3 形式①：单阶段精确二项设计（最简单，也最容易用错）</h3>
+  <div class="card">
+    <p>形式：入组 n 例，观察确认缓解数 r<sub>obs</sub>；若 r<sub>obs</sub> ≥ r（临界值）则判定"优于无效线"。样本量与临界值由精确二项分布直接算出。</p>
+    <table>
+      <tr><th>p0</th><th>p1</th><th>α（单侧）</th><th>power</th><th>n</th><th>临界 r</th><th>实际 α</th><th>实际 power</th></tr>
+      <tr><td>5%</td><td>25%</td><td>0.05</td><td>80%</td><td>16</td><td>3</td><td>0.0429</td><td>0.8029</td></tr>
+      <tr><td>10%</td><td>30%</td><td>0.05</td><td>90%</td><td>33</td><td>7</td><td>0.0417</td><td>0.9056</td></tr>
+      <tr><td>15%</td><td>35%</td><td>0.05</td><td>90%</td><td>38</td><td>10</td><td>0.0495</td><td>0.9044</td></tr>
+      <tr><td>20%</td><td>40%</td><td>0.05</td><td>90%</td><td><b>47</b></td><td><b>15</b></td><td>0.0366</td><td>0.9012</td></tr>
+      <tr><td>25%</td><td>45%</td><td>0.05</td><td>90%</td><td>49</td><td>18</td><td>0.0456</td><td>0.9052</td></tr>
+      <tr><td>30%</td><td>50%</td><td>0.05</td><td>90%</td><td>53</td><td>22</td><td>0.0495</td><td>0.9155</td></tr>
+      <tr><td>40%</td><td>60%</td><td>0.05</td><td>90%</td><td>56</td><td>29</td><td>0.0492</td><td>0.9169</td></tr>
+    </table>
+    <div class="info"><b>为什么实际 α 常常小于名义 α</b>：因为缓解数是整数，能恰好落在 0.05 的概率很小，所以离散分布下会"用不满"α（如上表 0.0366 &lt; 0.05）。这是精确法的特点而非缺陷，但<b>方案里必须写"实际 α = 0.037"而不是"α=0.05"</b>，否则审评会认为你把名义值当实际值。</div>
+    <p><b>不适用场景（务必避开）</b>：研究药物在同类中已被认为大概率无效（如既往同类药在同人群 ORR 均 &lt;10%），此时单阶段设计会让 47 例患者全部接受无效治疗——应改用两阶段或 Gehan。</p>
+  </div>
+
+  <h3 id="s56-4">56.4 形式②③：Simon 两阶段（IIT 的默认选择）</h3>
+  <div class="card">
+    <h4>56.4.1 什么时候 Simon 是错的选择</h4>
+    <table>
+      <tr><th>情形</th><th>为什么 Simon 不合适</th><th>改用什么</th></tr>
+      <tr><td>入组极慢（如 0.5 例/月）</td><td>阶段 1 的 19 例就要 38 个月，决策点来得太晚，期间治疗格局可能已变</td><td>减小阶段 1 或改单阶段；或改精度型以缩短研究期</td></tr>
+      <tr><td>终点需要长随访（如 OS、DFS）</td><td>两阶段的"停止"需要等到事件发生，早期停止优势被稀释</td><td>用事件驱动或改用较短替代终点（ORR）</td></tr>
+      <tr><td>药物毒性风险高（如 ILD）</td><td>阶段 2 在阶段 1 之后才开始，暴露累计时间长；安全性信号可能来得晚</td><td>在阶段 1 内嵌安全性监查点（如 6 例后 DLT 复核），或采用 3+3/BOIN 剂量扩展形式</td></tr>
+      <tr><td>需同时回答多个亚组问题</td><td>单个 Simon 设计只能回答一个 p0/p1 假设</td><td>多队列设计（第 57 章）</td></tr>
+    </table>
+
+    <h4>56.4.2 Simon 设计参数的医学解读（写方案时的措辞）</h4>
+    <table>
+      <tr><th>参数</th><th>技术含义</th><th>写进方案的医学语言</th></tr>
+      <tr><td>n1 / r1</td><td>阶段 1 例数与早期停止阈值</td><td>"首阶段入组 19 例；若确认缓解不超过 4 例，则判定该药在此人群缺乏足够活性，终止入组"</td></tr>
+      <tr><td>n / r</td><td>总例数与最终判定阈值</td><td>"若继续，则累计入组 54 例；累计确认缓解超过 15 例即认为优于历史对照水平"</td></tr>
+      <tr><td>PET@H0</td><td>无效时提前停止的概率</td><td>"若该药在此人群实际无效，约 2/3 的情况下仅需入组 19 例即可终止"（<b>伦理委员会最在意这句</b>）</td></tr>
+      <tr><td>PET@H1</td><td>有效时被误停的概率</td><td>"若该药真实的 ORR 为 40%，被错误终止的概率低于 8%"（<b>合作方/资助方最在意这句</b>）</td></tr>
+      <tr><td>EN</td><td>期望样本量</td><td>"本设计的期望样本量为 30.4 例，约为单阶段设计（47 例）的 65%"</td></tr>
+    </table>
+    <div class="info"><b>一句话模板</b>：<i>"采用 Simon 最优两阶段设计（单侧 α=0.05，把握度 90%，H0：ORR ≤20%，H1：ORR ≥40%）。阶段 1 入组 19 例，若确认缓解 ≤4 例则终止；否则入组至 54 例，累计缓解 &gt;15 例即判定达到预设有效性界值。无效时提前终止概率 0.67，期望样本量 30.4 例，实际 I 类错误 0.048、把握度 0.905。"</i></div>
+  </div>
+
+  <h3 id="s56-5">56.5 形式④：Gehan 两阶段设计（"先证明有一点活性"）</h3>
+  <div class="card">
+    <p>Gehan 设计不控制 α/β，它只回答一个问题：<b>"这个药是不是连最基本的一点活性都没有？"</b>机制极简——先入 n1 例，若一例缓解都没有，停止；只要出现 ≥1 例缓解，就继续入组直到累积足够的估计精度。</p>
+    <table>
+      <tr><th>期望排除（或检出）的真实 ORR</th><th>n1（控制误停 ≤10%）</th><th>n1（控制误停 ≤5%）</th><th>解读</th></tr>
+      <tr><td>20%</td><td>11</td><td>14</td><td>若真实 20%，用 11 例全无缓解才算"排除"</td></tr>
+      <tr><td>25%</td><td>9</td><td>11</td><td>Gehan 原文常用区间（9–11）</td></tr>
+      <tr><td>30%</td><td>7</td><td>9</td><td>—</td></tr>
+      <tr><td>40%</td><td>5</td><td>6</td><td>只需 5 例无缓解即可倾向排除</td></tr>
+      <tr><td>50%</td><td>4</td><td>5</td><td>—</td></tr>
+    </table>
+    <div class="info"><b>计算逻辑</b>：要求 (1−p<sub>1</sub>)<sup>n1</sup> ≤ 误停概率。例如 p<sub>1</sub>=25%、n1=9 → 0.75<sup>9</sup>=0.075（即若真实 ORR 为 25%，9 例全无缓解的概率为 7.5%）。<b>这就是为什么经典 Gehan 设计是"9 例中 0 例缓解即停"</b>。</div>
+    <table>
+      <tr><th>优点</th><th>缺点 / 必须写进方案的局限</th></tr>
+      <tr><td>第一阶段样本量极小（4–11 例），伦理成本最低</td><td class="hl">不能得出"优于历史对照"的结论——它只排除"完全无活性"</td></tr>
+      <tr><td>极易执行、极易向伦理解释</td><td>第二阶段如何继续、入到多少例，需另行规定（通常按 ORR 的 CI 精度）</td></tr>
+      <tr><td>适合毒性或机制高度不确定的首次人体后早期探索</td><td>若真实 ORR 只有 10% 而目标 30%，很可能"混过"第一阶段又浪费后续入组</td></tr>
+    </table>
+    <div class="warn"><b>常见误用</b>：把 Gehan 设计的结果当成"疗效阳性"来宣传（例如"9 例中 2 例缓解，ORR 22%，表明有效"）。9 例的 95% CI 约为 3%–60%，这种表述在学术与合规层面都站不住。<b>Gehan 的阳性只意味着"值得继续"，不是"有效"。</b></div>
+  </div>
+
+  <h3 id="s56-6">56.6 形式⑤：贝叶斯 Beta-Binomial（小样本的另一种问法）</h3>
+  <div class="card">
+    <p>思路转变：不问"p 值是否 &lt;0.05"，而问<b>"在观察到的数据下，p 超过无效线的概率有多大"</b>。先验 Beta(a,b) + 数据（n 例中 k 例缓解）→ 后验 Beta(a+k, b+n−k)。决策规则如：Pr(p &gt; 20% | data) &gt; 0.95 则判定有效。</p>
+    <table>
+      <tr><th>n</th><th>k</th><th>观察 ORR</th><th>后验均值</th><th>Pr(p &gt; 20%)</th><th>Pr(p &gt; 30%)</th><th>可下的结论</th></tr>
+      <tr><td>10</td><td>3</td><td>30%</td><td>0.333</td><td>0.839</td><td>0.570</td><td>证据不足</td></tr>
+      <tr><td>10</td><td>4</td><td>40%</td><td>0.417</td><td>0.950</td><td>0.790</td><td>刚达到 0.95 阈值</td></tr>
+      <tr><td>19</td><td>4</td><td>21%</td><td>0.238</td><td>0.630</td><td>0.238</td><td class="hl">证据不足（与 Simon 阶段 1 阈值一致）</td></tr>
+      <tr><td>19</td><td>7</td><td>37%</td><td>0.381</td><td>0.968</td><td>0.772</td><td>强证据</td></tr>
+      <tr><td>19</td><td>8</td><td>42%</td><td>0.429</td><td>0.990</td><td>0.887</td><td>极强证据</td></tr>
+      <tr><td>30</td><td>12</td><td>40%</td><td>0.406</td><td>0.996</td><td>0.893</td><td>极强证据</td></tr>
+      <tr><td>54</td><td>15</td><td>28%</td><td>0.286</td><td>0.931</td><td>0.391</td><td>中等证据（注意：仅 28% 就不足以宣告 40%）</td></tr>
+      <tr><td>54</td><td>20</td><td>37%</td><td>0.375</td><td>0.999</td><td>0.879</td><td>极强证据</td></tr>
+    </table>
+    <h4>先验的选择直接改变结论（同一数据 n=19、k=7）</h4>
+    <table>
+      <tr><th>先验</th><th>含义</th><th>后验均值</th><th>Pr(p &gt; 20%)</th><th>Pr(p &gt; 30%)</th></tr>
+      <tr><td>Beta(1,1)</td><td>均匀先验（默认、最中性）</td><td>0.381</td><td>0.968</td><td>0.772</td></tr>
+      <tr><td>Beta(0.5,0.5)</td><td>Jeffreys 无信息先验</td><td>0.375</td><td>0.959</td><td>0.748</td></tr>
+      <tr><td>Beta(2,2)</td><td>弱信息，温和偏向 0.5</td><td>0.391</td><td>0.980</td><td>0.814</td></tr>
+      <tr><td>Beta(3,5)</td><td>据同类药历史 ORR 约 25–30% 构建</td><td>0.370</td><td>0.977</td><td>0.771</td></tr>
+      <tr><td>Beta(6,18)</td><td>据同人群历史 ORR 25% 强收缩</td><td class="hl">0.302</td><td>0.938</td><td class="hl">0.496</td></tr>
+    </table>
+    <div class="warn"><b>贝叶斯设计的最大争议点就在上表最后一行</b>：先验一旦"强势"（相当于凭空加了很多虚拟患者），结论会被先验主导——Pr(p&gt;30%) 从 0.772 掉到 0.496。<b>实务要求</b>：① 先验必须有可追溯来源并预先锁定；② 必须做先验敏感性分析（展示不同先验下的结论）；③ 向伦理/监管说明"先验不影响安全性与终点定义的客观性"。<b>注册递交场景下，仍应优先选择频率学派设计（第 55 章）</b>。</div>
+    <div class="info"><b>贝叶斯设计的真正优势场景</b>：① 罕见亚型（如 HER2 IHC 0 中某罕见共突变人群），可借用历史数据提高信息量；② 希望"边入组边看"（连续监测），而不只是几个固定期中点；③ 需要把"不确定性"直接写进决策语言（Pr(p&gt;P0)&gt;0.95）而非二元的显著性判定。</div>
+  </div>
+
+  <h3 id="s56-7">56.7 形式⑥：剂量扩展队列（3+3 / BOIN → 扩展队列）</h3>
+  <div class="card">
+    <p>ADC 早期 IIT 常需要在一个方案里同时回答"剂量/耐受性"与"初步疗效"，典型结构是：<b>剂量递增（DLT 规则）→ 选定 RP2D → 扩展队列（Simon 或精度型）</b>。</p>
+    <table>
+      <tr><th>部分</th><th>常用方法</th><th>样本量逻辑</th><th>决策输出</th></tr>
+      <tr><td>剂量递增</td><td>3+3（传统）或 BOIN / mTPI（模型辅助）</td><td>不按疗效样本量计算；由 DLT 规则决定（通常 12–30 例）</td><td>MTD / RP2D；DLT 发生率与类型</td></tr>
+      <tr><td>扩展队列</td><td>Simon 两阶段 / 精度型 / 贝叶斯</td><td>按疗效假设计算（如第 55.3.3 表）</td><td>该剂量下的初步 ORR 与安全性</td></tr>
+      <tr><td>生物标志物队列</td><td>多队列（第 57 章）</td><td>每队列独立计算</td><td>按标志物分层的活性差异</td></tr>
+    </table>
+    <div class="warn"><b>三个高频问题</b>：① <b>把递增部分的例数算进疗效样本量</b>——递增人群的剂量可能与 RP2D 不同，必须分开陈述（"扩展队列计划入组 X 例，另设剂量递增部分 Y 例"）；② <b>扩展队列的主要分析人群定义不清</b>——应按 RP2D 且完成至少一次疗效评估者定义，并在方案中预设规则；③ <b>BOIN 等模型辅助设计需预先设定</b>：剂量切换规则、过度毒性边界、以及是否允许回溯（look-back）必须写在方案里，不能执行中调整。</div>
+  </div>
+
+  <h3 id="s56-8">56.8 形式⑦：多队列单臂（篮式设计）</h3>
+  <div class="card">
+    <p>当同一个药要在多个亚型人群（如 HR+/HER2−、TNBC、HER2 IHC 0、HER2-low）并行探索时，单队列 Simon 设计不够用，需要多队列结构。核心问题<b>不是"怎么算样本量"，而是"怎么控制总体的假阳性"</b>——所以完整内容放在<b>第 57 章</b>。</p>
+    <table>
+      <tr><th>什么时候该用多队列</th><th>什么时候宁可不做</th></tr>
+      <tr><td>有 2–4 个生物学上合理的候选人群，各自都需要独立结论</td><td>队列数 &gt;4 而总样本量与中心资源不足（每队列 ~15–20 例什么都说明不了）</td></tr>
+      <tr><td>每队列的人群定义可在入组前明确、检测方法统一</td><td>生物标志物检测平台/阈值尚未定型（会发生"队列定义漂移"）</td></tr>
+      <tr><td>可以设定清晰的队列级 go/no-go 与关闭规则</td><td>各组入组不均衡，导致部分队列长期无法完成（拖住整项研究的分析时点）</td></tr>
+    </table>
+  </div>
+
+  <h3 id="s56-9">56.9 形式⑧：单臂 + 外部/历史对照（ECL）</h3>
+  <div class="card">
+    <p>做法：单臂入组试验组，使用既往研究或真实世界队列作为对照，通过倾向性评分匹配/加权使两组可比，从而得到"调整后效应估计"。它介于"单臂"与"随机"之间。</p>
+    <table>
+      <tr><th>维度</th><th>要点</th></tr>
+      <tr><td>适用场景</td><td>目标人群罕见或预后极差、设对照困难；存在高质量、同期、同标准的既往队列</td></tr>
+      <tr><td>不可替代的东西</td><td class="hl">随机化才能控制未知混杂。ECL 只能控制"已测量且已记录"的混杂因素</td></tr>
+      <tr><td>必须做的技术动作</td><td>① 预先定义并锁定对照来源与入排（不得事后挑选）；② 倾向性评分/IPTW 或标准化；③ 平衡性诊断（SMD &lt;0.1）；④ E-value 或未测量混杂敏感性分析；⑤ 报告规范（STROBE/RECORD，第 17.2.6）</td></tr>
+      <tr><td>时代偏倚（最致命）</td><td>后线治疗格局变化快（新 ADC 上市即改变对照组预后）→ 必须选<b>同期</b>对照，并做时间段敏感性分析</td></tr>
+      <tr><td>常见误用</td><td>用 ECL 得出"优效"并作为注册主张的替代；或把匹配后的小样本效应量当作确证证据</td></tr>
+    </table>
+    <div class="info"><b>写法示例（结论段的自我约束）</b>：<i>"本研究采用外部对照进行探索性比较。由于未采用随机化，结果受未测量混杂影响，仅用于假设生成；不得据此推断优效或用于任何推广用途。"</i></div>
+  </div>
+
+  <h3 id="s56-10">56.10 选型决策：五个问题定形式</h3>
+  <div class="card">
+    <div class="moa">
+      <div class="step"><b>Q1 结论句子是什么？</b><span style="font-size:11.5px">优于历史 / 有活性 / 估计精度</span></div>
+      <div class="arrow">→</div>
+      <div class="step"><b>Q2 无效时能否承受全部入组？</b><span style="font-size:11.5px">不能 → 必须两阶段/自适应</span></div>
+      <div class="arrow">→</div>
+      <div class="step"><b>Q3 月入组能力多少例？</b><span style="font-size:11.5px">先算时间，再定阶段划分</span></div>
+      <div class="arrow">→</div>
+      <div class="step"><b>Q4 有几个独立人群问题？</b><span style="font-size:11.5px">≥2 → 多队列（第 57 章）</span></div>
+      <div class="arrow">→</div>
+      <div class="step"><b>Q5 是否需报监管？</b><span style="font-size:11.5px">是 → 频率学派 + BICR + 0.025</span></div>
+    </div>
+    <table>
+      <tr><th>五问的答案组合</th><th>推荐形式</th><th>理由</th></tr>
+      <tr><td>优于历史 + 不能承受全入组 + 无需报监管</td><td><b>Simon 最优</b>（②）</td><td>IIT 最常用，兼顾结论效力与伦理成本</td></tr>
+      <tr><td>优于历史 + 有硬性人数/经费上限</td><td>Simon 极小极大（③）</td><td>最大入组量可控</td></tr>
+      <tr><td>只需"有活性" + 药物高度不确定 + 入组快</td><td>Gehan 两阶段（④）</td><td>10 例以内给出第一个决策点</td></tr>
+      <tr><td>只需"有活性" + 有可靠历史数据 + 想连续监测</td><td>贝叶斯（⑤）</td><td>可借用历史信息，小样本下更灵活</td></tr>
+      <tr><td>估计精度 + 不做假设检验</td><td>精度型 + 单阶段（①）</td><td>n 较小，但要严格限定结论语言</td></tr>
+      <tr><td>≥2 个人群 + 总样本可支撑</td><td>多队列单臂（⑦ → 第 57 章）</td><td>需全局多重性控制</td></tr>
+      <tr><td>罕见人群 + 高质量同期历史队列</td><td>单臂 + ECL（⑧）</td><td>必须预设对照并做敏感性分析</td></tr>
+      <tr><td>需报监管（附条件批准/适应症扩展支撑）</td><td>随机对照（超出本章范围，见 16/17/19 章）</td><td class="hl">单臂通常不足以支撑确证性主张</td></tr>
+    </table>
+  </div>
+
+  <h3 id="s56-11">56.11 单臂 IIT 的 12 个坑（按发生频率排序）</h3>
+  <div class="card">
+    <table>
+      <tr><th>#</th><th>坑</th><th>后果</th><th>规避</th></tr>
+      <tr><td>1</td><td>入组能力没核实（只有"我们中心病例多"）</td><td class="hl">研究无法完成，是 IIT 失败第一杀手</td><td>用近 12 个月实际使用该线治疗的患者数估算；写成"1.5 例/月 × 12 月"</td></tr>
+      <tr><td>2</td><td>P0 取值无依据，或引用不可比人群</td><td>整个样本量被质疑</td><td>P0 依据表 + 可比性讨论（第 55.1.4）</td></tr>
+      <tr><td>3</td><td>结论语言超出设计能力（"证明有效"）</td><td>学术与合规双重风险</td><td>统一使用"概念验证/假设生成"；避免"证实/优效"</td></tr>
+      <tr><td>4</td><td>研究者评估 ORR 而无 BICR，且未说明局限</td><td>结论偏乐观，被质疑</td><td>方案写明评估者、是否盲态、局限段明确"以研究者评估为准，存在评估偏倚可能"</td></tr>
+      <tr><td>5</td><td>未预设停止规则，无效时继续入组</td><td>伦理问题 + 资源浪费</td><td>两阶段/Gehan，并把停止规则写入伦理申请</td></tr>
+      <tr><td>6</td><td>生物标志物检测未统一（不同中心、不同平台、不同阈值）</td><td>人群定义漂移，结论不可解释</td><td>中心实验室统一检测；方案锁定抗体克隆号与判读标准</td></tr>
+      <tr><td>7</td><td>把剂量递增部分与疗效扩展部分混算样本量</td><td>疗效人群被"稀释"</td><td>分开陈述与分开分析（第 56.7）</td></tr>
+      <tr><td>8</td><td>安全性监查计划不匹配 ADC 风险（ILD、血液毒性）</td><td>安全性事件处理不及时</td><td>预设 ILD 监测与分级处置流程、血象监测频次、剂量调整规则</td></tr>
+      <tr><td>9</td><td>随访计划与终点不匹配（ORR 需确认、DoR 需长期随访）</td><td>DoR 无法算、PFS 不成熟</td><td>影像评估间隔统一（如每 6–8 周）、缓解后 ≥4 周确认</td></tr>
+      <tr><td>10</td><td>没有数据管理计划（谁录、谁核、何时锁库）</td><td>数据可用性差，成果产出晚</td><td>简易 EDC/纸质 CRF + 监查计划 + 锁库时间点</td></tr>
+      <tr><td>11</td><td>方案未考虑发表与数据归属（尤其多中心/有企业参与）</td><td>后期争议，成果无法发布</td><td>提前约定作者顺序、数据共享、发表审核流程（见第 48 章）</td></tr>
+      <tr><td>12</td><td>结论中对未获批适应症的表述越界</td><td class="hl">合规红线</td><td>内部/学术场合亦不得用于推广；严格按公司现行政策与法规要求</td></tr>
+    </table>
+  </div>
+
+  <h3 id="s56-12">56.12 三个可直接落地的方案骨架（BL-B01D1 语境，示意）</h3>
+  <div class="card">
+    <h4>骨架 A：概念验证型（Simon 最优）——最稳妥的默认选择</h4>
+    <table>
+      <tr><th>要素</th><th>内容</th></tr>
+      <tr><td>人群</td><td>HER2 IHC 0 的 mTNBC，既往 ≥2 线（含至少 1 线拓扑异构酶抑制剂 ADC 或不符合其条件）</td></tr>
+      <tr><td>设计</td><td>Simon 最优两阶段：p0=20%、p1=40%、单侧 α=0.05、power 90% → 19/4 → 54/15；计划入组 64 例（含脱落膨胀）</td></tr>
+      <tr><td>主要终点</td><td>BICR 评估的确认 ORR（RECIST 1.1）</td></tr>
+      <tr><td>关键次要</td><td>DoR、PFS、OS、安全性与耐受性（含 ILD 专项）</td></tr>
+      <tr><td>停止规则</td><td>阶段 1 缓解 ≤4 例即终止；另设安全性暂停规则（如 ≥2 例 ≥3 级 ILD）</td></tr>
+      <tr><td>结论定位</td><td>概念验证；为后续随机研究提供人群与效应量依据</td></tr>
+      <tr><td>周期估算</td><td>3 家中心 × 1.3 例/月 ≈ 4 例/月 → 阶段 1 约 5 个月，全研究约 16 个月（含随访）</td></tr>
+    </table>
+
+    <h4>骨架 B：信号探测型（Gehan → 精度扩展）——最快拿到第一个答案</h4>
+    <table>
+      <tr><th>要素</th><th>内容</th></tr>
+      <tr><td>适用前提</td><td>该人群对该药活性高度不确定（如罕见共突变亚型），目标是"是否有任何活性信号"</td></tr>
+      <tr><td>设计</td><td>第一阶段 9 例（真实 ORR 25% 时误停概率 7.5%），0 例缓解即终止；出现 ≥1 例缓解则继续扩展至 30–40 例以获得可报告的 ORR 估计（精度型：预期 30%、半宽 ±15% → 36 例）</td></tr>
+      <tr><td>结论边界</td><td class="hl">仅"值得继续"，不得表述为疗效阳性；扩展阶段的 ORR 需报告 95% CI 与人群定义</td></tr>
+      <tr><td>伦理话术</td><td>"9 例无缓解即可终止，仅需极少患者即可判断该亚型是否值得继续"</td></tr>
+    </table>
+
+    <h4>骨架 C：剂量扩展型（BOIN 递增 → Simon 扩展）——同时回答剂量与疗效</h4>
+    <table>
+      <tr><th>要素</th><th>内容</th></tr>
+      <tr><td>适用前提</td><td>尚未在目标人群确定 RP2D，或需探索联合方案（如与免疫治疗联合，参照 PANKU-Breast 04 思路）</td></tr>
+      <tr><td>设计</td><td>递增部分用 BOIN 或 3+3 确定 RP2D（预计 12–24 例）；扩展队列按 Simon 设计（如 p0=20%→p1=40%，单侧 0.05、power 80% → 33/10 极小极大或 13/3→43/12 最优）</td></tr>
+      <tr><td>样本量陈述</td><td><b>两部分分开写</b>："剂量递增部分计划入组约 12–24 例；扩展队列计划入组 43 例（另有 5 例脱落余量）"</td></tr>
+      <tr><td>风险控制</td><td>预设 DLT 规则、剂量递减规则、过度毒性边界；扩展队列内设安全性复核点（如前 10 例后）</td></tr>
+    </table>
+    <div class="note"><b>使用说明</b>：以上骨架为方法学示例，用于理解设计参数之间如何咬合。<b>任何实际 IIT 的方案设计、药品供应、数据与发表安排，均须经研究者、所在机构伦理委员会与公司相应正式流程审批</b>，不得直接套用本节数字。涉及未获批适应症的内容在任何场合均不得用于推广用途。</div>
+  </div>
+</section>
+
+<section id="s57">
+  <div class="sec-head"><div class="sec-num">57</div><h2>多队列研究设计注意事项</h2></div>
+  <div class="sec-desc">从"多个队列会不会把假阳性放大"这一个核心问题出发：四种原型（扩展队列 / 篮式 / 伞式 / 平台）、设计阶段 10 个决策点、多重性与 α 分配的实测代价、共享对照的收益与前提、队列启停与重分配、治理与注册、报告与发表规范、以及一个 BL-B01D1 语境下的完整示例</div>
+
+  <div class="info" style="margin-left:56px"><b>📌 本章要解决的核心矛盾</b><br>
+  多队列设计的吸引力很直白：一个方案、一套基础设施、多个问题同时答。但它引入一个单队列研究没有的风险：<b>如果你同时检验 5 个队列，各自用 0.05 的 α，那么"至少有一个队列被判为阳性是假的"概率高达 22.6%</b>。所以多队列设计的全部难点可以压缩成一句话：<b>在有限的样本量与中心资源下，如何既保留每个队列的独立可解释性，又不让整体结论变成"碰运气"。</b></div>
+
+  <h3 id="s57-1">57.1 四种原型：先认清自己做的是哪一种</h3>
+  <div class="card">
+    <table>
+      <tr><th>原型</th><th>结构</th><th>回答的问题</th><th>典型数量级</th><th>关键难点</th></tr>
+      <tr><td><b>① 扩展队列</b><br>（cohort expansion）</td><td>同一药物、同一剂量（RP2D）、若干不同人群队列并行</td><td>"这个剂量在这些人群里活性如何"</td><td>3–6 个队列，每队列 15–40 例</td><td>人群定义的一致性、各队列 en 结论的独立性</td></tr>
+      <tr><td><b>② 篮式（Basket）</b></td><td>同一药物 + 同一（或同类）生物标志物，跨瘤种/跨亚型分队列</td><td>"这个标志物是否可跨瘤种预测疗效"</td><td>4–10 个队列</td><td class="hl">标志物检测标准化；极少数队列最终只能给描述性结果</td></tr>
+      <tr><td><b>③ 伞式（Umbrella）</b></td><td>同一瘤种，按生物标志物分队列，各队列给不同治疗</td><td>"在该瘤种中，不同标志物人群各自的最佳治疗"</td><td>3–8 个队列 + 筛查流程</td><td>筛查失败率高（大量患者无法归入任何队列）→ 需预设筛查失败率</td></tr>
+      <tr><td><b>④ 平台（Platform）</b></td><td>长期运行的主方案，新药/新队列可动态加入与退出</td><td>"持续比较多个干预在同一框架下的效果"</td><td>持续扩展、含共享对照</td><td>治理最复杂：队列进出规则、对照数据的时间可比性、统计假设的稳定性</td></tr>
+    </table>
+    <div class="note"><b>判断自己属于哪一种只需两问</b>：① 队列之间的差异是"<b>人群</b>"还是"<b>药物</b>"？（人群不同→①②；药物不同→③④）② 方案是否需要<b>长期开放、动态加入新队列</b>？（需要→④平台，治理要求最高）<br>
+    对 IIT 而言，<b>最常见且最现实的是 ①扩展队列与 ②篮式</b>；③④通常需要企业级资源与统计支持，不建议作为个人主导的 IIT 首次尝试。</div>
+  </div>
+
+  <h3 id="s57-2">57.2 设计阶段的 10 个决策点（按顺序定，不要跳）</h3>
+  <div class="card">
+    <table>
+      <tr><th>#</th><th>决策点</th><th>选项</th><th>实务建议</th></tr>
+      <tr><td>1</td><td>队列划分依据</td><td>瘤种 / 生物标志物状态 / 既往治疗线数 / 联合方案</td><td>优先按<b>能改变治疗决策</b>的维度划分；不要为了"看起来丰富"而拆队列</td></tr>
+      <tr><td>2</td><td>队列数量</td><td>2–3 / 4–5 / &gt;5</td><td class="hl">IIT 建议 ≤3 个疗效队列（含 1 个探索性队列）；每队列例数 &lt;15 时除极强效应外无法给出任何可靠结论</td></tr>
+      <tr><td>3</td><td>是否设对照</td><td>全部单臂 / 部分队列随机 / 全部随机 / 共享外部对照</td><td>有对照的队列结论效力最高；若队列内部随机不足，可考虑共享对照（见 57.3.3）</td></tr>
+      <tr><td>4</td><td>主要终点</td><td>各队列统一终点 / 部分队列不同终点</td><td>统一终点利于合并解释；<b>不同队列用不同终点时必须逐队列写清判定标准</b></td></tr>
+      <tr><td>5</td><td>每队列假设</td><td>统一的 p0/p1 / 各自不同的 p0/p1</td><td>p0 必须来源于该队列人群的历史数据（不同亚型历史 ORR 可以差 2 倍以上），不能共用</td></tr>
+      <tr><td>6</td><td>多重性处理</td><td>不校正 / Bonferroni / 分层序贯 / 图形法 / 层级法</td><td>见 57.3.1；<b>单臂多队列研究也必须处理，只是方式可以更简单</b></td></tr>
+      <tr><td>7</td><td>队列级停止规则</td><td>每队列独立停止 / 全局停止 / 只设无效性边界</td><td>每队列独立 Simon 设计最实用；另设全局安全性停止规则</td></tr>
+      <tr><td>8</td><td>能否重分配样本量</td><td>固定 / 自适应重分配（把无效队列的样本转给有效队列）</td><td>吸引力大但实现复杂，需预设规则与统计支持；IIT 通常不做</td></tr>
+      <tr><td>9</td><td>数据与治理</td><td>是否设 DSMB / 独立统计 / 中心实验室</td><td>有多队列 + 有安全性风险（如 ADC 的 ILD）时，<b>建议设独立数据监查机制</b></td></tr>
+      <tr><td>10</td><td>注册与版本管理</td><td>单注册号 / 主方案 + 子方案</td><td>提前确定登记方式（如平台型方案通常一个主号 + 各队列子号），并明确 SAP 的版本管理（第 53 章）</td></tr>
+    </table>
+  </div>
+
+  <h3 id="s57-3">57.3 统计注意事项（本章的重点）</h3>
+  <div class="card">
+    <h4>57.3.1 多重性：不校正的代价有多大（实测）</h4>
+    <p>若 k 个队列各自独立检验、每个都用单侧 α=0.05，且各队列均无效（H0 全部成立）时，"至少一个队列被误判为阳性"的概率为：</p>
+    <table>
+      <tr><th>队列数 k</th><th>未校正的总 I 类错误（1−0.95<sup>k</sup>）</th><th>Bonferroni 每队列 α = 0.05/k</th><th>单队列所需 n（p0=20%→p1=40%，power 90%）</th><th>相对单队列 n=47 的膨胀</th></tr>
+      <tr><td>1</td><td>0.0500</td><td>0.05000</td><td>47</td><td>1.00×</td></tr>
+      <tr><td>2</td><td>0.0975</td><td>0.02500</td><td>56</td><td>1.19×</td></tr>
+      <tr><td>3</td><td class="hl">0.1426</td><td>0.01667</td><td>61</td><td>1.30×</td></tr>
+      <tr><td>4</td><td class="hl">0.1855</td><td>0.01250</td><td>64</td><td>1.36×</td></tr>
+      <tr><td>5</td><td class="hl">0.2262</td><td>0.01000</td><td>67</td><td>1.43×</td></tr>
+      <tr><td>6</td><td class="hl">0.2649</td><td>0.00833</td><td>70</td><td>1.49×</td></tr>
+    </table>
+    <p><b>换成 Simon 两阶段看同样的代价</b>（p0=20%、p1=40%、power 90%，每队列独立设计）：</p>
+    <table>
+      <tr><th>校正方式</th><th>每队列 α</th><th>最优设计（阶段 1 → 总 n / 最终阈值 r）</th><th>期望样本量 EN</th><th>极小极大设计（总 n / r）</th></tr>
+      <tr><td>不校正（k=1）</td><td>0.05</td><td>19 / 4 → 54 / 15</td><td>30.4</td><td>45 / 13</td></tr>
+      <tr><td>Bonferroni（k=2）</td><td>0.025</td><td>22 / 5 → 66 / 19</td><td>33.8</td><td>56 / 17</td></tr>
+      <tr><td>Bonferroni（k=3）</td><td>0.0167</td><td>28 / 7 → 71 / 21</td><td>35.8</td><td>61 / 19</td></tr>
+      <tr><td>Bonferroni（k=4）</td><td>0.0125</td><td>28 / 7 → 74 / 22</td><td>36.4</td><td>64 / 20</td></tr>
+    </table>
+    <div class="info"><b>怎么选多重性策略（按严谨度递增）</b><br>
+    <b>① 不校正 + 声称为探索性</b>：可在方案与所有报告中明确写"各队列结果均为探索性，不用于任何确证性推断"；<b>这是 IIT 最常用也最容易被接受的做法——前提是"探索性"三个字必须写到每一个结论里</b>。<br>
+    <b>② Bonferroni 型</b>：每队列 α 收紧到 0.05/k，代价见上表（每队列多 5–20 例）。适用于队列数少、希望每个队列都能独立下结论。<br>
+    <b>③ 分层序贯 / 层级法（hierarchical）</b>：先检验主队列，只有阳性才继续检验下一队列（α 传递）。<b>最能保护总体错误率且不损失多少样本量</b>，但要求事先明确队列的检验顺序与传递规则。适用于有一个"主要队列"+若干"次要队列"的结构。<br>
+    <b>④ 图形法（graphical approach，Bretz 等）</b>：可定制 α 的传递路径，适用于复杂的多终点多队列结构，需要专业统计支持。</div>
+    <div class="warn"><b>一个高频被质疑的写法</b>：方案写"各队列独立分析，α=0.05（单侧）"，结论写"3 个队列中 2 个达到阳性"。这是<b>典型的未校正多重性</b>——3 个队列中至少一个假阳性的概率是 14.3%。正确做法：要么提前做 Bonferroni/序贯校正，要么把"2 个阳性"表述为"在探索性分析中观察到 2 个队列达到预设界值，需在后续研究中确认"。</div>
+
+    <h4>57.3.2 合并分析（pooling）什么时候可以做</h4>
+    <table>
+      <tr><th>可以做</th><th>不可以做</th></tr>
+      <tr><td>队列间人群、剂量、终点定义、评估方法完全一致，仅按登记地区/中心划分</td><td>队列的<b>假设不同</b>（p0/p1 不同）却合并计算一个 ORR——这是"用合并结果掩盖亚组差异"</td></tr>
+      <tr><td>预先在方案中声明"主要分析为合并分析"，并按队列做一致性检验（异质性 / 交互检验）</td><td>事后发现某队列结果不好而合并（或反之拆开）——<b>事后选择分析集是最严重的统计诚信问题之一</b></td></tr>
+      <tr><td>用于描述安全性（安全性通常应合并呈现并给总暴露量）</td><td>把样本量极小（如 &lt;10 例）的队列并入主队列以获得"更高 ORR"</td></tr>
+    </table>
+    <div class="note"><b>安全性数据的处理恰好相反</b>：疗效按队列独立分析，<b>安全性通常应按"所有接受该剂量/该药物的患者"合并汇总</b>（因为毒性机制通常不因亚型而异）。方案中应写明"疗效分析按队列进行；安全性分析基于全分析集（可另按队列呈现主要事件）"。</div>
+
+    <h4>57.3.3 共享对照：能省多少，代价是什么（实测）</h4>
+    <p>设两个试验队列（A：预期 ORR 50%；B：预期 ORR 45%），对照人群预期 30%，双侧 α=0.05、power 90%：</p>
+    <table>
+      <tr><th>方案</th><th>结构</th><th>总例数</th><th>对照臂例数</th><th>相对甲节省</th></tr>
+      <tr><td><b>方案甲</b>：两个独立 RCT</td><td>各自 1:1 随机</td><td>248 + 434 = <b>682</b></td><td>341（重复招募）</td><td>—</td></tr>
+      <tr><td><b>方案乙</b>：共享对照（每队列 2:1，α=0.025 分摊）</td><td>共用 1 个对照臂</td><td>≈ <b>396</b></td><td>96</td><td class="ok"><b>省 286 例（约 42%）</b></td></tr>
+    </table>
+    <table>
+      <tr><th>共享对照的收益</th><th>必须满足的前提（缺一不可）</th></tr>
+      <tr><td>对照臂患者不必重复招募，总样本量与成本大幅下降</td><td>各试验队列的<b>入排标准与基线必须一致</b>（否则对照不可共用）</td></tr>
+      <tr><td>所有试验队列与对照<b>同期入组</b>，避免时代效应</td><td>α 需按多重性分摊（上表按 α=0.025 计算）</td></tr>
+      <tr><td>统计效率与"临时对照"（contemporaneous control）兼顾</td><td>随机比例从 1:1 改为 2:1，<b>对照样本减少会降低部分比较效率，需统计师核算</b></td></tr>
+      <tr><td>可支持"平台型"主方案的长期运行</td><td>若某队列关闭，对照臂的继续运营与数据可用性需提前约定</td></tr>
+    </table>
+    <div class="warn"><b>共享对照最常见的失败原因不是统计学，而是操作</b>：各队列入组速度不同 → 对照臂提前入满 → 后开启的队列只能用"非同期"对照数据 → 时代效应（如期间新药上市改变预后）无法排除。因此<b>必须在方案中规定对照臂的入组节奏与各队列的启动顺序</b>。</div>
+
+    <h4>57.3.4 队列定义与生物标志物：多队列研究最隐蔽的风险</h4>
+    <table>
+      <tr><th>风险</th><th>后果</th><th>控制措施</th></tr>
+      <tr><td>各中心使用不同检测平台/不同抗体克隆号</td><td>同一表达水平的患者被分到不同队列</td><td>中心实验室统一检测，方案锁定抗体克隆号、平台与判读标准</td></tr>
+      <tr><td>阈值边界模糊（如 HER2 IHC 0 与 IHC 1+ 的判读差异）</td><td class="hl">队列人群漂移，结论无法与外部数据比较</td><td>预设病理复核机制（如双人独立判读 + 第三方仲裁）、留存切片供复核</td></tr>
+      <tr><td>检测方法与既往注册研究不同（如 TROP2 评分、HER3 表达）</td><td>结果无法与同类药物比较</td><td>尽量采用与已发表研究一致的检测方法，并做一致性说明</td></tr>
+      <tr><td>样本可及性差（需重新活检但患者拒绝）</td><td>入组失败、队列长时间无法完成</td><td>方案中允许用归档组织（若无则设条件）、明确筛查失败率预期</td></tr>
+    </table>
+    <div class="info"><b>一个可操作的做法</b>：在方案中写清"<b>队列分配由筛查期统一检测结果决定，分配后不得因后续检测结果更改队列</b>"，并明确"入组时需提交检测报告原件/中心实验室结果，中心实验室结论为最终依据"。这一条能挡掉绝大多数事后的人群定义争议。</div>
+
+    <h4>57.3.5 期中分析与队列启停</h4>
+    <table>
+      <tr><th>机制</th><th>触发条件示例</th><th>决策</th><th>注意事项</th></tr>
+      <tr><td>队列级无效性停止</td><td>该队列阶段 1 缓解数 ≤ 阈值</td><td>关闭该队列继续入组</td><td>关闭后已入组患者的治疗与随访如何处理须预先写清</td></tr>
+      <tr><td>队列级有效性提前推进</td><td>达到预设的强证据阈值</td><td>可提前结束该队列并推进后续研究</td><td>提前结束会损失安全性长期数据，需权衡</td></tr>
+      <tr><td>全局安全性暂停</td><td>跨队列累计出现特定 SAE（如 ≥2 例 ≥3 级 ILD）</td><td>暂停全部入组，启动安全性评估</td><td class="hl">必须预先定义"累计规则"（是否跨队列合并计数）与恢复条件</td></tr>
+      <tr><td>样本量重分配</td><td>某队列提前停止，把余量转给其他队列</td><td>增加有效队列的入组</td><td>须预设规则并注意总体 α 与把握度的重算</td></tr>
+    </table>
+    <div class="warn"><b>跨队列安全性累计是 ADC 多队列研究的关键设计点</b>：ILD、血液毒性等事件可能在某个队列集中出现，也可能跨队列分散出现。方案中必须明确：① 安全性汇总口径（是否合并所有剂量/所有队列）；② 暂停与恢复的具体阈值与决策主体（研究者/DSMB/申办方）；③ 与公司药物警戒流程的衔接（第 49 章）。<b>不得在方案中留下"视情况由研究者判断"这类无操作性的表述。</b></div>
+
+    <h4>57.3.6 入组不均衡：多队列研究最常见的"完成不了"</h4>
+    <table>
+      <tr><th>现象</th><th>后果</th><th>预案</th></tr>
+      <tr><td>某队列人群罕见（如 IHC 0 且既往多线），入组极慢</td><td>该队列迟迟不完成，拖住整个研究的分析时点与发表</td><td>① 预设"最低可分析例数"（如 12 例）并允许以描述性方式报告；② 给该队列延长入组期或增加中心；③ 设队列关闭时限（如 24 个月未达目标即关闭并如实报告）</td></tr>
+      <tr><td>筛查失败率高（伞式/篮式常见，可达 30–60%）</td><td>实际入组远低于预期</td><td>在时间表中按筛查失败率上调筛查例数（如入组 40 例需筛查 60–70 例）</td></tr>
+      <tr><td>中心之间能力差异大</td><td>少量中心承担大部分入组 → 中心效应</td><td>预先设定单中心入组上限（如不超过总量 25–30%），并监测中心分布</td></tr>
+    </table>
+  </div>
+
+  <h3 id="s57-4">57.4 样本量在多队列之间的三种分配逻辑</h3>
+  <div class="card">
+    <table>
+      <tr><th>逻辑</th><th>做法</th><th>适用</th><th>缺点</th></tr>
+      <tr><td><b>① 按假设独立计算</b>（推荐默认）</td><td>每队列按各自的 p0/p1 独立算 n，加总得总量</td><td>各队列都有明确的假设与独立结论需求</td><td>总量可能超出可承受范围 → 需减少队列数</td></tr>
+      <tr><td><b>② 按信息量/精度分配</b></td><td>按各队列预期的变异度或所需 CI 精度分配</td><td>目标是"把各亚组的疗效估计得足够准"而非假设检验</td><td>不能给出"优于历史"的结论</td></tr>
+      <tr><td><b>③ 按机会/资源分配</b></td><td>按预期效应大小、患者可及性、优先级分配（主队列多、探索队列少）</td><td>资源有限、需要保留一个"主队列"以保证有可结论的部分</td><td>次要队列只能产出描述性结果 → 必须预先声明</td></tr>
+    </table>
+    <div class="note"><b>一个实用的总量校验法</b>：先按 ① 算出各队列理论样本量并加总，得到"理想总量"；再用"实际可入组总量"（月入组例数 × 入组期）去除，得到覆盖率。<b>覆盖率 &lt;70% 时，唯一正确的做法是砍队列数，而不是把每个队列的样本量削薄</b>——削薄的结果是每个队列都不足以给出结论，整项研究变成一堆描述性数据。</div>
+  </div>
+
+  <h3 id="s57-5">57.5 治理、操作与合规</h3>
+  <div class="card">
+    <table>
+      <tr><th>事项</th><th>多队列研究的特殊要求</th></tr>
+      <tr><td>方案与 SAP</td><td>主方案（master protocol）+ 各队列附录；SAP 需按队列与合并分析分别撰写，并做版本管理（第 53 章）</td></tr>
+      <tr><td>独立数据监查</td><td>队列越多、安全性风险越高，越需要独立数据监查机制（DSMB 或至少独立统计 + 预设报告周期）</td></tr>
+      <tr><td>伦理</td><td>多数情况下一次审批覆盖全部队列，但<b>队列的加入、关闭、样本量重大变更通常需报伦理备案或修正</b>；伞式/平台型可能有更高的伦理沟通频率</td></tr>
+      <tr><td>注册登记</td><td>平台型/动态队列结构需在登记平台清晰呈现（主方案号 + 各队列信息），避免登记信息与实际执行不一致</td></tr>
+      <tr><td>数据管理与锁库</td><td>队列级锁库 vs 全局锁库需预先约定；提前关闭的队列需单独定义数据清理与锁库时点</td></tr>
+      <tr><td>药物供应</td><td>各队列剂量/方案可能不同 → 药品供应与编盲（若有）须逐队列确认；公司产品涉及的 IIT 须走公司正式流程</td></tr>
+      <tr><td>受试者告知</td><td>知情同意书须说明"本研究包含多个队列，您将被分配到符合您情况的队列"，以及队列可能提前关闭的后果</td></tr>
+    </table>
+  </div>
+
+  <h3 id="s57-6">57.6 报告与发表注意事项</h3>
+  <div class="card">
+    <table>
+      <tr><th>要点</th><th>具体要求</th></tr>
+      <tr><td>逐队列报告</td><td>每个队列单独报告样本量、ORR 及其精确 CI（Clopper-Pearson）、DoR、安全性；不得只报合并结果</td></tr>
+      <tr><td>明确多重性处理</td><td>在方法学部分写明 α 分配方式（或明确声明探索性），不得含糊</td></tr>
+      <tr><td>报告筛查失败与分配</td><td>伞式/篮式需报告筛查人数、失败原因、各队列实际入组（类似 CONSORT 流程图）</td></tr>
+      <tr><td>提前关闭的队列必须报告</td><td class="hl">只报告"成功的队列"而不报告已关闭队列，属于选择性报告，会严重影响整篇论文的可信度</td></tr>
+      <tr><td>声明局限</td><td>无对照或多重性未校正、样本量小、亚组定义事后调整等都必须写进局限段</td></tr>
+      <tr><td>合规边界</td><td>未获批适应症、未发表数据、企业参与的披露与审核要求（第 48 章）；任何内容不得用于推广</td></tr>
+    </table>
+  </div>
+
+  <h3 id="s57-7">57.7 常见错误清单（10 条）</h3>
+  <div class="card">
+    <table>
+      <tr><th>#</th><th>错误</th><th>后果</th></tr>
+      <tr><td>1</td><td>各队列独立用 α=0.05 且不声明探索性</td><td class="hl">假阳性膨胀（3 队列即 14.3%），结论不可信</td></tr>
+      <tr><td>2</td><td>队列数超过资源承受力（每队列 &lt;15 例）</td><td>每个队列都下不了结论</td></tr>
+      <tr><td>3</td><td>各队列共用同一个 p0（如都用 20%）</td><td>不同亚型历史疗效可差 2 倍以上，假设失真</td></tr>
+      <tr><td>4</td><td>把某队列的次要终点当主要终点报告</td><td>事后挑终点，统计诚信问题</td></tr>
+      <tr><td>5</td><td>队列定义事后修改（如把 IHC 1+ 并入 IHC 0）</td><td>人群定义不可追溯</td></tr>
+      <tr><td>6</td><td>共享对照未规定入组节奏</td><td>对照臂入满后新队列只能用非同期对照</td></tr>
+      <tr><td>7</td><td>未预设队列关闭规则</td><td>无效队列持续入组，伦理与资源双输</td></tr>
+      <tr><td>8</td><td>跨队列安全性未设累计规则</td><td>安全性信号发现延迟</td></tr>
+      <tr><td>9</td><td>只报告阳性队列，不报告关闭队列</td><td>选择性报告，影响发表与声誉</td></tr>
+      <tr><td>10</td><td>把多队列探索结果作为注册/推广依据</td><td class="hl">合规红线</td></tr>
+    </table>
+  </div>
+
+  <h3 id="s57-8">57.8 示例：BL-B01D1 语境下的三队列设计（示意）</h3>
+  <div class="card">
+    <div class="info"><b>说明</b>：以下仅为方法学示例，用于展示"队列划分—假设—样本量—多重性—治理"如何咬合。<b>任何实际研究须经公司正式流程与伦理审批</b>，且涉及未获批适应症的内容在任何场合均不得用于推广。</p>
+    </div>
+    <table>
+      <tr><th>要素</th><th>队列 A（主队列）</th><th>队列 B</th><th>队列 C（探索）</th></tr>
+      <tr><td>人群</td><td>HER2 IHC 0 的 mTNBC，≥2 线</td><td>HER2-low 的 mTNBC，≥2 线</td><td>HER3 高表达的其他实体瘤（后线）</td></tr>
+      <tr><td>历史 ORR（p0）</td><td>约 20%</td><td>约 25%</td><td>约 10%</td></tr>
+      <tr><td>目标 ORR（p1）</td><td>40%</td><td>45%</td><td>25%</td></tr>
+      <tr><td>α（校正后）</td><td>0.05（主队列，不牺牲）</td><td>0.025</td><td>0.0167</td></tr>
+      <tr><td>设计（Simon 最优，power 90%）</td><td>19/4 → 54/15</td><td>22/5 → 66/19</td><td>约 16/2 → 41/7（据 p0=10%、p1=25% 量级估算，需正式计算）</td></tr>
+      <tr><td>计划入组（含 10–15% 膨胀）</td><td>64</td><td>76</td><td>48</td></tr>
+      <tr><td>主要终点</td><td colspan="3">BICR 评估的确认 ORR（RECIST 1.1），三队列终点定义与评估时点统一</td></tr>
+      <tr><td>多重性策略</td><td colspan="3">采用<b>分层序贯</b>：队列 A 达到界值后，α 传递至队列 B；队列 C 定位为探索性（结果仅描述性报告）。若采用 Bonferroni，则队列 A 的 α 会被稀释，需权衡主队列的结论力度</td></tr>
+      <tr><td>停止规则</td><td colspan="3">每队列独立阶段 1 无效性停止；全局安全性暂停规则：任一队列累计 ≥2 例 ≥3 级 ILD 即暂停全部入组并启动评估（与 PV 流程衔接，第 49 章）</td></tr>
+      <tr><td>总量与可行性</td><td colspan="3">三队列合计约 188 例；若 4 家中心合计 6 例/月 → 约 31 个月完成入组。<b>若实际只有 3 例/月，则必须砍掉队列 C（覆盖率 &lt;70% 时砍队列而非削薄每队列）</b></td></tr>
+      <tr><td>结论边界</td><td colspan="3">全部结果定位为探索性/概念验证；不得用于适应症扩展主张或任何推广用途；发表时须报告三队列全部结果（含提前关闭队列）</td></tr>
+    </table>
+    <div class="note"><b>这个示例要传达的三个设计习惯</b>：① <b>有一个"主队列"</b>——不是所有队列都要同等结论强度，主队列保住结论力度，其余队列接受探索性定位；② <b>α 用在刀刃上</b>——分层序贯优于无差别 Bonferroni；③ <b>总量校验先行</b>——先算清"能不能做完"，再决定队列数，而不是先设计漂亮结构再发现做不完。</div>
+  </div>
+
+  <div class="warn"><b>声明（本章）</b>：本章所有数值（多重性膨胀、样本量、共享对照节省）均由本手册附带脚本按标准方法实算，用于方法学教学与快速自算复核。<b>任何正式研究的设计、样本量、多重性策略与治理机制，均须由统计师计算、经申办方与研究机构正式审批后写入方案与 SAP。</b>涉及公司产品的 IIT 与任何对外材料，须遵循公司现行政策与法规要求；未获批适应症相关内容不得用于推广。</div>
+</section>
+
 <div class="foot">
-    《BL-B01D1 医学经理知识手册与职场工具（合并版）》v2.3 · 2026-08-30 · 面向上市后医学经理（实体瘤/乳腺癌产品线）<br>
+    《BL-B01D1 医学经理知识手册与职场工具（合并版）》v2.5 · 2026-09-14 · 面向上市后医学经理（实体瘤/乳腺癌产品线）<br>
+    全站共 57 章 · 数据检索截止 2026-08-30（产品数据以国家药监局核准说明书与公司官方材料为准）<br>
     由《BL-B01D1产品深度研究报告》与《上市后医学经理职场工具手册》合并，新增：核心信息屋 / FAQ Top20 / 医学洞察方法论 / 年度工作节奏日历 / 文献检索策略 / 风险预案。<br>
     配套文件：《BL-B01D1上市后医学经理工作百科全书.md》·《职场工具模板.xlsx》（13个可复用模板）·《BL-B01D1工作百科全书-学习地图.html》<br>
     编制：WorkBuddy · 医学事务知识支持｜所有产品数据以国家药监局批准说明书及公司官方材料为准
+  <div style="margin-top:6px">2026-09-14 v2.5：新增第 55 章《样本量设计：从基础到实操（可复算手册）》（五类终点公式 / Simon 两阶段 10 组实算表 / 膨胀与敏感性分析 / 8 步流程 / 3 个算例 / 可运行 Python·R 代码 / 中英文论证段落模板 / 14 条常见错误）、第 56 章《单臂 IIT 的常见设计形式与适合场景》（8 种形式速查矩阵 / Gehan·贝叶斯实算表 / 选型五问 / 12 个坑 / 3 个方案骨架）、第 57 章《多队列研究设计注意事项》（四种原型 / 10 个决策点 / α 分配实测代价 / 共享对照收益测算 / 治理与报告规范）；并将第 16.4.2、17.1.3 节的旧「示意值」修正为精确二项实算值。</div>
   <div style="margin-top:6px">2026-08-30 v2.3：医学准确性与合规审计重构——修正 133 处章节编号错位与 28+ 处高风险表述；首页升级为「六大工作中心 + 15 场景入口 + 全站搜索 + 证据标签」；新增第 44-53 章（Medical Plan / IEP / 洞察深化 / 项目管理 / Publication / 医学治理 / 商业准入 / 能力模型 / 30-60-90 / 引用版本管理），原 44 数据来源顺延为 54。</div>
   <div style="margin-top:6px">2026-08-27 v2.2：新增第 9 章（宜泽康适应症竞品全景与上市后空白点分析），原 9-43 章顺延为 10-44，交叉引用同步更新。</div>
   <div style="margin-top:6px">2026-08-27 v2.1：新增第 22 章（上市后 IV 期临床研究详解）、第 23 章（IND/CDA 等核心概念与文件体系）、第 24 章（适应症纳入与确证性研究设计详解），原 22-40 章顺延为 25-43，交叉引用同步更新。</div>
