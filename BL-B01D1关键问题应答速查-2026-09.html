@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BL-B01D1 关键问题应答速查（Q&amp;A Playbook）· 2026-09</title>
+<style>
+  :root{--p:#0b5e8f;--p2:#1472a8;--ok:#1d7a54;--w:#b9770e;--hl:#c0392b;--bg:#f5f7fa;--card:#fff;--line:#e2e8f0;--text:#1f2933;--mut:#5b6b7a}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.7;padding:26px 14px 80px}
+  .wrap{max-width:1180px;margin:0 auto}
+  .topbar{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;align-items:center;font-size:12.5px;color:var(--mut);margin-bottom:12px}
+  .topbar a{color:var(--p2);text-decoration:none}
+  h1{font-size:23px;color:#0b4a6f;background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 24px;line-height:1.5}
+  h1 small{display:block;font-size:13px;color:var(--mut);font-weight:400;margin-top:6px;line-height:1.6}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+  .meta span{background:#eef3f8;border:1px solid var(--line);border-radius:20px;padding:4px 12px;font-size:12px;color:#33414f}
+  .nav{position:sticky;top:0;background:#0e3a57;color:#fff;border-radius:0 0 12px 12px;padding:8px 12px;margin-bottom:16px;z-index:9;display:flex;flex-wrap:wrap;gap:4px}
+  .nav a{color:#cfe5f2;font-size:12.5px;text-decoration:none;padding:4px 10px;border-radius:6px}
+  .nav a:hover{background:#1b4f75;color:#fff}
+  h2{font-size:20px;color:#0b4a6f;margin:36px 0 6px;padding-left:12px;border-left:6px solid var(--p2)}
+  h2 .tag{font-size:12px;color:var(--mut);font-weight:400;margin-left:8px}
+  h3{font-size:16px;color:#0d3f5e;margin:22px 0 8px}
+  h4{font-size:14px;color:#0d3f5e;margin:14px 0 6px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:12px 0;overflow-x:auto}
+  table{width:100%;border-collapse:collapse;font-size:12.6px;margin:8px 0;min-width:700px}
+  th{background:#0e3a57;color:#fff;padding:8px 9px;text-align:left;font-weight:600;white-space:nowrap}
+  td{padding:8px 9px;border-bottom:1px solid #eef2f6;vertical-align:top}
+  tr:nth-child(even) td{background:#f8fafc}
+  .stg{background:#eaf3fb;font-weight:700;color:#0d3f5e;white-space:nowrap}
+  .warn{background:#fdf3e7;border:1px solid #f0d9b8;border-radius:10px;padding:12px 16px;font-size:13px;margin:14px 0;color:#6b4d14}
+  .red{background:#fdeeee;border:1px solid #f0c9c9;border-radius:10px;padding:12px 16px;font-size:13px;margin:14px 0;color:#8c2c22}
+  .okb{background:#e9f6ef;border:1px solid #bcdcc9;border-radius:10px;padding:12px 16px;font-size:13px;margin:14px 0;color:#14532d}
+  .inf{background:#eaf3fb;border:1px solid #cfe2f0;border-radius:10px;padding:12px 16px;font-size:13px;margin:14px 0;color:#0d3f5e}
+  ul,ol{margin:6px 0 6px 22px;font-size:13px}li{margin:3px 0}
+  p{font-size:13px;margin:6px 0;color:#33414f}
+  .src{font-size:11.5px;color:var(--mut);margin-top:4px}
+  .foot{font-size:11.5px;color:var(--mut);margin-top:34px;border-top:1px solid var(--line);padding-top:12px}
+  /* Q 卡片 */
+  .q{background:#fff;border:1px solid var(--line);border-left:5px solid var(--p2);border-radius:12px;padding:14px 18px;margin:14px 0}
+  .q .qh{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline;margin-bottom:6px}
+  .q .qn{background:#0e3a57;color:#fff;font-size:11.5px;font-weight:700;border-radius:6px;padding:2px 8px;white-space:nowrap}
+  .q .qt{font-size:14.5px;font-weight:700;color:#0b4a6f;flex:1;min-width:240px}
+  .q .chip{font-size:11px;border-radius:20px;padding:1px 9px;white-space:nowrap;font-weight:600}
+  .c-core{background:#e4eff9;color:#11557f}
+  .c-risk{background:#fdeeee;color:#a93226}
+  .c-market{background:#e9f6ef;color:#1d6b46}
+  .c-clin{background:#f3e7f7;color:#6b2d8f}
+  .c-reg{background:#fdf3d7;color:#8a6d1a}
+  .lab{font-size:11.5px;font-weight:700;color:#0b5e8f;background:#eef3f8;border-radius:5px;padding:1px 7px;margin-right:5px;display:inline-block}
+  .ans30{background:#eef6fb;border-radius:8px;padding:8px 12px;font-size:13.2px;margin:6px 0 8px;color:#0d3f5e}
+  .ans30 b{color:#0b4a6f}
+  .sub{font-size:12.8px;margin:6px 0}
+  .ask{border-top:1px dashed #d8e2ea;margin-top:8px;padding-top:7px;font-size:12.6px;color:#6b4d14}
+  .ask b{color:#a04e0e}
+  .e{display:inline-block;font-size:10.6px;border-radius:5px;padding:0 6px;margin-right:4px;white-space:nowrap;vertical-align:1px}
+  .e-lab{background:#e7f1ec;color:#1d6b46}.e-pub{background:#e4eff9;color:#1b5f94}.e-abst{background:#fdf3d7;color:#8a6d1a}
+  .e-sub{background:#f3e7f7;color:#6b2d8f}.e-pre{background:#eef1f5;color:#4b5563}.e-hyp{background:#f2ecec;color:#7c3c3c}
+  .e-nh{background:#fdeeee;color:#b03a2e}.e-int{background:#e8e6f5;color:#4c4796}.e-pen{background:#f9e7e7;color:#a93226}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:900px){.grid2{grid-template-columns:1fr}}
+  .fbox{position:sticky;top:52px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin:10px 0 4px;z-index:8;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+  .fbox input{flex:1;min-width:180px;padding:9px 12px;border:1px solid #c9d8e4;border-radius:9px;font-size:13.5px}
+  .fbox .cnt{font-size:12px;color:var(--mut);white-space:nowrap}
+  .fbox button{background:#0e3a57;color:#fff;border:none;border-radius:9px;padding:9px 14px;font-size:13px;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="topbar"><span>🧑‍⚕️ 上市后医学经理 · 个人学习与应答准备资料（不作为公司对外材料）</span><a href="https://tiantujin.github.io/bl-b01d1-medical-handbook/" target="_blank">← 返回主手册</a></div>
+
+<h1>BL-B01D1 关键问题应答速查（Q&amp;A Playbook）<br><small>内部汇报与外部专家对话的高频问询 · 题库与参考答案：竞品差异 / ADC 序贯与耐药 / 联合治疗 / 新辅助与围手术期洗脱 / 数据成熟度与监管边界 —— 每题含「30 秒版 → 展开版 → 数据支撑 → 红线 → 可能的追问」</small></h1>
+<div class="meta">
+  <span>📅 数据检索截止：2026-09-15</span>
+  <span>📐 结构：6 大板块 · 42 题</span>
+  <span>⚠️ 个人学习资料，不代表公司立场与对外口径</span>
+  <span>🧪 跨药物比较一律【非头对头】</span>
+  <span>🔍 顶部搜索框可按关键词实时过滤</span>
+</div>
+
+<div class="nav">
+  <a href="#how">使用说明</a>
+  <a href="#A">A 竞品差异（14 题）</a>
+  <a href="#B">B 序贯与耐药（7 题）</a>
+  <a href="#C">C 联合治疗（6 题）</a>
+  <a href="#D">D 新辅助与洗脱期（6 题）</a>
+  <a href="#E">E 数据与监管（5 题）</a>
+  <a href="#F">F 红线与通用话术（4 题）</a>
+  <a href="#src">来源与声明</a>
+</div>
+
+<div class="warn"><b>⚠️ 使用边界（先读这一条）</b>：① 本页是<b>个人应答准备工具</b>，用于帮助理解问题背景与数据位置，<b>不是公司对外口径、不是医学信息（MI）标准答复、不构成推广材料</b>；② 对外任何沟通（含专家、学会、媒体、投资人场合的公司口径内容）<b>只能使用经公司现行审批流程批准的材料与表述</b>；③ 未获批适应症相关内容在任何场合<b>不得用于推广</b>；④ 涉及具体时间预期（如获批、读出）一律以官方审评与公司披露为准，<b>本页不含任何未公开信息</b>；⑤ 所有跨药物、跨研究数字均为【非头对头比较】，不得据此得出优效结论。</div>
+
+<div class="fbox">
+  <input id="qq" type="text" placeholder="🔍 输入关键词实时定位题目（试试：经治 / 载荷 / ILD / 洗脱 / 联合 / 医保 / 获批）">
+  <span class="cnt" id="cnt">共 42 题</span>
+  <button id="clr">清除</button>
+</div>
+
+<!-- ============ 使用说明 ============ -->
+<h2 id="how">使用说明：三类问题、三种答法<span class="tag">先判断对方在问什么，再决定答到哪一层</span></h2>
+<div class="card">
+<table>
+<tr><th style="min-width:120px">问题类型</th><th>典型问法</th><th>正确答法</th><th>不要做</th></tr>
+<tr><td class="stg">① 事实型<br>（问数据在哪）</td><td>"你们的 PFS 到底多少？""和 XX 比怎么样？"</td><td>给出<b>本产品已公开数据 + 研究设计背景（人群/线数/对照）</b>，明确"该数据来自哪项研究、哪个分析时点"</td><td>不要跨研究直接摆数字比较；不要把不同人群的数值并列成"对比表"</td></tr>
+<tr><td class="stg">② 判断型<br>（问你怎么看）</td><td>"你觉得同载荷 ADC 耐药会不会是个问题？"</td><td>先承认<b>这是领域共同问题</b>（他人也在问），再给<b>机制层面的合理性</b>与<b>正在积累的证据方向</b>，最后明确"结论待数据"</td><td>不要用"不会"、"机制上不存在"这类绝对化表述；不要否定对方前提</td></tr>
+<tr><td class="stg">③ 预期型<br>（问什么时候）</td><td>"什么时候能批？""全球研究什么时候出结果？"</td><td>只引用<b>已公开的注册信息与公司披露</b>，并说明"以审评/研究实际进展为准"</td><td class="hl">任何情况下不承诺时间、不推测审评进度、不透露未公开信息</td></tr>
+</table>
+<div class="inf"><b>万能结构（任何问题都可以套）</b>：<br>
+<b>① 复述确认 → ② 给已公开的关键事实（带研究名与人群） → ③ 说明不确定性来源 → ④ 指向下一步证据</b>。<br>
+示例：<i>"您问的是 ADC 经治后的疗效。目前公开的 III 期 PANKU-Breast 02 入组人群未纳入既往 ADC 暴露患者，所以这一场景尚无 III 期数据；机制上双靶点设计降低了对单一靶点表达的依赖，但载荷同属拓扑异构酶 I 抑制剂类，交叉耐药是需要前瞻性验证的问题——领域内多位专家在 ASCO 2026 也提出了同样的疑问，公司正在全球研究中积累该场景的数据。"</i></div>
+<div class="red"><b>三个"绝对不说"</b>：① 不说"我们的药比 XX 更好/更安全"（跨研究不可比）；② 不说未获批适应症的疗效承诺（如"TNBC 也能用"）；③ 不说任何未公开的临床、注册、商业数据（包含读出的时间点、审评进度、中心数）。<b>被问到不知道的问题，答案是"这一点我需要核实后回复"，不是即兴推测。</b></div>
+</div>
+
+<!-- ============ 板块 A ============ -->
+<h2 id="A">板块 A · 竞品差异：专家最可能拿来"压"我们的问题<span class="tag">14 题 · 覆盖 ADC / 双抗 / 同类 EGFR×HER3 机制</span></h2>
+
+<h3>A-0 先备一张总表：乳腺癌 ADC 全景（被追问时可直接调用的底表）</h3>
+<div class="card">
+<p style="font-size:12.8px">下表用于<b>回答"有哪些药、各是什么机制"</b>，<span class="hl">不是用于横向比疗效</span>。任何一列拿出来单独比较都必须声明人群/线数/研究设计不同。</p>
+<table>
+<tr><th style="min-width:106px">药物（通用名）</th><th>靶点</th><th>载荷 / 连接子 / DAR</th><th>乳腺癌获批状态（中国，2026-09）</th><th>关键研究（主战场）</th><th>标志性毒性</th></tr>
+<tr><td class="stg">T-DM1<br>恩美曲妥珠</td><td>HER2 单靶</td><td>DM1（微管抑制剂）/ 不可裂解 SMCC / ≈3.5</td><td>HER2+ 新辅助后 non-pCR 辅助、HER2+ 晚期</td><td>KATHERINE（辅助）、EMILIA（2L）</td><td>血小板↓（≥3 级 13–20%）、肝酶↑</td></tr>
+<tr><td class="stg">T-DXd<br>德曲妥珠</td><td>HER2 单靶</td><td>DXd（TOP1i）/ 可裂解四肽 GGFG / ≈8</td><td>HER2+ 晚期多线、HER2-low &amp; ultralow 晚期、<b>HER2+ 高危早期新辅助（2026-03 获批，全球首个获批乳腺癌新辅助的 ADC）</b>、non-pCR 辅助</td><td>DB-03（2L）、DB-04/06（low/ultralow）、DB-09（1L）、DB-05（辅助）、DB-11（新辅助）</td><td><b>ILD</b>（DB-05 9.6%，≥3 级 1%；DB-11 4.4%）、恶心、血液学</td></tr>
+<tr><td class="stg">SG<br>戈沙妥珠</td><td>TROP2 单靶</td><td>SN-38（TOP1i）/ pH 敏感 CL2A / ≈7.6</td><td>mTNBC ≥2 线；HR+/HER2− 内分泌经治+≥2 系统治疗</td><td>ASCENT、EVER-132-002（中国）、ASCENT-03/04（1L+PD-1）</td><td>中性粒↓、<b>腹泻</b>（≥3 级约 10%）、UGT1A1 相关</td></tr>
+<tr><td class="stg">Dato-DXd<br>德达博妥</td><td>TROP2 单靶</td><td>DXd（TOP1i）/ 稳定 GGFG / ≈4</td><td>HR+/HER2− 内分泌经治+≥1 线化疗；FDA 另批 1L TNBC（免疫不适用）</td><td>TROPION-Breast01（HR+）、02（1L TNBC）、06（IHC 0 未化疗，进行中）</td><td><b>口腔黏膜炎 + 干眼/角膜</b>；血液学较轻</td></tr>
+<tr><td class="stg">SKB264<br>芦康沙妥珠</td><td>TROP2 单靶</td><td>KL610023（TOP1i）/ 改良 CL2A / ≈7.4</td><td>mTNBC ≥2 线（2026 入医保）；HR+/HER2− 内分泌经治+≥1 线化疗</td><td>OptiTROP-Breast01/02/03（03 一线阳性）</td><td>血液学 + <b>口腔炎</b>较突出、眼毒性需关注</td></tr>
+<tr><td class="stg">BL-B01D1<br>宜泽康/iza-bren</td><td><b>EGFR×HER3 双靶</b></td><td>Ed-04（新型 TOP1i，喜树碱类）/ 组织蛋白酶 B 可裂解四肽 / <b>≈8</b></td><td>鼻咽癌（附条件）、食管鳞癌；<b>TNBC 上市申请已受理在审</b>（紫杉烷治疗失败），以审评结果为准</td><td>PANKU-Breast 02（TNBC 1–2 线后）、PANKU-Esophagus01、BL-B01D1-303（NPC）、PANKU-Breast 03/04、IZABRIGHT-Breast01</td><td><b>血液学为主</b>（贫血最常见）、<b>ILD 1.4%（均 1–2 级，无 ≥3 级）</b></td></tr>
+<tr><td class="stg">HER3-DXd<br>patritumab deruxtecan</td><td>HER3 单靶</td><td>DXd（TOP1i）</td><td>未获批（III 期进行中）</td><td>HERTHENA-Breast04（HR+/HER2− III 期）、II 期 422RO</td><td>ILD（422RO 经裁定 4%，含死亡）、血小板↓</td></tr>
+<tr><td class="stg">JSKN016</td><td><b>TROP2×HER3 双靶</b></td><td>定点偶联 / DAR≈4</td><td>在研（早期）</td><td>TNBC 早期队列（小样本 ORR 报告 64.5%）</td><td>待观察（含 TROP2 相关谱）</td></tr>
+<tr><td class="stg">JS212（君实）</td><td><b>EGFR×HER3 双靶</b></td><td>—（在研）</td><td>在研（早期）</td><td>AACR 2026 披露早期进展</td><td>待披露</td></tr>
+<tr><td class="stg">IBI3017（信达）</td><td><b>TROP2×B7H3 双靶</b></td><td>NT1（TOP1i）/ DAR 8</td><td>在研（临床前→早期临床）</td><td>临床前数据（双靶优于单靶）</td><td>待披露</td></tr>
+<tr><td class="stg">SHR-A1811 / T-Bren 等国产 HER2 ADC</td><td>HER2 单靶</td><td>TOP1i 类</td><td>III 期推进/部分后线可及（以公告为准）</td><td>后线/围手术期研究</td><td>参考同类 TOP1i 谱</td></tr>
+<tr><td class="stg">MRG003 等 EGFR ADC</td><td>EGFR 单靶</td><td>MMAE（微管）/ VC 可裂解</td><td>鼻咽癌等（以说明书为准）</td><td>鼻咽癌后线</td><td><b>皮疹/皮肤 + 外周神经病变</b>（MMAE 系）</td></tr>
+</table>
+<p class="src">获批状态以 NMPA/CDE 与说明书为准；FDA 与中国状态分列（例：Dato-DXd 中国仅 HR+，FDA 另有 1L TNBC）。发生率转述自各研究/说明书公开口径，跨药<b>非头对头</b>。数据截止 2026-09-15。</p>
+</div>
+
+<!-- A1 -->
+<div class="q">
+  <div class="qh"><span class="qn">A-1</span><span class="qt">"T-DXd 已经在 HER2-low 和 1L 都拿到适应症了，你们凭什么是"Best-in-class"？"</span><span class="chip c-risk">最可能被问</span></div>
+  <div class="ans30"><b>30 秒版</b>：我们不打"全面优于 T-DXd"这张牌——两个药的<b>适用人群不同</b>。T-DXd 需要 HER2 表达（low/ultralow）作为前提；BL-B01D1 机制上不依赖 HER2 表达，在 <b>HER2 IHC 0（约占 TNBC 一半）</b>这个 T-DXd 覆盖不到的人群里有 III 期随机数据。</div>
+  <p class="sub"><span class="lab">展开</span>① <b>人群互补而非正面对撞</b>：T-DXd 的乳腺癌适应症建立在 HER2 表达基础上（HER2+ 与 HER2-low/ultralow）；HER2 IHC 0 是其标签外人群。BL-B01D1 靶向 EGFR×HER3，<b>入组不按 HER2 表达筛选</b>，III 期既纳入约 53% 的 IHC 0 也纳入约 47% 的 HER2-low。</p>
+  <p class="sub">② <b>我们的 III 期有两个可直接引用的硬数据</b>：HER2 IHC 0 人群 mPFS 8.3 vs 化疗 2.6 个月（HR 0.28）；HER2-low 人群 mPFS 9.7 vs 4.1 个月（HR 0.32）。这两个亚组都是<b>预设亚组</b>，且 PFS/OS 双主要终点均达成。</p>
+  <p class="sub">③ <b>说"BIC"要谨慎</b>：跨研究比 PFS 数字没有统计学基础（人群、线数、对照、评估方式都不同）。稳妥表述是"在 <b>TNBC 1–2 线后</b>这个特定场景中，BL-B01D1 是目前唯一取得 PFS 与 OS 双终点阳性的双抗 ADC 随机 III 期研究"。</p>
+  <table>
+    <tr><th>对比维度</th><th>BL-B01D1（PANKU-Breast 02）</th><th>T-DXd（DB-04/DB-06）</th></tr>
+    <tr><td>人群前提</td><td>不按 HER2 表达筛选（EGFR×HER3 双靶）</td><td>需 HER2-low / ultralow</td></tr>
+    <tr><td>线数场景</td><td>晚期 1–2 线治疗后进展（含紫杉类）</td><td>DB-04：≥2 线；DB-06：内分泌经治未化疗</td></tr>
+    <tr><td>主要终点</td><td><b>PFS + OS 双主要终点</b>（均达成）</td><td>PFS 为主（DB-06 mPFS 13.2 vs 8.1，HR 0.62）</td></tr>
+    <tr><td>ILD 报告</td><td>1.4%（均 1–2 级，无 ≥3 级）</td><td>DB-04 12.1% / DB-06 11.3%（含致死病例）</td></tr>
+    <tr><td>可比性</td><td colspan="2" class="hl">以上数值来自不同研究、不同人群与线数，<b>不可直接比较</b>；ILD 发生率口径与随访时长亦不同。</td></tr>
+  </table>
+  <p class="src"><span class="e e-abst">ASCO 2026 LBA1003</span><span class="e e-nh">非头对头</span>DB-06 数据见 NEJM/官方发布；ILD 率为各研究报告口径。</p>
+  <div class="ask"><b>可能的追问</b>："那 HER2-low 人群你们和 T-DXd 谁更好？" → 答：两者在这个人群的研究<b>入组条件与线数不同</b>（T-DXd 的 DB-06 是内分泌经治未化疗人群），<b>不具备比较基础</b>；我们不主张跨研究比较，真正的答案需要头对头或至少人群与线数一致的间接比较（如匹配调整间接比较 MAIC，目前尚无）。</div>
+</div>
+
+<!-- A2 -->
+<div class="q">
+  <div class="qh"><span class="qn">A-2</span><span class="qt">"TROP2 ADC（SG / Dato-DXd / SKB264）已经很成熟了，你们凭什么进这个市场？"</span><span class="chip c-market">市场定位类</span></div>
+  <div class="ans30"><b>30 秒版</b>：TROP2 ADC 和我们的差异不在"谁更好"，而在<b>三个硬约束</b>：① TROP2 ADC 的 TNBC 后线适应症建立在<b>≥2 线（部分研究 ≥3 线）</b>人群，我们把治疗时机前移到 <b>1–2 线后</b>；② 毒性谱不同，患者可选择的"用药顺序"因此不同；③ TROP2 在正常组织（口腔、角膜、唾液腺）表达带来黏膜/眼毒性，这是选择患者时要考虑的实际问题。</div>
+  <p class="sub"><span class="lab">展开</span>① <b>线数前移是核心差异</b>：PANKU-Breast 02 入组的是"晚期一线或二线治疗后进展（含紫杉类）"患者，而 SG/Dato-DXd/SKB264 的关键 TNBC 研究多在 ≥2 线甚至 ≥3 线人群。线数前移意味着患者体能更好、后续治疗空间更大。</p>
+  <p class="sub">② <b>毒性谱差异决定"排兵布阵"</b>：TROP2 ADC 谱系以血液学 + 腹泻（SG）、口腔炎/眼毒性（Dato-DXd、SKB264）为特征；BL-B01D1 以血液学为主，<b>ILD 报告率 1.4%（均 1–2 级）</b>，未观察到 ≥3 级 ILD。对已经因其他药物出现黏膜/眼毒性困扰的患者，这是实际可用的差异。</p>
+  <p class="sub">③ <b>医保与可及性是我们必须承认的现实</b>：SKB264 已进入 2026 年医保，SG 已在中国获批多年——在<b>可及性</b>维度它们有先发优势，这一点不回避；我们的价值主张应是"在合适患者、合适线数上的新机制选项"，而不是价格战话术。</p>
+  <p class="ask"><b>可能的追问</b>："那是不是应该先用 TROP2 ADC、再用你们？" → 答：<b>序贯顺序目前没有头对头证据</b>（领域共同的空白），现有数据只能说明各自在特定人群中优于化疗；顺序问题需要专门设计的序贯研究回答，我们不做推荐性表述。</p>
+</div>
+
+<!-- A3 -->
+<div class="q">
+  <div class="qh"><span class="qn">A-3</span><span class="qt">"HER3-DXd 也是 HER3 靶点，你们和它有什么本质区别？"</span><span class="chip c-core">机制类</span></div>
+  <div class="ans30"><b>30 秒版</b>：三个层面不同——① <b>靶点数量</b>：HER3-DXd 是 HER3 单靶，我们是 <b>EGFR×HER3 双靶</b>，机制上降低对单一靶点表达水平的依赖；② <b>载荷</b>：HER3-DXd 用 DXd，我们用新型 TOP1i <b>Ed-04</b>；③ <b>证据成熟度</b>：我们是 III 期 PFS+OS 双终点阳性（TNBC），HER3-DXd 在 HR+/HER2− 的 III 期仍在进行中。</div>
+  <p class="sub"><span class="lab">展开</span>① <b>双靶 vs 单靶的机制合理性</b>：EGFR 与 HER3 在 TNBC 中表达率分别约 &gt;50% 与 40–50%，两者形成异源二聚体驱动下游信号；HER3 本身激酶活性弱，是耐药网络的关键枢纽。同时阻断两个靶点，既降低"单靶点表达不足/丢失"导致的原发耐药风险，也可能通过双靶协同提高内吞效率。</p>
+  <p class="sub">② <b>载荷不同不代表没有交叉耐药风险</b>：Ed-04 与 DXd、SN-38、KL610023 同属拓扑异构酶 I 抑制剂大类，但结构不同。这一点在"ADC 经治后使用"的场景中是关键不确定项（详见 B 板块）。</p>
+  <p class="sub">③ <b>HER3-DXd 已公开数据对我们的意义</b>：其 II 期 422RO 显示，在 <b>TOP1-ADC 经治人群（Part B/Z）单药活性有限</b>，而 ADC 初治的 HR+/HER2− 人群 ORR 39%、mPFS 7.0 个月。这提示"<b>同载荷不同靶点的序贯价值存疑</b>"，反过来说明疾病早期使用强效 ADC（线数前移）可能比后线反复换药更有价值。</p>
+  <table>
+    <tr><th>维度</th><th>BL-B01D1</th><th>HER3-DXd</th></tr>
+    <tr><td>靶点</td><td>EGFR × HER3（双抗）</td><td>HER3（单抗）</td></tr>
+    <tr><td>载荷</td><td>Ed-04（新型 TOP1i）</td><td>DXd（TOP1i）</td></tr>
+    <tr><td>乳腺癌最高证据</td><td>TNBC：III 期 PFS + OS 双主要终点阳性</td><td>HR+/HER2−：III 期进行中（n≈1000）；II 期已读出</td></tr>
+    <tr><td>入组是否需标志物</td><td>不需要（不按 EGFR/HER3 表达筛选）</td><td>HERTHENA-Breast04 需转移灶中心确认 HER3 可评估</td></tr>
+    <tr><td>ILD 报告</td><td>1.4%（均 1–2 级）</td><td>422RO 经裁定 4%（含死亡病例）</td></tr>
+  </table>
+  <p class="src"><span class="e e-abst">2026 ESMO BC 422RO</span><span class="e e-reg">注册信息</span><span class="e e-nh">非头对头</span></p>
+  <div class="ask"><b>可能的追问</b>："HER3-DXd 那个 III 期（HR+/HER2−）如果阳性，你们的 HR+ 研究怎么办？" → 答：两者<b>人群与检测要求不同</b>（HER3-DXd 需 HER3 可评估），且我们 HR+ 的 III 期（PANKU-Breast 03）同样在进行中；这个问题的答案最终取决于各自的完整数据读出，现在下判断为时过早。</div>
+</div>
+
+<!-- A4 -->
+<div class="q">
+  <div class="qh"><span class="qn">A-4</span><span class="qt">"现在国内有好几家在做 EGFR×HER3 双抗 ADC，你们的壁垒在哪？"</span><span class="chip c-market">竞争格局类</span></div>
+  <div class="ans30"><b>30 秒版</b>：客观差距在<b>证据阶段</b>：我们是全球首个获批的双抗 ADC（鼻咽癌已获批、食管鳞癌已获批，TNBC 上市申请已受理），III 期阳性结果已有三项（NPC / ESCC / TNBC）；其他 EGFR×HER3 双抗 ADC（如 JS212）目前处于早期阶段。另外我们在美国与中国<b>同步开展 40+ 项跨瘤种研究</b>，并已与 BMS 达成海外合作。</div>
+  <p class="sub"><span class="lab">展开</span>① <b>先发优势的可验证指标</b>：全球首个获批 BsADC；8 项突破性疗法认定（截至 2026-06 公开信息）；三项 III 期阳性（NPC、ESCC、TNBC）；TNBC 上市申请已被受理。</p>
+  <p class="sub">② <b>不宜表述</b>：不要说"我们的分子设计更好"或"别人做不出来"——偶联位点、DAR、载荷结构属于各家专利范围，讨论具体优劣既不专业也容易失言。<b>可以说的是"证据成熟度与注册进度"这一客观事实。</b></p>
+  <p class="sub">③ <b>同样靶点≠同样分子</b>：EGFR×HER3 双抗 ADC 的差异可能在抗体亲和力设计（我们对 EGFR 高亲和、HER3 低亲和的设计取向）、连接子（组织蛋白酶 B 特异裂解）、载荷（Ed-04）三个方面，具体参数以公司公开/学术披露为准。</p>
+  <div class="ask"><b>可能的追问</b>："如果别人进度追上来怎么办？" → 答：这个赛道整体是"共同做大双抗 ADC 这个机制验证"的过程，价值不是零和的；我们的重点是完成全球注册路径与适应症拓展。</div>
+</div>
+
+<!-- A5 -->
+<div class="q">
+  <div class="qh"><span class="qn">A-5</span><span class="qt">"T-DXd 已经前移到新辅助了，你们在早期乳腺癌有布局吗？"</span><span class="chip c-reg">监管/布局类</span></div>
+  <div class="ans30"><b>30 秒版</b>：目前 BL-B01D1 在乳腺癌的公开研究集中在<b>晚期/转移阶段</b>（后线、一线，含全球 III 期）；<b>早期（新辅助/辅助）尚无公开的注册性研究</b>。T-DXd 能前移到新辅助，是因为 DB-11 这类研究积累了 pCR 数据——这是 ADC 前移必须走的路径。</div>
+  <p class="sub"><span class="lab">展开</span>① 事实层面：T-DXd 于 2026-03 在中国获批 HER2+ 高危早期乳腺癌新辅助适应症（基于 DB-11：T-DXd 序贯 THP 的 pCR 67.3% vs ddAC-THP 56.3%），成为全球首个获批乳腺癌新辅助的 ADC。</p>
+  <p class="sub">② 我们目前的乳腺癌研究地图：PANKU-Breast 02（后线，已读出）、PANKU-Breast 03（HR+/HER2−，进行中）、PANKU-Breast 04（PD-L1+ 一线联合，已登记）、IZABRIGHT-Breast01（全球一线，BMS 合作）。</p>
+  <p class="sub">③ <b>应答要点</b>：早期治疗需要解决的是"pCR 提升 + 手术可行性 + 长期生存"三件事，ADC 前移的挑战不只是疗效（DB-11 中 T-DXd 单药组因 pCR 偏低与手术安排问题提前终止，说明单药 ADC 替代化疗在新辅助并不充分）。<b>策略判断不应由我们单方面预设，而应基于即将积累的数据。</b></p>
+  <p class="ask"><b>可能的追问</b>："那你们打算什么时候做新辅助？" → <b>不得承诺。</b>标准答法：<i>"早期阶段的开发策略属于公司研发范畴，我掌握的是已公开的研究信息；如果有公开披露，我可以在会后把材料同步给您。"</i></p>
+</div>
+
+<!-- A6 -->
+<div class="q">
+  <div class="qh"><span class="qn">A-6</span><span class="qt">"HER2 阳性乳腺癌你们没做，是不是说明这个人群不行？"</span><span class="chip c-clin">临床逻辑类</span></div>
+  <div class="ans30"><b>30 秒版</b>：不是"不行"，而是<b>临床开发优先级的问题</b>。HER2+ 已经有 T-DXd/T-DM1/吡咯替尼等成熟方案，竞争门槛高；我们选择的是<b>治疗选择更有限、未满足需求更大</b>的人群（TNBC、HER2 IHC 0、HR+/HER2− 经治）。另外从机制上看，HER3 是抗 HER2 治疗耐药后的代偿性再激活通路，这本身为"HER2 通路耐药后使用"提供了理论依据，但需要数据验证，目前不是我们的主张。</div>
+  <p class="sub"><span class="lab">展开</span>开发优先级通常是"未满足需求 × 机制适配 × 竞争密度"的函数。TNBC 后线与 HER2 IHC 0 是典型的高未满足需求区；HER2+ 则是方案最拥挤的区域。对外沟通应聚焦"我们在哪里、为什么在那里"，而不是暗示其他人群无效。</p>
+  <p class="ask"><b>可能的追问</b>："那 HER2+ 患者医生想用怎么办？" → <b>红线</b>：不得鼓励超适应症使用。答：<i>"目前没有 HER2+ 的获批适应症与注册数据支持，临床决策应由医生依据指南与患者情况判断，我们不提供超适应症使用建议。"</i></p>
+</div>
+
+<!-- A7 -->
+<div class="q">
+  <div class="qh"><span class="qn">A-7</span><span class="qt">"你们的安全性数据看起来挺好，是不是因为入组人群比较好？"</span><span class="chip c-risk">数据质疑类</span></div>
+  <div class="ans30"><b>30 秒版</b>：恰恰相反，PANKU-Breast 02 的患者<b>基线偏重</b>：99% 为 IV 期，65–70% 有淋巴结转移，肝转移 31–35%、肺转移 46–51%，约 70% 接受过 1 线、30% 接受过 2 线治疗，约 1/4 既往用过抗 PD-(L)1。这是<b>重度经治人群</b>。</div>
+  <p class="sub"><span class="lab">展开</span>需要诚实呈现的另一面：<b>血液学毒性确实高</b>——≥3 级 TEAE 88.9%（化疗 62.9%），≥3 级中性粒↓ 58.0%、WBC↓ 56.0%、血小板↓ 52.7%、贫血 46.9%，发热性中性粒细胞减少 5.3%（化疗 0.5%），63.3% 需要减量或中断。</p>
+  <p class="sub">但要同时给出三个关键平衡点：① <b>可恢复性</b>：3–4 级中性粒细胞减少中位恢复时间 <b>4 天</b>，通过标准支持治疗（G-CSF 等）可控；② <b>不导致停药</b>：因 TEAE 停药率仅 <b>1.9%</b>（化疗 0.5%）；③ <b>ILD 低</b>：1.4%（1 例 1 级 + 2 例 2 级），<b>无 ≥3 级</b>——这在 TOP1i 载荷 ADC 中是比较突出的特征。</p>
+  <p class="sub">④ <b>PK/PD 层面的解释</b>：可被组织蛋白酶 B 特异性裂解的连接子在循环中高度稳定，减少载荷提前释放导致的脱靶毒性；后续研究已加入<b>强制性中性粒细胞减少预防</b>要求以进一步降低风险。</p>
+  <div class="ask"><b>可能的追问</b>："那和化疗比，安全性到底谁好？" → 答：<b>不能简单说"更好"</b>——我们的血液学毒性高于化疗，但 ILD 与致停药率低、且疗效显著优效；临床决策是"获益-风险与可管理性"的综合判断，方案里配套的支持治疗与监测是使用前提。</div>
+</div>
+
+<!-- A8 -->
+<div class="q">
+  <div class="qh"><span class="qn">A-8</span><span class="qt">"双抗 ADC 相比单抗 ADC，临床优势有没有被证实？"</span><span class="chip c-core">机制类</span></div>
+  <div class="ans30"><b>30 秒版</b>：就<b>乳腺癌</b>而言，BL-B01D1 是首个取得 III 期 PFS 与 OS 双主要终点阳性的双抗 ADC——这本身就是"双抗 ADC 策略在临床层面有效"的最强证据。但要注意区分两件事：<b>双抗 ADC 这个类别有效</b>（有 III 期证据）与<b>双靶比单靶更优越</b>（尚无头对头证据）。</div>
+  <p class="sub"><span class="lab">展开</span>① 已证实：双抗 ADC 可以做出阳性 III 期（TNBC、NPC、ESCC 三项）。② 未证实：双靶点相对于单靶点在同一人群中的增量获益——这需要头对头研究，目前没有。</p>
+  <p class="sub">③ 机制层面的合理性（属假设，需临床验证）：双靶提高肿瘤选择性、增强内吞效率、降低对单一靶点表达水平的依赖、可能延缓靶点丢失导致的耐药。临床前数据显示双抗优于对应单抗 ADC。</p>
+  <p class="sub">④ 更重要的一点：<b>载荷在疗效中可能比靶点更关键</b>。领域内有观点指出，ADC 的效应取决于抗体把药带到细胞、而载荷可通过旁观者效应在细胞间扩散——因此"靶点表达水平并非疗效的唯一决定因素"。这既解释了为什么"表达不高的人群也能获益"，也提醒我们不要过度承诺靶点选择性带来的优势。</p>
+  <div class="ask"><b>可能的追问</b>："那你们的优势到底来自双靶点还是载荷？" → 答：这是当前无法完全拆分的问题（没有单靶 + 同载荷的对照研究）；可以说的是"双靶设计降低了靶点依赖，Ed-04 提供了强效杀伤与旁观者效应，两者共同构成机制基础"——<b>不要单独把功劳归给某一项</b>。</div>
+</div>
+
+<!-- A9 -->
+<div class="q">
+  <div class="qh"><span class="qn">A-9</span><span class="qt">"在研的这些双抗 ADC（JSKN016、JS212、IBI3017）会不会很快超车？"</span><span class="chip c-market">竞争格局类</span></div>
+  <div class="ans30"><b>30 秒版</b>：它们目前都在<b>早期阶段</b>（I 期或临床前），与已完成的 III 期不在同一可比阶段。需要跟踪的不是"谁先公布 ORR"，而是<b>谁先完成随机对照 III 期并获注册批准</b>。可以从三个维度持续观测：靶点组合的生物学合理性、载荷是否带来差异化安全性、以及注册路径的推进速度。</div>
+  <table>
+    <tr><th>在研分子</th><th>公司</th><th>靶点</th><th>载荷/DAR</th><th>公开阶段</th><th>值得关注的点</th></tr>
+    <tr><td class="stg">JS212</td><td>君实生物</td><td>EGFR × HER3</td><td>未公开</td><td>早期（2026 AACR 披露进展）</td><td>与我们机制同轴，关注其双靶设计差异与安全性</td></tr>
+    <tr><td class="stg">JSKN016</td><td>康宁杰瑞等</td><td>TROP2 × HER3</td><td>定点偶联，DAR≈4</td><td>早期（TNBC 队列小样本 ORR 报告 64.5%）</td><td>双靶但含 TROP2，毒性可能叠加黏膜/眼谱</td></tr>
+    <tr><td class="stg">IBI3017</td><td>信达生物</td><td>TROP2 × B7H3</td><td>NT1（TOP1i），DAR 8</td><td>临床前 → 早期临床</td><td>B7H3 为免疫相关靶点，机制路径不同</td></tr>
+    <tr><td class="stg">HER3-DXd</td><td>第一三共/默沙东</td><td>HER3（单抗）</td><td>DXd</td><td>III 期进行中（n≈1000）</td><td><b>最需要跟踪的竞争者</b>：HR+/HER2− 注册 III 期读出</td></tr>
+  </table>
+  <p class="src"><span class="e e-abst">大会摘要</span><span class="e e-reg">注册信息</span>以上均为公开信息；小样本早期 ORR 不可与 III 期数据比较。</p>
+  <div class="ask"><b>可能的追问</b>："JSKN016 的 64.5% 比你们 51.7% 高？" → 答：这是<b>不同阶段、不同样本量</b>的数据（早期队列通常十几到几十例，置信区间很宽，且人群更"轻"）；III 期随机对照数据的可信度与早期单臂完全不同，<b>不能这样比</b>。</div>
+</div>
+
+<!-- A10 -->
+<div class="q">
+  <div class="qh"><span class="qn">A-10</span><span class="qt">"国外那两家（T-DXd、Dato-DXd）在中国的适应症比你们宽，怎么打？"</span><span class="chip c-market">市场定位类</span></div>
+  <div class="ans30"><b>30 秒版</b>：把"人群"和"线数"拆开看——他们的适应症宽，是因为在 HER2 通路与 TROP2 通路上铺了多条线；我们的路径是<b>在 HER2 表达不适用的人群（HER2 IHC 0）建立不可替代性</b>，因为目前中国获批的 TROP2 ADC 在后线需要"内分泌经治 + 化疗经治"等条件，IHC 0 的 TNBC 患者选择仍然有限。</div>
+  <p class="sub"><span class="lab">展开</span>可用的差异点（均可查证）：① HER2 IHC 0 人群 mPFS 8.3 vs 化疗 2.6（HR 0.28）；② HER2-low 人群 mPFS 9.7 vs 4.1（HR 0.32）；③ 治疗时机前移至 1–2 线后；④ ILD 报告率 1.4% 且无 ≥3 级。</p>
+  <p class="sub"><b>不主张</b>：不主张"中国数据比国外药更好"这类表述；也不主张未获批适应症的疗效。市场层面讨论（定价、医保、推广）不是医学经理的职责范围，遇到这类问题应转向市场/准入团队。</p>
+  <div class="ask"><b>可能的追问</b>："医保呢？" → 答：医保与定价属于市场准入范畴，我作为医学事务可以提供数据支持，但不适合在技术对话中做商业表述。</div>
+</div>
+
+<!-- A11 -->
+<div class="q">
+  <div class="qh"><span class="qn">A-11</span><span class="qt">"你们和 DS-1062、DS-8201 一样都是 TOP1i 载荷，是不是同质化？"</span><span class="chip c-core">机制类</span></div>
+  <div class="ans30"><b>30 秒版</b>：载荷大类相同（都是拓扑异构酶 I 抑制剂），但<b>分子结构、连接子与靶点是三重差异</b>。同载荷不等于同质化：DXd 是 exatecan 衍生物，SN-38 是伊立替康活性代谢物，我们的 Ed-04 是另一类喜树碱衍生结构；连接子方面我们使用组织蛋白酶 B 特异裂解肽段，循环稳定性更高。</div>
+  <p class="sub"><span class="lab">展开</span>同载荷的<b>实际影响</b>有两个方向，都要能答：<br>
+  ① <b>疗效侧</b>：大类相同意味着"若耐药机制来自载荷本身（如 TOP1 表达下调、药物外排增强），则存在交叉耐药风险"——这是领域共同面对的问题，也是 ASCO 2026 讨论者明确提出的疑问；<br>
+  ② <b>安全侧</b>：DXd 系（T-DXd/Dato-DXd/HER3-DXd）的 ILD 风险是标志性关切，而我们的 ILD 报告率 1.4%（均 1–2 级），提示不同分子/连接子设计可能带来不同的脱靶组织暴露，但<b>这属于跨研究观察，不能表述为"更安全"</b>。</p>
+  <div class="ask"><b>可能的追问</b>："那你们用 DXd 耐药的患者还能不能用？" → 见 B-1/B-2（这是核心问题，务必按"证据空缺 + 机制推理 + 待数据"三层回答）。</div>
+</div>
+
+<!-- A12 -->
+<div class="q">
+  <div class="qh"><span class="qn">A-12</span><span class="qt">"T-DM1 和 T-DXd 都是 HER2 靶点，为什么 T-DXd 能超越它？这对你们有什么启示？"</span><span class="chip c-clin">机制延伸类</span></div>
+  <div class="ans30"><b>30 秒版</b>：T-DXd 超越 T-DM1 的关键是<b>载荷更强 + 可裂解连接子带来旁观者效应</b>（DB-05：3 年 iDFS 92.4% vs 83.7%，HR 0.47）。这条经验的意义是：<b>ADC 的代际差异往往来自载荷与连接子，而不只是靶点</b>——这也是我们选择 Ed-04 与组织蛋白酶 B 可裂解连接子的设计逻辑所在。</div>
+  <p class="sub"><span class="lab">展开</span>① DB-05 提示的另一件事对"序贯"有直接参考价值：<b>DAISY 研究显示约 65% 的患者在 T-DXd 治疗后 HER2 表达下降</b>，这解释了为什么"换靶点"（而同载荷）的疗效可能受限，也解释了为什么"靶点与载荷双切换"的策略更被期待。<br>
+  ② 同时不要忘记反面教训：DB-11 中 T-DXd <b>单药</b>新辅助 pCR 仅 43%，远低于 T-DXd 序贯 THP 的 67.3%，且因疗效不足与手术安排问题提前终止——<b>说明 ADC 不能简单取代化疗，联合与序贯设计才是关键</b>（这一点在 D 板块会用到）。</p>
+</div>
+
+<!-- A13 -->
+<div class="q">
+  <div class="qh"><span class="qn">A-13</span><span class="qt">"你们的适应症最先批的是鼻咽癌和食管癌，乳腺癌是不是"顺带"做的？"</span><span class="chip c-reg">监管/布局类</span></div>
+  <div class="ans30"><b>30 秒版</b>：这是<b>三个独立的注册项目</b>，各有独立 III 期：鼻咽癌（BL-B01D1-303）、食管鳞癌（PANKU-Esophagus01）、TNBC（PANKU-Breast 02）。乳腺癌并非顺带——PANKU-Breast 02 是全球首个在 TNBC 取得 PFS/OS 双终点阳性的双抗 ADC III 期，且乳腺癌方向还有 HR+（PANKU-Breast 03）、一线（PANKU-Breast 04）、全球一线（IZABRIGHT-Breast01）三项研究在推进。</div>
+  <table>
+    <tr><th>适应症</th><th>关键 III 期</th><th>核心结果</th><th>状态</th></tr>
+    <tr><td class="stg">鼻咽癌（后线）</td><td>BL-B01D1-303（NCT06118333）</td><td>cORR 54.6% vs 27.0%；mPFS 8.38 vs 4.34（HR 0.44）；mDoR 8.5 vs 4.8 个月</td><td>已获批（附条件，2026-06-22）</td></tr>
+    <tr><td class="stg">食管鳞癌（后线）</td><td>PANKU-Esophagus01（BL-B01D1-305）</td><td>mOS 9.8 vs 7.2（HR 0.64）；mPFS 4.2 vs 2.0（HR 0.50）；ORR 35.3% vs 13.1%</td><td>已获批（2026-07-16）</td></tr>
+    <tr><td class="stg">TNBC（1–2 线后）</td><td>PANKU-Breast 02（BL-B01D1-307）</td><td>mPFS 8.5 vs 3.1（HR 0.29）；mOS 15.9 vs 12.5（HR 0.60）；cORR 51.7% vs 20.5%</td><td>上市申请已受理在审（以审评结果为准）</td></tr>
+  </table>
+  <p class="src"><span class="e e-lab">说明书/官方公告</span><span class="e e-abst">ASCO 2026 LBA1003</span>NPC 与 ESCC 的 mOS 数据见各研究期中分析口径。</p>
+</div>
+
+<!-- A14 -->
+<div class="q">
+  <div class="qh"><span class="qn">A-14</span><span class="qt">"伊立替康类的药以前做 TNBC 都不太成功，为什么你们这个能行？"</span><span class="chip c-core">机制类</span></div>
+  <div class="ans30"><b>30 秒版</b>：差别在<b>递送方式</b>。伊立替康及其活性代谢物 SN-38 是游离给药，暴露受限于全身毒性；ADC 把同属 TOP1i 的载荷定向递送到肿瘤细胞，并通过旁观者效应覆盖抗原异质性细胞，因此可以在可耐受的全身暴露下获得更高瘤内浓度。<b>同时要说清：这不是"伊立替康的故事"，而是"递送 + 双靶 + 新载荷"三者的组合。</b></div>
+  <p class="sub"><span class="lab">展开</span>① 结构层面：Ed-04 是喜树碱衍生结构，具有良好的细胞膜渗透性（旁观者效应）；DAR 8 在"高效载荷输送"与"系统稳定性"之间取平衡；连接子在循环中稳定，减少提前释放。<br>
+  ② 双靶层面：EGFR×HER3 双靶提高肿瘤选择性并可能增强内吞效率。<br>
+  ③ 临床层面：三项 III 期阳性 + TNBC 的 OS 获益（HR 0.60），是这个组合的最终检验。<br>
+  ④ <b>不要过度演绎</b>：不应表述为"解决了伊立替康类药物的历史问题"，这只是机制层面的递送优化。</p>
+</div>
+
+<!-- ============ 板块 B ============ -->
+<h2 id="B">板块 B · 序贯与耐药：最容易被"问住"的一组<span class="tag">7 题 · 这是当前最大的证据空缺，也是最需要练熟的答法</span></h2>
+
+<div class="red"><b>先明确一个必须知道的事实（否则会被问住）</b>：<b>PANKU-Breast 02 的入组标准排除了既往接受过任何 ADC 的患者</b>。因此 BL-B01D1 <b>在 ADC 经治人群中没有 III 期数据</b>，这一场景目前是公开的证据空缺；领域内专家在 ASCO 2026 也明确指出该设计"不反映当代标准治疗"（当代已有 SG、Dato-DXd 等 ADC 前移使用）。<b>回答这类问题，诚实呈现证据边界比硬撑更有说服力。</b><span class="e e-abst">ASCO 2026 讨论与专家评论</span><span class="e e-pen">证据空缺</span></div>
+
+<div class="q">
+  <div class="qh"><span class="qn">B-1</span><span class="qt">"患者已经用过 TROP2 ADC 或 T-DXd，还能不能用你们？有数据吗？"</span><span class="chip c-risk">核心难题</span></div>
+  <div class="ans30"><b>30 秒版</b>：<b>坦率说——目前没有针对 ADC 经治人群的 III 期数据</b>，PANKU-Breast 02 的设计排除了既往 ADC 暴露患者。有三条可用的间接信息：① 该研究中<b>化疗组 42% 的患者后续使用了 ADC</b>，而 iza-bren 组只有 16.4%，说明 iza-bren 的疾病控制使患者更少需要换药；② 我们的靶点是 EGFR×HER3，不依赖 HER2/TROP2 表达，机制上不受"靶点丢失"影响；③ 载荷同属 TOP1i 类，<b>交叉耐药风险是需要前瞻性研究回答的问题</b>，不能预先排除。</div>
+  <p class="sub"><span class="lab">展开</span>① <b>为什么没有数据</b>：PANKU-Breast 02 设计于中国 ADC 后线可及性尚有限的时期，入组为"1–2 线系统治疗后进展（含紫杉类）"，<b>排除既往 ADC 暴露</b>。这是研究设计的历史背景，不是隐藏的缺陷——但我们必须知道主持人可能拿这一点发问。</p>
+  <p class="sub">② <b>可用的正面论据（须精确表述）</b>：在 PANKU-Breast 02 中，iza-bren 组接受后续抗肿瘤治疗的比例为 38.6%（其中 ADC 16.4%），显著低于化疗组的 63.4%（其中 ADC 42.0%）；<b>在后续治疗使用更少的情况下仍取得 OS 优势</b>（15.9 vs 12.5，HR 0.60）——这支持"疾病控制更持久"的判断，但它<b>不是"ADC 经治后使用"的直接证据</b>。</p>
+  <p class="sub">③ <b>机制层面的推理（必须标注为推理）</b>：载荷经组织蛋白酶 B 特异裂解在细胞内释放，靶点为 EGFR×HER3；理论上，若既往 ADC 耐药来自"靶点下调/丢失"（如 T-DXd 后 HER2 表达下降的情况），换靶点仍有作用空间；若耐药来自"载荷外排或 TOP1 通路改变"，则存在交叉耐药可能。</p>
+  <p class="sub">④ <b>正确的收尾</b>：<i>"所以这个问题目前只能回答到'机制上有合理性、证据上尚无 III 期数据'，最终需要专门的序贯研究或前瞻性队列来回答——这也是整个领域在 ASCO 2026 上被反复提到的未解问题。"</i></p>
+  <div class="ask"><b>可能的追问</b>："那临床上到底能不能用？" → <b>红线</b>：不提供超适应症用药建议。答：<i>"是否使用应由医生根据患者既往治疗、当前状态与可用选择综合判断；我们能提供的是已公开的数据与研究信息。"</i></div>
+</div>
+
+<div class="q">
+  <div class="qh"><span class="qn">B-2</span><span class="qt">"ASCO 上有专家说，如果耐药是针对载荷的，你们也会受影响。怎么回应？"</span><span class="chip c-risk">专家质疑</span></div>
+  <div class="ans30"><b>30 秒版</b>：这个质疑是<b>成立且被公开提出过的</b>——ASCO 2026 的讨论者明确指出"若耐药机制针对载荷，同载荷 ADC 的序贯会是问题"，并强调需要理解耐药、交叉耐药与序贯策略。我们的回应不应该是"不成立"，而是：① <b>承认这是领域共同问题</b>（所有 TOP1i 载荷 ADC 都面对）；② 指出 <b>Ed-04 与 DXd/SN-38 结构不同</b>，且 ADC 的疗效由"递送效率 × 瘤内释放 × 载荷敏感性"三者共同决定，靶点切换会改变前两项；③ 结论只能到"待前瞻性数据"。</div>
+  <p class="sub"><span class="lab">展开</span>把这个质疑拆成三层来答，层次感很重要：<br>
+  <b>第一层（承认）</b>：载荷大类相同确实带来交叉耐药的理论风险，这是真实的、领域公认的不确定项。<br>
+  <b>第二层（区分）</b>：不同 ADC 即使载荷同类，其"到达肿瘤并释放有效载荷"的效率差别很大——抗体亲和力、双靶内吞、连接子裂解特异性、DAR 都会影响瘤内暴露。药物外排型耐药对"瘤内浓度更高"的方案可能仍可被克服。<br>
+  <b>第三层（证据现状）</b>：目前唯一直接的间接证据是 HER3-DXd 的 II 期 422RO——在 TOP1-ADC 经治人群单药活性有限。这提示"<b>同载荷 + 单靶点</b>"的组合在经治人群价值有限，但<b>不能直接外推到"双靶点 + 新载荷"</b>，因为变量不止一个。</p>
+  <p class="sub"><b>反过来的价值</b>（可以主动说）：正因如此，"把有效 ADC 用在疾病更早期、避免后线反复换药"的临床逻辑更受支持——这也是我们进行一线与 HR+ 研究的原因。</p>
+  <div class="ask"><b>可能的追问</b>："你们有没有计划做 ADC 经治的专门研究？" → 只能说已公开信息；若无公开披露，答：<i>"研发计划的公开信息我会后确认后同步；我不能对未公开的开发计划做推测。"</i></div>
+</div>
+
+<div class="q">
+  <div class="qh"><span class="qn">B-3</span><span class="qt">"用了你们的药进展之后，还能用什么？"</span><span class="chip c-clin">临床决策类</span></div>
+  <div class="ans30"><b>30 秒版</b>：后续选择取决于既往用药与靶点状态。<b>原则上：① 换靶点轴</b>（如 TROP2 ADC、HER2 ADC，视 HER2 表达）；<b>② 换载荷类别</b>（如微管抑制剂类 ADC，如 T-DM1/MMAE 类，理论上规避 TOP1i 交叉耐药）；<b>③ 回到化疗或参与临床试验</b>。这一顺序属于临床判断，指南对 ADC 后序贯尚无明确推荐。</div>
+  <p class="sub"><span class="lab">展开</span>① 现有证据的可支持程度：ADC 之间的序贯顺序<b>没有头对头数据</b>，NCCN/CSCO 目前也主要按各药获批线别推荐，而非规定序贯顺序。<br>
+  ② 讨论时可用的一句话：<i>"目前 ADC 的排兵布阵更多是基于机制推理与可及性的临床判断，而不是循证顺序——这也是各大学会都在呼吁做的研究。"</i><br>
+  ③ 注意：不要对具体患者给出用药建议（医学经理不做诊疗建议）；把讨论保持在"证据层"而非"处方层"。</p>
+</div>
+
+<div class="q">
+  <div class="qh"><span class="qn">B-4</span><span class="qt">"先给 ADC 还是先给化疗？你们的药应该放哪一线？"</span><span class="chip c-clin">临床决策类</span></div>
+  <div class="ans30"><b>30 秒版</b>：可以明确回答的是"<b>我们获批/在审的线数</b>"：TNBC 为既往紫杉烷类治疗失败、不可切除局部晚期或转移性（即 1–2 线后）；而 ADC 与化疗的先后顺序、以及不同 ADC 之间的顺序，目前<b>没有头对头证据</b>。<b>我们能做的是把"证据位置"讲清楚，而不是替医生排线。</b></div>
+  <p class="sub"><span class="lab">展开</span>① 讲清三条"证据位置"：人群（TNBC，不按 HER2 表达筛选）、线数（1–2 线后）、终点（PFS + OS 双主要终点）。<br>
+  ② 提示决策变量（不是推荐）：HER2 表达状态（决定 T-DXd 是否可选）、既往是否用过 ADC、当前血象与体能、后续治疗空间、以及患者的毒性耐受偏好（血液学 vs 黏膜/眼毒性）。<br>
+  ③ 如被追问"你们希望怎么排"，标准答法：<i>"我们关注的是让合适的人在合适的时机用到有效的药；具体的排兵布阵应由临床依据指南与患者情况决定。"</i></p>
+</div>
+
+<div class="q">
+  <div class="qh"><span class="qn">B-5</span><span class="qt">"HER2 IHC 0 患者用不了 T-DXd，是不是只能用你们或 TROP2 ADC？"</span><span class="chip c-clin">人群定位类</span></div>
+  <div class="ans30"><b>30 秒版</b>：HER2 IHC 0（约占 TNBC 的一半）确实是"HER2 定向药物不适用"的人群，目前可选 TROP2 ADC 或化疗；我们的定位是在这个人群提供证据最扎实的新机制选项——<b>HER2 IHC 0 亚组 mPFS 8.3 vs 化疗 2.6 个月（HR 0.28）</b>，是 TNBC 后线中少见的针对该亚组的 III 期随机数据。</div>
+  <p class="sub"><span class="lab">展开</span>① 为什么这个亚组重要：HER2 IHC 0 患者既往长期缺乏高质量证据支持的特异性后线方案，很多研究把 IHC 0 与 low 混在一起报告。<br>
+  ② 我们的两个亚组数据（预设亚组）：IHC 0：8.3 vs 2.6（HR 0.28）；HER2-low：9.7 vs 4.1（HR 0.32）。<b>两个方向一致，说明疗效不依赖 HER2 表达</b>——这正好对应双靶机制"不依赖单一靶点表达"的设计逻辑。<br>
+  ③ 表述边界：IHC 0 亚组的 HR 是<b>亚组分析</b>，虽为预设但样本量小于总体，正式比较仍以全人群结果为准。</p>
+  <div class="ask"><b>可能的追问</b>："那和 SKB264、Dato-DXd 在 IHC 0 比呢？" → 答：<b>不可比</b>——它们的适应症线数、入组人群（如需化疗经治）不同，且 IHC 0 多为亚组探索性分析（如 ASCENT-07 的 IHC 0 亚组提示获益方向）。跨研究比较不存在。</div>
+</div>
+
+<div class="q">
+  <div class="qh"><span class="qn">B-6</span><span class="qt">"T-DXd 用过的 HER2-low 患者，能接你们吗？"</span><span class="chip c-clin">临床决策类</span></div>
+  <div class="ans30"><b>30 秒版</b>：与 B-1 同一逻辑——<b>没有直接的临床数据</b>。但有两个可以拿出来的机制性理由：① 我们的靶点不依赖 HER2，而 DAISY 研究提示 T-DXd 治疗后约 65% 患者 HER2 表达下降，HER2 轴药物疗效可能随之受限；② 我们的 HER2-low 亚组 mPFS 9.7 个月（HR 0.32）来自<b>未接受过 ADC</b> 的人群，这个数字不能外推到 ADC 经治人群。</div>
+  <p class="sub"><span class="lab">展开</span>这一段最容易出错的地方是"用未经治人群的数据去回答经治人群的问题"。正确姿势：<b>明确区分两个人群</b>，先给未经治人群的数据（这是真数据），再明确说经治人群数据缺失（这是边界），最后给机制推理（标注为推理）。</p>
+</div>
+
+<div class="q">
+  <div class="qh"><span class="qn">B-7</span><span class="qt">"有没有可能你们这类药的耐药机制和别的 ADC 不一样？"</span><span class="chip c-core">机制类</span></div>
+  <div class="ans30"><b>30 秒版</b>：理论上存在三种可能的耐药机制，需要分别对待：① <b>靶点相关</b>（靶点下调/丢失）→ 双靶点设计对此相对不敏感，这是我们的理论优势；② <b>载荷相关</b>（TOP1 通路改变、药物外排）→ 与同类 ADC 可能共享，这是风险；③ <b>递送相关</b>（内吞效率、连接子裂解）→ 与具体分子设计相关，可通过提高瘤内暴露部分克服。<b>哪一种占主导、比例多高，目前没有数据。</b></div>
+  <p class="sub"><span class="lab">展开</span>这个"三类机制"框架是回答所有耐药类问题的通用武器，好处是：既承认风险（第二类），又保留合理性（第一、三类），并且明确结论边界（无数据）。建议记熟。</p>
+  <div class="ask"><b>可能的追问</b>："那你们做过耐药机制研究吗？" → 只能引用已公开的机制研究信息（如临床前双靶优于单靶的数据）；未公开的转化研究不讨论。</div>
+</div>
+
+<!-- ============ 板块 C ============ -->
+<h2 id="C">板块 C · 联合治疗：安全性与有效性怎么答<span class="tag">6 题 · 已有跨瘤种联合数据，乳腺癌一线联合在推进中</span></h2>
+
+<div class="q">
+  <div class="qh"><span class="qn">C-1</span><span class="qt">"iza-bren 和免疫治疗联用，安全吗？效果怎么样？"</span><span class="chip c-core">联用核心</span></div>
+  <div class="ans30"><b>30 秒版</b>：最有说服力的已公开数据来自<b>广泛期小细胞肺癌（ES-SCLC）一线</b>：iza-bren + 斯鲁利单抗（PD-1）II 期（n=82）——<b>ORR 88.3%、cORR 77.9%、DCR 94.8%、mPFS 8.2 个月、12 个月 OS 率 80.8%</b>；安全性以血液学毒性为主且可控，<b>导致停药率 2.5 mg/kg 组仅 2.4%</b>，未发现新的安全信号。<b>但请注意：这是 SCLC 数据，不是乳腺癌数据。</b></div>
+  <p class="sub"><span class="lab">展开</span>① 研究设计：BL-B01D1-204-01（NCT06437509），初治 ES-SCLC，iza-bren 2.5 或 2.75 mg/kg D1D8 Q3W + 斯鲁利单抗 Q3W；2026 年欧洲肺癌大会（ELCC）口头报告。</p>
+  <p class="sub">② 剂量选择的关键信息（很能体现"安全性是可管理的"）：两个剂量疗效相近（2.5 mg/kg ORR 85.0% vs 2.75 mg/kg 91.9%），但 <b>2.75 mg/kg 的因不良事件停药率 12.2%，2.5 mg/kg 仅 2.4%</b>——因此 <b>2.5 mg/kg 被选为后续联合研究的推荐剂量（RP2D）</b>。</p>
+  <p class="sub">③ 安全性的具体构成（会追问）：最常见 ≥30% 的 TRAE 为贫血、血小板↓、白细胞↓、中性粒↓；≥3 级以血液学为主；<b>ILD 2.4%、发热性中性粒细胞减少 2.4%</b>；2 例（2.4%）可能与治疗相关的死亡。<b>不回避这几个数字</b>——它们比"安全性良好"这种空话更可信。</p>
+  <p class="sub">④ 机制合理性（标注为假设）：ADC 诱导的免疫原性细胞死亡与 PD-1 阻断存在协同的理论基础。单药 cORR 44.8% → 联合 cORR 77.9%，但这属于跨研究/跨队列比较，<b>不是头对头</b>。</p>
+  <table>
+    <tr><th>指标</th><th>iza-bren + 斯鲁利单抗（1L ES-SCLC，n=82/评价 77）</th></tr>
+    <tr><td>ORR / cORR</td><td>88.3% / 77.9%（DCR 94.8%）</td></tr>
+    <tr><td>mPFS</td><td>8.2 个月（95% CI 6.7–9.6）</td></tr>
+    <tr><td>mDoR</td><td>7.3 个月</td></tr>
+    <tr><td>12 个月 OS 率</td><td>80.8%</td></tr>
+    <tr><td>因 AE 停药</td><td>2.4%（2.5 mg/kg）vs 12.2%（2.75 mg/kg）</td></tr>
+    <tr><td>ILD / 发热性中性粒↓</td><td>各 2.4%；可能治疗相关死亡 2 例（2.4%）</td></tr>
+  </table>
+  <p class="src"><span class="e e-abst">2026 ELCC 口头报告</span><span class="e e-pub">大会报道与专业媒体</span></p>
+  <div class="ask"><b>可能的追问</b>："那乳腺癌联合免疫呢？" → 见 C-3。</div>
+</div>
+
+<div class="q">
+  <div class="qh"><span class="qn">C-2</span><span class="qt">"ADC 和免疫联用，毒性是不是叠加得更厉害？"</span><span class="chip c-risk">安全性类</span></div>
+  <div class="ans30"><b>30 秒版</b>：两类药的毒性谱<b>重叠有限</b>——ADC 侧以血液学为主，PD-1 侧以免疫相关不良事件（irAE）为主，叠加的主要是"非特异性症状"（乏力、食欲下降）。已公开的联合数据显示：<b>未发现新的安全信号，因 AE 停药率低（2.4%），但血液学毒性仍然常见、≥3 级以血液学为主</b>，需要 G-CSF 等支持治疗与血象监测前置。</div>
+  <p class="sub"><span class="lab">展开</span>① 需要特别留意的两点：<b>ILD 与发热性中性粒细胞减少各 2.4%</b>——ILD 在"ADC + 免疫"背景下诊断更复杂（需与免疫性肺炎鉴别），方案中的监测与判定流程很重要；<br>
+  ② 已采取的风险控制：后续研究已加入<b>强制性中性粒细胞减少预防</b>与更严密监测；<br>
+  ③ <b>不要用"1+1 没有额外毒性"这种说法</b>——正确表述是"毒性谱可预期、可通过支持治疗与剂量调整管理，且无新的安全信号"。</p>
+</div>
+
+<div class="q">
+  <div class="qh"><span class="qn">C-3</span><span class="qt">"BL-B01D1 在乳腺癌有没有联合治疗的数据？"</span><span class="chip c-core">联用核心</span></div>
+  <div class="ans30"><b>30 秒版</b>：乳腺癌的一线联合研究<b>已登记启动</b>（PANKU-Breast 04：iza-bren + PD-1 对照 白蛋白紫杉醇 + PD-1，用于 PD-L1 阳性一线 TNBC，登记号 CTR20262666），<b>目前尚无乳腺癌联合治疗的公开疗效数据</b>。目前所有联合的疗效数据来自其他瘤种（SCLC、NSCLC）。</div>
+  <p class="sub"><span class="lab">展开</span>① 乳腺癌开发地图（可按记忆背诵）：<br>
+  · <b>PANKU-Breast 02</b>：TNBC 1–2 线后，随机 III 期，<b>已读出（PFS/OS 双阳性）</b>；<br>
+  · <b>PANKU-Breast 03</b>：HR+/HER2−，进行中；<br>
+  · <b>PANKU-Breast 04</b>：PD-L1+ 一线 TNBC，<b>iza-bren + PD-1</b> 对照白蛋白紫杉醇 + PD-1，已登记；<br>
+  · <b>IZABRIGHT-Breast01</b>（NCT06926868，BMS 全球）：一线、不适合 PD-(L)1 治疗的晚期 TNBC。</p>
+  <p class="sub">② <b>为什么一线不用化疗做基石</b>：TNBC 一线已进入"化疗 + 免疫"时代（KEYNOTE-355 / ASCENT-04），所以一线设计以"化疗 + 免疫"为对照是符合当代标准的思路——这一点可以用来回应"你们对照组过时了吗"的质疑（见 E-1）。</p>
+  <div class="ask"><b>可能的追问</b>："一线不联合免疫、单药对照化疗，是不是会弱？" → 答：一线设计在不同人群中有不同考量（如免疫不适用人群）；具体设计的依据以公开登记信息与方案为准，我们不对外解释未公开的设计理由。</div>
+</div>
+
+<div class="q">
+  <div class="qh"><span class="qn">C-4</span><span class="qt">"能不能和 TKI 或化疗联用？有效吗？"</span><span class="chip c-core">联用核心</span></div>
+  <div class="ans30"><b>30 秒版</b>：与 TKI 联用已有<b>非常强的早期信号</b>——iza-bren + 奥希替尼用于 EGFR 突变 NSCLC 一线：公开报道的 <b>ORR 100%、12 个月 PFS 率约 92%</b>（中位 PFS 未达到）。<b>但这是早期小样本、非乳腺癌数据</b>，需要更大规模验证。</div>
+  <p class="sub"><span class="lab">展开</span>① 该数据来自 II 期队列，样本量小、为研究者报告，且 100% ORR 在小样本中并不罕见（置信区间极宽）。<b>引用时务必说"早期信号，需验证"</b>。<br>
+  ② 与化疗联合：目前的思路并非"ADC 替代化疗"，而是分阶段使用（参考 T-DXd 在新辅助中"ADC 序贯化疗 + 双靶"优于 ADC 单药的证据：pCR 67.3% vs 43%）。<b>注意：这是 T-DXd 的数据，不是我们的数据。</b><br>
+  ③ 表述原则：可以把"ADC 与化疗/靶向的联合可能是提升疗效与减少耐药的方向"作为领域共识来谈，但<b>不要把别家的联合结论说成我们的结论</b>。</p>
+</div>
+
+<div class="q">
+  <div class="qh"><span class="qn">C-5</span><span class="qt">"联用的剂量是怎么定的？会不会太猛？"</span><span class="chip c-risk">安全性类</span></div>
+  <div class="ans30"><b>30 秒版</b>：联合场景下确定的推荐剂量是 <b>2.5 mg/kg D1D8 Q3W</b>——依据是"疗效相近但耐受性更优"：2.5 mg/kg 与 2.75 mg/kg 的 ORR 分别为 85.0% 与 91.9%，但停药率为 <b>2.4% vs 12.2%</b>，因此选择 2.5 mg/kg 作为 RP2D。</div>
+  <p class="sub"><span class="lab">展开</span>① 单药 TNBC III 期同样使用 2.5 mg/kg D1D8 Q3W，与联合场景的剂量一致，便于临床记忆。<br>
+  ② 剂量强度管理是这类药的现实特征：PANKU-Breast 02 中 <b>63.3% 需要减量、63.3% 需要中断</b>，但<b>仅 1.9% 因不良事件停药</b>——说明"减量/调整"是常态而非失败，这一点对医生沟通很重要（避免医生因担心毒性而不敢用）。<br>
+  ③ <b>配套要求</b>：血象监测（尤其 D8 前）、G-CSF 等支持治疗、发热性中性粒细胞减少的预警与处理流程、ILD 监测教育。</p>
+</div>
+
+<div class="q">
+  <div class="qh"><span class="qn">C-6</span><span class="qt">"联合治疗会不会只是一个"看起来很美"的概念？"</span><span class="chip c-clin">逻辑类</span></div>
+  <div class="ans30"><b>30 秒版</b>：评判联合策略的三个标准：① <b>机制协同是否有生物学基础</b>（ADC 诱导免疫原性细胞死亡 + 检查点阻断，有）；② <b>是否在随机对照中验证过</b>（目前只有 II 期单臂数据，尚未）；③ <b>安全性是否可管理</b>（有支持治疗路径，但血液学负担真实存在）。<b>所以严格讲，现在是"有前景的早期信号"，不是已确立的策略。</b></div>
+  <p class="sub"><span class="lab">展开</span>这个回答的结构（机制 → 证据等级 → 安全性 → 结论边界）可以作为所有"这个方向行不行"类问题的模板。坦诚地给出"尚未在随机对照中验证"，比含糊的乐观更容易获得专家信任。</p>
+</div>
+
+<!-- ============ 板块 D ============ -->
+<h2 id="D">板块 D · 新辅助与围手术期洗脱期<span class="tag">6 题 · 这是一个"没有本产品数据、但有行业通用规则"的领域</span></h2>
+
+<div class="red"><b>先定调</b>：BL-B01D1 的乳腺癌公开研究均在<b>晚期/转移阶段</b>，<b>没有新辅助或围手术期的临床数据</b>。因此本板块回答的是"<b>ADC 类药物的围手术期管理通用原则</b>"与"<b>本产品的证据边界</b>"，<b>绝不能表述为对该药围手术期使用的建议</b>。<span class="e e-pen">证据空缺</span></div>
+
+<div class="q">
+  <div class="qh"><span class="qn">D-1</span><span class="qt">"如果做新辅助，术前要停多久？洗脱期怎么定？"</span><span class="chip c-risk">高频实务问题</span></div>
+  <div class="ans30"><b>30 秒版</b>：<b>行业现行的做法是"术前停药 4 周、术后恢复 3–4 周"</b>（以 ADC 类为主），依据是各药关键临床试验<b>把"随机前 4 周内接受大手术"列为排除标准</b>，以及围手术期骨髓抑制（中性粒/血小板↓）与伤口愈合的考量。具体到 BL-B01D1：<b>没有围手术期数据，任何洗脱期建议只能参考同类的通用原则，并由研究者按方案与患者情况判断。</b></div>
+  <p class="sub"><span class="lab">展开</span>① 把"4 周"的来源讲清楚（这是最有说服力的部分）：<b>不是来自前瞻性研究，而是来自临床试验的排除标准 + 药理学推理</b>——ADC 的血浆游离载荷暴露、骨髓抑制恢复时间与伤口愈合窗口共同决定了这个量级。</p>
+  <table>
+    <tr><th>药物类别</th><th>术前停药</th><th>术后恢复</th><th>主要理由</th></tr>
+    <tr><td class="stg">T-DM1</td><td>4 周</td><td>3–4 周</td><td>血小板↓、中性粒↓</td></tr>
+    <tr><td class="stg">T-DXd</td><td>4 周</td><td>4 周</td><td>临床试验排除随机前 4 周内大手术；血液学 + ILD 风险</td></tr>
+    <tr><td class="stg">SG（TROP2 ADC）</td><td>4 周</td><td>4 周</td><td>中性粒↓；术前需监测中性粒细胞</td></tr>
+    <tr><td class="stg">PD-1 抑制剂</td><td>可继续（无证据显示影响伤口愈合）</td><td>可继续</td><td>早期设计曾停 3–5 周，后续研究未发现影响</td></tr>
+    <tr><td class="stg">CDK4/6 抑制剂</td><td>7 天</td><td>2–3 周</td><td>中性粒↓、伤口愈合、VTE</td></tr>
+    <tr><td class="stg">他莫昔芬</td><td>7 天（VTE 高危 3 周；微血管手术 4 周）</td><td>—</td><td>VTE 风险</td></tr>
+    <tr><td class="stg">芳香化酶抑制剂</td><td>可继续</td><td>可继续</td><td>—</td></tr>
+  </table>
+  <p class="src"><span class="e e-pub">围手术期用药管理综述（2026）</span><span class="e e-hyp">专家建议 + 试验排除标准，非前瞻性研究</span>以上为<b>药物类别通用建议</b>，不针对任何具体产品的围手术期使用。</p>
+  <p class="sub">② <b>BL-B01D1 的推算逻辑</b>（必须标注为推算）：给药方案为 2.5 mg/kg D1D8 Q3W（21 天/周期），若按同类"术前停 4 周"的惯例，相当于<b>跳过至少一个完整周期并额外观察</b>；同时需满足<b>血象恢复阈值</b>（中性粒细胞、血小板达到可手术水平）与无活动性感染。</p>
+  <div class="ask"><b>可能的追问</b>："那 4 周是不是拍脑袋定的？有没有更精确的数据？" → 答：<b>坦诚回答"没有前瞻性数据"</b>，这个数字来自试验排除标准与药理学推理，个体化调整需结合血象与手术类型；这也正是需要"围手术期安全性"这类专门研究的原因。</div>
+</div>
+
+<div class="q">
+  <div class="qh"><span class="qn">D-2</span><span class="qt">"如果一定要在术前用，要注意什么？"</span><span class="chip c-risk">红线邻近</span></div>
+  <div class="ans30"><b>30 秒版</b>：这不是我们能给建议的场景——<b>该药没有围手术期适应症与数据</b>。可以谈的只有"ADC 类的共性问题"：① <b>血液学恢复</b>（中性粒/血小板需达到手术安全阈值）；② <b>伤口愈合与感染风险</b>；③ <b>ILD 的术前评估</b>（基线肺部影像与症状筛查）；④ <b>术式与重建方式选择</b>需与外科团队沟通（自体组织重建对微循环更敏感）。</div>
+  <p class="sub"><span class="lab">展开</span>回答这类问题要守住三条：<b>①不提供超适应症用药建议；②不替医生做临床决策；③所谈内容限定为"药物类别的通用安全性考虑"并明确标注来源为综述/专家意见。</b></p>
+  <div class="ask"><b>可能的追问</b>："那你们支持这样的研究者发起研究吗？" → 答：涉及公司产品的研究者发起研究需通过公司正式流程评估与审批（医学、注册、法务、合规），我个人的了解不构成任何承诺。</div>
+</div>
+
+<div class="q">
+  <div class="qh"><span class="qn">D-3</span><span class="qt">"ADC 做新辅助，会不会影响手术？"</span><span class="chip c-clin">外科关切</span></div>
+  <div class="ans30"><b>30 秒版</b>：从已有 ADC 新辅助经验看，<b>主要挑战不是手术并发症，而是"疗效与手术时机的匹配"</b>。例证：DB-11 中 T-DXd 单药组 pCR 仅 43%（远低于 T-DXd 序贯 THP 的 67.3%），并因疗效不足与<b>手术时间安排</b>问题被独立数据监查委员会建议提前终止——说明"ADC 单药替代化疗"在新辅助不充分，且治疗周期与手术窗口需要精细设计。</div>
+  <p class="sub"><span class="lab">展开</span>① 我们自己的配套要求（若涉及任何研究）：术前血象、肺功能/影像基线、ILD 症状教育、停药间隔写入方案、手术团队与肿瘤团队协同。<br>
+  ② 已公开的 ADC 新辅助安全性参考（T-DXd）：DB-11 中 T-DXd 序贯 THP 组 ≥3 级 AE 37.5%（对照 55.8%），血液学与左室功能障碍发生率更低，ILD 4.4%（≥3 级 0.6%）——<b>这些是 T-DXd 的数据，用于说明"ADC 新辅助的毒性形态"，不能外推到其他 ADC</b>。</p>
+</div>
+
+<div class="q">
+  <div class="qh"><span class="qn">D-4</span><span class="qt">"你们在早期乳腺癌的规划是什么？"</span><span class="chip c-reg">监管/布局类</span></div>
+  <div class="ans30"><b>30 秒版</b>：公开信息中，乳腺癌方向目前是<b>晚期三线布局（后线、HR+、一线联合、全球一线）</b>，早期（新辅助/辅助）尚未见公开的注册性研究。<b>早期开发需要解决的问题与晚期不同</b>：pCR 与长期生存终点、手术可行性、以及与现有"化疗 + 双靶/免疫"标准的对照设计。</div>
+  <p class="sub"><span class="lab">展开</span>① 早期前移的三道门槛（可用于专业对话）：<b>疗效门槛</b>（pCR 必须显著优于现有新辅助标准）；<b>安全门槛</b>（不能增加手术并发症与长期毒性）；<b>终点门槛</b>（需要 EFS/IDFS/OS 这类长期终点，随访时间长）。<br>
+  ② <b>不得承诺任何时间与计划</b>。若对方追问，标准答法回到"以公开披露为准"。</p>
+</div>
+
+<div class="q">
+  <div class="qh"><span class="qn">D-5</span><span class="qt">"术后辅助能用吗？"</span><span class="chip c-reg">监管/布局类</span></div>
+  <div class="ans30"><b>30 秒版</b>：<b>目前没有辅助适应症</b>。参考 T-DXd 的路径：辅助适应症建立在"新辅助后 non-pCR 高危患者"这一明确人群上（DB-05：3 年 iDFS 92.4% vs T-DM1 83.7%，HR 0.47），且需要长期随访验证。我们的辅助布局尚无公开信息。</div>
+  <p class="sub"><span class="lab">展开</span>辅助治疗对安全性的要求与晚期不同——患者预期寿命长，因此<b>长期毒性（ILD、心脏、继发肿瘤）与停药率的容忍度更低</b>，这是所有 ADC 前移到辅助阶段必须面对的共同课题。</p>
+</div>
+
+<div class="q">
+  <div class="qh"><span class="qn">D-6</span><span class="qt">"如果专家问'那你们建议停药几周'，我该怎么答？"</span><span class="chip c-risk">话术训练</span></div>
+  <div class="ans30"><b>标准答法（建议背下来）</b>：<i>"围手术期的停药间隔，目前 ADC 类通用的做法是术前 4 周、术后 3–4 周，这个数字来自各药关键试验把'随机前 4 周内大手术'列为排除标准，属于专家建议与药理学推理，不是前瞻性研究结论。具体到 BL-B01D1，<b>我们没有围手术期的临床数据</b>，所以任何间隔建议都应由研究者依据方案、血象恢复情况与手术类型来判断，我不适合给出具体用药建议。"</i></div>
+  <p class="sub"><span class="lab">要点</span>① 先给"类别的通行做法"（满足对方的实务需求）；② 明确标注证据强度（避免被当成指南）；③ 明确本产品的边界（不超适应症建议）；④ 把决策权交回研究者。这四步既专业又安全。</p>
+</div>
+
+<!-- ============ 板块 E ============ -->
+<h2 id="E">板块 E · 数据成熟度与监管边界<span class="tag">5 题 · 学会"承认局限"反而是加分项</span></h2>
+
+<div class="q">
+  <div class="qh"><span class="qn">E-1</span><span class="qt">"你们的对照组是化疗，现在 ADC 已经证明比化疗好了，这个对照还成立吗？"</span><span class="chip c-risk">研究设计质疑</span></div>
+  <div class="ans30"><b>30 秒版</b>：这是 ASCO 2026 上<b>被公开提出的质疑</b>（讨论者指出在多种 ADC 已被证明优于标准化疗的时代，用化疗做对照值得商榷）。我们的回应有三层：① <b>研究设计受制于当时的可及性</b>——研究在中国开展时，该线数人群尚无普遍可及的 ADC 标准；② <b>OS 获益在"更少的后续治疗"下取得</b>（iza-bren 组 38.6% vs 化疗组 63.4% 接受后续治疗，ADC 使用 16.4% vs 42.0%），说明获益不是靠后续治疗"补"出来的；③ <b>结论边界</b>：这些数据支持"优于化疗"，<b>不主张"优于其他 ADC"</b>——后者需要头对头或规范的间接比较。</div>
+  <p class="sub"><span class="lab">展开</span>① 主动承认可以提升可信度：<i>"我们完全认同这个观点——在有 ADC 可及的人群中，化疗对照的说服力确实在下降；这也是为什么一线研究（IZABRIGHT-Breast01 等）采用当代标准作为对照。"</i><br>
+  ② 不要做的两件事：<b>不要贬低化疗对照的价值</b>（对化疗失败后的患者，仍需要化疗之外的选项）；<b>不要暗示"等于优于其他 ADC"</b>。</p>
+</div>
+
+<div class="q">
+  <div class="qh"><span class="qn">E-2</span><span class="qt">"OS 优势会不会是因为对照组不能交叉用你们的药？"</span><span class="chip c-risk">统计/设计质疑</span></div>
+  <div class="ans30"><b>30 秒版</b>：这个质疑在 ASCO 上也被提出（讨论者指出研究<b>未允许对照组进展后交叉使用 iza-bren</b>，因此 OS 优势需谨慎解读）。可以给出的三点回应：① <b>对照组并非"没有后续治疗"</b>——63.4% 接受后续抗肿瘤治疗，其中 <b>42.0% 使用了 ADC</b>；② 因此这是"在对照组获得充分后续治疗的情况下"仍观察到的 OS 获益（HR 0.60, p=0.0019）；③ <b>OS 数据仍需更长期随访确认</b>（本次分析时 OS 信息分数约 53%）。</div>
+  <p class="sub"><span class="lab">展开</span>① 陈述时的公式：<b>先给事实（后续治疗比例）→ 再给被质疑处的客观局限 → 最后给结论状态（期中分析、需长期随访）</b>。这条路径比"我们认为交叉不影响"更专业。<br>
+  ② 相关讨论点：如果未来全球研究采用不同设计（如允许交叉），OS 的解读方式会变化——这属于研究设计范畴，由公司与监管讨论确定。</p>
+</div>
+
+<div class="q">
+  <div class="qh"><span class="qn">E-3</span><span class="qt">"数据全部来自中国单国研究，欧美人群能复制吗？"</span><span class="chip c-reg">监管/全球布局</span></div>
+  <div class="ans30"><b>30 秒版</b>：这是<b>被公开提出的合理问题</b>（专家指出需要更广泛、种族更多样的全球队列验证）。我们的回应：① 乳腺癌的 TNBC 在生物学与治疗反应上<b>跨种族差异小于某些瘤种</b>（如 EGFR 突变肺癌），但这只是推论；② 确实有<b>全球研究在进行</b>：IZABRIGHT-Breast01（NCT06926868，BMS 合作）为全球多中心一线研究；③ <b>结论</b>：全球验证是全球注册路径的必要环节，结果待读出。</div>
+  <p class="sub"><span class="lab">展开</span>① 不能说的话："中国数据足以代表全球"或"欧美人群不会有差异"。<br>
+  ② 可以说的：区域差异的来源通常是<b>人群基线（体重、既往治疗暴露、合并症）、医疗可及性与支持治疗水平、以及生物标志物分布</b>——这些是需要在全球研究中评估的变量。<br>
+  ③ 补充事实：剂量探索方面，2.5 mg/kg 为中国 III 期推荐剂量，<b>全球人群的最佳剂量仍在探索</b>（这一点研究者在公开采访中明确提及）。</p>
+</div>
+
+<div class="q">
+  <div class="qh"><span class="qn">E-4</span><span class="qt">"这个数据成熟吗？随访多久？"</span><span class="chip c-reg">数据成熟度</span></div>
+  <div class="ans30"><b>30 秒版</b>：<b>PANKU-Breast 02 是预设的期中分析</b>：中位随访 11 个月，OS 分析时信息分数约 53%，PFS 事件在 iza-bren 组为 49.8%、化疗组 77.1%。所以准确表述是"<b>期中分析即达到 PFS 与 OS 双主要终点</b>"，而非"最终分析已完成"。</div>
+  <table>
+    <tr><th>指标</th><th>数值</th><th>成熟度说明</th></tr>
+    <tr><td class="stg">中位随访</td><td>11 个月</td><td>期中分析</td></tr>
+    <tr><td class="stg">PFS 事件数</td><td>iza-bren 103/207（49.8%）；化疗 158/205（77.1%）</td><td>事件比例较充分</td></tr>
+    <tr><td class="stg">6 个月 PFS 率</td><td>62.0% vs 17.6%</td><td>—</td></tr>
+    <tr><td class="stg">9 个月 PFS 率</td><td>47.7% vs 7.7%</td><td>—</td></tr>
+    <tr><td class="stg">OS 信息分数</td><td>约 53.2%</td><td>OS 仍需长期随访</td></tr>
+    <tr><td class="stg">12 个月 OS 率</td><td>67.5% vs 53.5%</td><td>—</td></tr>
+    <tr><td class="stg">9 个月 OS 率</td><td>79.9% vs 68.7%</td><td>—</td></tr>
+  </table>
+  <p class="src"><span class="e e-abst">ASCO 2026 LBA1003</span><span class="e e-pub">BMS/公司官方新闻稿</span></p>
+  <div class="ask"><b>可能的追问</b>："那 PFS 会不会不成熟？" → 答：PFS 事件比例在对照组已达 77%，且 HR 0.29 的效应量与 6/9 个月 PFS 率的差距都很大，<b>结论稳健性较好</b>；但最终成熟数据仍以正式发表与长期随访为准。</div>
+</div>
+
+<div class="q">
+  <div class="qh"><span class="qn">E-5</span><span class="qt">"什么时候能获批？全球研究什么时候出结果？"</span><span class="chip c-reg">预期类</span></div>
+  <div class="ans30"><b>标准答法</b>：<i>"TNBC 的上市申请已受理并进入审评程序，<b>获批时间取决于监管审评结果</b>，我不能给出时间预期；全球一线研究（IZABRIGHT-Breast01）在进行中，<b>读出时间以研究实际进展与公司公开披露为准</b>。"</i></div>
+  <p class="sub"><span class="lab">要点</span>① 可以确认的客观事实：TNBC 上市申请<b>已受理</b>；NPC 与 ESCC <b>已获批</b>；ESCC 曾被纳入优先审评程序（公开信息）。<br>
+  ② 不可以做的：推测获批月份、评价审评进度快慢、透露任何未公开的时间表或补充数据要求。<br>
+  ③ 通用话术：<i>"关于时间表，我掌握的就是公开信息；如果有新的官方披露，我会第一时间同步。"</i></p>
+</div>
+
+<!-- ============ 板块 F ============ -->
+<h2 id="F">板块 F · 红线与通用话术<span class="tag">4 题 · 建议逐字背熟</span></h2>
+
+<div class="q">
+  <div class="qh"><span class="qn">F-1</span><span class="qt">"怎么评价竞品？"（万能答法）</span><span class="chip c-risk">合规红线</span></div>
+  <div class="ans30"><b>三不原则</b>：<b>① 不做优效性比较</b>（"我们的更好/更安全"）→ 改为"研究人群与设计不同，跨研究不能比较"；<b>② 不评价竞品的未获批用途或安全性缺陷</b> → 改为引用其说明书/公开数据的客观描述；<b>③ 不主动提起竞品名称</b>（除非对方先提，或确有必要进行机制层面的科学讨论）。</div>
+  <p class="sub"><span class="lab">可用的中性表述</span>：<i>"从机制上看，两个药物的靶点和载荷不同……在人群与线数上也有差异，所以更适合讨论'各自适合什么场景'，而不是'谁更好'。"</i></p>
+</div>
+
+<div class="q">
+  <div class="qh"><span class="qn">F-2</span><span class="qt">"被问到不知道的数据，怎么办？"</span><span class="chip c-core">通用技能</span></div>
+  <div class="ans30"><b>标准三步</b>：① <b>先明确边界</b>——"这一点我需要核实后回复"；② <b>给已知的部分</b>——"我目前掌握的是……（已公开数据）"；③ <b>承诺跟进的路径</b>——"我确认后会以正式渠道同步"。<b>绝不即兴推测数字。</b></div>
+  <p class="sub"><span class="lab">为什么这是加分项</span>：在被追问的场合，编造或猜测一个数字的代价远大于"我需要核实"。专家判断一个医学人员的专业度，看的是<b>数据边界的清晰度</b>，而不是即时回答的速度。</p>
+</div>
+
+<div class="q">
+  <div class="qh"><span class="qn">F-3</span><span class="qt">"被问到价格、医保、推广、销售、KOL"</span><span class="chip c-risk">职责边界</span></div>
+  <div class="ans30"><b>答法</b>：明确区分<b>医学事务（数据与科学）</b>与<b>商业/准入（价格、医保、推广）</b>的边界：<i>"价格与医保属于市场准入范畴，我作为医学事务可以提供数据层面的支持，但不适合在技术讨论中做商业表述；如果有相关问题我可以帮您对接相应团队。"</i></div>
+  <p class="sub"><span class="lab">另外三条硬边界</span>：① 不透露、不询问、不记录<b>未公开的临床与注册信息</b>；② 不涉及<b>患者身份信息</b>（任何时候都不讨论可识别的病例细节）；③ 涉及<b>研究者发起研究（IIT）</b>的药品供应、方案参与、数据与发表安排，一律走公司正式流程，个人不承诺。</p>
+</div>
+
+<div class="q">
+  <div class="qh"><span class="qn">F-4</span><span class="qt">"现场被连环追问时的节奏怎么把握？"</span><span class="chip c-core">通用技能</span></div>
+  <div class="ans30"><b>四拍节奏</b>：① <b>复述确认</b>（"您关心的是…对吗？"）——给自己 3 秒组织语言；② <b>先给结论句</b>（30 秒版）；③ <b>再给支撑</b>（数据/研究名/人群）；④ <b>最后给边界</b>（"这一点需要 XX 数据才能回答"）。</div>
+  <p class="sub"><span class="lab">三个实用技巧</span>：<br>
+  ① <b>把"不知道"换成"分两层"</b>："数据层面我可以给到 A，判断层面需要等 B 读出。"<br>
+  ② <b>遇到不利问题先承认再限定</b>："这个质疑成立，在 X 场景下确实存在；在 Y 场景下我们的数据是……"<br>
+  ③ <b>用领域共识化解单点质疑</b>："这是所有 TOP1i 载荷 ADC 共同面对的问题，也是 ASCO 2026 上被反复提到的方向。"</p>
+</div>
+
+<!-- ============ 来源 ============ -->
+<h2 id="src">数据来源与声明<span class="tag">检索截止 2026-09-15</span></h2>
+<div class="card" style="font-size:12.5px">
+<p><b>主要来源（优先级：监管文件/说明书 &gt; 正式发表 &gt; 官方公告/大会报告 &gt; 专业媒体转述作线索）</b></p>
+<ol>
+<li><b>BL-B01D1 关键数据</b>：PANKU-Breast 02（BL-B01D1-307，NCT06382142）ASCO 2026 LBA1003 口头报告及公司/BMS 官方新闻稿（2026-06-02）；PANKU-Esophagus01（BL-B01D1-305）；BL-B01D1-303（NPC，NCT06118333，ESMO 2025 及 Lancet）；PANKU-Breast 04（CTR20262666）；IZABRIGHT-Breast01（NCT06926868）；国家药监局核准说明书。</li>
+<li><b>联合治疗数据</b>：iza-bren + 斯鲁利单抗 1L ES-SCLC（BL-B01D1-204-01，NCT06437509），2026 ELCC 口头报告及专业媒体报道；iza-bren + 奥希替尼 EGFRm NSCLC II 期（IASLC/WCLC 2025 报道作线索）。</li>
+<li><b>ADC 围手术期管理</b>：乳腺癌系统治疗围手术期用药管理文献综述与治疗建议（2026）——含 T-DM1/T-DXd/SG/CDK4/6i/内分泌/免疫的停药建议与其证据基础（试验排除标准 + 专家建议）。</li>
+<li><b>T-DXd 早期数据</b>：DB-11（Ann Oncol 2026;37(2):166-179）；DB-05（NEJM 2026;394(9):845-857）；neoCARHP（JCO 2026）；DAISY（HER2 表达动态变化）。</li>
+<li><b>TNBC 治疗格局与 TROP2 ADC</b>：ASCENT / ASCENT-03 / ASCENT-04（KEYNOTE-D19）；TROPION-Breast01/02/06；OptiTROP-Breast01/02/03；EVER-132-002；CSCO 2026 乳腺癌指南要点转述。</li>
+<li><b>HER3 与在研管线</b>：HERTHENA-Breast04（NCT07060807）与 II 期 422RO（2026 ESMO BC）；JSKN016、JS212、IBI3017 公开披露信息；ClinicalTrials.gov 注册信息。</li>
+<li><b>讨论与专家评论</b>：ASCO 2026 PANKU-Breast 02 讨论环节（Valentina Guarneri）与专家评论（Kathy Miller 等）——本页对质疑的转述用于应答准备，不代表本产品立场。</li>
+</ol>
+<p><b>使用边界</b>：本页为<b>个人学习与应答准备资料</b>，不代表公司立场、不构成对外口径或医学信息答复、不构成临床用药建议。所有跨药物/跨研究比较均为【非头对头比较】，不得据此得出优效或安全性更优的结论。未获批适应症相关内容在任何场合不得用于推广。涉及公司产品的对外材料与研究者发起研究，须遵循公司现行审批流程与法规要求。时间预期类问题一律以官方审评结果与公开披露为准。</p>
+<p class="src">如发现数据与公司最新官方口径不一致，<b>一律以公司官方材料为准</b>，并请同步更新本页。</p>
+</div>
+
+<div class="foot">
+BL-B01D1 关键问题应答速查（Q&amp;A Playbook）· v1.0 · 数据检索截止 2026-09-15 · 6 大板块 42 题<br>
+个人学习与应答准备资料（不作为公司对外材料）｜配套：主手册（57 章）· 乳腺癌治疗格局与 ADC 布局 Mapping · TNBC 获批即用材料包<br>
+所有数据以国家药监局核准说明书与公司官方材料为准；跨研究比较均非头对头。
+</div>
+</div>
+
+<script>
+(function(){
+  var inp = document.getElementById('qq');
+  var cnt = document.getElementById('cnt');
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.q'));
+  function run(){
+    var k = (inp.value || '').trim().toLowerCase();
+    var n = 0;
+    cards.forEach(function(c){
+      var hit = !k || (c.textContent || '').toLowerCase().indexOf(k) >= 0;
+      c.style.display = hit ? '' : 'none';
+      if(hit) n++;
+    });
+    cnt.textContent = k ? ('匹配 ' + n + ' / ' + cards.length + ' 题') : ('共 ' + cards.length + ' 题');
+  }
+  inp.addEventListener('input', run);
+  document.getElementById('clr').addEventListener('click', function(){ inp.value=''; run(); });
+  run();
+})();
+</script>
+</body>
+</html>
