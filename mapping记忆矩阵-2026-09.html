@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mapping 记忆矩阵 · 乳腺癌治疗格局 × ADC 布局 × iza-bren 研究全景（2026-09）</title>
+<style>
+  :root{--p:#0b5e8f;--p2:#1472a8;--ok:#1d7a54;--hl:#c0392b;--bg:#f5f7fa;--card:#fff;--line:#e2e8f0;--text:#1f2933;--mut:#5b6b7a}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.65;padding:24px 12px 70px}
+  .wrap{max-width:1300px;margin:0 auto}
+  .topbar{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;align-items:center;font-size:12.5px;color:var(--mut);margin-bottom:12px}
+  .topbar a{color:var(--p2);text-decoration:none}
+  h1{font-size:22px;color:#0b4a6f;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 22px;line-height:1.5}
+  h1 small{display:block;font-size:13px;color:var(--mut);font-weight:400;margin-top:6px;line-height:1.6}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+  .meta span{background:#eef3f8;border:1px solid var(--line);border-radius:20px;padding:4px 12px;font-size:12px;color:#33414f}
+  .nav{position:sticky;top:0;background:#0e3a57;color:#fff;border-radius:0 0 12px 12px;padding:8px 12px;margin-bottom:16px;z-index:9;display:flex;flex-wrap:wrap;gap:4px}
+  .nav a{color:#cfe5f2;font-size:12.5px;text-decoration:none;padding:4px 10px;border-radius:6px}
+  .nav a:hover{background:#1b4f75;color:#fff}
+  h2{font-size:19px;color:#0b4a6f;margin:32px 0 4px;padding-left:11px;border-left:6px solid var(--p2)}
+  h2 .tag{font-size:12px;color:var(--mut);font-weight:400;margin-left:8px}
+  h3{font-size:15.5px;color:#0d3f5e;margin:20px 0 6px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:12px 0;overflow-x:auto}
+  table{width:100%;border-collapse:collapse;font-size:12.2px;margin:6px 0}
+  th{background:#0e3a57;color:#fff;padding:7px 8px;text-align:left;font-weight:600;font-size:12px}
+  td{padding:6px 8px;border:1px solid #e8eef4;vertical-align:top}
+  .rh{background:#eef4f9;font-weight:700;color:#0d3f5e;white-space:nowrap;font-size:12.2px}
+  .ch{background:#155e86;color:#fff;text-align:center;font-weight:600}
+  .warn{background:#fdf3e7;border:1px solid #f0d9b8;border-radius:10px;padding:11px 15px;font-size:12.8px;margin:12px 0;color:#6b4d14}
+  .okb{background:#e9f6ef;border:1px solid #bcdcc9;border-radius:10px;padding:11px 15px;font-size:12.8px;margin:12px 0;color:#14532d}
+  .inf{background:#eaf3fb;border:1px solid #cfe2f0;border-radius:10px;padding:11px 15px;font-size:12.8px;margin:12px 0;color:#0d3f5e}
+  .red{background:#fdeeee;border:1px solid #f0c9c9;border-radius:10px;padding:11px 15px;font-size:12.8px;margin:12px 0;color:#8c2c22}
+  p{font-size:12.8px;margin:5px 0;color:#33414f}
+  ul,ol{margin:5px 0 5px 20px;font-size:12.8px}li{margin:2px 0}
+  .src{font-size:11.4px;color:var(--mut);margin-top:4px}
+  .foot{font-size:11.4px;color:var(--mut);margin-top:30px;border-top:1px solid var(--line);padding-top:12px}
+  /* 亚型列配色 */
+  .c-her2{background:#f3e9f7}.c-hr{background:#e8f0fa}.c-tnbc{background:#fdeee6}.c-low{background:#e8f6ee}.c-i0{background:#eaeff5}
+  /* 单元格标记 */
+  .mk{display:inline-block;font-size:10.5px;border-radius:4px;padding:0 5px;font-weight:700;margin-right:3px;vertical-align:1px}
+  .m-std{background:#1d7a54;color:#fff}      /* 标准治疗 */
+  .m-adc{background:#0b5e8f;color:#fff}      /* ADC 落位 */
+  .m-new{background:#c0392b;color:#fff}      /* 新证据 */
+  .m-no{background:#c8d0d8;color:#3d4a55}    /* 无/不适用 */
+  .m-ong{background:#b9770e;color:#fff}      /* 在研 */
+  /* 毒性强度 */
+  .t3{color:#b03a2e;font-weight:700}
+  .t2{color:#b9770e;font-weight:700}
+  .t1{color:#3d7a58;font-weight:700}
+  .t0{color:#9aa7b2}
+  .big{font-size:15px}
+  .kc{background:#f8fafc;border:1px solid var(--line);border-left:4px solid var(--p2);border-radius:10px;padding:11px 13px;margin:10px 0}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  @media(max-width:900px){.grid2,.grid3{grid-template-columns:1fr}}
+  .mn{font-family:Menlo,Consolas,monospace;font-weight:700;color:#0b5e8f;white-space:nowrap}
+  .legend span{margin-right:12px;font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="topbar"><span>🧑‍⚕️ 上市后医学经理 · 个人学习资料（不作为公司对外材料）</span><a href="https://tiantujin.github.io/bl-b01d1-medical-handbook/" target="_blank">← 返回主手册</a></div>
+
+<h1>Mapping 记忆矩阵（背这一页，就能把两个 mapping 说清楚）<br><small>矩阵 A 乳腺癌治疗格局（亚型 × 分期）· 矩阵 B ADC 靶点 × 载荷 · 矩阵 C ADC 关键数据 · 矩阵 D iza-bren 研究全景（瘤种 × 阶段）· 矩阵 E iza-bren 乳腺癌数据（研究 × 亚型）· 矩阵 F 安全性谱系 · 矩阵 G 在研 × 阶段 · 末尾附助记口诀</small></h1>
+<div class="meta">
+  <span>📅 数据截止 2026-09-15</span>
+  <span>🧠 用途：记忆与快速检索</span>
+  <span>⚠️ 个人学习资料，非公司口径</span>
+  <span>🧪 跨研究比较均非头对头</span>
+</div>
+
+<div class="nav">
+  <a href="#how">读法</a>
+  <a href="#mA">A 格局矩阵</a>
+  <a href="#mB">B 靶点×载荷</a>
+  <a href="#mC">C ADC 数据</a>
+  <a href="#mD">D 研究全景</a>
+  <a href="#mE">E 乳腺癌数据</a>
+  <a href="#mF">F 安全性谱</a>
+  <a href="#mG">G 在研阶段</a>
+  <a href="#mn">助记口诀</a>
+  <a href="#src">声明</a>
+</div>
+
+<div class="card">
+<h3 style="margin-top:2px">读法：三个符号系统</h3>
+<div class="legend">
+  <span><b>标签</b>：<span class="mk m-std">标准</span>主流标准治疗 ｜ <span class="mk m-adc">ADC</span>ADC 落位 ｜ <span class="mk m-new">新</span>2025–2026 新证据/新获批 ｜ <span class="mk m-ong">在研</span>研究中 ｜ <span class="mk m-no">无</span>无数据/不适用</span><br>
+  <span><b>毒性强度</b>：<span class="t3">●高</span> <span class="t2">◐中</span> <span class="t1">○低</span> <span class="t0">·少见/未报告</span></span><br>
+  <span><b>数字</b>：跨研究数字仅表示各自研究口径，<b>不可横向比较</b></span>
+</div>
+<div class="inf"><b>记忆三分法</b>：这张页面的所有内容都可以归到三个问题——<b>① 这个病人在哪个格子（亚型 × 分期）→ 矩阵 A；② 有哪些药可选、机制差异在哪 → 矩阵 B/C/F；③ 我们自己的数据是什么 → 矩阵 D/E/G。</b>被问到任何一个具体问题，先定位到格子，再调数据。</div>
+</div>
+
+<!-- ============ 矩阵 A ============ -->
+<h2 id="mA">矩阵 A · 乳腺癌治疗格局（亚型 × 分期）<span class="tag">行=亚型，列=决策节点；每格=标准 + ADC 落位</span></h2>
+<div class="card">
+<table>
+<tr>
+  <th style="width:104px">亚型（占比）</th>
+  <th class="ch">① 新辅助（术前）</th>
+  <th class="ch">② 辅助（术后）</th>
+  <th class="ch">③ 晚期 1L</th>
+  <th class="ch">④ 晚期 2L</th>
+  <th class="ch">⑤ 晚期 ≥3L / ADC 经治</th>
+</tr>
+<tr>
+  <td class="rh c-her2">HER2+<br><span style="font-weight:400;font-size:11px">15–20%</span></td>
+  <td class="c-her2"><span class="mk m-std">标准</span>THP±卡铂（双靶+化疗）<br><span class="mk m-new">新</span><b>T-DXd 序贯 THP</b>（pCR 67.3% vs 56.3%；中国 2026-03 获批，全球首个 ADC 新辅助适应症）<br><span class="mk m-no">无</span>短程 THP×4 降级</td>
+  <td class="c-her2"><span class="mk m-std">标准</span>AC-THP / TCbHP（双靶 1 年）<br><span class="mk m-new">新</span>non-pCR → <b>T-DM1（I 级）→ 新增 T-DXd（II 级，DB-05：3 年 iDFS 92.4% vs 83.7%，HR 0.47）</b></td>
+  <td class="c-her2"><span class="mk m-std">标准</span>THP + 化疗；TH + 吡咯替尼（中国）<br><span class="mk m-adc">ADC</span><b>T-DXd + 帕妥珠</b>（DB-09，mPFS 约 40.7 月）</td>
+  <td class="c-her2"><span class="mk m-adc">ADC</span><b>T-DXd（DB-03 确立 2L 标准）</b><br>T-DM1 退居 III 级；图卡替尼+曲妥珠+卡培他滨（含脑转移）</td>
+  <td class="c-her2"><span class="mk m-adc">ADC</span>国产 HER2 ADC 补位：T-Bren（BL-M07D1）、SHR-A1811、A166、RC48<br>依维莫司 / 奈拉替尼+卡培他滨；gBRCA → PARPi</td>
+</tr>
+<tr>
+  <td class="rh c-hr">HR+ / HER2−<br><span style="font-weight:400;font-size:11px">60–70%</span></td>
+  <td class="c-hr"><span class="mk m-std">标准</span>化疗（按基因风险）；新辅助内分泌仅限不适合化疗的 ER 高表达<br><span class="mk m-no">无</span>ADC 未进入该节点</td>
+  <td class="c-hr"><span class="mk m-std">标准</span>内分泌 5–10 年（OFS±TAM/AI）+ 高危加 CDK4/6i（monarchE/NATALEE）；21/70 基因指导化疗<br><span class="mk m-no">无</span>ADC 无适应症</td>
+  <td class="c-hr"><span class="mk m-std">标准</span>内分泌 + CDK4/6i（I 级）<br><span class="mk m-new">新</span>PIK3CA 突变 → inavolisib 三联（INAVO120）</td>
+  <td class="c-hr"><span class="mk m-adc">ADC</span><b>"ADC 窗口"（化疗前/后）</b><br>HER2-low/ultralow → <b>T-DXd</b>（DB-06：mPFS 13.2 vs 8.1）<br>HER2 IHC 0 → <b>Dato-DXd / SKB264 / SG</b><br><span class="mk m-ong">在研</span>BL-B01D1（PANKU-Breast 03）；HER3-DXd（HERTHENA-Breast04 III 期）</td>
+  <td class="c-hr"><span class="mk m-adc">ADC</span>TROP2 ADC 三雄（SG / Dato-DXd / SKB264）或 T-DXd（HER2-low）<br><span class="mk m-new">新</span>TB01 脑转移亚组 mPFS 5.6 vs 4.4（探索性）</td>
+</tr>
+<tr>
+  <td class="rh c-tnbc">TNBC<br><span style="font-weight:400;font-size:11px">10–15%</span></td>
+  <td class="c-tnbc"><span class="mk m-std">标准</span>紫杉+卡铂+PD-1（KEYNOTE-522，2026 升 I 级）；含蒽环方案<br><span class="mk m-ong">在研</span>ADC 探索中（SKB264、HER3-DXd+帕博利珠）</td>
+  <td class="c-tnbc"><span class="mk m-std">标准</span>non-pCR：PD-1 续用+卡培他滨；gBRCA → 奥拉帕利（OlympiA，升 I 级）<br>初诊 LN+：ddAC-TP（2026 升 I 级）</td>
+  <td class="c-tnbc"><span class="mk m-std">标准</span>PD-L1+（CPS≥10）→ 帕博利珠+化疗 / 特瑞普利+化疗<br><span class="mk m-adc">ADC</span><b>一线 ADC 化（2026 最大变量）</b>：Dato-DXd（免疫不适用，FDA 2026-05）、SG+帕博利珠（CPS≥10，ASCENT-04：mPFS 11.2 vs 7.8）、SKB264（OptiTROP-Breast03 阳性）<br><span class="mk m-ong">在研</span>BL-B01D1 + PD-1（PANKU-Breast 04）</td>
+  <td class="c-tnbc"><span class="mk m-adc">ADC</span><b>SG（≥2 系统治疗）｜SKB264（≥2 线，2026 医保）</b>——2026 升 I 级<br>T-DXd（HER2-low 亚组）；化疗续贯<br><span class="mk m-new">新</span><b>BL-B01D1（1–2 线后，上市申请在审）</b></td>
+  <td class="c-tnbc"><span class="mk m-adc">ADC</span>后线 ADC 最拥挤：SG / SKB264 / T-DXd（需 HER2-low）/ BL-B01D1<br>gBRCA → PARPi；化疗；临床试验</td>
+</tr>
+<tr>
+  <td class="rh c-low">HER2-low<br>ultralow<br><span style="font-weight:400;font-size:11px">≈50–55%</span></td>
+  <td class="c-low"><span class="mk m-no">无</span>早期 HER2-low 特异性研究多数在研</td>
+  <td class="c-low"><span class="mk m-no">无</span>按基础亚型处理（HR+ 内分泌 / TNBC 化疗）</td>
+  <td class="c-low"><span class="mk m-adc">ADC</span>内分泌经治进展 → <b>T-DXd</b>（DB-06；中国 2025-12-25 批 ultralow）</td>
+  <td class="c-low"><span class="mk m-adc">ADC</span>T-DXd（DB-04/06）；<b>BL-B01D1 亚组 mPFS 9.7 vs 4.1（HR 0.32）</b></td>
+  <td class="c-low"><span class="mk m-adc">ADC</span>按 HER2 表达分流；注意检测变异与时空异质性（复发建议再活检）</td>
+</tr>
+<tr>
+  <td class="rh c-i0">HER2 IHC 0<br><span style="font-weight:400;font-size:11px">TNBC 中约一半</span></td>
+  <td class="c-i0"><span class="mk m-no">无</span>同 TNBC 处理</td>
+  <td class="c-i0"><span class="mk m-no">无</span>同基础亚型</td>
+  <td class="c-i0"><span class="mk m-adc">ADC</span>TROP2 ADC（Dato-DXd / SKB264 / SG）或化疗<br><span class="mk m-ong">在研</span>TROPION-Breast06（未化疗人群）</td>
+  <td class="c-i0"><span class="mk m-adc">ADC</span><b>BL-B01D1 亚组 mPFS 8.3 vs 2.6（HR 0.28）</b>——本产品最难被替代的位置<br>TROP2 ADC 或化疗</td>
+  <td class="c-i0"><span class="mk m-adc">ADC</span>与 2L 同；<b>T-DXd 不适用（无 HER2 表达）</b></td>
+</tr>
+</table>
+<p class="src">矩阵内方案为指南要点与公开获批信息的压缩表达；推荐等级（I/II/III 级）为 CSCO 口径，<b>不同指南间"级"不可比</b>。ADC 落位以中国获批线别为准（FDA 状态另计）。跨研究数字均非头对头。</p>
+</div>
+
+<div class="okb"><b>矩阵 A 的记忆主线（一句话串起来）</b>：<b>HER2+ 是"ADC 全域前移"</b>（T-DXd 已从后线打到新辅助）→ <b>HR+ 是"ADC 窗口在化疗前"</b>（T-DXd/TROP2 ADC 抢占内分泌进展后）→ <b>TNBC 是"ADC 一线化"</b>（2026 从后线走向 1L 分人群）→ <b>HER2-low 是"按表达分流"</b>（T-DXd 主场）→ <b>IHC 0 是"T-DXd 够不到的格子"</b>（TROP2 ADC 与 BL-B01D1 的战场）。</div>
+
+<!-- ============ 矩阵 B ============ -->
+<h2 id="mB">矩阵 B · ADC 靶点 × 载荷（找到任何一个药只需要两个坐标）<span class="tag">行=靶点，列=载荷家族</span></h2>
+<div class="card">
+<table>
+<tr>
+  <th style="width:112px">靶点 ↓ / 载荷 →</th>
+  <th class="ch">DXd（TOP1i）</th>
+  <th class="ch">SN-38（TOP1i）</th>
+  <th class="ch">Ed-04（TOP1i，新型）</th>
+  <th class="ch">KL610023（TOP1i）</th>
+  <th class="ch">NT1 等新型 TOP1i</th>
+  <th class="ch">MMAE / DM1（微管）</th>
+</tr>
+<tr>
+  <td class="rh">HER2 单靶</td>
+  <td><b>T-DXd</b>（德曲妥珠，DAR≈8，可裂解 GGFG）</td>
+  <td>—</td>
+  <td>—</td>
+  <td>—</td>
+  <td>SHR-A1811、T-Bren（BL-M07D1）、A166 等国产</td>
+  <td><b>T-DM1</b>（DM1，不可裂解）、RC48（MMAE）</td>
+</tr>
+<tr>
+  <td class="rh">TROP2 单靶</td>
+  <td><b>Dato-DXd</b>（德达博妥，DAR≈4，稳定连接子）</td>
+  <td><b>SG</b>（戈沙妥珠，DAR≈7.6，pH 敏感 CL2A）</td>
+  <td>—</td>
+  <td><b>SKB264</b>（芦康沙妥珠，DAR≈7.4，改良 CL2A）</td>
+  <td>—</td>
+  <td>—</td>
+</tr>
+<tr>
+  <td class="rh">HER3 单靶</td>
+  <td><b>HER3-DXd</b>（patritumab deruxtecan，III 期进行中）</td>
+  <td>—</td>
+  <td>—</td>
+  <td>—</td>
+  <td>—</td>
+  <td>—</td>
+</tr>
+<tr>
+  <td class="rh">EGFR 单靶</td>
+  <td>—</td>
+  <td>—</td>
+  <td>—</td>
+  <td>—</td>
+  <td>—</td>
+  <td><b>MRG003</b>（MMAE，鼻咽癌已获批）</td>
+</tr>
+<tr>
+  <td class="rh"><b>双靶：EGFR × HER3</b></td>
+  <td>—</td>
+  <td>—</td>
+  <td class="t3"><b>BL-B01D1 / iza-bren</b>（全球首个获批双抗 ADC，DAR≈8）</td>
+  <td>—</td>
+  <td>—</td>
+  <td>—</td>
+</tr>
+<tr>
+  <td class="rh">双靶：TROP2 × HER3</td>
+  <td>—</td>
+  <td>—</td>
+  <td>—</td>
+  <td>—</td>
+  <td><b>JSKN016</b>（定点偶联，DAR≈4，在研）</td>
+  <td>—</td>
+</tr>
+<tr>
+  <td class="rh">双靶：TROP2 × B7H3</td>
+  <td>—</td>
+  <td>—</td>
+  <td>—</td>
+  <td>—</td>
+  <td><b>IBI3017</b>（信达，DAR 8，临床前→早期）</td>
+  <td>—</td>
+</tr>
+<tr>
+  <td class="rh">双抗（无载荷）</td>
+  <td colspan="6">zenocutuzumab（HER2×HER3）、seribantumab（pan-HER3 单抗）——<b>机制不同：无载荷，乳腺癌非主战场</b>（常用于 NRG1 融合）</td>
+</tr>
+</table>
+<p class="src">DAR＝药物抗体比。载荷家族决定毒性谱（详见矩阵 F），靶点决定脱靶方向与人群筛选逻辑。<b>"双靶 ADC"目前进入 III 期并取得阳性的只有 EGFR×HER3（BL-B01D1）</b>。</p>
+</div>
+
+<div class="grid2">
+  <div class="kc"><b>从矩阵 B 可推出的三条规律</b>
+    <ol>
+      <li><b>载荷是稀缺资源</b>：乳腺癌 ADC 里 TOP1i 占绝大多数（DXd / SN-38 / Ed-04 / KL610023 全属此类）→ 交叉耐药是领域共同问题。</li>
+      <li><b>靶点决定"谁能用"</b>：HER2 轴需表达（low/ultralow 起）、TROP2 不需表达但正常组织也表达（黏膜/眼毒性）、HER3 需检测、EGFR×HER3 目前<b>不需筛选</b>。</li>
+      <li><b>连接子决定"毒性形状"</b>：稳定连接子（Dato-DXd）→ 游离载荷低、血液学轻；pH 敏感（SG）→ 全身暴露高、血液学+腹泻；不可裂解（T-DM1）→ 血小板↓特征。</li>
+    </ol>
+  </div>
+  <div class="kc"><b>一句话记住每款药</b>
+    <ul>
+      <li><b>T-DXd</b>：HER2 轴全域之王（1L→新辅助都有）｜警戒 <b>ILD</b></li>
+      <li><b>T-DM1</b>：non-pCR 辅助金标准，被 T-DXd 后移｜<b>血小板↓</b></li>
+      <li><b>SG</b>：TROP2 老将，走向 1L 免疫联合｜<b>腹泻+中性粒</b></li>
+      <li><b>Dato-DXd</b>：更前线的 TROP2（未化疗人群）｜<b>口腔炎+干眼</b></li>
+      <li><b>SKB264</b>：中国可及性最强（医保）｜<b>口腔炎+血液学</b></li>
+      <li><b>BL-B01D1</b>：唯一双靶、覆盖 IHC 0 全谱｜<b>血液学为主、ILD 1.4%</b></li>
+      <li><b>HER3-DXd</b>：HR+ 潜在竞争者，III 期进行中｜<b>ILD 4%</b></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============ 矩阵 C ============ -->
+<h2 id="mC">矩阵 C · 12 款 ADC 关键数据记忆卡（一药一格一句话）<span class="tag">重点是"关键数字 + 记忆钩子"</span></h2>
+<div class="card">
+<table>
+<tr><th style="width:92px">药物</th><th style="width:132px">靶点 · 载荷</th><th>关键研究</th><th>核心数字（各自研究所报告）</th><th style="width:150px">记忆钩子</th></tr>
+<tr><td class="rh">T-DXd</td><td>HER2 · DXd</td><td>DB-03（2L）、DB-04/06（low/ultralow）、DB-09（1L）、DB-05（辅助）、DB-11（新辅助）</td><td>DB-06 HER2-low：mPFS <b>13.2 vs 8.1</b>（HR 0.62）；DB-11 新辅助 pCR <b>67.3% vs 56.3%</b>；DB-05 辅助 3 年 iDFS <b>92.4% vs 83.7%</b>（HR 0.47）</td><td>"全覆盖 + ILD"</td></tr>
+<tr><td class="rh">T-DM1</td><td>HER2 · DM1</td><td>KATHERINE（辅助）、EMILIA（2L）</td><td>non-pCR 辅助 7 年 IDFS 80.8% vs 67.1%（HR 0.54）</td><td>"辅助金标准，被换代"</td></tr>
+<tr><td class="rh">SG</td><td>TROP2 · SN-38</td><td>ASCENT、EVER-132-002、ASCENT-04</td><td>ASCENT-04（+帕博利珠，CPS≥10 1L）：mPFS <b>11.2 vs 7.8</b>（HR 0.65）、ORR 60% vs 53%</td><td>"腹泻 + 中性粒"</td></tr>
+<tr><td class="rh">Dato-DXd</td><td>TROP2 · DXd（DAR≈4）</td><td>TROPION-Breast01/02/06</td><td>TB01 中国亚组 mPFS <b>8.1 vs 4.2</b>（HR 0.54）；≥3 级 TRAE 20.8% vs 44.7%</td><td>"低血液学 + 口腔炎干眼"</td></tr>
+<tr><td class="rh">SKB264</td><td>TROP2 · KL610023</td><td>OptiTROP-Breast01/02/03</td><td>HR+（Breast02）≥3 级 TRAE 62.0%；Breast03 一线阳性</td><td>"中国医保 + 口腔炎"</td></tr>
+<tr><td class="rh"><b>BL-B01D1</b></td><td><b>EGFR×HER3 · Ed-04</b></td><td>PANKU-Breast 02（TNBC III 期）、-303（NPC）、-305（ESCC）</td><td>TNBC：mPFS <b>8.5 vs 3.1</b>（HR 0.29）、mOS <b>15.9 vs 12.5</b>（HR 0.60）、cORR <b>51.7% vs 20.5%</b></td><td>"双靶 + 血液学 + ILD 1.4%"</td></tr>
+<tr><td class="rh">HER3-DXd</td><td>HER3 · DXd</td><td>HERTHENA-Breast04（III 期）、II 期 422RO</td><td>422RO：ADC 初治 HR+ ORR <b>39%</b>/mPFS 7.0；TNBC ORR 25%/3.0；TOP1-ADC 经治活性有限</td><td>"HR+ 竞争者，ILD 4%"</td></tr>
+<tr><td class="rh">JSKN016</td><td>TROP2×HER3 · 定点</td><td>早期</td><td>TNBC 早期队列 ORR 报告 64.5%（小样本）</td><td>"双靶追赶者"</td></tr>
+<tr><td class="rh">JS212</td><td>EGFR×HER3 · 未公开</td><td>早期</td><td>2026 AACR 披露早期进展</td><td>"同轴竞争者"</td></tr>
+<tr><td class="rh">IBI3017</td><td>TROP2×B7H3 · NT1（DAR8）</td><td>临床前→早期</td><td>临床前双靶优于单靶</td><td>"新靶点轴"</td></tr>
+<tr><td class="rh">SHR-A1811 / T-Bren</td><td>HER2 · TOP1i</td><td>III 期推进</td><td>后线/围手术期研究进行中</td><td>"国产 HER2 换代"</td></tr>
+<tr><td class="rh">MRG003</td><td>EGFR · MMAE</td><td>鼻咽癌后线</td><td>后线 ORR 约 30.2%（以说明书为准）</td><td>"EGFR 单靶 + 微管载荷"</td></tr>
+</table>
+<p class="src"><span class="mk m-no">注意</span>本矩阵数字来自各自研究的不同人群与线数，<b>横向比较不成立</b>；记忆用于"每款药的定位与特色"，不是用于疗效排序。</p>
+</div>
+
+<!-- ============ 矩阵 D ============ -->
+<h2 id="mD">矩阵 D · iza-bren 研究全景（瘤种 × 阶段）<span class="tag">一行搞定一个瘤种：有没有 III 期阳性、数字是多少</span></h2>
+<div class="card">
+<table>
+<tr><th style="width:96px">瘤种</th><th class="ch">I 期</th><th class="ch">II 期 / Ib</th><th class="ch">III 期（关键数字）</th><th class="ch">监管 / 状态</th></tr>
+<tr><td class="rh">乳腺癌<br><span style="font-weight:400;font-size:11px">晚期</span></td>
+    <td>BL-B01D1-101/104：HER2− <b>121 例</b>，ORR <b>42.1%</b>、cORR 36.4%、mPFS <b>6.9 月</b></td>
+    <td>—</td>
+    <td><b>PANKU-Breast 02</b>（n=418）：mPFS <b>8.5 vs 3.1</b>（HR 0.29）、mOS <b>15.9 vs 12.5</b>（HR 0.60）、cORR <b>51.7% vs 20.5%</b></td>
+    <td><span class="mk m-ong">上市申请在审</span></td></tr>
+<tr><td class="rh">鼻咽癌</td><td>早期队列</td><td>—</td>
+    <td><b>BL-B01D1-303</b>（n=386）：cORR <b>54.6% vs 27.0%</b>、mPFS <b>8.38 vs 4.34</b>（HR 0.44）、mDoR 8.5 vs 4.8</td>
+    <td><span class="mk m-std">✅ 已获批</span>（2026-06-22，附条件）</td></tr>
+<tr><td class="rh">食管鳞癌</td><td>Ib/II（NCT05262491）：cORR 39.6%、DCR 79.2%</td><td>同上</td>
+    <td><b>PANKU-Esophagus01</b>：mOS <b>9.8 vs 7.2</b>（HR 0.64）、mPFS <b>4.2 vs 2.0</b>（HR 0.50）、ORR 35.3% vs 13.1%</td>
+    <td><span class="mk m-std">✅ 已获批</span>（2026-07-16）</td></tr>
+<tr><td class="rh">NSCLC<br><span style="font-weight:400;font-size:11px">EGFR 突变</span></td>
+    <td>非经典突变 78 例：整体 ORR 46.2%（EGFR 非经典 69.2%）</td>
+    <td>TKI 后线 50 例：ORR <b>66%</b>、mPFS <b>12.5 月</b>、mDoR 13.7 月<br><b>+ 奥希替尼一线 40 例：ORR 100%、12 月 PFS 92.1%</b></td>
+    <td><span class="mk m-ong">在研</span>（中国 + 海外 II/III 期）</td>
+    <td>FDA 突破性疗法 1 项</td></tr>
+<tr><td class="rh">NSCLC<br><span style="font-weight:400;font-size:11px">EGFR 野生型</span></td>
+    <td>免疫经治 62 例：ORR <b>30.6%</b>、mPFS <b>5.4 月</b>（Lancet Oncol 2024）</td><td>—</td>
+    <td><span class="mk m-ong">在研</span></td><td>CDE 突破性疗法</td></tr>
+<tr><td class="rh">小细胞肺癌</td><td>Ib（n=52）：总 ORR 48.1%；<b>1 线后亚组 ORR 80%、mPFS 6.9、mOS 15.0</b></td>
+    <td><b>+ 斯鲁利单抗一线（n=82）：ORR 88.3%、cORR 77.9%、mPFS 8.2 月、12 月 OS 80.8%</b></td>
+    <td><span class="mk m-ong">在研</span>（NCT06500026 等）</td><td>CDE 突破性疗法</td></tr>
+<tr><td class="rh">尿路上皮癌</td><td>—</td><td>II 期（n=27 可评估）：cORR <b>44.1%</b>、DCR 88.2%、mPFS 7.3 月；1 线化疗亚组 cORR <b>75%</b></td>
+    <td><span class="mk m-ong">在研</span>（中国 III 期 + 海外 II/III 期）</td><td>CDE 突破性疗法</td></tr>
+<tr><td class="rh">卵巢癌</td><td>—</td><td>I/II 期：总人群 ORR <b>56.7%</b>、mPFS <b>8.3 月</b>；铂耐药亚组 mPFS 7.0 月</td>
+    <td><span class="mk m-ong">在研</span>（联合贝伐珠单抗±化疗等，2026-04 批件）</td><td>CDE 突破性疗法</td></tr>
+<tr><td class="rh">胆道癌</td><td>I 期（36 例可评估）：ORR <b>38.9%</b>、mPFS 4.2–4.3 月</td><td>—</td><td>—</td><td>—</td></tr>
+<tr><td class="rh">前列腺癌</td><td>—</td><td>—</td><td><span class="mk m-ong">在研</span>（联合阿比特龙±奥拉帕利，2026-04 批件）</td><td>—</td></tr>
+</table>
+<div class="okb"><b>矩阵 D 的一条主线</b>：<b>三个 III 期阳性 = NPC + ESCC + TNBC（"鼻、食、乳"）</b>；两项已获批（鼻、食），TNBC 在审。肺癌与泌尿是"数据最强的在研方向"（SCLC 一线联合 88.3%、UC 1 线亚组 75%）。<b>记忆口诀："三阳已抵、两批在手、乳在审；肺泌最强、卵巢可期。"</b></div>
+</div>
+
+<!-- ============ 矩阵 E ============ -->
+<h2 id="mE">矩阵 E · iza-bren 乳腺癌数据矩阵（人群 × 研究阶段）<span class="tag">这是最该背下来的一张</span></h2>
+<div class="card">
+<table>
+<tr><th style="width:126px">人群 / 线数</th><th class="ch">I 期 · SABCS 2023<br><span style="font-weight:400;font-size:10.5px">单臂 · 早期</span></th><th class="ch">I 期 · ESMO BC 2025<br><span style="font-weight:400;font-size:10.5px">单臂 · n=121 · ≥3 线为主</span></th><th class="ch">III 期 · PANKU-Breast 02<br><span style="font-weight:400;font-size:10.5px">随机 · n=418 · 1–2 线后</span></th><th class="ch">在研</th></tr>
+<tr><td class="rh">TNBC（全人群）</td>
+  <td>n=35：ORR <b>31.4%</b>、DCR 91.4%</td>
+  <td>（含于 121 例 HER2− 队列）</td>
+  <td>cORR <b>51.7% vs 20.5%</b>、mPFS <b>8.5 vs 3.1</b>、mOS <b>15.9 vs 12.5</b>、mDoR 8.3 vs 4.0</td>
+  <td><span class="mk m-ong">PANKU-Breast 04</span>（1L + PD-1）<br><span class="mk m-ong">IZABRIGHT-Breast01</span>（全球 1L）</td></tr>
+<tr><td class="rh">HER2 IHC 0</td>
+  <td>—</td>
+  <td>n=55：ORR <b>41.8%</b>、cORR 36.4%、mDoR <b>11.5 月</b>、mPFS <b>8.3 月</b></td>
+  <td>mPFS <b>8.3 vs 2.6</b>（HR<b> 0.28</b>）</td>
+  <td>—</td></tr>
+<tr><td class="rh">HER2-low</td>
+  <td>—</td>
+  <td>n=66：ORR 42.4%、cORR 36.4%、mDoR 9.7 月、mPFS 6.3 月</td>
+  <td>mPFS <b>9.7 vs 4.1</b>（HR<b> 0.32</b>）</td>
+  <td>—</td></tr>
+<tr><td class="rh">HER2− 总人群</td>
+  <td>—</td>
+  <td>ORR <b>42.1%</b>、cORR 36.4%、DCR 80.2%、mDoR 9.7 月、mPFS <b>6.9 月</b></td>
+  <td>—（III 期仅 TNBC）</td>
+  <td>—</td></tr>
+<tr><td class="rh">HR+ / HER2−</td>
+  <td>n=38：ORR <b>44.7%</b>、DCR 94.7%</td>
+  <td>121 例队列中 HR+ 占 63.6%（亚型混合口径）</td>
+  <td><span class="mk m-no">未纳入</span>（III 期为 TNBC）</td>
+  <td><span class="mk m-ong">PANKU-Breast 03</span>（III 期进行中）</td></tr>
+<tr><td class="rh">HER2+</td>
+  <td>n=23：ORR <b>39.1%</b></td>
+  <td>—（该队列为 HER2−）</td>
+  <td><span class="mk m-no">未纳入</span></td>
+  <td><span class="mk m-no">无</span>（无获批适应症）</td></tr>
+<tr><td class="rh">早期（新辅助/辅助）</td>
+  <td colspan="3" class="hl"><b>无任何数据</b>（无注册性研究、无 pCR/EFS/IDFS）</td>
+  <td><span class="mk m-no">无公开计划</span></td></tr>
+<tr><td class="rh">既往 ADC 经治</td>
+  <td>I 期中既往 ADC 暴露仅 9.1%</td>
+  <td>同左</td>
+  <td class="hl"><b>入组直接排除该人群</b> → 无 III 期数据</td>
+  <td>—</td></tr>
+</table>
+<div class="red"><b>矩阵 E 的三个"必须记住但不能说错"的点</b>：① <b>同剂量（2.5 mg/kg D1D8 Q3W）在 ≥3 线人群 mPFS 6.9 月、在 1–2 线人群 8.5 月</b>——线数不同的两组，<b>不能混用，也不能当作头对头</b>；② <b>IHC 0 与 HER2-low 两个亚组表现一致</b>，是"疗效不依赖 HER2 表达"的证据基础；③ <b>HR+ 与 HER2+ 只有早期单臂数据</b>，HR+ 的结论要等 PANKU-Breast 03，HER2+ 无适应症、不得暗示可用。</div>
+</div>
+
+<!-- ============ 矩阵 F ============ -->
+<h2 id="mF">矩阵 F · 安全性谱系矩阵（药物 × 毒性维度）<span class="tag">●高 ◐中 ○低 ·少见或未报告</span></h2>
+<div class="card">
+<table>
+<tr>
+  <th style="width:104px">药物</th>
+  <th class="ch">血液学（贫血/中性粒/血小板）</th>
+  <th class="ch">ILD / 肺炎</th>
+  <th class="ch">口腔黏膜 / 眼</th>
+  <th class="ch">腹泻</th>
+  <th class="ch">周围神经病</th>
+  <th class="ch">皮肤 / 皮疹</th>
+  <th class="ch">其他特征信号</th>
+</tr>
+<tr><td class="rh">T-DXd</td><td><span class="t2">◐中</span></td><td><span class="t3">●高</span>（5–15%；DB-05 9.6%、≥3 级 1%）</td><td><span class="t2">◐中</span>（恶心为主）</td><td><span class="t1">○低</span></td><td><span class="t0">·</span></td><td><span class="t1">○低</span></td><td>LVEF 下降（DB-11 1.3%）、乏力</td></tr>
+<tr><td class="rh">T-DM1</td><td><span class="t3">●高</span>（<b>血小板↓为特征</b>，≥3 级 13–20%）</td><td><span class="t1">○低</span></td><td><span class="t0">·</span></td><td><span class="t1">○低</span></td><td><span class="t1">○低</span></td><td><span class="t1">○低</span></td><td>肝酶↑、出血风险</td></tr>
+<tr><td class="rh">SG</td><td><span class="t3">●高</span>（中性粒↓ ≥3 级约 51%）</td><td><span class="t0">·</span>（中国未报告药物相关）</td><td><span class="t1">○低</span></td><td><span class="t3">●高</span>（≥3 级约 10%）</td><td><span class="t0">·</span></td><td><span class="t1">○低</span></td><td>UGT1A1*28 多态性、FN 风险</td></tr>
+<tr><td class="rh">Dato-DXd</td><td><span class="t1">○低</span>（游离 DXd &lt;1 ng/ml）</td><td><span class="t2">◐中</span></td><td><b><span class="t3">●高</span></b>（口腔炎多 1–2 级、中位缓解 36.5 天；干眼中位 67 天）</td><td><span class="t1">○低</span></td><td><span class="t0">·</span></td><td><span class="t1">○低</span></td><td>≥3 级 TRAE 20.8%（化疗 44.7%）</td></tr>
+<tr><td class="rh">SKB264</td><td><span class="t3">●高</span></td><td><span class="t2">◐中</span></td><td><b><span class="t3">●高</span></b>（口腔炎突出、影响进食；眼毒性需关注）</td><td><span class="t1">○低</span></td><td><span class="t0">·</span></td><td><span class="t1">○低</span></td><td>≥3 级 TRAE 62.0%（HR+ 队列）</td></tr>
+<tr><td class="rh"><b>BL-B01D1</b></td><td><b><span class="t3">●高</span></b>（贫血任何级 90–97%、≥3 级 43.8–46.9%；中性粒↓≥3 级 54.5–58.0%；血小板↓≥3 级 52.7%）</td>
+  <td><span class="t1">○低</span>（III 期 <b>1.4%，无 ≥3 级</b>；乳腺癌 I 期 / SCLC Ib / 全球 I 期均 0）</td>
+  <td><span class="t1">○低</span>（说明书口径：≥25% 患者未报告腹泻/口腔炎）</td>
+  <td><span class="t1">○低</span></td><td><span class="t0">·</span></td><td><span class="t1">○低</span>（EGFR 双抗单价设计，皮疹不突出）</td>
+  <td><b>FN 5.3%；3–4 级中性粒中位恢复 4 天；减量/中断各 63%；停药仅 1.9%</b>；输液反应</td></tr>
+<tr><td class="rh">HER3-DXd</td><td><span class="t2">◐中</span>（血小板↓受关注）</td><td><span class="t3">●高</span>（422RO 经裁定 4%，含死亡）</td><td><span class="t1">○低</span></td><td><span class="t2">◐中</span>（35%）</td><td><span class="t0">·</span></td><td><span class="t1">○低</span></td><td>低钾 26%、≥3 级 48–57%</td></tr>
+<tr><td class="rh">MRG003（EGFR ADC）</td><td><span class="t2">◐中</span></td><td><span class="t1">○低</span></td><td><span class="t2">◐中</span></td><td><span class="t1">○低</span></td><td><b><span class="t3">●高</span></b>（MMAE 特征）</td><td><b><span class="t3">●高</span></b>（EGFR 皮疹）</td><td>≥3 级约 31%</td></tr>
+</table>
+<p class="src">发生率为各研究/说明书公开口径；<b>跨药不可比较</b>（判定标准、随访时长、人群不同）。BL-B01D1 血液学数据来自乳腺癌 I 期（121 例）与 III 期（207 例）两个口径。</p>
+</div>
+
+<div class="grid2">
+  <div class="kc"><b>矩阵 F 的"结构—毒性"记忆链</b>
+    <ul>
+      <li><b>载荷家族决定谱系</b>：TOP1i（DXd/SN-38/Ed-04/KL610023）→ 血液学 + 消化道 ± ILD；微管（MMAE/DM1/DM4）→ 神经 + 血小板 + 眼表。</li>
+      <li><b>连接子稳定性决定血液学轻重</b>：稳定（Dato-DXd，游离 DXd &lt;1 ng/ml）→ 血液学轻；pH 敏感（SG）→ 血液学 + 腹泻重。</li>
+      <li><b>靶点在正常组织的表达决定脱靶方向</b>：TROP2（口腔/角膜/唾液腺）→ 口腔炎 + 干眼；EGFR（皮肤）→ 皮疹；HER2 相对安全 → 但 DXd 系 ILD 仍是主要关切。</li>
+      <li><b>ILD 风险梯度（观察性）</b>：DXd 系（T-DXd / Dato-DXd / HER3-DXd）报告需重点管理 &gt; Ed-04/SN-38 报告率低 &gt; 微管类低。</li>
+    </ul>
+  </div>
+  <div class="kc"><b>iza-bren 安全性的"三句话记忆版"</b>
+    <ol>
+      <li><b>血象是主战场</b>：Ⅲ 期 ≥3 级中性粒↓ 58%、白细胞↓ 56%、血小板↓ 52.7%、贫血 46.9%，任何级贫血 97%，FN 5.3%。</li>
+      <li><b>但恢复快、不停药</b>：3–4 级中性粒中位恢复 <b>4 天</b>，减量/中断各 <b>63%</b>（常规操作），因 AE 停药仅 <b>1.9%</b>。</li>
+      <li><b>ILD 不是主要信号</b>：III 期 <b>1.4% 且无 ≥3 级</b>（独立裁定后约 0.5%）；乳腺癌 I 期、SCLC Ib、全球 I 期均 0 例。</li>
+    </ol>
+  </div>
+</div>
+
+<!-- ============ 矩阵 G ============ -->
+<h2 id="mG">矩阵 G · 在研布局矩阵（方向 × 阶段 × 状态）<span class="tag">对照矩阵 D 看"已经有什么"，这里看"还差什么"</span></h2>
+<div class="card">
+<table>
+<tr><th style="width:110px">方向</th><th class="ch">注册性研究（III 期）</th><th class="ch">联合治疗</th><th class="ch">状态与关键前提</th></tr>
+<tr><td class="rh">TNBC 后线</td><td>PANKU-Breast 02 <b>已读出阳性</b></td><td>—</td><td><span class="mk m-ong">上市申请在审</span>；确证性研究待完成</td></tr>
+<tr><td class="rh">TNBC 一线</td><td>IZABRIGHT-Breast01（全球，BMS）</td><td><b>+ PD-1</b>（PANKU-Breast 04，CTR20262666）</td><td>进行中；一线对照采用"化疗 + 免疫"当代标准</td></tr>
+<tr><td class="rh">HR+/HER2−</td><td>PANKU-Breast 03</td><td>—</td><td>进行中；与 HER3-DXd（HERTHENA-Breast04）人群重叠</td></tr>
+<tr><td class="rh">早期（新辅助/辅助）</td><td class="hl">无公开注册研究</td><td>—</td><td class="hl">是当前最大的方向性缺口（T-DXd 已在此占位）</td></tr>
+<tr><td class="rh">EGFR 突变 NSCLC</td><td>中国 + 海外 II/III 期</td><td><b>+ 奥希替尼一线</b>（早期 ORR 100%）</td><td>FDA 突破性疗法所对应方向</td></tr>
+<tr><td class="rh">ES-SCLC</td><td>III 期（NCT06500026）</td><td><b>+ 斯鲁利单抗一线</b>（ORR 88.3%）</td><td>2.5 mg/kg 为联合 RP2D（停药率 2.4% vs 12.2%）</td></tr>
+<tr><td class="rh">尿路上皮癌</td><td>中国 III 期 + 海外 II/III 期</td><td>—</td><td>II 期 1 线化疗亚组 cORR 75% 为最强信号</td></tr>
+<tr><td class="rh">卵巢癌</td><td>II/III 期（2026-04 批件）</td><td><b>+ 贝伐珠单抗 ± 化疗、奥拉帕利 ± 贝伐珠单抗 ± 化疗</b></td><td>I/II 期总人群 ORR 56.7%、mPFS 8.3 月</td></tr>
+<tr><td class="rh">前列腺癌</td><td>II/III 期（2026-04 批件）</td><td><b>+ 阿比特龙 ± 奥拉帕利</b></td><td>新瘤种探索（无 ADC 既往数据）</td></tr>
+<tr><td class="rh">已获批两项</td><td>NPC（BL-B01D1-303）、ESCC（PANKU-Esophagus01）</td><td>—</td><td>均附条件/常规获批；确证与长期随访持续推进</td></tr>
+</table>
+<div class="okb"><b>矩阵 G 的一句话总结</b>：<b>"三项 III 期落地两项获批、乳腺癌向一线前移、肺癌与泌尿铺 III 期、联合治疗全面开花、早期乳腺癌仍是空白。"</b>（中美合计 40+ 项试验；中国 10 项 III 期注册；CDE 突破性治疗 7 项 + FDA 1 项。）</div>
+</div>
+
+<!-- ============ 助记 ============ -->
+<h2 id="mn">助记口诀区<span class="tag">背下来这些句子，就等于背下了两个 mapping</span></h2>
+
+<div class="card">
+<h3 style="margin-top:2px">① 乳腺癌格局：五句话覆盖全部矩阵 A</h3>
+<ol>
+  <li><b>HER2+ —— ADC 全域前移</b>：新辅助（T-DXd 序贯 THP，中国 2026-03 获批）→ 辅助（non-pCR：T-DM1 → T-DXd）→ 1L（T-DXd + 帕妥珠）→ 2L（T-DXd）→ 后线（国产换代）。</li>
+  <li><b>HR+ —— 窗口在化疗之前</b>：1L 仍是"内分泌 + CDK4/6i"；<b>进展后、化疗前</b>是 ADC 窗口（HER2-low → T-DXd；IHC 0 → TROP2 ADC）。</li>
+  <li><b>TNBC —— 一线化 + 分人群</b>：1L 由"化疗 + 免疫"扩成"Dato-DXd（免疫不适用）/ SG + 帕博利珠（CPS≥10）/ SKB264"；2L 是 SG / SKB264 / BL-B01D1。</li>
+  <li><b>HER2-low —— 按表达分流</b>：low/ultralow 走 T-DXd；检测有异质性，复发建议再活检。</li>
+  <li><b>IHC 0 —— T-DXd 的盲区</b>：只能靠 TROP2 ADC 或双靶 ADC（BL-B01D1，HR 0.28）。</li>
+</ol>
+
+<h3>② ADC 记忆：两个坐标定位一款药</h3>
+<div class="inf"><b>口诀</b>：<i>"先看靶点（HER2 / TROP2 / HER3 / EGFR / 双靶），再看载荷（DXd / SN-38 / Ed-04 / KL610023 / 微管）。"</i><br>
+· <b>三个 TOP1i 老面孔</b>：DXd（T-DXd、Dato-DXd、HER3-DXd）、SN-38（SG）、KL610023（SKB264）；<br>
+· <b>一个新载荷</b>：Ed-04（BL-B01D1）；<br>
+· <b>微管系</b>：T-DM1（DM1，血小板）、MRG003 / RC48（MMAE，神经 + 皮疹）；<br>
+· <b>双靶</b>：EGFR×HER3（BL-B01D1，唯一 III 期阳性）、TROP2×HER3（JSKN016）、TROP2×B7H3（IBI3017）。</div>
+
+<h3>③ iza-bren 数字串（背这一串就够回答 80% 的问题）</h3>
+<div class="grid3">
+  <div class="kc"><b>TNBC III 期（1–2 线后）</b>
+    <p><span class="mn">8.5 / 15.9 / 51.7</span> → mPFS / mOS / cORR<br>
+    <span class="mn">0.29 / 0.60</span> → PFS HR / OS HR<br>
+    <span class="mn">8.3 / 9.7</span> → IHC 0 与 HER2-low 亚组 mPFS<br>
+    <span class="mn">418</span> → 随机例数；<span class="mn">11 个月</span> → 中位随访</p>
+  </div>
+  <div class="kc"><b>乳腺癌 I 期（≥3 线为主）</b>
+    <p><span class="mn">121</span> → 例数；<span class="mn">42.1 / 36.4 / 6.9</span> → ORR / cORR / mPFS<br>
+    <span class="mn">8.3 / 6.3</span> → IHC 0 与 HER2-low 亚组 mPFS<br>
+    <span class="mn">9.1%</span> → 既往 ADC 暴露比例（说明证据边界）</p>
+  </div>
+  <div class="kc"><b>安全性与其他瘤种</b>
+    <p><span class="mn">1.4% / 1.9% / 4 天 / 63%</span> → ILD / 停药率 / 中性粒恢复 / 减量中断比例<br>
+    <span class="mn">54.6 / 8.38 / 0.44</span> → NPC cORR / mPFS / HR<br>
+    <span class="mn">9.8 / 4.2</span> → ESCC mOS / mPFS；<span class="mn">88.3%</span> → SCLC 一线联合 ORR</p>
+  </div>
+</div>
+<div class="warn"><b>三条"数字纪律"（比记住数字更重要）</b>：① <b>说数字必带人群与线数</b>（"在 TNBC 1–2 线后人群，mPFS 8.5 个月"）；② <b>两套数据不混用</b>（I 期 121 例 ≠ III 期 418 例，6.9 ≠ 8.5）；③ <b>n 太小的数字不引用</b>（n=3 的 cORR 100%、n=23 的 39.1% 只能说"早期单臂观察"）。</div>
+
+<h3>④ 一页串讲：把两个 mapping 用 60 秒讲完</h3>
+<div class="okb"><i>"乳腺癌 ADC 现在是<b>三轴三分、时间轴前移</b>：HER2 轴（T-DXd 全域、已到新辅助）、TROP2 轴（SG / Dato-DXd / SKB264 从后线走向一线和化疗前）、以及双靶新轴（BL-B01D1 的 EGFR×HER3，覆盖 HER2 IHC 0 全谱）。决策变量从"有没有 ADC 用"变成"按 HER2 表达分流、按线数排位、按毒性谱选人"。<br><br>
+BL-B01D1 自己的位置是：<b>三项 III 期阳性</b>（鼻咽癌、食管鳞癌、TNBC），两项已获批、TNBC 在审；<b>TNBC 1–2 线后的 III 期数据是 mPFS 8.5 vs 3.1、mOS 15.9 vs 12.5、cORR 51.7%</b>，IHC 0 亚组 HR 0.28、HER2-low 亚组 HR 0.32，说明<b>疗效不依赖 HER2 表达</b>——这正是它能覆盖 T-DXd 够不到的那部分患者的依据；<b>安全性以血液学为主但恢复快、停药率仅 1.9%，ILD 1.4% 且无 ≥3 级</b>。<br><br>
+现在还缺的三块是：<b>早期乳腺癌（新辅助/辅助）无数据、既往 ADC 经治人群无 III 期数据、与同类 ADC 无头对头</b>——这三条也是面对专家质疑时必须主动说清楚的边界。"</i></div>
+</div>
+
+<!-- ============ 声明 ============ -->
+<h2 id="src">来源与声明</h2>
+<div class="card" style="font-size:12.4px">
+<p><b>本页是对以下两个 mapping 的矩阵化压缩（用于记忆，数据细节请看原页）</b>：</p>
+<ol>
+<li>《乳腺癌治疗格局与 ADC 布局 mapping》（2026-09-08）——分型 × 分期治疗 mapping、ADC 布局矩阵、HER3 临研现状、ADC 不良反应汇总。</li>
+<li>《iza-bren 临床研究全景与乳腺癌数据详解》（2026-09-15）——已出结果研究 16 项逐项明细、在研 mapping、乳腺癌逐篇/逐亚型/逐安全信号解读、数据缺口清单。</li>
+</ol>
+<p><b>数据来源</b>：ASCO 2026 LBA1003 与公司/BMS 官方新闻稿；ESMO BC 2025 302MO（BL-B01D1-104）；SABCS 2023 PS08-07 与 SABCS 2024；BL-B01D1-303（ESMO 2025 LBA35，同期 Lancet）；PANKU-Esophagus01（ASCO 2026 #4008）；WCLC 2025、ASCO 2025 #3001、Lancet Oncol 2024、JCO 2026、ELCC 2026 408O、ESMO 2024/2025 各摘要；CSCO 2026 乳腺癌指南要点与 NCCN 更新；T-DXd/T-DM1/SG/Dato-DXd/SKB264/HER3-DXd 相关关键研究公开数据；CDE/NMPA 审评与批件公告；ClinicalTrials.gov。</p>
+<p><b>使用边界</b>：本页为<b>个人学习与记忆辅助资料</b>，不代表公司立场，不构成对外材料或临床用药建议；所有跨药物、跨研究比较均为<b>非头对头</b>；亚组与早期数据属探索性；获批状态与时间以监管审评结果与公司官方披露为准；本页不含未公开信息。<b>若与公司最新官方口径不一致，一律以公司官方材料为准。</b></p>
+</div>
+
+<div class="foot">
+Mapping 记忆矩阵 · v1.0 · 数据检索截止 2026-09-15 · 由《乳腺癌治疗格局与 ADC 布局 mapping》与《iza-bren 临床研究全景与乳腺癌数据详解》压缩而成<br>
+个人学习资料（不作为公司对外材料）｜配套：主手册（57 章）· 关键问题应答速查（Q&amp;A Playbook）· 两份原 mapping<br>
+所有数据以国家药监局核准说明书与公司官方材料为准；跨研究比较均非头对头。
+</div>
+</div>
+</body>
+</html>
