@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>站点结构化索引与"注入更新"对比报告（2026-09-15）</title>
+<style>
+:root{--p:#0b5e8f;--p2:#1472a8;--ok:#1d7a54;--hl:#c0392b;--bg:#f5f7fa;--line:#e2e8f0;--mut:#5b6b7a}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:#1f2933;line-height:1.65;padding:24px 12px 70px}
+.wrap{max-width:1280px;margin:0 auto}
+h1{font-size:21px;color:#0b4a6f;background:#fff;border:1px solid var(--line);border-radius:13px;padding:18px 22px;line-height:1.5}
+h1 small{display:block;font-size:12.6px;color:var(--mut);font-weight:400;margin-top:6px}
+h2{font-size:18px;color:#0b4a6f;margin:30px 0 6px;padding-left:11px;border-left:6px solid var(--p2)}
+h3{font-size:15px;color:#0d3f5e;margin:18px 0 6px}
+h4{font-size:13.8px;color:#0d3f5e;margin:16px 0 6px}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:12px 0;overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:12.2px}
+th{background:#0e3a57;color:#fff;padding:7px 8px;text-align:left;font-size:12px;position:sticky;top:0}
+td{padding:6px 8px;border-bottom:1px solid #eef2f6;vertical-align:top}
+tr:nth-child(even) td{background:#fafcfe}
+.rh{background:#eef4f9;font-weight:700;color:#0d3f5e;white-space:nowrap}
+.num{font-family:Menlo,Consolas,monospace;font-size:11.6px;white-space:nowrap}
+.b{font-weight:700;color:#0b5e8f}
+.up{color:#1d7a54;font-weight:600}
+.st{font-size:11px;border-radius:5px;padding:1px 7px;font-weight:700;white-space:nowrap}
+.s-add{background:#e9f6ef} .s-add .st{background:#1d7a54;color:#fff}
+.s-mod{background:#fdf6e8} .s-mod .st{background:#b9770e;color:#fff}
+.s-same .st{background:#e8eef4;color:#4a5560}
+.tw{max-height:520px;overflow:auto;border:1px solid var(--line);border-radius:10px}
+.tagx{display:inline-block;font-size:11px;background:#eef3f8;color:#11557f;border-radius:5px;padding:1px 8px;margin-left:6px;font-weight:600}
+.diff{font-family:Menlo,Consolas,monospace;font-size:11.4px;background:#fbfdff;border:1px solid var(--line);border-radius:10px;padding:10px 12px;max-height:560px;overflow:auto}
+.diff .add{background:#eafaf0;color:#12542f;border-radius:4px;padding:2px 6px;margin:2px 0;word-break:break-all}
+.diff .del{background:#fdeeee;color:#8c2c22;border-radius:4px;padding:2px 5px;margin:2px 0;text-decoration:line-through;word-break:break-all}
+.diff .hunk{color:#0b5e8f;font-weight:700;margin:6px 0 2px}
+.inf{background:#eaf3fb;border:1px solid #cfe2f0;border-radius:10px;padding:11px 15px;font-size:12.7px;margin:12px 0;color:#0d3f5e}
+.okb{background:#e9f6ef;border:1px solid #bcdcc9;border-radius:10px;padding:11px 15px;font-size:12.7px;margin:12px 0;color:#14532d}
+.warn{background:#fdf3e7;border:1px solid #f0d9b8;border-radius:10px;padding:11px 15px;font-size:12.7px;margin:12px 0;color:#6b4d14}
+p,li{font-size:12.7px}
+ul,ol{margin:5px 0 5px 20px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:900px){.grid2{grid-template-columns:1fr}}
+.foot{font-size:11.4px;color:var(--mut);margin-top:28px;border-top:1px solid var(--line);padding-top:12px}
+</style></head><body><div class="wrap">
+<h1>站点结构化索引 与「注入更新」对比报告<small>对象：BL-B01D1 医学事务手册站点（site/index.html）｜对比基线：2026-09-08 提交 <span class="num">1d2b3410f</span>（54 章）｜更早基线：2026-08-30 提交 <span class="num">e53460776</span>（v2.3）｜报告生成：2026-09-15</small></h1>
+
+<div class="inf"><b>本报告的读法与结论</b>：① 「注入更新」= 2026-09-14～15 两次提交引入的内容（第 55–57 章 + 4 个配套页面 + 索引同步），<b>仓库提交历史已核验：全部 12 条新提交均来自本次会话，无第三方/外部注入</b>；② 索引按 <b>章节（section）→ 锚点（anchor）→ HTML 块边界（字符偏移）</b> 三级组织；③ 与历史内容对比采用<b>逐章字符级 diff（difflib）</b>，可精确定位到具体行。<br>
+<b>核心结论：注入为「纯追加型」——新增 3 章（69.9 千字符），仅 2 个旧章节被微调（合计 591 字符差异），其余 52 章逐字符未变</b>（说明编号未重排、交叉引用未破坏）。</div>
+
+<h2>一、站点级指标对比</h2>
+<div class="card"><table>
+<tr><th>指标</th><th>注入前（54 章）</th><th>注入后（57 章）</th><th>变化</th><th>变化率</th></tr>
+<tr><td>总字符数</td><td class="num">346,662</td><td class="num b">419,321</td><td class="num up">+72,659</td><td class="num">+21.0%</td></tr><tr><td>总字节数（UTF-8）</td><td class="num">559,113</td><td class="num b">675,893</td><td class="num up">+116,780</td><td class="num">+20.9%</td></tr><tr><td>章节数</td><td class="num">54</td><td class="num b">57</td><td class="num up">+3</td><td class="num">+5.6%</td></tr><tr><td>表格数</td><td class="num">225</td><td class="num b">286</td><td class="num up">+61</td><td class="num">+27.1%</td></tr><tr><td>div 块数</td><td class="num">820</td><td class="num b">926</td><td class="num up">+106</td><td class="num">+12.9%</td></tr><tr><td>TOC 内部链接</td><td class="num">59</td><td class="num b">74</td><td class="num up">+15</td><td class="num">—</td></tr><tr><td>TOC 下载区链接</td><td class="num">14</td><td class="num b">17</td><td class="num up">+3</td><td class="num">—</td></tr><tr><td>TOC 字符</td><td class="num">3,673</td><td class="num b">4,700</td><td class="num up">+1,027</td><td class="num">+28.0%</td></tr><tr><td>页脚字符</td><td class="num">1,100</td><td class="num b">1,526</td><td class="num up">+426</td><td class="num">+38.7%</td></tr><tr><td>script 标签</td><td class="num">2</td><td class="num b">2</td><td class="num up">0</td><td class="num">—</td></tr>
+</table></div>
+
+<h2>二、版本演进（三代对比）</h2>
+<div class="card"><table>
+<tr><th>版本 / 时间</th><th>字符数</th><th>章节数</th><th>表格数</th><th>阶段内容</th></tr>
+<tr><td>v2.3（2026-08-30）</td><td class="num">336,199</td><td class="num">54</td><td class="num">216</td><td>审计重构：修正 133 处编号错位 + 28 条高风险表述，新增 44–53 章</td></tr>
+<tr><td>2026-09-08（注入前基线）</td><td class="num">346,662</td><td class="num">54</td><td class="num">225</td><td>新增乳腺癌治疗格局与 ADC 布局 mapping（独立页）</td></tr>
+<tr class="s-add"><td><b>2026-09-15（当前）</b></td><td class="num b">419,321</td><td class="num b">57</td><td class="num b">286</td><td>v2.5：注入第 55–57 章 + 4 个配套页面 + 索引同步</td></tr>
+</table>
+<div class="okb"><b>演进特征</b>：站点从 v2.3（54 章 / 336 千字符）到当前（57 章 / 419 千字符），<b>字符量增长 +24.7%</b>，但章节数只增加 3——说明本轮注入以"章节内密度提升 + 独立页面外挂"为主，而非摊薄式扩张（第 55 章单章即 38,236 字符、29 张表）。</div></div>
+
+<h2>三、章节索引总表（57 章 · 含锚点、块边界与变更状态）</h2>
+<div class="card">
+<div class="tw"><table>
+<tr><th style="width:52px">anchor</th><th style="width:44px">章号</th><th>标题</th><th style="width:70px">字符</th><th style="width:66px">Δ字符</th><th style="width:44px">h3</th><th style="width:44px">表</th><th style="width:48px">卡片</th><th style="width:130px">块边界（字符偏移）</th><th style="width:56px">状态</th></tr>
+<tr class="s-same"><td class="rh">s1</td><td class="num">1</td>
+<td>执行摘要</td>
+<td class="num">1,054</td>
+<td class="num">0</td>
+<td class="num">0</td><td class="num">0</td><td class="num">1</td>
+<td class="num">27,401–28,455</td>
+<td><span class="st s-same">未变</span></td></tr><tr class="s-same"><td class="rh">s2</td><td class="num">2</td>
+<td>产品深度解析</td>
+<td class="num">2,710</td>
+<td class="num">0</td>
+<td class="num">3</td><td class="num">1</td><td class="num">4</td>
+<td class="num">28,456–31,166</td>
+<td><span class="st s-same">未变</span></td></tr><tr class="s-same"><td class="rh">s3</td><td class="num">3</td>
+<td>ADC 连接子与载荷作用机制详解</td>
+<td class="num">7,660</td>
+<td class="num">0</td>
+<td class="num">7</td><td class="num">6</td><td class="num">7</td>
+<td class="num">31,167–38,827</td>
+<td><span class="st s-same">未变</span></td></tr><tr class="s-same"><td class="rh">s4</td><td class="num">4</td>
+<td>EGFR 与 HER3 通路详解（机制 · 细胞与基础科研视角 · 未来方向）</td>
+<td class="num">10,546</td>
+<td class="num">0</td>
+<td class="num">9</td><td class="num">9</td><td class="num">9</td>
+<td class="num">38,828–49,374</td>
+<td><span class="st s-same">未变</span></td></tr><tr class="s-same"><td class="rh">s5</td><td class="num">5</td>
+<td>已发表文献与研究全景</td>
+<td class="num">8,500</td>
+<td class="num">0</td>
+<td class="num">2</td><td class="num">8</td><td class="num">10</td>
+<td class="num">49,375–57,875</td>
+<td><span class="st s-same">未变</span></td></tr><tr class="s-same"><td class="rh">s6</td><td class="num">6</td>
+<td>获批说明书要点（核准日期 2026-06-17）</td>
+<td class="num">4,616</td>
+<td class="num">0</td>
+<td class="num">3</td><td class="num">5</td><td class="num">7</td>
+<td class="num">57,876–62,492</td>
+<td><span class="st s-same">未变</span></td></tr><tr class="s-same"><td class="rh">s7</td><td class="num">7</td>
+<td>特殊人群用药</td>
+<td class="num">1,417</td>
+<td class="num">0</td>
+<td class="num">0</td><td class="num">1</td><td class="num">1</td>
+<td class="num">62,493–63,910</td>
+<td><span class="st s-same">未变</span></td></tr><tr class="s-same"><td class="rh">s8</td><td class="num">8</td>
+<td>竞品深度对比（乳腺癌战场全景）</td>
+<td class="num">8,732</td>
+<td class="num">0</td>
+<td class="num">6</td><td class="num">7</td><td class="num">7</td>
+<td class="num">63,911–72,643</td>
+<td><span class="st s-same">未变</span></td></tr><tr class="s-same"><td class="rh">s9</td><td class="num">9</td>
+<td>宜泽康适应症竞品全景与上市后空白点分析</td>
+<td class="num">11,982</td>
+<td class="num">0</td>
+<td class="num">9</td><td class="num">9</td><td class="num">9</td>
+<td class="num">72,644–84,626</td>
+<td><span class="st s-same">未变</span></td></tr><tr class="s-same"><td class="rh">s10</td><td class="num">10</td>
+<td>乳腺癌治疗框架与 ADC 分布总览</td>
+<td class="num">6,548</td>
+<td class="num">0</td>
+<td class="num">8</td><td class="num">6</td><td class="num">8</td>
+<td class="num">84,627–91,175</td>
+<td><span class="st s-same">未变</span></td></tr><tr class="s-same"><td class="rh">s11</td><td class="num">11</td>
+<td>治疗格局与排位：现有ADC / 化疗 / 免疫 / 内分泌</td>
+<td class="num">2,377</td>
+<td class="num">0</td>
+<td class="num">3</td><td class="num">0</td><td class="num">3</td>
+<td class="num">91,176–93,553</td>
+<td><span class="st s-same">未变</span></td></tr><tr class="s-same"><td class="rh">s12</td><td class="num">12</td>
+<td>HER2-low 乳腺癌：研究进展、药物选择与分型特殊性</td>
+<td class="num">6,815</td>
+<td class="num">0</td>
+<td class="num">7</td><td class="num">7</td><td class="num">7</td>
+<td class="num">93,554–100,369</td>
+<td><span class="st s-same">未变</span></td></tr><tr class="s-same"><td class="rh">s13</td><td class="num">13</td>
+<td>ADC 治疗现存问题与不良反应管理</td>
+<td class="num">5,765</td>
+<td class="num">0</td>
+<td class="num">5</td><td class="num">3</td><td class="num">5</td>
+<td class="num">100,370–106,135</td>
+<td><span class="st s-same">未变</span></td></tr><tr class="s-same"><td class="rh">s14</td><td class="num">14</td>
+<td>乳腺癌 ADC 注册在研临床研究全景（中心与进度）</td>
+<td class="num">6,131</td>
+<td class="num">0</td>
+<td class="num">4</td><td class="num">2</td><td class="num">4</td>
+<td class="num">106,136–112,267</td>
+<td><span class="st s-same">未变</span></td></tr><tr class="s-same"><td class="rh">s15</td><td class="num">15</td>
+<td>未来方向思考：联合治疗 / 前线 / 优势人群 / 生物标志物 / 耐药</td>
+<td class="num">4,560</td>
+<td class="num">0</td>
+<td class="num">5</td><td class="num">2</td><td class="num">7</td>
+<td class="num">112,268–116,828</td>
+<td><span class="st s-same">未变</span></td></tr><tr class="s-mod"><td class="rh">s16</td><td class="num">16</td>
+<td>mTNBC 随机对照研究设计与统计方法对比</td>
+<td class="num">32,451</td>
+<td class="num">+253</td>
+<td class="num">9</td><td class="num">21</td><td class="num">7</td>
+<td class="num">116,829–149,280</td>
+<td><span class="st s-mod">修改</span></td></tr><tr class="s-mod"><td class="rh">s17</td><td class="num">17</td>
+<td>单臂临床研究与 RWE 设计细则及统计学要点（深度版）</td>
+<td class="num">11,001</td>
+<td class="num">+234</td>
+<td class="num">3</td><td class="num">8</td><td class="num">15</td>
+<td class="num">149,281–160,282</td>
+<td><span class="st s-mod">修改</span></td></tr><tr class="s-same"><td class="rh">s18</td><td class="num">18</td>
+<td>研究方案审核要点与常见坑清单</td>
+<td class="num">6,868</td>
+<td class="num">0</td>
+<td class="num">5</td><td class="num">2</td><td class="num">5</td>
+<td class="num">160,283–167,151</td>
+<td><span class="st s-same">未变</span></td></tr><tr class="s-same"><td class="rh">s19</td><td class="num">19</td>
+<td>全球多中心临床试验（MRCT）：与国内 RCT 的差异及知识体系</td>
+<td class="num">11,666</td>
+<td class="num">0</td>
+<td class="num">8</td><td class="num">8</td><td class="num">8</td>
+<td class="num">167,152–178,818</td>
+<td><span class="st s-same">未变</span></td></tr><tr class="s-same"><td class="rh">s20</td><td class="num">20</td>
+<td>MRCT 数据用于中国申报 · 桥接试验 · 上市后证据体系</td>
+<td class="num">8,631</td>
+<td class="num">0</td>
+<td class="num">8</td><td class="num">8</td><td class="num">8</td>
+<td class="num">178,819–187,450</td>
+<td><span class="st s-same">未变</span></td></tr><tr class="s-same"><td class="rh">s21</td><td class="num">21</td>
+<td>GCP 研究 vs IIT 研究：区别、流程与注意细节</td>
+<td class="num">12,621</td>
+<td class="num">0</td>
+<td class="num">8</td><td class="num">10</td><td class="num">8</td>
+<td class="num">187,451–200,072</td>
+<td><span class="st s-same">未变</span></td></tr><tr class="s-same"><td class="rh">s22</td><td class="num">22</td>
+<td>上市后研究流程与医学经理职责：IIT vs 药企发起研究</td>
+<td class="num">10,545</td>
+<td class="num">0</td>
+<td class="num">7</td><td class="num">5</td><td class="num">7</td>
+<td class="num">200,073–210,618</td>
+<td><span class="st s-same">未变</span></td></tr><tr class="s-same"><td class="rh">s23</td><td class="num">23</td>
+<td>上市后 IV 期临床研究详解（含上市后研究全景）</td>
+<td class="num">10,255</td>
+<td class="num">0</td>
+<td class="num">9</td><td class="num">5</td><td class="num">9</td>
+<td class="num">210,619–220,874</td>
+<td><span class="st s-same">未变</span></td></tr><tr class="s-same"><td class="rh">s24</td><td class="num">24</td>
+<td>临床试验核心概念与文件体系（IND · CDA · IB · CTA · CSR 等）</td>
+<td class="num">7,276</td>
+<td class="num">0</td>
+<td class="num">5</td><td class="num">3</td><td class="num">5</td>
+<td class="num">220,875–228,151</td>
+<td><span class="st s-same">未变</span></td></tr><tr class="s-same"><td class="rh">s25</td><td class="num">25</td>
+<td>适应症纳入与确证性研究设计详解</td>
+<td class="num">9,415</td>
+<td class="num">0</td>
+<td class="num">8</td><td class="num">4</td><td class="num">8</td>
+<td class="num">228,152–237,567</td>
+<td><span class="st s-same">未变</span></td></tr><tr class="s-same"><td class="rh">s26</td><td class="num">26</td>
+<td>核心信息屋（Message House）</td>
+<td class="num">2,826</td>
+<td class="num">0</td>
+<td class="num">0</td><td class="num">0</td><td class="num">0</td>
+<td class="num">237,568–240,394</td>
+<td><span class="st s-same">未变</span></td></tr><tr class="s-same"><td class="rh">s27</td><td class="num">27</td>
+<td>医学问答库（FAQ Top 20）</td>
+<td class="num">4,069</td>
+<td class="num">0</td>
+<td class="num">6</td><td class="num">6</td><td class="num">1</td>
+<td class="num">240,395–244,464</td>
+<td><span class="st s-same">未变</span></td></tr><tr class="s-same"><td class="rh">s28</td><td class="num">28</td>
+<td>医学洞察方法论（从"信息"到"策略"）</td>
+<td class="num">2,833</td>
+<td class="num">0</td>
+<td class="num">3</td><td class="num">2</td><td class="num">1</td>
+<td class="num">244,465–247,298</td>
+<td><span class="st s-same">未变</span></td></tr><tr class="s-same"><td class="rh">s29</td><td class="num">29</td>
+<td>年度工作节奏日历（2026H2-2027）</td>
+<td class="num">1,798</td>
+<td class="num">0</td>
+<td class="num">3</td><td class="num">3</td><td class="num">1</td>
+<td class="num">247,299–249,097</td>
+<td><span class="st s-same">未变</span></td></tr><tr class="s-same"><td class="rh">s30</td><td class="num">30</td>
+<td>文献追踪与检索策略</td>
+<td class="num">2,627</td>
+<td class="num">0</td>
+<td class="num">4</td><td class="num">2</td><td class="num">1</td>
+<td class="num">249,098–251,725</td>
+<td><span class="st s-same">未变</span></td></tr><tr class="s-same"><td class="rh">s31</td><td class="num">31</td>
+<td>风险预案与危机应对</td>
+<td class="num">1,458</td>
+<td class="num">0</td>
+<td class="num">0</td><td class="num">1</td><td class="num">1</td>
+<td class="num">251,726–253,184</td>
+<td><span class="st s-same">未变</span></td></tr><tr class="s-same"><td class="rh">s32</td><td class="num">32</td>
+<td>TNBC 获批即用材料包（培训卡 / FAQ / 卫星会课件）</td>
+<td class="num">4,225</td>
+<td class="num">0</td>
+<td class="num">3</td><td class="num">0</td><td class="num">3</td>
+<td class="num">253,185–257,410</td>
+<td><span class="st s-same">未变</span></td></tr><tr class="s-same"><td class="rh">s33</td><td class="num">33</td>
+<td>工作场景提问与回答模板（KOL · 销售 · 公司内部）</td>
+<td class="num">5,357</td>
+<td class="num">0</td>
+<td class="num">5</td><td class="num">3</td><td class="num">5</td>
+<td class="num">257,411–262,768</td>
+<td><span class="st s-same">未变</span></td></tr><tr class="s-same"><td class="rh">s34</td><td class="num">34</td>
+<td>PPT 制作要点（医学事务场景）</td>
+<td class="num">3,030</td>
+<td class="num">0</td>
+<td class="num">7</td><td class="num">3</td><td class="num">7</td>
+<td class="num">262,769–265,799</td>
+<td><span class="st s-same">未变</span></td></tr><tr class="s-same"><td class="rh">s35</td><td class="num">35</td>
+<td>入职前准备与入职后快速提产指南</td>
+<td class="num">6,192</td>
+<td class="num">0</td>
+<td class="num">6</td><td class="num">6</td><td class="num">6</td>
+<td class="num">265,800–271,992</td>
+<td><span class="st s-same">未变</span></td></tr><tr class="s-same"><td class="rh">s36</td><td class="num">36</td>
+<td>职业路径与成长</td>
+<td class="num">1,620</td>
+<td class="num">0</td>
+<td class="num">2</td><td class="num">2</td><td class="num">2</td>
+<td class="num">271,993–273,613</td>
+<td><span class="st s-same">未变</span></td></tr><tr class="s-same"><td class="rh">s37</td><td class="num">37</td>
+<td>日常效能方法</td>
+<td class="num">2,244</td>
+<td class="num">0</td>
+<td class="num">3</td><td class="num">3</td><td class="num">4</td>
+<td class="num">273,614–275,858</td>
+<td><span class="st s-same">未变</span></td></tr><tr class="s-same"><td class="rh">s38</td><td class="num">38</td>
+<td>合规红线清单（零容忍）</td>
+<td class="num">1,089</td>
+<td class="num">0</td>
+<td class="num">0</td><td class="num">1</td><td class="num">1</td>
+<td class="num">275,859–276,948</td>
+<td><span class="st s-same">未变</span></td></tr><tr class="s-same"><td class="rh">s39</td><td class="num">39</td>
+<td>场景话术库（对外：医生 / KOL / 患者 / 媒体）</td>
+<td class="num">2,325</td>
+<td class="num">0</td>
+<td class="num">2</td><td class="num">0</td><td class="num">2</td>
+<td class="num">276,949–279,274</td>
+<td><span class="st s-same">未变</span></td></tr><tr class="s-same"><td class="rh">s40</td><td class="num">40</td>
+<td>场景话术库（对内：销售 / 市场 / 上级 / 会议）</td>
+<td class="num">1,537</td>
+<td class="num">0</td>
+<td class="num">2</td><td class="num">0</td><td class="num">2</td>
+<td class="num">279,275–280,812</td>
+<td><span class="st s-same">未变</span></td></tr><tr class="s-same"><td class="rh">s41</td><td class="num">41</td>
+<td>需提前构建的表格与文档模板清单</td>
+<td class="num">1,905</td>
+<td class="num">0</td>
+<td class="num">0</td><td class="num">1</td><td class="num">1</td>
+<td class="num">280,813–282,718</td>
+<td><span class="st s-same">未变</span></td></tr><tr class="s-same"><td class="rh">s42</td><td class="num">42</td>
+<td>90天上手与避坑清单</td>
+<td class="num">1,138</td>
+<td class="num">0</td>
+<td class="num">0</td><td class="num">1</td><td class="num">1</td>
+<td class="num">282,719–283,857</td>
+<td><span class="st s-same">未变</span></td></tr><tr class="s-same"><td class="rh">s43</td><td class="num">43</td>
+<td>个人成长与岗位竞争力技能清单</td>
+<td class="num">4,594</td>
+<td class="num">0</td>
+<td class="num">6</td><td class="num">5</td><td class="num">6</td>
+<td class="num">283,858–288,452</td>
+<td><span class="st s-same">未变</span></td></tr><tr class="s-same"><td class="rh">s44</td><td class="num">44</td>
+<td>Medical Plan 完整方法论与模拟案例</td>
+<td class="num">10,412</td>
+<td class="num">0</td>
+<td class="num">16</td><td class="num">6</td><td class="num">16</td>
+<td class="num">288,453–298,865</td>
+<td><span class="st s-same">未变</span></td></tr><tr class="s-same"><td class="rh">s45</td><td class="num">45</td>
+<td>Integrated Evidence Plan（IEP）与证据缺口优先级评分</td>
+<td class="num">7,157</td>
+<td class="num">0</td>
+<td class="num">4</td><td class="num">2</td><td class="num">4</td>
+<td class="num">298,866–306,023</td>
+<td><span class="st s-same">未变</span></td></tr><tr class="s-same"><td class="rh">s46</td><td class="num">46</td>
+<td>医学洞察方法论（深化版）</td>
+<td class="num">5,285</td>
+<td class="num">0</td>
+<td class="num">10</td><td class="num">4</td><td class="num">10</td>
+<td class="num">306,024–311,309</td>
+<td><span class="st s-same">未变</span></td></tr><tr class="s-same"><td class="rh">s47</td><td class="num">47</td>
+<td>项目管理（医学事务版）：17 工具 + 5 案例</td>
+<td class="num">5,377</td>
+<td class="num">0</td>
+<td class="num">7</td><td class="num">6</td><td class="num">7</td>
+<td class="num">311,311–316,688</td>
+<td><span class="st s-same">未变</span></td></tr><tr class="s-same"><td class="rh">s48</td><td class="num">48</td>
+<td>Publication 与 Scientific Communication Plan</td>
+<td class="num">4,691</td>
+<td class="num">0</td>
+<td class="num">12</td><td class="num">3</td><td class="num">12</td>
+<td class="num">316,689–321,380</td>
+<td><span class="st s-same">未变</span></td></tr><tr class="s-same"><td class="rh">s49</td><td class="num">49</td>
+<td>医学治理与合规实操（PV · 材料审核 · 说明书外应答）</td>
+<td class="num">4,694</td>
+<td class="num">0</td>
+<td class="num">11</td><td class="num">2</td><td class="num">11</td>
+<td class="num">321,381–326,075</td>
+<td><span class="st s-same">未变</span></td></tr><tr class="s-same"><td class="rh">s50</td><td class="num">50</td>
+<td>商业、准入与生命周期管理基础</td>
+<td class="num">3,939</td>
+<td class="num">0</td>
+<td class="num">9</td><td class="num">4</td><td class="num">9</td>
+<td class="num">326,076–330,015</td>
+<td><span class="st s-same">未变</span></td></tr><tr class="s-same"><td class="rh">s51</td><td class="num">51</td>
+<td>职业能力模型与个人成果档案</td>
+<td class="num">3,517</td>
+<td class="num">0</td>
+<td class="num">3</td><td class="num">3</td><td class="num">3</td>
+<td class="num">330,016–333,533</td>
+<td><span class="st s-same">未变</span></td></tr><tr class="s-same"><td class="rh">s52</td><td class="num">52</td>
+<td>30/60/90 天计划（重构版）</td>
+<td class="num">2,609</td>
+<td class="num">0</td>
+<td class="num">5</td><td class="num">3</td><td class="num">5</td>
+<td class="num">333,534–336,143</td>
+<td><span class="st s-same">未变</span></td></tr><tr class="s-same"><td class="rh">s53</td><td class="num">53</td>
+<td>引用、证据标签与版本管理（单一事实源）</td>
+<td class="num">3,915</td>
+<td class="num">0</td>
+<td class="num">5</td><td class="num">4</td><td class="num">5</td>
+<td class="num">336,144–340,059</td>
+<td><span class="st s-same">未变</span></td></tr><tr class="s-same"><td class="rh">s54</td><td class="num">54</td>
+<td>Evidence Library 与版本中心</td>
+<td class="num">7,570</td>
+<td class="num">0</td>
+<td class="num">10</td><td class="num">9</td><td class="num">10</td>
+<td class="num">340,061–347,631</td>
+<td><span class="st s-same">未变</span></td></tr><tr class="s-add"><td class="rh">s55</td><td class="num">55</td>
+<td>样本量设计：从基础到实操（可复算手册）</td>
+<td class="num">38,236</td>
+<td class="num">—</td>
+<td class="num">10</td><td class="num">29</td><td class="num">12</td>
+<td class="num">347,633–385,869</td>
+<td><span class="st s-add">新增</span></td></tr><tr class="s-add"><td class="rh">s56</td><td class="num">56</td>
+<td>单臂 IIT 的常见设计形式与适合场景</td>
+<td class="num">17,854</td>
+<td class="num">—</td>
+<td class="num">12</td><td class="num">17</td><td class="num">12</td>
+<td class="num">385,871–403,725</td>
+<td><span class="st s-add">新增</span></td></tr><tr class="s-add"><td class="rh">s57</td><td class="num">57</td>
+<td>多队列研究设计注意事项</td>
+<td class="num">14,066</td>
+<td class="num">—</td>
+<td class="num">8</td><td class="num">15</td><td class="num">8</td>
+<td class="num">403,727–417,793</td>
+<td><span class="st s-add">新增</span></td></tr>
+</table></div>
+<p style="font-size:11.5px;color:var(--mut);margin-top:6px">块边界为该 <span class="num">&lt;section&gt;…&lt;/section&gt;</span> 在文件中的字符起止偏移，可用于按块提取、差异定位与增量更新。h3 列为该章三级标题数量（其中带锚点的可直接被 TOC 二级链接引用）。</p>
+</div>
+
+<h2>四、注入内容详解：三个新章节的锚点索引</h2>
+<div class="card">
+<h4>s55 · 第 55 章 · 样本量设计：从基础到实操（可复算手册）<span class="tagx">字符范围 347,633–385,869 ｜ 38,236 字符 ｜ 29 表 ｜ 12 卡片</span></h4>
+<div class="tw"><table><tr><th style="width:110px">锚点</th><th>小节标题</th><th style="width:70px">序号</th></tr><tr><td class="num">#s55-1</td><td>55.1 基础层：先建立三个直觉，再碰公式</td><td class="num">1/10</td></tr><tr><td class="num">#s55-2</td><td>55.2 进阶层：按终点类型选公式（五类终点，照类型抄公式）</td><td class="num">2/10</td></tr><tr><td class="num">#s55-3</td><td>55.3 两阶段与"可提前止损"设计：Simon 的完整用法</td><td class="num">3/10</td></tr><tr><td class="num">#s55-4</td><td>55.4 膨胀与折扣：从"理论 n"到"方案里的 N"</td><td class="num">4/10</td></tr><tr><td class="num">#s55-5</td><td>55.5 实操：8 步流程与三个完整算例</td><td class="num">5/10</td></tr><tr><td class="num">#s55-6</td><td>55.6 可运行代码（直接复制可用）</td><td class="num">6/10</td></tr><tr><td class="num">#s55-7</td><td>55.7 敏感性分析：把"如果假设错了"提前回答掉</td><td class="num">7/10</td></tr><tr><td class="num">#s55-8</td><td>55.8 样本量论证段落模板（中英文，可直接改写）</td><td class="num">8/10</td></tr><tr><td class="num">#s55-9</td><td>55.9 常见错误清单（14 条，按被质疑频率排序）</td><td class="num">9/10</td></tr><tr><td class="num">#s55-10</td><td>55.10 沟通清单：与统计师、伦理、监管各说什么</td><td class="num">10/10</td></tr></table></div><h4>s56 · 第 56 章 · 单臂 IIT 的常见设计形式与适合场景<span class="tagx">字符范围 385,871–403,725 ｜ 17,854 字符 ｜ 17 表 ｜ 12 卡片</span></h4>
+<div class="tw"><table><tr><th style="width:110px">锚点</th><th>小节标题</th><th style="width:70px">序号</th></tr><tr><td class="num">#s56-1</td><td>56.1 先认清：IIT 单臂与注册单臂不是"大小号"关系</td><td class="num">1/12</td></tr><tr><td class="num">#s56-2</td><td>56.2 八种设计形式速查矩阵（先看这张，再决定读哪一节）</td><td class="num">2/12</td></tr><tr><td class="num">#s56-3</td><td>56.3 形式①：单阶段精确二项设计（最简单，也最容易用错）</td><td class="num">3/12</td></tr><tr><td class="num">#s56-4</td><td>56.4 形式②③：Simon 两阶段（IIT 的默认选择）</td><td class="num">4/12</td></tr><tr><td class="num">#s56-5</td><td>56.5 形式④：Gehan 两阶段设计（"先证明有一点活性"）</td><td class="num">5/12</td></tr><tr><td class="num">#s56-6</td><td>56.6 形式⑤：贝叶斯 Beta-Binomial（小样本的另一种问法）</td><td class="num">6/12</td></tr><tr><td class="num">#s56-7</td><td>56.7 形式⑥：剂量扩展队列（3+3 / BOIN → 扩展队列）</td><td class="num">7/12</td></tr><tr><td class="num">#s56-8</td><td>56.8 形式⑦：多队列单臂（篮式设计）</td><td class="num">8/12</td></tr><tr><td class="num">#s56-9</td><td>56.9 形式⑧：单臂 + 外部/历史对照（ECL）</td><td class="num">9/12</td></tr><tr><td class="num">#s56-10</td><td>56.10 选型决策：五个问题定形式</td><td class="num">10/12</td></tr><tr><td class="num">#s56-11</td><td>56.11 单臂 IIT 的 12 个坑（按发生频率排序）</td><td class="num">11/12</td></tr><tr><td class="num">#s56-12</td><td>56.12 三个可直接落地的方案骨架（BL-B01D1 语境，示意）</td><td class="num">12/12</td></tr></table></div><h4>s57 · 第 57 章 · 多队列研究设计注意事项<span class="tagx">字符范围 403,727–417,793 ｜ 14,066 字符 ｜ 15 表 ｜ 8 卡片</span></h4>
+<div class="tw"><table><tr><th style="width:110px">锚点</th><th>小节标题</th><th style="width:70px">序号</th></tr><tr><td class="num">#s57-1</td><td>57.1 四种原型：先认清自己做的是哪一种</td><td class="num">1/8</td></tr><tr><td class="num">#s57-2</td><td>57.2 设计阶段的 10 个决策点（按顺序定，不要跳）</td><td class="num">2/8</td></tr><tr><td class="num">#s57-3</td><td>57.3 统计注意事项（本章的重点）</td><td class="num">3/8</td></tr><tr><td class="num">#s57-4</td><td>57.4 样本量在多队列之间的三种分配逻辑</td><td class="num">4/8</td></tr><tr><td class="num">#s57-5</td><td>57.5 治理、操作与合规</td><td class="num">5/8</td></tr><tr><td class="num">#s57-6</td><td>57.6 报告与发表注意事项</td><td class="num">6/8</td></tr><tr><td class="num">#s57-7</td><td>57.7 常见错误清单（10 条）</td><td class="num">7/8</td></tr><tr><td class="num">#s57-8</td><td>57.8 示例：BL-B01D1 语境下的三队列设计（示意）</td><td class="num">8/8</td></tr></table></div>
+<div class="inf"><b>注入位置</b>：三章均追加在第 54 章之后、页脚 <span class="num">&lt;div class="foot"&gt;</span> 之前，<b>未对既有章节重新编号</b>——这是保证 100+ 处交叉引用与 200+ 个小节号不发生连锁破坏的关键决策。</div>
+</div>
+
+<h2>五、被修改章节的精确差异（仅 2 章）</h2>
+<div class="card">
+['<h4>s16 · 第 16 章 · mTNBC RCT 设计与统计方法对比<span class="tagx">差异 323 字符 ｜ 相似度 0.99435 ｜ 32,198 → 32,451 字符</span></h4>\n<div class="diff"><div class="hunk">@@ -126,4 +126,4 @@</div><div class="del">− &lt;tr&gt;&lt;td&gt;20%&lt;/td&gt;&lt;td&gt;40%&lt;/td&gt;&lt;td&gt;0.05&lt;/td&gt;&lt;td&gt;0.20&lt;/td&gt;&lt;td&gt;约 n1=17（若缓解≤3 例则早期停止）；总 n≈46（若≤13 例缓解则拒绝）&lt;/td&gt;&lt;td&gt;如"后线 TNBC 历史 ORR 约20%，目标 ORR 40%"&lt;/td&gt;&lt;/tr&gt;</div><div class="del">− &lt;tr&gt;&lt;td&gt;30%&lt;/td&gt;&lt;td&gt;50%&lt;/td&gt;&lt;td&gt;0.05&lt;/td&gt;&lt;td&gt;0.20&lt;/td&gt;&lt;td&gt;约 n1=18；总 n≈39&lt;/td&gt;&lt;td&gt;如"二线 ADC 场景（对照 SG 约31%）"&lt;/td&gt;&lt;/tr&gt;</div><div class="del">− &lt;/table&gt;</div><div class="del">− &lt;p style="font-size:12.5px;color:var(--mut)"&gt;注：上表为 Simon 最优设计查表示意值（近似），实际方案必须用 PASS/EAST/R 等软件按精确 α/β 计算并写明可放弃概率（probability of early termination）。&lt;/p&gt;</div><div class="add">+ &lt;tr&gt;&lt;td&gt;20%&lt;/td&gt;&lt;td&gt;40%&lt;/td&gt;&lt;td&gt;0.05&lt;/td&gt;&lt;td&gt;0.20&lt;/td&gt;&lt;td&gt;&lt;b&gt;n1=13（若缓解≤3 例则早期停止）；总 n=43（若累计缓解≤12 例则判定无效）&lt;/b&gt;&lt;/td&gt;&lt;td&gt;如"后线 TNBC 历史 ORR 约20%，目标 ORR 40%"&lt;/td&gt;&lt;/tr&gt;</div><div class="add">+ &lt;tr&gt;&lt;td&gt;30%&lt;/td&gt;&lt;td&gt;50%&lt;/td&gt;&lt;td&gt;0.05&lt;/td&gt;&lt;td&gt;0.20&lt;/td&gt;&lt;td&gt;&lt;b&gt;n1=15；总 n=46（阈值 r=18）&lt;/b&gt;&lt;/td&gt;&lt;td&gt;如"二线 ADC 场景（对照 SG 约31%）"&lt;/td&gt;&lt;/tr&gt;</div><div class="add">+ &lt;/table&gt;</div><div class="add">+ &lt;p style="font-size:12.5px;color:var(--muted)"&gt;注：上表数值已按精确二项分布实算（power 80%）：20%→40% 设计实际 α=0.0496、power=0.8002、期望样本量 EN=20.6、H0 下提前停止概率 0.75；30%→50% 设计 EN=23.6。完整查值表、最优/极小极大对照与代码见&lt;b&gt;第 55.3.3 与 55.6.1 节&lt;/b&gt;；实际方案仍须用 PASS/nQuery/EAST/R 等软件复核并写明可放弃概率（probability of early termination）。&lt;/p&gt;</div><div class="hunk">@@ -332 +332 @@</div><div class="del">− &lt;tr&gt;&lt;td&gt;示例（示意值，须软件计算）&lt;/td&gt;&lt;td&gt;p0=20%、p1=40%、α=0.05、β=0.20 → 最优设计约 n1=17、r1=3；总 n≈46、r≈13&lt;/td&gt;&lt;/tr&gt;</div><div class="add">+ &lt;tr&gt;&lt;td&gt;示例（精确二项实算）&lt;/td&gt;&lt;td&gt;p0=20%、p1=40%、α=0.05、β=0.20 → 最优设计 &lt;b&gt;n1=13、r1=3；总 n=43、r=12&lt;/b&gt;（EN=20.6，PET@H0=0.75，实际 α=0.0496、power=0.8002）；极小极大设计 n=33、r=10。完整 10 组参数查值表见&lt;b&gt;第 55.3.3 节&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;</div></div>', '<h4>s17 · 第 17 章 · 单臂临床研究与 RWE 设计细则<span class="tagx">差异 268 字符 ｜ 相似度 0.98631 ｜ 10,767 → 11,001 字符</span></h4>\n<div class="diff"><div class="hunk">@@ -33 +33 @@</div><div class="del">− &lt;p&gt;&lt;b&gt;示例&lt;/b&gt;：p0=0.20、p1=0.40、单侧 α=0.05、β=0.20 → 精确法 n≈44–46 例（示意值，须软件复核）。&lt;/p&gt;</div><div class="add">+ &lt;p&gt;&lt;b&gt;示例（精确二项实算）&lt;/b&gt;：p0=0.20、p1=0.40、单侧 α=0.05、β=0.20 → 单阶段精确法 &lt;b&gt;n=35，临界值 r=12&lt;/b&gt;（实际 α=0.0344、power=0.8048）；正态近似式给出约 44 例，&lt;b&gt;两者差 9 例，说明近似式在小样本 ORR 场景不可直接用&lt;/b&gt;。两阶段设计对比与 10 组参数查值见&lt;b&gt;第 55.3.3 节&lt;/b&gt;，可运行代码见&lt;b&gt;第 55.6.1 节&lt;/b&gt;。&lt;/p&gt;</div><div class="hunk">@@ -36,4 +36,4 @@</div><div class="del">− &lt;tr&gt;&lt;th&gt;要素&lt;/th&gt;&lt;th&gt;含义&lt;/th&gt;&lt;th&gt;示例（p0=0.20, p1=0.40, α=0.05, β=0.20，示意值）&lt;/th&gt;&lt;/tr&gt;</div><div class="del">− &lt;tr&gt;&lt;td&gt;n1 / r1&lt;/td&gt;&lt;td&gt;第一阶段入组数 / 早期停止阈值&lt;/td&gt;&lt;td&gt;n1=17，r1=3：17 例中缓解≤3 例 → 早期停止（判定无效）&lt;/td&gt;&lt;/tr&gt;</div><div class="del">− &lt;tr&gt;&lt;td&gt;n / r&lt;/td&gt;&lt;td&gt;总入组数 / 最终拒绝阈值&lt;/td&gt;&lt;td&gt;n=46，r=15：总缓解≤15 例 → 拒绝 H0&lt;/td&gt;&lt;/tr&gt;</div><div class="del">− &lt;tr&gt;&lt;td&gt;PET&lt;/td&gt;&lt;td&gt;早期停止概率（p0 下）&lt;/td&gt;&lt;td&gt;约 0.55–0.65（节省样本的关键）&lt;/td&gt;&lt;/tr&gt;</div><div class="add">+ &lt;tr&gt;&lt;th&gt;要素&lt;/th&gt;&lt;th&gt;含义&lt;/th&gt;&lt;th&gt;示例（p0=0.20, p1=0.40, α=0.05, β=0.20；Simon 最优实算值）&lt;/th&gt;&lt;/tr&gt;</div><div class="add">+ &lt;tr&gt;&lt;td&gt;n1 / r1&lt;/td&gt;&lt;td&gt;第一阶段入组数 / 早期停止阈值&lt;/td&gt;&lt;td&gt;&lt;b&gt;n1=13，r1=3&lt;/b&gt;：13 例中确认缓解≤3 例 → 早期停止（判定该药活性不足）&lt;/td&gt;&lt;/tr&gt;</div><div class="add">+ &lt;tr&gt;&lt;td&gt;n / r&lt;/td&gt;&lt;td&gt;总入组数 / 最终判定阈值&lt;/td&gt;&lt;td&gt;&lt;b&gt;n=43，r=12&lt;/b&gt;：累计确认缓解≤12 例 → 判定未达有效性界值（不拒绝 H0 的"无效"方向即研究结论为阴性）&lt;/td&gt;&lt;/tr&gt;</div><div class="add">+ &lt;tr&gt;&lt;td&gt;PET&lt;/td&gt;&lt;td&gt;早期停止概率（p0 下）&lt;/td&gt;&lt;td&gt;&lt;b&gt;约 0.75&lt;/b&gt;（真实无效时 3/4 的情况下仅 13 例即可停止，是省样本的关键）&lt;/td&gt;&lt;/tr&gt;</div></div>']
+<div class="warn"><b>修改性质</b>：两处修改都属于<b>"示意值 → 精确实算值"的校正</b>而非内容重写——原 Simon 设计示例（n1=17 / 总 46 / r=13、精确法 44–46 例、PET 0.55–0.65）在数学上不成立，已替换为精确二项实算值（<b>n1=13 / 总 43 / r=12</b>、单阶段 <b>n=35 / r=12</b>、PET <b>0.75</b>），并加注指向第 55.3.3 与 55.6.1 节。同时修正了 17.1.3 中对 Simon 拒绝规则的逻辑反写，以及 16.4.2 的 <span class="num">var(--mut)</span> 笔误。</div>
+</div>
+
+<h2>六、索引层变更（非 section 区块）</h2>
+<div class="card"><table>
+<tr><th>区块</th><th>注入前字符</th><th>注入后字符</th><th>净增</th><th>差异字符</th><th>相似度</th></tr>
+<tr><td>首页工作台区（六大中心 + 更新说明 + 免责声明）</td><td class="num">17,500</td><td class="num">19,083</td><td class="num">+1,583</td><td class="num">1,925</td><td class="num">0.9469</td></tr><tr><td>侧边栏 TOC（导航 + 分组 + 下载区）</td><td class="num">3,673</td><td class="num">4,700</td><td class="num">+1,027</td><td class="num">1,027</td><td class="num">0.8773</td></tr><tr><td>页脚（版本号 + 变更记录）</td><td class="num">1,100</td><td class="num">1,526</td><td class="num">+426</td><td class="num">430</td><td class="num">0.8347</td></tr>
+</table>
+<div class="inf"><b>四处索引同步</b>（缺任一处都会出现"内容更新了但找不到入口"）：① TOC 新增分组「研究设计与统计实操（55-57 新增）」含 14 条链接（3 个主链接 + 11 个二级锚点链接）；② TOC 下载区新增 3 条独立页面入口；③ 首页 <span class="num">#wb-upd</span> 更新说明重写为 v2.5 七项；④ 页脚版本号与变更记录追加 v2.5 条目。</div>
+</div>
+
+<h2>七、外挂页面矩阵（与主站的引用关系）</h2>
+<div class="card"><table>
+<tr><th style="width:250px">独立页面（site/）</th><th style="width:74px">大小</th><th>内容定位</th><th>与主站关系</th></tr>
+<tr><td class="rh">乳腺癌治疗格局与ADC布局mapping-2026-09.html</td><td class="num">42.3 KB</td><td>分型×分期格局、ADC 布局矩阵、HER3 现状、ADC 不良反应</td><td>下载区入口；被主站第 10/11/13/14 章概念引用</td></tr>
+<tr><td class="rh">BL-B01D1关键问题应答速查-2026-09.html</td><td class="num">86.8 KB</td><td>Q&amp;A Playbook：6 板块 42 题（竞品差异 / 序贯耐药 / 联合 / 围手术期洗脱 / 数据监管 / 红线话术）</td><td>下载区入口；含实时搜索</td></tr>
+<tr><td class="rh">iza-bren临床研究全景与乳腺癌数据详解-2026-09.html</td><td class="num">67.1 KB</td><td>已出结果研究 16 项 + 在研 mapping + 乳腺癌逐亚组/逐安全信号 + 数据缺口</td><td>下载区入口；与第 16/17 章统计方法、第 55 章样本量内容互补</td></tr>
+<tr><td class="rh">mapping记忆矩阵-2026-09.html</td><td class="num">42.6 KB</td><td>把两个 mapping 压缩为 7 张矩阵（格局 / 靶点×载荷 / ADC 数据 / 研究全景 / 乳腺癌数据 / 安全性谱 / 在研阶段）+ 助记口诀</td><td>下载区入口；前端压缩层，指向上述两页</td></tr>
+</table>
+<div class="okb"><b>页面分工</b>：主站 = <b>方法论与工作流</b>（57 章，含 55–57 章统计实操）；四个独立页 = <b>数据与场景层</b>（格局 / 应答 / 研究明细 / 记忆压缩）。建议的阅读顺序：格局 mapping → 研究全景 → 记忆矩阵 → Q&amp;A Playbook。</div>
+</div>
+
+<h2>八、结构化索引原始数据（可复用）</h2>
+<div class="card">
+<p>本报告的全部中间数据已生成，可直接用于后续自动化：</p>
+<ul>
+<li><span class="num">diffdata.json</span> — 三个版本（当前 / 注入前 / v2.3）的完整结构快照：每章 id、num、标题、字符数、起止偏移、h3 锚点列表、表格与卡片数、TOC 与页脚指标。</li>
+<li><span class="num">rows.json</span> — 57 章的字符级 diff 结果：状态（新增/修改/未变）、差异字符数、相似度、新增/删除的 h3。</li>
+<li><span class="num">commits.json</span> — 最近 40 条提交（sha / 时间 / 消息），用于版本溯源。</li>
+</ul>
+<p>建议的后续用途：① 每次更新后用同一脚本重跑，即可产出"变更清单"（避免手工核对遗漏）；② 结合块边界偏移实现按章增量替换；③ 把 rows 的"修改"项联动到主手册第 53.5 节的受影响页面清单。</p>
+</div>
+
+<div class="foot">站点结构化索引与注入更新对比报告 · 生成于 2026-09-15 · 对比基线 1d2b3410f（2026-09-08）与 e53460776（2026-08-30）<br>
+个人学习资料（不作为公司对外材料）｜方法：re 切块 + 锚点提取 + difflib 字符级比对</div>
+</div></body></html>
